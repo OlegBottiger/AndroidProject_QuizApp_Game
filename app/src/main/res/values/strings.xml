@@ -1,3 +1,7 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">ProjektArbete</string>
+=======
+    <string name="app_name">Asobi</string>
+>>>>>>> 6645908f4da2717ad03277390fd588b954d4005d
 </resources>

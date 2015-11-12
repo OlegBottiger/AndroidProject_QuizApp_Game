@@ -5,8 +5,13 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
+<<<<<<< HEAD
         applicationId "gattanjo.projektarbete"
         minSdkVersion 14
+=======
+        applicationId "com.example.iths.asobi"
+        minSdkVersion 16
+>>>>>>> 6645908f4da2717ad03277390fd588b954d4005d
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
