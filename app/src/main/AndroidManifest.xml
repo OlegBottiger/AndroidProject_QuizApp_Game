@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
-    package="gattanjo.projektarbete" >
-=======
     package="com.example.iths.asobi" >
->>>>>>> 6645908f4da2717ad03277390fd588b954d4005d
 
     <application
         android:allowBackup="true"

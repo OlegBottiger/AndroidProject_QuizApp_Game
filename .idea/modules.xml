@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/ProjektArbete.iml" filepath="$PROJECT_DIR$/ProjektArbete.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Asobi.iml" filepath="$PROJECT_DIR$/Asobi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/asobi_game.iml" filepath="$PROJECT_DIR$/asobi_game.iml" />
->>>>>>> 6645908f4da2717ad03277390fd588b954d4005d
     </modules>
   </component>
 </project>
