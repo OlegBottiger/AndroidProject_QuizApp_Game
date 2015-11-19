@@ -15,6 +15,5 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG,"I am testing");
     }
-
-    // Hello I am Kozue. I want to change here.
+    // TEST TEST TEST -Oleg //
 }
