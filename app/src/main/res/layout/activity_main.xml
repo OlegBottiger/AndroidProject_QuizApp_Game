@@ -32,8 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
-        android:text="@string/Blabla"
-        android:textColor="@color/fancyColor"/>
+        android:text="@string/Blabla" />
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="120dp"
