@@ -16,4 +16,5 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,"I am testing");
     }
     // TEST TEST TEST -Oleg //
+    // So Oleg is continuing testing here //
 }
