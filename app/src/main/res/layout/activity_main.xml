@@ -12,29 +12,20 @@
     <TextView android:text="@string/hello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/coolColor"
         android:textSize="40sp"
-        android:textColor="@color/coolGreen"
         android:id="@+id/thomas_test"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_below="@id/thomas_test"
         android:textSize="30sp"
         android:text="@string/test_sync"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:textColor="@color/coolRed"
+        android:textColor="@color/coolColor"
         android:text="@string/thomas_testSync"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:text="@string/Blabla" />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:src="@drawable/bugsinthecode"/>
 </LinearLayout>

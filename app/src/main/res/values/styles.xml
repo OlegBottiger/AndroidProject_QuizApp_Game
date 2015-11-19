@@ -6,10 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-<<<<<<< HEAD
-=======
-
->>>>>>> 46d5e90efc857804697e4f736708f818a26f538c
     </style>
 
 </resources>
