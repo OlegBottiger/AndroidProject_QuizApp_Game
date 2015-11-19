@@ -28,4 +28,10 @@
         android:textSize="30sp"
         android:textColor="@color/coolRed"
         android:text="@string/thomas_testSync"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/Blabla"
+        android:textColor="@color/fancyColor"/>
 </LinearLayout>
