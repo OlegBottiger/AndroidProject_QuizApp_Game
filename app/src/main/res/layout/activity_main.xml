@@ -10,5 +10,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/coolColor"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:id="@+id/thomas_test"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/thomas_test"
+        android:textSize="30sp"
+        android:text="@string/test_sync"/>
 </RelativeLayout>
