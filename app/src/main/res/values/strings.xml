@@ -5,4 +5,5 @@
     <string name="thomas_testSync">Thomas test sync</string>
     <string name="AboutText"><![CDATA[Detta är about activityn :>)]]></string>
     <string name="HighscoreText">Fins highscores vi har :D</string>
+    <string name="CustomCategoryText">Custom Category is nice!</string>
 </resources>
