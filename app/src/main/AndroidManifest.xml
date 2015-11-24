@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".CustomCategoryActivity" >
         </activity>
+        <activity android:name=".CustomQuestionActivity" >
+        </activity>
     </application>
 
 </manifest>

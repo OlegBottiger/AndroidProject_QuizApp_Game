@@ -6,4 +6,5 @@
     <string name="AboutText"><![CDATA[Detta är about activityn :>)]]></string>
     <string name="HighscoreText">Fins highscores vi har :D</string>
     <string name="CustomCategoryText">Custom Category is nice!</string>
+    <string name="CustomQuestionText">Custom question acitivty is looking good!</string>
 </resources>
