@@ -3,4 +3,6 @@
     <string name="hello">Hello Asobi Team!</string>
     <string name="test_sync">Lets see if we can make this sync</string>
     <string name="thomas_testSync">Thomas test sync</string>
+    <string name="MainActivity">com.example.iths.asobi.MainActivity</string>
+
 </resources>
