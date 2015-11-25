@@ -10,14 +10,28 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".AboutActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.MainActivity" />
         </activity>
         <activity android:name=".HighscoreActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.MainActivity" />
         </activity>
         <activity android:name=".CustomCategoryActivity" >
         </activity>
         <activity android:name=".CustomQuestionActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.MainActivity" />
         </activity>
-        <activity android:name=".CustomQuestionAddActivity" />
+        <activity android:name=".CustomQuestionAddActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.MainActivity" />
+        </activity>
+        //This is the main activity
         <activity android:name=".MainActivity">
 
             <intent-filter>
@@ -25,16 +39,42 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
 
         <activity android:name=".GameModeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.MainActivity" />
         </activity>
         <activity android:name=".GameActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.MainActivity" />
         </activity>
         <activity android:name=".ResultActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.MainActivity" />
         </activity>
 
         <activity android:name=".ProfilesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.MainActivity" />
+        </activity>
+
+        //This activity is the launcher and is set to show 5 seconds (5000ms),
+        //then It set´s to MainActinity.java
+        //To change use StartActivity.java
+        <activity android:name=".StartActivity" >
+
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+
         </activity>
     </application>
 

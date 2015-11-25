@@ -14,6 +14,7 @@
     <string name="CustomCategoryText">Custom Category is nice!</string>
     <string name="CustomQuestionText">Custom question acitivty is looking good!</string>
     <string name="CustomQuestionAddText">Let\'s add a custom question :)</string>
+    <string name="hidden">Profile</string>
 
 
 </resources>
