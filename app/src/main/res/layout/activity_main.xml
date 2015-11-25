@@ -9,24 +9,80 @@
     android:orientation="vertical"
     android:background="@drawable/waves"
     tools:context=".MainActivity">
+    <TextView
+        android:layout_weight = "1"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:text="" />
 
-    <TextView android:text="@string/hello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/coolColor"
-        android:textSize="40sp"
-        android:id="@+id/thomas_test"/>
+    <Button
+        android:layout_weight = "3"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:onClick="startGame"
+        android:text="@string/play"
+        android:background="@drawable/buttonstartstyle"
+        android:textColor = "@drawable/startcolor"
+        android:textSize = "40sp"
+        android:textStyle = "bold"
+        style="?android:attr/borderlessButtonStyle"
+        />
+    <TextView
+        android:layout_weight = "1"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:text="" />
+    <Button
+        android:layout_weight = "3"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:onClick="getHighScore"
+        android:text="@string/high_scores"
+        android:background="@drawable/buttonstartstyle"
+        android:textColor = "@drawable/startcolor"
+        android:textSize = "40sp"
+        android:textStyle = "bold"
+        style="?android:attr/borderlessButtonStyle"
+        />
+    <TextView
+        android:layout_weight = "1"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:text="" />
+    <Button
+        android:layout_weight = "3"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:onClick="custom"
+        android:text="@string/create_player"
+        android:background="@drawable/buttonstartstyle"
+        android:textColor = "@drawable/startcolor"
+        android:textSize = "40sp"
+        android:textStyle = "bold"
+        style="?android:attr/borderlessButtonStyle"
+        />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/thomas_test"
-        android:textSize="30sp"
-        android:text="@string/test_sync"/>
+        android:layout_weight = "1"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:text="" />
+    <Button
+        android:layout_weight = "3"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:onClick="getInfo"
+        android:text="@string/info"
+        android:background="@drawable/buttonstartstyle"
+        android:textColor = "@drawable/startcolor"
+        android:textSize = "40sp"
+        android:textStyle = "bold"
+        style="?android:attr/borderlessButtonStyle"
+        />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textColor="@color/coolColor"
-        android:text="@string/thomas_testSync"/>
+        android:layout_weight = "3"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:text="" />
 </LinearLayout>
