@@ -24,6 +24,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
+        android:text="With a tight budget and not much time we accomplished the impossible."
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
         android:text="The name of the programmers can be found below:"
         android:textSize="20sp"/>
     <TextView
