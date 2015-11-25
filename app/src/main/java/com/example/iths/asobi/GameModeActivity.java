@@ -5,8 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class GameModeActivity extends AppCompatActivity {
+
+    private ArrayList<String> category;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,21 @@ public class GameModeActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_game_mode);
+
+        category = new ArrayList<String>();
+        category.add("Sports");
+        category.add("Music");
+        category.add("Science");
+        category.add("Geography");
+        category.add("Mathematics");
+        category.add("Games");
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,category);
+        ListView listview = (ListView) findViewById(R.id.category_list);
+        listview.setAdapter(adapter);
+
+
+
     }
 
     @Override
