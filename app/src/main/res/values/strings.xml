@@ -5,16 +5,15 @@
     <string name="high_scores">High scores</string>
     <string name="create_player">Create Player</string>
     <string name="info">INFO</string>
-
     <string name="hello">Hello Asobi Team!</string>
     <string name="test_sync">Lets see if we can make this sync</string>
     <string name="thomas_testSync">Thomas test sync</string>
-    <string name="AboutText"><![CDATA[Detta är about activityn :>)]]></string>
-    <string name="HighscoreText">Fins highscores vi har :D</string>
     <string name="CustomCategoryText">Custom Category is nice!</string>
     <string name="CustomQuestionText">Custom question acitivty is looking good!</string>
     <string name="CustomQuestionAddText">Let\'s add a custom question :)</string>
     <string name="hidden">Profile</string>
-
-
+    <string name="show_categori">Category:</string>
+    <string name="to_high_score_button">Go to see the high score</string>
+    <string name="replay_button">Replay</string>
+    <string name="return_button">Return to main menu</string>
 </resources>

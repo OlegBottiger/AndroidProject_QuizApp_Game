@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Category: "
+            android:text="@string/show_categori"
             android:textSize="25dp"/>
 
         <TextView
@@ -36,7 +36,7 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Timer-----"
+        android:hint="Timer-----"
         android:textSize="25dp"
         android:layout_gravity="center_horizontal"/>
 
@@ -52,14 +52,14 @@
             android:id="@+id/buttonA"
             android:layout_width="0dp"
             android:layout_height="180px"
-            android:text="A"
+            android:hint="A"
             android:layout_weight="1"/>
 
         <Button
             android:id="@+id/buttonB"
             android:layout_width="0dp"
             android:layout_height="180px"
-            android:text="B"
+            android:hint="B"
             android:layout_weight="1"/>
 
         </LinearLayout>
@@ -74,14 +74,14 @@
             android:layout_width="0dp"
             android:layout_height="180px"
             android:layout_weight="1"
-            android:text="C"/>
+            android:hint="C"/>
 
         <Button
             android:id="@+id/buttonD"
             android:layout_width="0dp"
             android:layout_height="180px"
             android:layout_weight="1"
-            android:text="D"/>
+            android:hint="D"/>
         </LinearLayout>
 
 </LinearLayout>
