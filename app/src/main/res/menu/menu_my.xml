@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MyActivity">
+    <item
+        android:id="@+id/action_play"
+        android:icon="@drawable/ic_play_arrow_black"
+        android:title="@string/play"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/info"
+        android:icon="@drawable/ic_info_outline_black"
+        android:title="@string/info"
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom"
+
+        />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_account_box_black_48dp"
+        android:title="@string/hidden"
+        android:orderInCategory="3"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>
