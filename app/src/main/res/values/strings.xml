@@ -8,5 +8,9 @@
     <string name="CustomCategoryText">Custom Category is nice!</string>
     <string name="CustomQuestionText">Custom question acitivty is looking good!</string>
     <string name="CustomQuestionAddText">Let\'s add a custom question :)</string>
+    <string name="show_categori">Category:</string>
+    <string name="to_high_score_button">Go to see the high score</string>
+    <string name="replay_button">Replay</string>
+    <string name="return_button">Return to main menu</string>
 
 </resources>
