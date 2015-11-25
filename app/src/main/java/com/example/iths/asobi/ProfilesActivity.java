@@ -9,9 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 
@@ -24,8 +21,6 @@ public class ProfilesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profiles);
-
-
 
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -73,7 +68,7 @@ public class ProfilesActivity extends AppCompatActivity {
                 Intent j = new Intent(ProfilesActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
-            case R.id.profile:
+           case R.id.profile:
                 // Create profile activity
                 Intent k = new Intent(ProfilesActivity.this, ProfilesActivity.class);
                 startActivity(k);

@@ -57,7 +57,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += NAME_KEY + " VARCHAR(225) NOT NULL";
         sql +=" );";
 
-        db.execSQL(sql);
+       // db.execSQL(sql);
 
         sql=" CREATE TABLE "+ SPORT_TABLE+" ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
@@ -69,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
         sql +=" );";
 
-        db.execSQL(sql);
+//        db.execSQL(sql);
 
         sql=" CREATE TABLE "+ MUSIC_TABLE+" ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
@@ -81,7 +81,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
         sql +=" );";
 
-        db.execSQL(sql);
+//        db.execSQL(sql);
 
         sql=" CREATE TABLE "+ SCIENCE_TABLE+" ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
@@ -93,7 +93,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
         sql +=" );";
 
-        db.execSQL(sql);
+//        db.execSQL(sql);
 
         sql=" CREATE TABLE "+ GEOGRAPHY_TABLE+" ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
@@ -105,7 +105,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
         sql +=" );";
 
-        db.execSQL(sql);
+//        db.execSQL(sql);
 
         sql=" CREATE TABLE "+ MATH_TABLE+" ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
@@ -117,7 +117,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
         sql +=" );";
 
-        db.execSQL(sql);
+//        db.execSQL(sql);
 
         sql=" CREATE TABLE "+ GAME_TABLE+" ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
@@ -129,7 +129,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
         sql +=" );";
 
-        db.execSQL(sql);
+//        db.execSQL(sql);
 
 
         /*
@@ -201,7 +201,10 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getPlayers(){
-        return getReadableDatabase().query(PLAYER_TABLE,null,null,null,null,null,null);
+
+         return getReadableDatabase().query(PLAYER_TABLE,null,null,null,null,null,null);
+
+
     }
 
 
