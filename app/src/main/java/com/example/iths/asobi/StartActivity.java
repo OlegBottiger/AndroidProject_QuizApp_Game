@@ -21,7 +21,7 @@ public class StartActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
                     onPause();
-                    startActivity(new Intent("com.example.iths.asobi.MainActivity"));
+                    startActivity(new Intent(getString(R.string.Main_Activity)));
                 }
             }
         };
