@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String GAME_DB = "Game_Databas";
     public static final int VERSION = 1;
     private static final String HIGH_SCORE_TABLE = "highScores" ;
-    private static final String NAME_KEY = "name" ;
+    public static final String NAME_KEY = "name" ;
     private static final String SCORE_KEY = "score" ;
     private static final String SPORT_TABLE = "Sports";
     private static final String MUSIC_TABLE ="Music" ;
@@ -200,9 +200,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Cursor getPlayer(){
+    public Cursor getPlayers(){
         return getReadableDatabase().query(PLAYER_TABLE,null,null,null,null,null,null);
     }
+
 
 
 }
