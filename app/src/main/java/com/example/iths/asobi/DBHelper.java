@@ -50,7 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += SCORE_KEY + " INTEGER";
         sql +=" );";
 
-        db.execSQL(sql);
+       // db.execSQL(sql);
 
         sql=" CREATE TABLE "+ PLAYER_TABLE+" ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
@@ -129,7 +129,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
         sql +=" );";
 
-//        db.execSQL(sql);
+       db.execSQL(sql);
 
 
         /*
