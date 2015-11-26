@@ -13,6 +13,16 @@ public class Question {
     private String alternative4;
     private String correctAnswer;
 
+    public Question(String category, String question, String alternative1, String alternative2, String alternative3, String alternative4, String correctAnswer) {
+        this.category = category;
+        this.question = question;
+        this.alternative1 = alternative1;
+        this.alternative2 = alternative2;
+        this.alternative3 = alternative3;
+        this.alternative4 = alternative4;
+        this.correctAnswer = correctAnswer;
+    }
+
     public String getCategory() {
         return category;
     }

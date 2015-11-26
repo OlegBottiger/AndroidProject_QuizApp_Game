@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by iths on 2015-11-25.
  */
@@ -245,6 +247,51 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.close();
         return lengthOfQuestions;
+    }
+
+    // need to be fixed a litte bit more
+    public ArrayList<Question> getFiveQuestions( String category ){
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        ArrayList<Question> questions = new ArrayList<Question>();
+
+        String[] searchCriteria = new String[]{"1","2","3","4","5"};
+
+        Cursor cursor = db.query(category, null, "_id=?", searchCriteria, null, null, null);
+
+        if(cursor.moveToFirst()){
+            int questionIndex= cursor.getColumnIndex(QUESTION_KEY);
+            int altAIndex = cursor.getColumnIndex(ALTERNATIVE1_KEY);
+            int altBIndex = cursor.getColumnIndex(ALTERNATIVE2_KEY);
+            int altCIndex = cursor.getColumnIndex(ALTERNATIVE3_KEY);
+            int altDIndex = cursor.getColumnIndex(ALTERNATIVE4_KEY);
+            int correctAnswerIndex = cursor.getColumnIndex(CORRECT_ANSWER_KEY);
+
+            String question;
+            String alternativeA;
+            String alternativeB;
+            String alternativeC;
+            String alternativeD;
+            String correctAnswer;
+
+
+            do{
+                question = cursor.getString(questionIndex);
+                alternativeA = cursor.getString(altAIndex);
+                alternativeB =cursor.getString(altBIndex);
+                alternativeC = cursor.getString(altCIndex);
+                alternativeD = cursor.getString(altDIndex);
+                correctAnswer = cursor.getString(correctAnswerIndex);
+
+                questions.add(new Question(category,question,alternativeA,alternativeB,alternativeC,alternativeD,correctAnswer));
+                Log.d(TAG,"Cursor working");
+
+            }while(cursor.moveToNext());
+        }
+
+        db.close();
+        return questions;
     }
 
 
