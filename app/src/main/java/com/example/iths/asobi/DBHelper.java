@@ -213,7 +213,38 @@ public class DBHelper extends SQLiteOpenHelper {
 
          return getReadableDatabase().query(PLAYER_TABLE,null,null,null,null,null,null);
 
+    }
 
+    public void addProfile(String name){
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues cvs = new ContentValues();
+        cvs.put(NAME_KEY,name);
+
+        long id = db.insert(PLAYER_TABLE,null,cvs);
+        Log.d(TAG, "Player table test, ID is"+ id);
+        db.close();
+
+    }
+
+    public Cursor getAllTable(String category){
+        return getReadableDatabase().query(category,null,null,null,null,null,null);
+    }
+
+    public int getLengthOfQuestions(String category){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = getAllTable(category);
+        int lengthOfQuestions = 0;
+
+            if(cursor.moveToFirst()){
+                do{
+                    lengthOfQuestions++;
+
+                } while(cursor.moveToNext());
+            }
+
+        db.close();
+        return lengthOfQuestions;
     }
 
 

@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,10 +40,25 @@ public class GameModeActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,category);
         ListView listview = (ListView) findViewById(R.id.category_list);
         listview.setAdapter(adapter);
-
-
-
+        listview.setOnItemClickListener(listListener);
     }
+
+    private AdapterView.OnItemClickListener listListener = new AdapterView.OnItemClickListener(){
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+            String category = (String)parent.getItemAtPosition(position);
+            Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
+
+            intent.putExtra(GameActivity.CATEGORY,category);
+            startActivity(intent);
+
+        }
+    };
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

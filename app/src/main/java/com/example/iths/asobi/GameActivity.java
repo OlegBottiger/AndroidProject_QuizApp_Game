@@ -5,15 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
+
+    public static final String CATEGORY="category";
+    private TextView tvCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-
 
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -21,6 +23,12 @@ public class GameActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_game);
 
+        // gets String category from GameModeActivity and saves it in getCategory.
+        Intent intent = getIntent();
+        String getCategory = (String)intent.getSerializableExtra(CATEGORY);
+
+        tvCategory = (TextView)findViewById(R.id.category_field);
+        tvCategory.setText(getCategory);
 
     }
 
