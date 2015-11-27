@@ -30,7 +30,7 @@ public class ProfilesActivity extends AppCompatActivity {
 
         //Create profile
         listView = (ListView) findViewById(R.id.profile_list);
-        dbHelper = new DBHelper(this);
+        dbHelper = DBHelper.getDbHelperInstance(this);
 
         Cursor players = dbHelper.getPlayers();
         String [] from = {dbHelper.NAME_KEY};

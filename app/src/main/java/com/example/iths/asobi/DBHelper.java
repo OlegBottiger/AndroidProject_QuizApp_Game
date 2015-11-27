@@ -40,9 +40,16 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CORRECT_ANSWER_KEY = "correctAnswer";
     private static final String TAG= "debug";
 
+    private static DBHelper dbHelper = null;
 
+    public static DBHelper getDbHelperInstance(Context context){
+        if (dbHelper == null){
+            dbHelper = new DBHelper(context);
+        }
+        return dbHelper;
+    }
 
-    public DBHelper(Context context){
+    private DBHelper(Context context){
 
         super(context, GAME_DB, null, VERSION);
     }
@@ -143,10 +150,25 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.insert(PLAYER_TABLE, null, cvs);
 
-        /*
-        // Till example
-        addQuestionsToDataBase(SPORT_TABLE,"Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","2");
-        */
+        cvs = new ContentValues();
+        cvs.put(QUESTION_KEY,"Which sports is the most popular sport in Sweden?");
+        cvs.put(ALTERNATIVE1_KEY, "Tennis");
+        cvs.put(ALTERNATIVE2_KEY,"Soccer");
+        cvs.put(ALTERNATIVE3_KEY,"Ice hockey");
+        cvs.put(ALTERNATIVE4_KEY,"Bandy");
+        cvs.put(CORRECT_ANSWER_KEY, "4");
+
+        db.insert(SPORT_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(QUESTION_KEY,"What is Mario & Luigi’s last name?");
+        cvs.put(ALTERNATIVE1_KEY, "Luigi");
+        cvs.put(ALTERNATIVE2_KEY,"Mario");
+        cvs.put(ALTERNATIVE3_KEY,"Lombardi");
+        cvs.put(ALTERNATIVE4_KEY,"Alfredo");
+        cvs.put(CORRECT_ANSWER_KEY, "2");
+
+        db.insert(SPORT_TABLE, null, cvs);
     }
 
     @Override
@@ -256,9 +278,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ArrayList<Question> questions = new ArrayList<Question>();
 
-        String[] searchCriteria = new String[]{"1","2","3","4","5"};
-
-        Cursor cursor = db.query(category, null, "_id=?", searchCriteria, null, null, null);
+        Cursor cursor = db.query(category, null, null, null, null, null, "RANDOM() LIMIT 5");
 
         if(cursor.moveToFirst()){
             int questionIndex= cursor.getColumnIndex(QUESTION_KEY);
@@ -285,7 +305,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 correctAnswer = cursor.getString(correctAnswerIndex);
 
                 questions.add(new Question(category,question,alternativeA,alternativeB,alternativeC,alternativeD,correctAnswer));
-                Log.d(TAG,"Cursor working");
+                Log.d(TAG,"Cursor working"+ question+alternativeA+alternativeB+alternativeC+alternativeD+correctAnswer);
 
             }while(cursor.moveToNext());
         }

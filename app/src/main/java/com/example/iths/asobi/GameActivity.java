@@ -3,14 +3,20 @@ package com.example.iths.asobi;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class GameActivity extends AppCompatActivity {
 
     public static final String CATEGORY="category";
+    private static final String TAG = "GameActivity debug" ;
+    private DBHelper dbHelper;
     private TextView tvCategory;
+    private ArrayList<Question> questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +29,23 @@ public class GameActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_game);
 
+        dbHelper = DBHelper.getDbHelperInstance(this);
+
         // gets String category from GameModeActivity and saves it in getCategory.
         Intent intent = getIntent();
         String getCategory = (String)intent.getSerializableExtra(CATEGORY);
 
         tvCategory = (TextView)findViewById(R.id.category_field);
         tvCategory.setText(getCategory);
+
+        questions= dbHelper.getFiveQuestions(getCategory);
+
+        TextView tvQuestion = (TextView)findViewById(R.id.question);
+        tvQuestion.setText(questions.get(0).getQuestion());
+
+        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion());
+        //+questions.get(2).getQuestion());
+                //+questions.get(3).getQuestion()+questions.get(4).getQuestion());
 
     }
 
