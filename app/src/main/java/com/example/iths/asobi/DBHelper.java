@@ -146,16 +146,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Sets name "Guest" to PLAYER_TABLE as a default name
         ContentValues cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Guest");
+        cvs.put(NAME_KEY, "Guest");
 
         db.insert(PLAYER_TABLE, null, cvs);
 
+        // Sets information to SPORT_TABLE ( just for test for now )
         cvs = new ContentValues();
         cvs.put(QUESTION_KEY,"Which sports is the most popular sport in Sweden?");
         cvs.put(ALTERNATIVE1_KEY, "Tennis");
         cvs.put(ALTERNATIVE2_KEY,"Soccer");
         cvs.put(ALTERNATIVE3_KEY,"Ice hockey");
-        cvs.put(ALTERNATIVE4_KEY,"Bandy");
+        cvs.put(ALTERNATIVE4_KEY, "Bandy");
         cvs.put(CORRECT_ANSWER_KEY, "4");
 
         db.insert(SPORT_TABLE, null, cvs);
@@ -165,9 +166,36 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(ALTERNATIVE1_KEY, "Luigi");
         cvs.put(ALTERNATIVE2_KEY,"Mario");
         cvs.put(ALTERNATIVE3_KEY,"Lombardi");
-        cvs.put(ALTERNATIVE4_KEY,"Alfredo");
+        cvs.put(ALTERNATIVE4_KEY, "Alfredo");
         cvs.put(CORRECT_ANSWER_KEY, "2");
 
+        db.insert(SPORT_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(QUESTION_KEY,"When was Nintendo as a company founded?");
+        cvs.put(ALTERNATIVE1_KEY, "1991");
+        cvs.put(ALTERNATIVE2_KEY,"1979");
+        cvs.put(ALTERNATIVE3_KEY,"1889");
+        cvs.put(ALTERNATIVE4_KEY,"1981");
+        cvs.put(CORRECT_ANSWER_KEY, "3");
+        db.insert(SPORT_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(QUESTION_KEY,"Before Nintendo made Video Games they made...");
+        cvs.put(ALTERNATIVE1_KEY, "Card Games");
+        cvs.put(ALTERNATIVE2_KEY,"Chairs");
+        cvs.put(ALTERNATIVE3_KEY,"Electronics");
+        cvs.put(ALTERNATIVE4_KEY,"Amusement Parks");
+        cvs.put(CORRECT_ANSWER_KEY, "1");
+        db.insert(SPORT_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(QUESTION_KEY,"Who is the creator of Super Mario?");
+        cvs.put(ALTERNATIVE1_KEY, "Satoru Iwata");
+        cvs.put(ALTERNATIVE2_KEY,"Reginald Fils-Aime");
+        cvs.put(ALTERNATIVE3_KEY,"Shigeru Miyamoto");
+        cvs.put(ALTERNATIVE4_KEY,"Gunpei Yokoi");
+        cvs.put(CORRECT_ANSWER_KEY, "3");
         db.insert(SPORT_TABLE, null, cvs);
     }
 
@@ -176,9 +204,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-
-    // ska vi skicka data i en instans eller skicka med putExtra...? vi funderar lite till
-
+    // one method to add a question to the data base.
+    // I have to fix this because db could cause a problem (it may happen recursively)
     public void addQuestionsToDataBase(String category,String question,String alt1,String alt2, String alt3,String alt4,String correctAnswer){
         SQLiteDatabase db = getWritableDatabase();
 
@@ -219,6 +246,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    // one method to add a high score to the data base
     public void addHighScores(String name, String score){
         SQLiteDatabase db = getWritableDatabase();
 
@@ -233,12 +261,20 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     *
+     * @return - cursor which points to the player's table
+     */
     public Cursor getPlayers(){
 
          return getReadableDatabase().query(PLAYER_TABLE,null,null,null,null,null,null);
 
     }
 
+    /**
+     * adds a player's name to the data base
+     * @param name - player's name
+     */
     public void addProfile(String name){
         SQLiteDatabase db = getWritableDatabase();
 
@@ -251,6 +287,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     *
+     * @param category - a name of a table
+     * @return category's cursor
+     */
     public Cursor getAllTable(String category){
         return getReadableDatabase().query(category,null,null,null,null,null,null);
     }
@@ -271,7 +312,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return lengthOfQuestions;
     }
 
-    // need to be fixed a litte bit more
+    /**
+     *
+     * @param category - name of a table which you want to take information from
+     * @return list of instances of Question
+     */
     public ArrayList<Question> getFiveQuestions( String category ){
 
         SQLiteDatabase db = getReadableDatabase();

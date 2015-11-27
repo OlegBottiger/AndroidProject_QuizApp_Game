@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+
+    }
+
+    public void startGame(View view) {
+        Intent intent = new Intent(MainActivity.this, GameModeActivity.class);
+        startActivity(intent);
 
     }
 }

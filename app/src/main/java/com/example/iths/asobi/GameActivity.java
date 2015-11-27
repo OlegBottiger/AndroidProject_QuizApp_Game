@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,14 +39,31 @@ public class GameActivity extends AppCompatActivity {
         tvCategory = (TextView)findViewById(R.id.category_field);
         tvCategory.setText(getCategory);
 
+        // gets 5 random questions from the data base and sets them to the list of arrays "question"
         questions= dbHelper.getFiveQuestions(getCategory);
 
         TextView tvQuestion = (TextView)findViewById(R.id.question);
         tvQuestion.setText(questions.get(0).getQuestion());
 
-        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion());
-        //+questions.get(2).getQuestion());
-                //+questions.get(3).getQuestion()+questions.get(4).getQuestion());
+        Button buttonA =(Button)findViewById(R.id.buttonA);
+        buttonA.setText(questions.get(0).getAlternative1());
+
+        Button buttonB =(Button)findViewById(R.id.buttonB);
+        buttonB.setText(questions.get(0).getAlternative2());
+
+        Button buttonC =(Button)findViewById(R.id.buttonC);
+        buttonC.setText(questions.get(0).getAlternative3());
+
+        Button buttonD =(Button)findViewById(R.id.buttonD);
+        buttonD.setText(questions.get(0).getAlternative4());
+
+
+
+
+
+
+        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion()+questions.get(2).getQuestion()
+                +questions.get(3).getQuestion()+questions.get(4).getQuestion());
 
     }
 
