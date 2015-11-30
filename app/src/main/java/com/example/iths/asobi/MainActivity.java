@@ -72,4 +72,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void getHighScore(View view) {
+        Intent i = new Intent(MainActivity.this, HighscoreActivity.class);
+        startActivity(i);
+    }
+
+    public void custom(View view) {
+        Intent i = new Intent(MainActivity.this, CustomCategoryActivity.class);
+        startActivity(i);
+    }
+
+    public void getInfo(View view) {
+        Intent i = new Intent(MainActivity.this, AboutActivity.class);
+        startActivity(i);
+    }
 }
