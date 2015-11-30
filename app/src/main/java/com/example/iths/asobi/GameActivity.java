@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,7 +18,17 @@ public class GameActivity extends AppCompatActivity {
     private static final String TAG = "GameActivity debug" ;
     private DBHelper dbHelper;
     private TextView tvCategory;
+    private TextView tvQuestion;
+    private Button buttonA;
+    private Button buttonB;
+    private Button buttonC;
+    private Button buttonD;
+
     private ArrayList<Question> questions;
+    private String correctAnswer;
+    private String playersGuess;
+    private int round = 0;
+    private int numberOfRightAnswer =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +53,22 @@ public class GameActivity extends AppCompatActivity {
         // gets 5 random questions from the data base and sets them to the list of arrays "question"
         questions= dbHelper.getFiveQuestions(getCategory);
 
-        TextView tvQuestion = (TextView)findViewById(R.id.question);
-        tvQuestion.setText(questions.get(0).getQuestion());
+        tvQuestion = (TextView)findViewById(R.id.question);
+        tvQuestion.setText(questions.get(round).getQuestion());
 
-        Button buttonA =(Button)findViewById(R.id.buttonA);
-        buttonA.setText(questions.get(0).getAlternative1());
+        buttonA =(Button)findViewById(R.id.buttonA);
+        buttonA.setText(questions.get(round).getAlternative1());
 
-        Button buttonB =(Button)findViewById(R.id.buttonB);
-        buttonB.setText(questions.get(0).getAlternative2());
+        buttonB =(Button)findViewById(R.id.buttonB);
+        buttonB.setText(questions.get(round).getAlternative2());
 
-        Button buttonC =(Button)findViewById(R.id.buttonC);
-        buttonC.setText(questions.get(0).getAlternative3());
+        buttonC =(Button)findViewById(R.id.buttonC);
+        buttonC.setText(questions.get(round).getAlternative3());
 
-        Button buttonD =(Button)findViewById(R.id.buttonD);
-        buttonD.setText(questions.get(0).getAlternative4());
+        buttonD =(Button)findViewById(R.id.buttonD);
+        buttonD.setText(questions.get(round).getAlternative4());
+
+        correctAnswer = questions.get(round).getCorrectAnswer();
 
 
 
@@ -101,6 +114,66 @@ public class GameActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
+        }
+
+
+    }
+
+    public void nextQuestion(View view) {
+
+        switch (view.getId()){
+            case R.id.buttonA:
+                playersGuess="1";
+                break;
+            case R.id.buttonB:
+                playersGuess="2";
+                break;
+
+            case R.id.buttonC:
+                playersGuess="3";
+                break;
+
+            case R.id.buttonD:
+                playersGuess="4";
+                break;
+        }
+        if (correctAnswer.equals(playersGuess)){
+
+            // players score increase
+
+            // how many right answer increase
+            numberOfRightAnswer++;
+            Log.d(TAG, "number of right answer is "+ numberOfRightAnswer);
+
+        }
+        // increase the number of the round
+        round++;
+        Log.d(TAG, " next round is "+ round);
+
+        // timer records
+        // timer reset
+
+
+        if ( round < questions.size()) {
+            tvQuestion.setText(questions.get(round).getQuestion());
+            buttonA.setText(questions.get(round).getAlternative1());
+            buttonB.setText(questions.get(round).getAlternative2());
+            buttonC.setText(questions.get(round).getAlternative3());
+            buttonD.setText(questions.get(round).getAlternative4());
+            correctAnswer = questions.get(round).getCorrectAnswer();
+        }
+
+        if( round == questions.size()){
+            Intent intent = new Intent(this,ResultActivity.class);
+            startActivity(intent);
+
+            // send information to the result activity
+            // how many points player have
+            // how many right answer player got
+            // how long it took
+
+
+
         }
 
 

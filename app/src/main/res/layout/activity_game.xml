@@ -56,14 +56,16 @@
             android:layout_width="0dp"
             android:layout_height="180px"
             android:hint="A"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="nextQuestion"/>
 
         <Button
             android:id="@+id/buttonB"
             android:layout_width="0dp"
             android:layout_height="180px"
             android:hint="B"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="nextQuestion"/>
 
         </LinearLayout>
 
@@ -78,14 +80,16 @@
             android:layout_width="0dp"
             android:layout_height="180px"
             android:layout_weight="1"
-            android:hint="C"/>
+            android:hint="C"
+            android:onClick="nextQuestion"/>
 
         <Button
             android:id="@+id/buttonD"
             android:layout_width="0dp"
             android:layout_height="180px"
             android:layout_weight="1"
-            android:hint="D"/>
+            android:hint="D"
+            android:onClick="nextQuestion"/>
         </LinearLayout>
 
 </LinearLayout>
