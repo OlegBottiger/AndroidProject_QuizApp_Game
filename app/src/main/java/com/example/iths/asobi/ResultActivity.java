@@ -8,6 +8,8 @@ import android.view.MenuItem;
 
 public class ResultActivity extends AppCompatActivity {
 
+    protected static final String FINAL_SCORE="final_score";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,10 @@ public class ResultActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_result);
+
+        Intent intent = getIntent();
+        String finalScore = intent.getStringExtra(FINAL_SCORE);
+
     }
 
 

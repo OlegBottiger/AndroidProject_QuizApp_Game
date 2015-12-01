@@ -31,12 +31,14 @@ public class GameActivity extends AppCompatActivity {
     private int round = 0;
     private int numberOfRightAnswer =0;
 
+    private TextView mTextField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        final TextView mTextField = (TextView) findViewById(R.id.time);
+        mTextField = (TextView) findViewById(R.id.time);
 
         new CountDownTimer(15000, 1000) {
 
@@ -179,6 +181,7 @@ public class GameActivity extends AppCompatActivity {
 
         if( round == questions.size()){
             Intent intent = new Intent(this,ResultActivity.class);
+            intent.putExtra(ResultActivity.FINAL_SCORE,"0");
             startActivity(intent);
 
             // send information to the result activity
