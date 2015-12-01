@@ -117,7 +117,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // one method to add a question to the data base.
     // I have to fix this because db could cause a problem (it may happen recursively)
+
+
     public void addQuestionsToDataBase(SQLiteDatabase db,String category,String question,String alt1,String alt2, String alt3,String alt4,String correctAnswer){
+
 
         ContentValues cvs = new ContentValues();
         cvs.put(QUESTION_KEY,question);
@@ -125,7 +128,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(ALTERNATIVE2_KEY,alt2);
         cvs.put(ALTERNATIVE3_KEY,alt3);
         cvs.put(ALTERNATIVE4_KEY,alt4);
-        cvs.put(CORRECT_ANSWER_KEY,correctAnswer);
+        cvs.put(CORRECT_ANSWER_KEY, correctAnswer);
 
         long id = db.insert(category, null, cvs);
 
@@ -134,6 +137,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //db.close();
     }
+
 
     //alternative 2, tar emot en objekt
 
@@ -244,6 +248,7 @@ public class DBHelper extends SQLiteOpenHelper {
             String correctAnswer;
 
             do{
+
                 question = cursor.getString(1);
                 alternativeA = cursor.getString(2);
                 alternativeB =cursor.getString(3);

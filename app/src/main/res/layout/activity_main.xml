@@ -54,7 +54,7 @@
         android:layout_height="0dp"
         android:layout_width="fill_parent"
         android:onClick="custom"
-        android:text="@string/create_player"
+        android:text="@string/custom_categories"
         android:background="@drawable/buttonstartstyle"
         android:textColor = "@drawable/startcolor"
         android:textSize = "40sp"

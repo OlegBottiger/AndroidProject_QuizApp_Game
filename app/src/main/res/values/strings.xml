@@ -16,4 +16,17 @@
     <string name="to_high_score_button">Go to see the high score</string>
     <string name="replay_button">Replay</string>
     <string name="return_button">Return to main menu</string>
+    <string name="add_question_title">Add custom questions!</string>
+    <string name="question_title">Question:</string>
+    <string name="answers_title">Answers:</string>
+    <string name="alternative_1">Alternative One</string>
+    <string name="alternative_2">Alternative two</string>
+    <string name="alternative_3">Alternative three</string>
+    <string name="alternative_4">Alternative four</string>
+    <string name="add_questions_title">Type your question here!</string>
+    <string name="right_answer">Right answer:</string>
+    <string name="right_answer_int">Which alternative is the right one</string>
+    <string name="add_button_text">Add!</string>
+    <string name="hint_text">Which of the answers above is the right one. Please right down the number of the answer below</string>
+    <string name="custom_categories">Categories</string>
 </resources>

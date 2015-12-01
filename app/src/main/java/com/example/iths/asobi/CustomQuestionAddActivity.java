@@ -7,8 +7,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 public class CustomQuestionAddActivity extends AppCompatActivity {
+
+    private static final String TAG = "DEBUG";
+    private EditText customQuestion;
+    private EditText alternativeOne;
+    private EditText alternativeTwo;
+    private EditText alternativeThree;
+    private EditText alternativeFour;
+    private EditText rightAnswer;
+    private DBHelper db;
+
+
 
 
     @Override
@@ -21,6 +33,29 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_question_add);
+
+        //Add question field
+        customQuestion = (EditText) findViewById(R.id.custom_question);
+
+        //Alternatives 1 - 4 fields
+        alternativeOne = (EditText) findViewById(R.id.alternative_one);
+        alternativeTwo = (EditText) findViewById(R.id.alternative_two);
+        alternativeThree = (EditText) findViewById(R.id.alternative_three);
+        alternativeFour = (EditText) findViewById(R.id.alternative_four);
+
+        //Right answer field
+
+        rightAnswer = (EditText) findViewById(R.id.right_answer);
+
+        //Adds questions to our database
+
+//        DBHelper.addQuestionsToDataBase();
+
+        db = DBHelper.getDbHelperInstance(this);
+
+
+
+
     }
 
     @Override
@@ -35,7 +70,6 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-
 
 
         switch (item.getItemId()) {
@@ -62,5 +96,17 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
 
     }
 
+    public void addCustomQuestion(View view) {
 
+    String question = customQuestion.getText().toString();
+    String alt1 = alternativeOne.getText().toString();
+    String alt2 = alternativeTwo.getText().toString();
+    String alt3 = alternativeThree.getText().toString();
+    String alt4 = alternativeFour.getText().toString();
+    String correct = rightAnswer.getText().toString();
+
+    db.addQuestionsToDataBase(db.getDbHelperInstance(this).getWritableDatabase(), "Category", "question", "ans1", "ans2", "ans3", "ans3", "rightans");
+    Log.d(TAG, "test");
+    }
 }
+
