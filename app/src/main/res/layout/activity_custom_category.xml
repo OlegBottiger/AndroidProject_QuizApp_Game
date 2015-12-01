@@ -5,12 +5,34 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.iths.asobi.CustomCategoryActivity">
+    tools:context="com.example.iths.asobi.CustomCategoryActivity"
+    android:orientation="vertical">
+
+
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/custom_category_activity_text"
-        android:textSize="30sp"
-        android:text="@string/CustomCategoryText"/>
+        android:layout_height="wrap_content"
+        android:text="Add custom Category!"
+        android:gravity="center"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is where you add your own categories. To start with they will be empty"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Question"
+            android:onClick="goToAddQuestions"/>
+
+    </RelativeLayout>
+
 </LinearLayout>

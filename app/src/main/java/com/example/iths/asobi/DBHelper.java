@@ -41,6 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TAG= "debug";
 
     private static DBHelper dbHelper = null;
+    private SQLiteDatabase db;
 
     public static DBHelper getDbHelperInstance(Context context){
         if (dbHelper == null){
@@ -206,8 +207,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // one method to add a question to the data base.
     // I have to fix this because db could cause a problem (it may happen recursively)
+
     public void addQuestionsToDataBase(String category,String question,String alt1,String alt2, String alt3,String alt4,String correctAnswer){
-        SQLiteDatabase db = getWritableDatabase();
+        db = getWritableDatabase();
 
         ContentValues cvs = new ContentValues();
         cvs.put(QUESTION_KEY,question);
@@ -215,12 +217,27 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(ALTERNATIVE2_KEY,alt2);
         cvs.put(ALTERNATIVE3_KEY,alt3);
         cvs.put(ALTERNATIVE4_KEY,alt4);
-        cvs.put(CORRECT_ANSWER_KEY,correctAnswer);
+        cvs.put(CORRECT_ANSWER_KEY, correctAnswer);
 
         long id = db.insert(category, null, cvs);
 
         Log.d(TAG, "test id is " + id);
         Log.d(TAG, cvs.toString());
+
+        db.close();
+    }
+
+    public void addQuestionsToDataBase(String question,String alt1,String alt2, String alt3,String alt4,String correctAnswer){
+
+        ContentValues cvs = new ContentValues();
+        cvs.put(QUESTION_KEY,question);
+        cvs.put(ALTERNATIVE1_KEY, alt1);
+        cvs.put(ALTERNATIVE2_KEY,alt2);
+        cvs.put(ALTERNATIVE3_KEY,alt3);
+        cvs.put(ALTERNATIVE4_KEY, alt4);
+        cvs.put(CORRECT_ANSWER_KEY, correctAnswer);
+
+        db.insert(null, null, cvs);
 
         db.close();
     }
@@ -326,12 +343,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(category, null, null, null, null, null, "RANDOM() LIMIT 5");
 
         if(cursor.moveToFirst()){
-            int questionIndex= cursor.getColumnIndex(QUESTION_KEY);
-            int altAIndex = cursor.getColumnIndex(ALTERNATIVE1_KEY);
-            int altBIndex = cursor.getColumnIndex(ALTERNATIVE2_KEY);
-            int altCIndex = cursor.getColumnIndex(ALTERNATIVE3_KEY);
-            int altDIndex = cursor.getColumnIndex(ALTERNATIVE4_KEY);
-            int correctAnswerIndex = cursor.getColumnIndex(CORRECT_ANSWER_KEY);
 
             String question;
             String alternativeA;
@@ -342,12 +353,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
             do{
-                question = cursor.getString(questionIndex);
-                alternativeA = cursor.getString(altAIndex);
-                alternativeB =cursor.getString(altBIndex);
-                alternativeC = cursor.getString(altCIndex);
-                alternativeD = cursor.getString(altDIndex);
-                correctAnswer = cursor.getString(correctAnswerIndex);
+                question = cursor.getString(0);
+                alternativeA = cursor.getString(1);
+                alternativeB =cursor.getString(2);
+                alternativeC = cursor.getString(3);
+                alternativeD = cursor.getString(4);
+                correctAnswer = cursor.getString(5);
 
                 questions.add(new Question(category,question,alternativeA,alternativeB,alternativeC,alternativeD,correctAnswer));
                 Log.d(TAG,"Cursor working"+ question+alternativeA+alternativeB+alternativeC+alternativeD+correctAnswer);

@@ -3,10 +3,22 @@ package com.example.iths.asobi;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 public class CustomQuestionAddActivity extends AppCompatActivity {
+
+    private static final String TAG = "DEBUG";
+    private EditText customQuestion;
+    private EditText alternativeOne;
+    private EditText alternativeTwo;
+    private EditText alternativeThree;
+    private EditText alternativeFour;
+    private EditText rightAnswer;
+    private DBHelper DBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +30,24 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_question_add);
+
+        //Add question field
+        customQuestion = (EditText) findViewById(R.id.custom_question);
+
+        //Alternatives 1 - 4 fields
+        alternativeOne = (EditText) findViewById(R.id.alternative_one);
+        alternativeTwo = (EditText) findViewById(R.id.alternative_two);
+        alternativeThree = (EditText) findViewById(R.id.alternative_three);
+        alternativeFour = (EditText) findViewById(R.id.alternative_four);
+
+        //Right answer field
+
+        rightAnswer = (EditText) findViewById(R.id.right_answer);
+
+        //Adds questions to our database
+
+//        DBHelper.addQuestionsToDataBase();
+
     }
 
     @Override
@@ -57,5 +87,20 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public void addCustomQuestion(View view) {
+
+ /*       String question = customQuestion.getText().toString();
+        String alt1 = alternativeOne.getText().toString();
+        String alt2 = alternativeTwo.getText().toString();
+        String alt3 = alternativeThree.getText().toString();
+        String alt4 = alternativeFour.getText().toString();
+        String correct = rightAnswer.getText().toString();
+
+        DBHelper.addQuestionsToDataBase(question,alt1,alt2,alt3,alt4,correct);*/
+
+        DBHelper.addQuestionsToDataBase(customQuestion.getText().toString(), alternativeOne.getText().toString(), alternativeTwo.getText().toString(), alternativeThree.getText().toString(), alternativeFour.getText().toString(), rightAnswer.getText().toString());
+        Log.d(TAG, "test");
     }
 }
