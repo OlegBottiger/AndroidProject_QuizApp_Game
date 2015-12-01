@@ -18,7 +18,10 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
     private EditText alternativeThree;
     private EditText alternativeFour;
     private EditText rightAnswer;
-    private DBHelper DBHelper;
+    private DBHelper db;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,11 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
 
 //        DBHelper.addQuestionsToDataBase();
 
+        db = DBHelper.getDbHelperInstance(this);
+
+
+
+
     }
 
     @Override
@@ -62,7 +70,6 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-
 
 
         switch (item.getItemId()) {
@@ -91,16 +98,15 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
 
     public void addCustomQuestion(View view) {
 
- /*       String question = customQuestion.getText().toString();
-        String alt1 = alternativeOne.getText().toString();
-        String alt2 = alternativeTwo.getText().toString();
-        String alt3 = alternativeThree.getText().toString();
-        String alt4 = alternativeFour.getText().toString();
-        String correct = rightAnswer.getText().toString();
+    String question = customQuestion.getText().toString();
+    String alt1 = alternativeOne.getText().toString();
+    String alt2 = alternativeTwo.getText().toString();
+    String alt3 = alternativeThree.getText().toString();
+    String alt4 = alternativeFour.getText().toString();
+    String correct = rightAnswer.getText().toString();
 
-        DBHelper.addQuestionsToDataBase(question,alt1,alt2,alt3,alt4,correct);*/
-
-        DBHelper.addQuestionsToDataBase(customQuestion.getText().toString(), alternativeOne.getText().toString(), alternativeTwo.getText().toString(), alternativeThree.getText().toString(), alternativeFour.getText().toString(), rightAnswer.getText().toString());
-        Log.d(TAG, "test");
+    db.addQuestionsToDataBase(db.getDbHelperInstance(this).getWritableDatabase(), "Category", "question", "ans1", "ans2", "ans3", "ans3", "rightans");
+    Log.d(TAG, "test");
     }
 }
+

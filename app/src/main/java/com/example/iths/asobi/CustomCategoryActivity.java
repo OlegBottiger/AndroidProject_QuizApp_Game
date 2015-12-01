@@ -3,6 +3,7 @@ package com.example.iths.asobi;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.View;
 
 public class CustomCategoryActivity extends AppCompatActivity {
@@ -11,6 +12,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_category);
+        
     }
 
     public void goToAddQuestions(View view) {
@@ -18,4 +20,5 @@ public class CustomCategoryActivity extends AppCompatActivity {
         startActivity(i);
 
     }
+
 }
