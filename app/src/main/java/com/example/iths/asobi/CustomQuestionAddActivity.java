@@ -105,7 +105,7 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
     String alt4 = alternativeFour.getText().toString();
     String correct = rightAnswer.getText().toString();
 
-    db.addQuestionsToDataBase(db.getDbHelperInstance(this).getWritableDatabase(), "Category", question, alt1, alt2, alt3, alt4, correct);
+    db.addQuestionsToDataBase(db.getDbHelperInstance(this).getWritableDatabase(), question, alt1, alt2, alt3, alt4, correct,1);
     Log.d(TAG, "test");
     }
 }

@@ -56,7 +56,11 @@ public class GameActivity extends AppCompatActivity {
         tvCategory.setText(getCategory);
 
         // gets 5 random questions from the data base and sets them to the list of arrays "question"
-        questions= dbHelper.getFiveQuestions(getCategory);
+        if(getCategory.equals("ALL")){
+            questions = dbHelper.getRandomFiveQuestions(0);
+        } else{
+            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdFromCategoryTableByCategoryName(getCategory));
+        }
 
         tvQuestion = (TextView)findViewById(R.id.question);
         tvQuestion.setText(questions.get(round).getQuestion());

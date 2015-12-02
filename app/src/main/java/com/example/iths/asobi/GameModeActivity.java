@@ -112,4 +112,11 @@ public class GameModeActivity extends AppCompatActivity {
 
 
     }
+
+    public void getQuestionsFromAll(View view) {
+        Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
+
+        intent.putExtra(GameActivity.CATEGORY,"ALL");
+        startActivity(intent);
+    }
 }
