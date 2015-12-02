@@ -29,4 +29,5 @@
     <string name="add_button_text">Add!</string>
     <string name="hint_text">Which of the answers above is the right one. Please right down the number of the answer below</string>
     <string name="custom_categories">Categories</string>
+    <string name="category">Category</string>
 </resources>
