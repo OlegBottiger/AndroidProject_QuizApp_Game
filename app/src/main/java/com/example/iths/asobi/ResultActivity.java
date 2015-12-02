@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -66,5 +67,20 @@ public class ResultActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public void goToHighScore(View view) {
+        Intent i = new Intent(ResultActivity.this, HighscoreActivity.class);
+        startActivity(i);
+    }
+
+    public void replay(View view) {
+        Intent i = new Intent(ResultActivity.this, GameActivity.class);
+        startActivity(i);
+    }
+
+    public void goToMainMenu(View view) {
+        Intent i = new Intent(ResultActivity.this, HighscoreActivity.class);
+        startActivity(i);
     }
 }

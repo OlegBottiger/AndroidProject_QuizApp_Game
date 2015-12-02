@@ -13,7 +13,8 @@
         android:layout_weight = "1"
         android:layout_height="0dp"
         android:layout_width="fill_parent"
-        android:text="" />
+        android:text=""
+        android:id="@+id/timer"/>
 
     <Button
         android:layout_weight = "3"

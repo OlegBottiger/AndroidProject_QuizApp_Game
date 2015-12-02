@@ -8,6 +8,8 @@
     tools:context="com.example.iths.asobi.CustomCategoryActivity"
     android:orientation="vertical">
 
+/*ListView motherfucker, do you even*/
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

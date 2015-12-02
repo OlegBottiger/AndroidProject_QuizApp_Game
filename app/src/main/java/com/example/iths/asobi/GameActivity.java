@@ -43,13 +43,17 @@ public class GameActivity extends AppCompatActivity {
         new CountDownTimer(15000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                String str ="seconds remaining: " + millisUntilFinished / 1000;
+                mTextField.setText(str);
+                Log.d(TAG, "ticking");
             }
 
             public void onFinish() {
                 mTextField.setText("done!");
+                Log.d(TAG, "done");
             }
         }.start();
+
 
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);

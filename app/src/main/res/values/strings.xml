@@ -12,6 +12,10 @@
     <string name="CustomQuestionText">Custom question acitivty is looking good!</string>
     <string name="CustomQuestionAddText">Let\'s add a custom question :)</string>
     <string name="hidden">Profile</string>
+    <string name="category">Category: </string>
+    <string name="replay">Replay</string>
+    <string name="return_to_main_menu">Return to main menu</string>
+    <string name="see_high_score">See High Score</string>
     <string name="show_categori">Category:</string>
     <string name="to_high_score_button">Go to see the high score</string>
     <string name="replay_button">Replay</string>

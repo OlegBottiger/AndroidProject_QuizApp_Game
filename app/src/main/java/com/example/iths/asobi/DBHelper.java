@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String MATH_TABLE ="Mathematics" ;
     private static final String GAME_TABLE ="Games" ;
 
-    private static final String ID_KEY = "_id";
+    public static final String ID_KEY = "_id";
     private static final String QUESTION_KEY = "question";
     private static final String ALTERNATIVE1_KEY = "alternative1";
     private static final String ALTERNATIVE2_KEY = "alternative2";
