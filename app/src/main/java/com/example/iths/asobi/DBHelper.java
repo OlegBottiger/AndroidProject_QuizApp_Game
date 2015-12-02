@@ -19,11 +19,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String GAME_DB = "Game_Databas";
     private static final int VERSION = 1;
 
-
-    public static final String NAME_KEY = "name" ;
+    private static final String NAME_KEY ="name" ;
     private static final String SCORE_KEY = "score" ;
     private static final String HIGH_SCORE_TABLE = "highScores" ;
     private static final String PLAYER_TABLE = "players";
+    private static final String ALL_CATEGORY_TABLE = "allCategories";
     private static final String SPORT_TABLE = "Sports";
     private static final String MUSIC_TABLE ="Music" ;
     private static final String SCIENCE_TABLE = "Science";
@@ -39,6 +39,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String ALTERNATIVE4_KEY = "alternative4";
     private static final String CORRECT_ANSWER_KEY = "correctAnswer";
     private static final String TAG= "debug";
+    private static final String CATEGORY_KEY = "category";
+
 
     private static DBHelper dbHelper = null;
     private SQLiteDatabase db;
@@ -54,6 +56,9 @@ public class DBHelper extends SQLiteOpenHelper {
     private DBHelper(Context context){
 
         super(context, GAME_DB, null, VERSION);
+    }
+    public String getName(){
+        return this.NAME_KEY;
     }
 
     @Override
@@ -74,6 +79,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
             db.execSQL(sql);
 
+            sql = " CREATE TABLE " + ALL_CATEGORY_TABLE + " ( ";
+            sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
+            sql += CATEGORY_KEY + " VARCHAR(225) NOT NULL";
+            sql += " );";
+
+            db.execSQL(sql);
+
+
             createNewTable(SPORT_TABLE, db);
             createNewTable(MUSIC_TABLE, db);
             createNewTable(SCIENCE_TABLE, db);
@@ -93,8 +106,8 @@ public class DBHelper extends SQLiteOpenHelper {
             addQuestionsToDataBase(db,SPORT_TABLE," Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4");
             addQuestionsToDataBase(db,SPORT_TABLE," Who won The World Highland Games Championships a record six times?","Geoff Capes","someone","someone","someone","1");
             addQuestionsToDataBase(db,SPORT_TABLE," What jobs did Mike ‘Fluff’ Cowan, Jim ‘Bones’ Mackay and Fanny Sunesson do?","something","Golf caddies","something","something","2");
-            addQuestionsToDataBase(db,SPORT_TABLE," Which former rugby player once called the English RFU committee 'Old Farts'?", "something", "something", "Will Carling", "something", "3");
-            addQuestionsToDataBase(db,SPORT_TABLE," In inches, how big is the diameter of a basketball hoop?", "11", "13", "16", "18", "4");
+            addQuestionsToDataBase(db, SPORT_TABLE, " Which former rugby player once called the English RFU committee 'Old Farts'?", "something", "something", "Will Carling", "something", "3");
+            addQuestionsToDataBase(db, SPORT_TABLE, " In inches, how big is the diameter of a basketball hoop?", "11", "13", "16", "18", "4");
 
             addQuestionsToDataBase(db,MUSIC_TABLE," music Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4");
             addQuestionsToDataBase(db,MUSIC_TABLE," music sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4");
@@ -105,8 +118,10 @@ public class DBHelper extends SQLiteOpenHelper {
             addQuestionsToDataBase(db,GAME_TABLE," What is Mario & Luigi’s last name? ","Luigi","Mario","Lombardi","Alfredo","2");
             addQuestionsToDataBase(db,GAME_TABLE," When was Nintendo as a company founded?","1991","1979","1889","1981","3");
             addQuestionsToDataBase(db,GAME_TABLE," Before Nintendo made Video Games they made...","Card Games","Chairs","Electronics","Amusement Parks","1");
-            addQuestionsToDataBase(db,GAME_TABLE," Who is the creator of Super Mario?","Satoru Iwata","Reginald Fils-Aime","Shigeru Miyamoto","Gunpei Yokoi","3");
-            addQuestionsToDataBase(db,GAME_TABLE," What is the name of the main character in the “The Legend of Zelda”?","Zelda","Link","Roy","Master Chief","2");
+            addQuestionsToDataBase(db,GAME_TABLE," Who is the creator of Super Mario?", "Satoru Iwata", "Reginald Fils-Aime", "Shigeru Miyamoto", "Gunpei Yokoi", "3");
+            addQuestionsToDataBase(db, GAME_TABLE," What is the name of the main character in the “The Legend of Zelda”?","Zelda","Link","Roy","Master Chief","2");
+
+
 
     }
 
@@ -137,7 +152,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //db.close();
     }
-
 
     //alternative 2, tar emot en objekt
 
@@ -265,9 +279,45 @@ public class DBHelper extends SQLiteOpenHelper {
         return questions;
     }
 
-    public void createNewTable(String categori, SQLiteDatabase db){
+    public ArrayList<String> getthreeCategories(){
+        db = getReadableDatabase();
+        ArrayList<String> categories = new ArrayList<String>();
 
-        sql = " CREATE TABLE " + categori + " ( ";
+        Cursor cursor = db.query(ALL_CATEGORY_TABLE, null, null, null, null, null, "RANDOM() LIMIT 3");
+
+        if(cursor.moveToFirst()){
+            String category;
+            do{
+                category = cursor.getString(1);
+                categories.add(category);
+                Log.d(TAG,"Cursor working"+ category);
+
+            }while(cursor.moveToNext());
+        }
+        db.close();
+        return categories;
+    }
+
+    public Question getQuestion( String category ){
+
+        db = getReadableDatabase();
+        Question finalquestion = null;
+
+        Cursor cursor = db.query(category, null, null, null, null, null, "RANDOM() LIMIT 1");
+
+        if(cursor.moveToFirst()){
+
+            finalquestion= new Question(category,cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6));
+            Log.d(TAG,"Cursor working");
+
+        }
+        db.close();
+        return finalquestion;
+    }
+
+    public void createNewTable(String category, SQLiteDatabase db){
+
+        sql = " CREATE TABLE " + category + " ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
         sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
         sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
@@ -278,6 +328,11 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += " );";
 
         db.execSQL(sql);
+
+        ContentValues cvs = new ContentValues();
+        cvs.put(CATEGORY_KEY,category);
+        db.insert(ALL_CATEGORY_TABLE, null, cvs);
+
     }
 
 
