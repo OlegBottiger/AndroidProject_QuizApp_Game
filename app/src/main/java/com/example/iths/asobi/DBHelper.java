@@ -41,6 +41,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TAG= "debug";
 
     private static DBHelper dbHelper = null;
+    private SQLiteDatabase db;
+    private String sql;
 
     public static DBHelper getDbHelperInstance(Context context){
         if (dbHelper == null){
@@ -57,146 +59,55 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sql=" CREATE TABLE "+ HIGH_SCORE_TABLE+" ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
-        sql += SCORE_KEY + " INTEGER";
-        sql +=" );";
+            sql = " CREATE TABLE " + HIGH_SCORE_TABLE + " ( ";
+            sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
+            sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
+            sql += SCORE_KEY + " INTEGER";
+            sql += " );";
 
-        db.execSQL(sql);
+            db.execSQL(sql);
 
-        sql=" CREATE TABLE "+ PLAYER_TABLE+" ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += NAME_KEY + " VARCHAR(225) NOT NULL";
-        sql +=" );";
+            sql = " CREATE TABLE " + PLAYER_TABLE + " ( ";
+            sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
+            sql += NAME_KEY + " VARCHAR(225) NOT NULL";
+            sql += " );";
 
-        db.execSQL(sql);
+            db.execSQL(sql);
 
-        sql=" CREATE TABLE "+ SPORT_TABLE+" ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
-        sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE2_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE3_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE4_KEY + " VARCHAR(225),";
-        sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
-        sql +=" );";
+            createNewTable(SPORT_TABLE, db);
+            createNewTable(MUSIC_TABLE, db);
+            createNewTable(SCIENCE_TABLE, db);
+            createNewTable(GEOGRAPHY_TABLE, db);
+            createNewTable(MATH_TABLE,db);
+            createNewTable(GAME_TABLE,db);
 
-        db.execSQL(sql);
 
-        sql=" CREATE TABLE "+ MUSIC_TABLE+" ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
-        sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE2_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE3_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE4_KEY + " VARCHAR(225),";
-        sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
-        sql +=" );";
+            // Sets name "Guest" to PLAYER_TABLE as a default name
+            ContentValues cvs = new ContentValues();
+            cvs.put(NAME_KEY, "Guest");
 
-        db.execSQL(sql);
+            db.insert(PLAYER_TABLE, null, cvs);
 
-        sql=" CREATE TABLE "+ SCIENCE_TABLE+" ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
-        sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE2_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE3_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE4_KEY + " VARCHAR(225),";
-        sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
-        sql +=" );";
+            // Sets information to SPORT_TABLE ( just for test for now )
 
-        db.execSQL(sql);
+            addQuestionsToDataBase(db,SPORT_TABLE," Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4");
+            addQuestionsToDataBase(db,SPORT_TABLE," Who won The World Highland Games Championships a record six times?","Geoff Capes","someone","someone","someone","1");
+            addQuestionsToDataBase(db,SPORT_TABLE," What jobs did Mike ‘Fluff’ Cowan, Jim ‘Bones’ Mackay and Fanny Sunesson do?","something","Golf caddies","something","something","2");
+            addQuestionsToDataBase(db,SPORT_TABLE," Which former rugby player once called the English RFU committee 'Old Farts'?", "something", "something", "Will Carling", "something", "3");
+            addQuestionsToDataBase(db,SPORT_TABLE," In inches, how big is the diameter of a basketball hoop?", "11", "13", "16", "18", "4");
 
-        sql=" CREATE TABLE "+ GEOGRAPHY_TABLE+" ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
-        sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE2_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE3_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE4_KEY + " VARCHAR(225),";
-        sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
-        sql +=" );";
+            addQuestionsToDataBase(db,MUSIC_TABLE," music Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4");
+            addQuestionsToDataBase(db,MUSIC_TABLE," music sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4");
+            addQuestionsToDataBase(db,MUSIC_TABLE," music is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4");
+            addQuestionsToDataBase(db,MUSIC_TABLE," music the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4");
+            addQuestionsToDataBase(db,MUSIC_TABLE," music most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4");
 
-        db.execSQL(sql);
+            addQuestionsToDataBase(db,GAME_TABLE," What is Mario & Luigi’s last name? ","Luigi","Mario","Lombardi","Alfredo","2");
+            addQuestionsToDataBase(db,GAME_TABLE," When was Nintendo as a company founded?","1991","1979","1889","1981","3");
+            addQuestionsToDataBase(db,GAME_TABLE," Before Nintendo made Video Games they made...","Card Games","Chairs","Electronics","Amusement Parks","1");
+            addQuestionsToDataBase(db,GAME_TABLE," Who is the creator of Super Mario?","Satoru Iwata","Reginald Fils-Aime","Shigeru Miyamoto","Gunpei Yokoi","3");
+            addQuestionsToDataBase(db,GAME_TABLE," What is the name of the main character in the “The Legend of Zelda”?","Zelda","Link","Roy","Master Chief","2");
 
-        sql=" CREATE TABLE "+ MATH_TABLE+" ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
-        sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE2_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE3_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE4_KEY + " VARCHAR(225),";
-        sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
-        sql +=" );";
-
-        db.execSQL(sql);
-
-        sql=" CREATE TABLE "+ GAME_TABLE+" ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
-        sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE2_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE3_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE4_KEY + " VARCHAR(225),";
-        sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
-        sql +=" );";
-
-        db.execSQL(sql);
-
-        // Sets name "Guest" to PLAYER_TABLE as a default name
-        ContentValues cvs = new ContentValues();
-        cvs.put(NAME_KEY, "Guest");
-
-        db.insert(PLAYER_TABLE, null, cvs);
-
-        // Sets information to SPORT_TABLE ( just for test for now )
-        cvs = new ContentValues();
-        cvs.put(QUESTION_KEY,"Which sports is the most popular sport in Sweden?");
-        cvs.put(ALTERNATIVE1_KEY, "Tennis");
-        cvs.put(ALTERNATIVE2_KEY,"Soccer");
-        cvs.put(ALTERNATIVE3_KEY,"Ice hockey");
-        cvs.put(ALTERNATIVE4_KEY, "Bandy");
-        cvs.put(CORRECT_ANSWER_KEY, "4");
-
-        db.insert(SPORT_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(QUESTION_KEY,"What is Mario & Luigi’s last name?");
-        cvs.put(ALTERNATIVE1_KEY, "Luigi");
-        cvs.put(ALTERNATIVE2_KEY,"Mario");
-        cvs.put(ALTERNATIVE3_KEY,"Lombardi");
-        cvs.put(ALTERNATIVE4_KEY, "Alfredo");
-        cvs.put(CORRECT_ANSWER_KEY, "2");
-
-        db.insert(SPORT_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(QUESTION_KEY,"When was Nintendo as a company founded?");
-        cvs.put(ALTERNATIVE1_KEY, "1991");
-        cvs.put(ALTERNATIVE2_KEY,"1979");
-        cvs.put(ALTERNATIVE3_KEY,"1889");
-        cvs.put(ALTERNATIVE4_KEY,"1981");
-        cvs.put(CORRECT_ANSWER_KEY, "3");
-        db.insert(SPORT_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(QUESTION_KEY,"Before Nintendo made Video Games they made...");
-        cvs.put(ALTERNATIVE1_KEY, "Card Games");
-        cvs.put(ALTERNATIVE2_KEY,"Chairs");
-        cvs.put(ALTERNATIVE3_KEY,"Electronics");
-        cvs.put(ALTERNATIVE4_KEY,"Amusement Parks");
-        cvs.put(CORRECT_ANSWER_KEY, "1");
-        db.insert(SPORT_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(QUESTION_KEY,"Who is the creator of Super Mario?");
-        cvs.put(ALTERNATIVE1_KEY, "Satoru Iwata");
-        cvs.put(ALTERNATIVE2_KEY,"Reginald Fils-Aime");
-        cvs.put(ALTERNATIVE3_KEY,"Shigeru Miyamoto");
-        cvs.put(ALTERNATIVE4_KEY,"Gunpei Yokoi");
-        cvs.put(CORRECT_ANSWER_KEY, "3");
-        db.insert(SPORT_TABLE, null, cvs);
     }
 
     @Override
@@ -206,8 +117,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // one method to add a question to the data base.
     // I have to fix this because db could cause a problem (it may happen recursively)
-    public void addQuestionsToDataBase(String category,String question,String alt1,String alt2, String alt3,String alt4,String correctAnswer){
-        SQLiteDatabase db = getWritableDatabase();
+
+
+    public void addQuestionsToDataBase(SQLiteDatabase db,String category,String question,String alt1,String alt2, String alt3,String alt4,String correctAnswer){
+
 
         ContentValues cvs = new ContentValues();
         cvs.put(QUESTION_KEY,question);
@@ -215,20 +128,21 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(ALTERNATIVE2_KEY,alt2);
         cvs.put(ALTERNATIVE3_KEY,alt3);
         cvs.put(ALTERNATIVE4_KEY,alt4);
-        cvs.put(CORRECT_ANSWER_KEY,correctAnswer);
+        cvs.put(CORRECT_ANSWER_KEY, correctAnswer);
 
         long id = db.insert(category, null, cvs);
 
         Log.d(TAG, "test id is " + id);
         Log.d(TAG, cvs.toString());
 
-        db.close();
+        //db.close();
     }
+
 
     //alternative 2, tar emot en objekt
 
     public void addQuestionsToDataBase(Question question){
-        SQLiteDatabase db = getWritableDatabase();
+        db = getWritableDatabase();
 
         ContentValues cvs = new ContentValues();
         cvs.put(QUESTION_KEY,question.getCategory());
@@ -248,7 +162,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // one method to add a high score to the data base
     public void addHighScores(String name, String score){
-        SQLiteDatabase db = getWritableDatabase();
+        db = getWritableDatabase();
 
         ContentValues cvs = new ContentValues();
         cvs.put(NAME_KEY,name);
@@ -256,7 +170,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         long id = db.insert(HIGH_SCORE_TABLE, null, cvs);
 
-        Log.d(TAG,"High scores test. id is "+ id);
+        Log.d(TAG, "High scores test. id is " + id);
 
         db.close();
     }
@@ -276,7 +190,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param name - player's name
      */
     public void addProfile(String name){
-        SQLiteDatabase db = getWritableDatabase();
+        db = getWritableDatabase();
 
         ContentValues cvs = new ContentValues();
         cvs.put(NAME_KEY,name);
@@ -297,7 +211,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public int getLengthOfQuestions(String category){
-        SQLiteDatabase db = getReadableDatabase();
+        db = getReadableDatabase();
         Cursor cursor = getAllTable(category);
         int lengthOfQuestions = 0;
 
@@ -319,19 +233,12 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public ArrayList<Question> getFiveQuestions( String category ){
 
-        SQLiteDatabase db = getReadableDatabase();
-
+        db = getReadableDatabase();
         ArrayList<Question> questions = new ArrayList<Question>();
 
         Cursor cursor = db.query(category, null, null, null, null, null, "RANDOM() LIMIT 5");
 
         if(cursor.moveToFirst()){
-            int questionIndex= cursor.getColumnIndex(QUESTION_KEY);
-            int altAIndex = cursor.getColumnIndex(ALTERNATIVE1_KEY);
-            int altBIndex = cursor.getColumnIndex(ALTERNATIVE2_KEY);
-            int altCIndex = cursor.getColumnIndex(ALTERNATIVE3_KEY);
-            int altDIndex = cursor.getColumnIndex(ALTERNATIVE4_KEY);
-            int correctAnswerIndex = cursor.getColumnIndex(CORRECT_ANSWER_KEY);
 
             String question;
             String alternativeA;
@@ -340,23 +247,37 @@ public class DBHelper extends SQLiteOpenHelper {
             String alternativeD;
             String correctAnswer;
 
-
             do{
-                question = cursor.getString(questionIndex);
-                alternativeA = cursor.getString(altAIndex);
-                alternativeB =cursor.getString(altBIndex);
-                alternativeC = cursor.getString(altCIndex);
-                alternativeD = cursor.getString(altDIndex);
-                correctAnswer = cursor.getString(correctAnswerIndex);
+
+                question = cursor.getString(1);
+                alternativeA = cursor.getString(2);
+                alternativeB =cursor.getString(3);
+                alternativeC = cursor.getString(4);
+                alternativeD = cursor.getString(5);
+                correctAnswer = cursor.getString(6);
 
                 questions.add(new Question(category,question,alternativeA,alternativeB,alternativeC,alternativeD,correctAnswer));
                 Log.d(TAG,"Cursor working"+ question+alternativeA+alternativeB+alternativeC+alternativeD+correctAnswer);
 
             }while(cursor.moveToNext());
         }
-
         db.close();
         return questions;
+    }
+
+    public void createNewTable(String categori, SQLiteDatabase db){
+
+        sql = " CREATE TABLE " + categori + " ( ";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
+        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
+        sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
+        sql += ALTERNATIVE2_KEY + " VARCHAR(225),";
+        sql += ALTERNATIVE3_KEY + " VARCHAR(225),";
+        sql += ALTERNATIVE4_KEY + " VARCHAR(225),";
+        sql += CORRECT_ANSWER_KEY + " VARCHAR(225)";
+        sql += " );";
+
+        db.execSQL(sql);
     }
 
 
