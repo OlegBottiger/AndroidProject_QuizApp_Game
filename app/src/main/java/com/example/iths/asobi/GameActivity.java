@@ -30,24 +30,31 @@ public class GameActivity extends AppCompatActivity {
     private String playersGuess;
     private int round = 0;
     private int numberOfRightAnswer =0;
+    private TextView mTextField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        final TextView mTextField = (TextView) findViewById(R.id.time);
+        mTextField = (TextView) findViewById(R.id.timer);
+
+        mTextField.setText("Hello");
 
         new CountDownTimer(15000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                String str ="seconds remaining: " + millisUntilFinished / 1000;
+                mTextField.setText(str);
+                Log.d(TAG, "ticking");
             }
 
             public void onFinish() {
                 mTextField.setText("done!");
+                Log.d(TAG, "done");
             }
         }.start();
+
 
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);

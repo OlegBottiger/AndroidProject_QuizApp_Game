@@ -1,5 +1,6 @@
 package com.example.iths.asobi;
 
+import android.view.View;
 import android.widget.ListView;
 
 
@@ -10,12 +11,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.database.Cursor;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 
 public class ProfilesActivity extends AppCompatActivity {
 
     private ListView listView;
     private DBHelper dbHelper;
+    private TextView textView;
+    SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +37,9 @@ public class ProfilesActivity extends AppCompatActivity {
         dbHelper = DBHelper.getDbHelperInstance(this);
 
         Cursor players = dbHelper.getPlayers();
-        String [] from = {dbHelper.NAME_KEY};
+        String [] from = {dbHelper.NAME_KEY, DBHelper.ID_KEY};
         int [] to = {R.id.profile_name};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.profile_list_item,players ,from, to, 0);
+        adapter = new SimpleCursorAdapter(this, R.layout.profile_list_item,players ,from, to, 0);
 
         listView.setAdapter(adapter);
     }
@@ -78,9 +82,13 @@ public class ProfilesActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
-
-
-
-
     }
+
+    public void addProfile(View view) {
+        textView = (TextView) findViewById(R.id.enter_name);
+        String name = textView.getText().toString();
+        dbHelper.addProfile(name);
+        adapter.notifyDataSetChanged();
+    }
+
 }
