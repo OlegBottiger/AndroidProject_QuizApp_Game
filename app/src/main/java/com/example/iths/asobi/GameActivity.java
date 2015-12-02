@@ -30,30 +30,15 @@ public class GameActivity extends AppCompatActivity {
     private String playersGuess;
     private int round = 0;
     private int numberOfRightAnswer =0;
-
     private TextView mTextField;
+    private CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        mTextField = (TextView) findViewById(R.id.time);
-
-        new CountDownTimer(15000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                String str ="seconds remaining: " + millisUntilFinished / 1000;
-                mTextField.setText(str);
-                Log.d(TAG, "ticking");
-            }
-
-            public void onFinish() {
-                mTextField.setText("done!");
-                Log.d(TAG, "done");
-            }
-        }.start();
-
+        countDownTimer();
 
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -100,6 +85,20 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    private void countDownTimer() {
+        timer = new CountDownTimer(16000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                mTextField = (TextView) findViewById(R.id.timer);
+                mTextField.setText("" + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                mTextField.setText("0");
+            }
+        }.start();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -140,6 +139,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void nextQuestion(View view) {
+
+        timer.cancel();
+        countDownTimer();
 
         switch (view.getId()){
             case R.id.buttonA:
