@@ -30,26 +30,15 @@ public class GameActivity extends AppCompatActivity {
     private String playersGuess;
     private int round = 0;
     private int numberOfRightAnswer =0;
-
     private TextView mTextField;
+    private CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        mTextField = (TextView) findViewById(R.id.time);
-
-        new CountDownTimer(15000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
-            }
-
-            public void onFinish() {
-                mTextField.setText("done!");
-            }
-        }.start();
+        countDownTimer();
 
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -67,7 +56,11 @@ public class GameActivity extends AppCompatActivity {
         tvCategory.setText(getCategory);
 
         // gets 5 random questions from the data base and sets them to the list of arrays "question"
-        questions= dbHelper.getFiveQuestions(getCategory);
+        if(getCategory.equals("ALL")){
+            questions = dbHelper.getRandomFiveQuestions(0);
+        } else{
+            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdFromCategoryTableByCategoryName(getCategory));
+        }
 
         tvQuestion = (TextView)findViewById(R.id.question);
         tvQuestion.setText(questions.get(round).getQuestion());
@@ -94,6 +87,20 @@ public class GameActivity extends AppCompatActivity {
         Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion()+questions.get(2).getQuestion()
                 +questions.get(3).getQuestion()+questions.get(4).getQuestion());
 
+    }
+
+    private void countDownTimer() {
+        timer = new CountDownTimer(16000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                mTextField = (TextView) findViewById(R.id.timer);
+                mTextField.setText("" + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                mTextField.setText("0");
+            }
+        }.start();
     }
 
     @Override
@@ -136,6 +143,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void nextQuestion(View view) {
+
+        timer.cancel();
+        countDownTimer();
 
         switch (view.getId()){
             case R.id.buttonA:
