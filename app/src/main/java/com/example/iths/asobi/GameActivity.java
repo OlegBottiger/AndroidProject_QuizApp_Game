@@ -139,44 +139,47 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void nextQuestion(View view) {
+        goToNextQuestion(view);
+        }
 
+    public void goToNextQuestion(View view) {
         timer.cancel();
         countDownTimer();
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.buttonA:
-                playersGuess="1";
+                playersGuess = "1";
                 break;
             case R.id.buttonB:
-                playersGuess="2";
+                playersGuess = "2";
                 break;
 
             case R.id.buttonC:
-                playersGuess="3";
+                playersGuess = "3";
                 break;
 
             case R.id.buttonD:
-                playersGuess="4";
+                playersGuess = "4";
                 break;
         }
-        if (correctAnswer.equals(playersGuess)){
+        if (correctAnswer.equals(playersGuess)) {
 
             // players score increase
 
             // how many right answer increase
             numberOfRightAnswer++;
-            Log.d(TAG, "number of right answer is "+ numberOfRightAnswer);
+            Log.d(TAG, "number of right answer is " + numberOfRightAnswer);
 
         }
         // increase the number of the round
         round++;
-        Log.d(TAG, " next round is "+ round);
+        Log.d(TAG, " next round is " + round);
 
         // timer records
         // timer reset
 
 
-        if ( round < questions.size()) {
+        if (round < questions.size()) {
             tvQuestion.setText(questions.get(round).getQuestion());
             buttonA.setText(questions.get(round).getAlternative1());
             buttonB.setText(questions.get(round).getAlternative2());
@@ -185,9 +188,9 @@ public class GameActivity extends AppCompatActivity {
             correctAnswer = questions.get(round).getCorrectAnswer();
         }
 
-        if( round == questions.size()){
-            Intent intent = new Intent(this,ResultActivity.class);
-            intent.putExtra(ResultActivity.FINAL_SCORE,"0");
+        if (round == questions.size()) {
+            Intent intent = new Intent(this, ResultActivity.class);
+            intent.putExtra(ResultActivity.FINAL_SCORE, "0");
             startActivity(intent);
 
             // send information to the result activity
@@ -196,9 +199,6 @@ public class GameActivity extends AppCompatActivity {
             // how long it took
 
 
-
         }
-
-
     }
 }
