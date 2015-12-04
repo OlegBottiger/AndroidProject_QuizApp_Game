@@ -37,7 +37,9 @@ public class ProfilesActivity extends AppCompatActivity {
         dbHelper = DBHelper.getDbHelperInstance(this);
 
         Cursor players = dbHelper.getPlayers();
-        String [] from = {dbHelper.NAME_KEY, DBHelper.ID_KEY};
+
+        String [] from = {dbHelper.getName(), DBHelper.ID_KEY};
+
         int [] to = {R.id.profile_name};
         adapter = new SimpleCursorAdapter(this, R.layout.profile_list_item,players ,from, to, 0);
 
