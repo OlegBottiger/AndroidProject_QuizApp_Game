@@ -29,9 +29,10 @@ public class GameActivity extends AppCompatActivity {
     private String correctAnswer;
     private String playersGuess;
     private int round = 0;
-    private int numberOfRightAnswer =0;
+    private int playerScore = 0;
     private TextView mTextField;
     private CountDownTimer timer;
+    private int pointsToRecieve = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +96,15 @@ public class GameActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
                 mTextField.setText("" + millisUntilFinished / 1000);
+                if ((millisUntilFinished / 1000) < 10) {
+                    pointsToRecieve = 2;
+                }
+                else if ((millisUntilFinished / 1000) < 5) {
+                    pointsToRecieve = 1;
+                }
+                else if ((millisUntilFinished / 1000) <= 0) {
+                    pointsToRecieve = 0;
+                }
             }
 
             public void onFinish() {
@@ -143,44 +153,49 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void nextQuestion(View view) {
+        goToNextQuestion(view);
+        }
+
+    public void goToNextQuestion(View view) {
 
         timer.cancel();
         countDownTimer();
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.buttonA:
-                playersGuess="1";
+                playersGuess = "1";
                 break;
             case R.id.buttonB:
-                playersGuess="2";
+                playersGuess = "2";
                 break;
 
             case R.id.buttonC:
-                playersGuess="3";
+                playersGuess = "3";
                 break;
 
             case R.id.buttonD:
-                playersGuess="4";
+                playersGuess = "4";
                 break;
         }
-        if (correctAnswer.equals(playersGuess)){
+        if (correctAnswer.equals(playersGuess)) {
 
             // players score increase
 
             // how many right answer increase
-            numberOfRightAnswer++;
-            Log.d(TAG, "number of right answer is "+ numberOfRightAnswer);
+            playerScore = playerScore + pointsToRecieve;
+
+            TextView scoreView = (TextView) findViewById(R.id.score);
+            scoreView.setText("" + playerScore);
 
         }
         // increase the number of the round
         round++;
-        Log.d(TAG, " next round is "+ round);
+        Log.d(TAG, " next round is " + round);
 
-        // timer records
-        // timer reset
+        pointsToRecieve = 3;
 
 
-        if ( round < questions.size()) {
+        if (round < questions.size()) {
             tvQuestion.setText(questions.get(round).getQuestion());
             buttonA.setText(questions.get(round).getAlternative1());
             buttonB.setText(questions.get(round).getAlternative2());
@@ -189,9 +204,9 @@ public class GameActivity extends AppCompatActivity {
             correctAnswer = questions.get(round).getCorrectAnswer();
         }
 
-        if( round == questions.size()){
-            Intent intent = new Intent(this,ResultActivity.class);
-            intent.putExtra(ResultActivity.FINAL_SCORE,"0");
+        if (round == questions.size()) {
+            Intent intent = new Intent(this, ResultActivity.class);
+            intent.putExtra(ResultActivity.FINAL_SCORE, "0");
             startActivity(intent);
 
             // send information to the result activity
@@ -200,9 +215,6 @@ public class GameActivity extends AppCompatActivity {
             // how long it took
 
 
-
         }
-
-
     }
 }
