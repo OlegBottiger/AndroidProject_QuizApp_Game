@@ -73,6 +73,33 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(sql);
 
+        //those are for the test. I remove those later
+        ContentValues cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Joe");
+        cvs.put(SCORE_KEY, 58);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Michael");
+        cvs.put(SCORE_KEY, 58);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Maria");
+        cvs.put(SCORE_KEY, 58);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Johanna");
+        cvs.put(SCORE_KEY, 20);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Mark");
+        cvs.put(SCORE_KEY, 6);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+
         sql = " CREATE TABLE " + PLAYER_TABLE + " ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
         sql += NAME_KEY + " VARCHAR(225) NOT NULL";
@@ -80,7 +107,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         // Sets name "Guest" to PLAYER_TABLE as a default name
-        ContentValues cvs = new ContentValues();
+        cvs = new ContentValues();
         cvs.put(NAME_KEY, "Guest");
         db.insert(PLAYER_TABLE, null, cvs);
 
@@ -163,7 +190,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // one method to add a high score to the data base
-    public void addHighScores(String name, String score){
+    public void addHighScore(String name, int score){
         db = getWritableDatabase();
 
         ContentValues cvs = new ContentValues();
@@ -174,7 +201,52 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Log.d(TAG, "High scores test. id is " + id);
 
+    }
+
+    public ArrayList<Integer> getHighScore(){
+        db= getWritableDatabase();
+        ArrayList<Integer> highScores = new ArrayList<Integer>();
+        String[] columns={"score"};
+
+        Cursor cursor = db.query(HIGH_SCORE_TABLE, columns, null, null, null, null, "score DESC");
+
+        if(cursor.moveToFirst()){
+            int score;
+            do{
+                score = cursor.getInt(0);
+                highScores.add(score);
+
+            }while(cursor.moveToNext());
+        }else{
+            highScores.add(0);
+        }
+
         db.close();
+
+        //just for a check
+        Log.d(TAG, "high scores are " + highScores);
+        return highScores;
+    }
+
+    public int getRank(ArrayList<Integer> highScore, int myScore){
+
+        int rank = 1;
+        int multiple = 0;
+
+        for( int i =0; i < highScore.size(); i++){
+
+            if(highScore.get(i) >= myScore){
+                rank++;
+
+                if(highScore.get(i)== myScore){
+                    multiple++;
+                }
+            }
+        }
+        if (multiple==0){
+            return rank ;
+        }else return rank-multiple;
+
     }
 
     /**
