@@ -29,9 +29,10 @@ public class GameActivity extends AppCompatActivity {
     private String correctAnswer;
     private String playersGuess;
     private int round = 0;
-    private int numberOfRightAnswer =0;
+    private int playerScore = 0;
     private TextView mTextField;
     private CountDownTimer timer;
+    private int pointsToRecieve = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,11 @@ public class GameActivity extends AppCompatActivity {
         tvCategory.setText(getCategory);
 
         // gets 5 random questions from the data base and sets them to the list of arrays "question"
-        questions= dbHelper.getFiveQuestions(getCategory);
+        if(getCategory.equals("ALL")){
+            questions = dbHelper.getRandomFiveQuestions(0);
+        } else{
+            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdFromCategoryTableByCategoryName(getCategory));
+        }
 
         tvQuestion = (TextView)findViewById(R.id.question);
         tvQuestion.setText(questions.get(round).getQuestion());
@@ -91,6 +96,15 @@ public class GameActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
                 mTextField.setText("" + millisUntilFinished / 1000);
+                if ((millisUntilFinished / 1000) < 10) {
+                    pointsToRecieve = 2;
+                }
+                else if ((millisUntilFinished / 1000) < 5) {
+                    pointsToRecieve = 1;
+                }
+                else if ((millisUntilFinished / 1000) <= 0) {
+                    pointsToRecieve = 0;
+                }
             }
 
             public void onFinish() {
@@ -143,6 +157,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
     public void goToNextQuestion(View view) {
+
         timer.cancel();
         countDownTimer();
 
@@ -167,16 +182,17 @@ public class GameActivity extends AppCompatActivity {
             // players score increase
 
             // how many right answer increase
-            numberOfRightAnswer++;
-            Log.d(TAG, "number of right answer is " + numberOfRightAnswer);
+            playerScore = playerScore + pointsToRecieve;
+
+            TextView scoreView = (TextView) findViewById(R.id.score);
+            scoreView.setText("" + playerScore);
 
         }
         // increase the number of the round
         round++;
         Log.d(TAG, " next round is " + round);
 
-        // timer records
-        // timer reset
+        pointsToRecieve = 3;
 
 
         if (round < questions.size()) {
