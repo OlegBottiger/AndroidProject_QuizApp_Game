@@ -1,12 +1,19 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class CustomQuestionActivity extends AppCompatActivity {
+
+    private DBHelper db;
+    private ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,15 @@ public class CustomQuestionActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_question);
+
+
+        list = (ListView) findViewById(R.id.listview_custom_question);
+        Cursor customQuestiosCursor = db.getAllTable("Custom");
+
+        String[] from = new String[] {"question", "alternative1", "alternative2", "alternative3", "alternative4", "correctAnswer"};
+        int[] to = new int[] {R.id.debug_question, R.id.debug_ans1, R.id.debug_ans2, R.id.debug_ans3, R.id.debug_ans4, R.id.debug_correct_answer};
+        ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.question_list, customQuestiosCursor, from, to, 0);
+
     }
 
 

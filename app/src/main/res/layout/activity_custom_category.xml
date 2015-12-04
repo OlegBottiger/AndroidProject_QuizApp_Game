@@ -11,7 +11,7 @@
 /*ListView motherfucker, do you even*/
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add custom Category!"
         android:gravity="center"
@@ -21,10 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is where you add your own categories. To start with they will be empty"/>
-
-    <RelativeLayout
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:text="test"
+        android:onClick="goToQuestions"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <Button
             android:layout_alignParentBottom="true"
@@ -33,6 +37,8 @@
             android:text="Custom Question"
             android:onClick="goToAddQuestions"/>
 
+
     </RelativeLayout>
+
 
 </LinearLayout>

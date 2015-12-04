@@ -13,4 +13,11 @@
         android:id="@+id/custom_question_activity_text"
         android:text="@string/CustomQuestionText"
         android:textSize="30sp"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listview_custom_question">
+
+    </ListView>
 </LinearLayout>
