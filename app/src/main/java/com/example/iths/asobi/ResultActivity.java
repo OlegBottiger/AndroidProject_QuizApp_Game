@@ -6,16 +6,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
-
-    protected static final String FINAL_SCORE="final_score";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
 
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -24,8 +22,22 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         Intent intent = getIntent();
-        String finalScore = intent.getStringExtra(FINAL_SCORE);
+        int finalScore = intent.getIntExtra("FINAL_SCORE", 0);
+        int correctAnswers = intent.getIntExtra("CORRECT_ANSWERS", 0);
+        int minutes = intent.getIntExtra("MINUTES", 0);
+        int seconds = intent.getIntExtra("SECONDS", 0);
+        int rank= DBHelper.getDbHelperInstance(this).getRank(DBHelper.getDbHelperInstance(this).getHighScore(), 15);
 
+        DBHelper.getDbHelperInstance(this).addHighScore("name", finalScore);
+
+        TextView tvRank = (TextView) findViewById(R.id.rank);
+        tvRank.setText("You are "+ rank +"th");
+        TextView scoreView = (TextView) findViewById(R.id.score);
+        scoreView.setText("Total score: " + finalScore);
+        TextView correctView = (TextView) findViewById(R.id.correct_anwsers);
+        correctView.setText("Correct answers: " + correctAnswers);
+        TextView timeView = (TextView) findViewById(R.id.time);
+        timeView.setText("Time: " + minutes + " min & " + seconds + " sec");
     }
 
 

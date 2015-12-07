@@ -11,23 +11,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Total score:"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:id="@+id/score"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="You got ___ right answers"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:id="@+id/correct_anwsers"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Time:"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:id="@+id/time"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Rank:"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:id="@+id/rank"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,4 +46,11 @@
         android:text="@string/return_to_main_menu"
         android:layout_gravity="center"
         android:onClick="goToMainMenu"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test high score"
+        android:layout_gravity="center"
+        android:onClick="addHighScore"/>
 </LinearLayout>

@@ -5,4 +5,8 @@ package com.example.iths.asobi;
  */
 public class Game {
 
+    public static Player player;
+
+
+
 }

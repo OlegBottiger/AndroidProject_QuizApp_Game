@@ -33,6 +33,11 @@ public class GameActivity extends AppCompatActivity {
     private TextView mTextField;
     private CountDownTimer timer;
     private int pointsToRecieve = 3;
+    private int numberOfCorrectAnswer = 0;
+    private int time;
+    private int minutes;
+    private int seconds;
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,13 +101,14 @@ public class GameActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
                 mTextField.setText("" + millisUntilFinished / 1000);
-                if ((millisUntilFinished / 1000) < 10) {
+                time = time + 1;
+                if (millisUntilFinished < 10000) {
                     pointsToRecieve = 2;
                 }
-                else if ((millisUntilFinished / 1000) < 5) {
+                else if (millisUntilFinished < 5000) {
                     pointsToRecieve = 1;
                 }
-                else if ((millisUntilFinished / 1000) <= 0) {
+                else if (millisUntilFinished <= 0) {
                     pointsToRecieve = 0;
                 }
             }
@@ -179,9 +185,9 @@ public class GameActivity extends AppCompatActivity {
         }
         if (correctAnswer.equals(playersGuess)) {
 
-            // players score increase
+            numberOfCorrectAnswer ++;
 
-            // how many right answer increase
+            // Player's score increases
             playerScore = playerScore + pointsToRecieve;
 
             TextView scoreView = (TextView) findViewById(R.id.score);
@@ -190,7 +196,6 @@ public class GameActivity extends AppCompatActivity {
         }
         // increase the number of the round
         round++;
-        Log.d(TAG, " next round is " + round);
 
         pointsToRecieve = 3;
 
@@ -205,8 +210,13 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (round == questions.size()) {
+            int minutes = time/60;
+            int seconds = time % 60;
             Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra(ResultActivity.FINAL_SCORE, "0");
+            intent.putExtra("FINAL_SCORE", playerScore);
+            intent.putExtra("CORRECT_ANSWERS", numberOfCorrectAnswer);
+            intent.putExtra("MINUTES", minutes);
+            intent.putExtra("SECONDS", seconds);
             startActivity(intent);
 
             // send information to the result activity

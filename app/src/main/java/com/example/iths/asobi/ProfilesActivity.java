@@ -36,14 +36,17 @@ public class ProfilesActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.profile_list);
         dbHelper = DBHelper.getDbHelperInstance(this);
 
-        Cursor players = dbHelper.getPlayers();
+        //Cursor players = dbHelper.getPlayers();
+        Cursor allProfilesCursor = dbHelper.getPlayers();
 
-        String [] from = {dbHelper.getName(), DBHelper.ID_KEY};
+        //ProfileListAdapter adapter = new ProfileListAdapter(this, allProfilesCursor);
 
-        int [] to = {R.id.profile_name};
-        adapter = new SimpleCursorAdapter(this, R.layout.profile_list_item,players ,from, to, 0);
+        //String [] from = {dbHelper.getName(), DBHelper.ID_KEY};
+        //int [] to = {R.id.profile_name};
+        //adapter = new SimpleCursorAdapter(this, R.layout.profile_list_item,players ,from, to, 0);
 
         listView.setAdapter(adapter);
+
     }
 
 
