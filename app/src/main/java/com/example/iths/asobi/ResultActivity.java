@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -26,6 +27,10 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String finalScore = intent.getStringExtra(FINAL_SCORE);
 
+        int rank= DBHelper.getDbHelperInstance(this).getRank(DBHelper.getDbHelperInstance(this).getHighScore(), 15);
+
+        TextView tvRank = (TextView) findViewById(R.id.rank);
+        tvRank.setText("You are "+ rank +"th");
     }
 
 
@@ -82,5 +87,13 @@ public class ResultActivity extends AppCompatActivity {
     public void goToMainMenu(View view) {
         Intent i = new Intent(ResultActivity.this, HighscoreActivity.class);
         startActivity(i);
+    }
+
+    public void addHighScore(View view) {
+        DBHelper.getDbHelperInstance(this).addHighScore("Joe",58);
+        DBHelper.getDbHelperInstance(this).addHighScore("Michael",58);
+        DBHelper.getDbHelperInstance(this).addHighScore("Maria",58);
+        DBHelper.getDbHelperInstance(this).addHighScore("Johanna",20);
+        DBHelper.getDbHelperInstance(this).addHighScore("Mark", 6);
     }
 }

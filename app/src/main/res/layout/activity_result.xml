@@ -24,6 +24,7 @@
         android:hint="Time:"
         android:textSize="30dp"/>
     <TextView
+        android:id="@+id/rank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Rank:"
@@ -46,4 +47,11 @@
         android:text="@string/return_to_main_menu"
         android:layout_gravity="center"
         android:onClick="goToMainMenu"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test high score"
+        android:layout_gravity="center"
+        android:onClick="addHighScore"/>
 </LinearLayout>
