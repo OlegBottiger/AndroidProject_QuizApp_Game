@@ -37,4 +37,9 @@
     <string name="hint_button_B">B</string>
     <string name="hint_button_C">C</string>
     <string name="hint_button_D">D</string>
+    <string name="score_title">Score:</string>
+    <string name="zero_score_hint">0</string>
+    <string name="question_hint">Questions shows up here</string>
+    <string name="timer_text">--</string>
+    <string name="category_hint">—</string>
 </resources>

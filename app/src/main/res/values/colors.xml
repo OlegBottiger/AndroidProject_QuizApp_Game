@@ -6,4 +6,5 @@
     <color name="coolColor">#00FF00</color>
     <color name="red">#FF0000</color>
     <color name="coolAboutColor">#FF9005</color>
+    <color name="answerButtom">#573b3a3a</color>
 </resources>
