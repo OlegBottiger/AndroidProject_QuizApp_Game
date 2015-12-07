@@ -66,9 +66,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         sql = " CREATE TABLE " + HIGH_SCORE_TABLE + " ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
-        sql += SCORE_KEY + " INTEGER";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+        sql += NAME_KEY + " VARCHAR(225) NOT NULL, ";
+        sql += SCORE_KEY + " INTEGER ";
         sql += " );";
 
         db.execSQL(sql);
@@ -101,8 +101,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         sql = " CREATE TABLE " + PLAYER_TABLE + " ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += NAME_KEY + " VARCHAR(225) NOT NULL";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+        sql += NAME_KEY + " VARCHAR(225) NOT NULL ";
         sql += " );";
         db.execSQL(sql);
 
@@ -113,8 +113,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         sql = " CREATE TABLE " + ALL_CATEGORY_TABLE + " ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += CATEGORY_KEY + " VARCHAR(225) NOT NULL";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+        sql += CATEGORY_KEY + " VARCHAR(225) NOT NULL ";
         sql += " );";
 
         db.execSQL(sql);
@@ -128,14 +128,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         sql = " CREATE TABLE " + WHOLE_QUESTION_TABLE + " ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
-        sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE2_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE3_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE4_KEY + " VARCHAR(225),";
-        sql += CORRECT_ANSWER_KEY + " VARCHAR(225),";
-        sql += ALL_CATEGORY_TABLE + " INTEGER";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL, ";
+        sql += ALTERNATIVE1_KEY + " VARCHAR(225), ";
+        sql += ALTERNATIVE2_KEY + " VARCHAR(225), ";
+        sql += ALTERNATIVE3_KEY + " VARCHAR(225), ";
+        sql += ALTERNATIVE4_KEY + " VARCHAR(225), ";
+        sql += CORRECT_ANSWER_KEY + " VARCHAR(225) ,";
+        sql += ALL_CATEGORY_TABLE + " INTEGER ";
         sql += " );";
 
         db.execSQL(sql);

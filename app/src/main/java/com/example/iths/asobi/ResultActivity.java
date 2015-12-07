@@ -80,12 +80,12 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     public void replay(View view) {
-        Intent i = new Intent(ResultActivity.this, GameActivity.class);
+        Intent i = new Intent(ResultActivity.this, GameModeActivity.class);
         startActivity(i);
     }
 
     public void goToMainMenu(View view) {
-        Intent i = new Intent(ResultActivity.this, HighscoreActivity.class);
+        Intent i = new Intent(ResultActivity.this, MainActivity.class);
         startActivity(i);
     }
 
