@@ -65,54 +65,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        sql = " CREATE TABLE " + HIGH_SCORE_TABLE + " ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
-        sql += SCORE_KEY + " INTEGER";
-        sql += ALL_CATEGORY_TABLE + " INTEGER";
-        sql += " );";
-
-        db.execSQL(sql);
-
-        //those are for the test. I remove those later
-        ContentValues cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Joe");
-        cvs.put(SCORE_KEY, 58);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Michael");
-        cvs.put(SCORE_KEY, 58);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Maria");
-        cvs.put(SCORE_KEY, 58);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Johanna");
-        cvs.put(SCORE_KEY, 20);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Mark");
-        cvs.put(SCORE_KEY, 6);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-
-        sql = " CREATE TABLE " + PLAYER_TABLE + " ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += NAME_KEY + " VARCHAR(225) NOT NULL";
-        sql += " );";
-        db.execSQL(sql);
-
-        // Sets name "Guest" to PLAYER_TABLE as a default name
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY, "Guest");
-        db.insert(PLAYER_TABLE, null, cvs);
-
-
         sql = " CREATE TABLE " + ALL_CATEGORY_TABLE + " ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
         sql += CATEGORY_KEY + " VARCHAR(225) NOT NULL";
@@ -126,6 +78,59 @@ public class DBHelper extends SQLiteOpenHelper {
         insertCategory(db,GEOGRAPHY_TABLE);
         insertCategory(db,MATH_TABLE);
         insertCategory(db,GAME_TABLE);
+
+
+        sql = " CREATE TABLE " + HIGH_SCORE_TABLE + " ( ";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
+        sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
+        sql += SCORE_KEY + " INTEGER,";
+        sql += ALL_CATEGORY_TABLE + " INTEGER";
+        sql += " );";
+
+        db.execSQL(sql);
+
+        //those are for the test. I remove those later
+        ContentValues cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Joe");
+        cvs.put(SCORE_KEY, 58);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Michael");
+        cvs.put(SCORE_KEY, 58);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Maria");
+        cvs.put(SCORE_KEY, 58);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Johanna");
+        cvs.put(SCORE_KEY, 20);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Mark");
+        cvs.put(SCORE_KEY, 6);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+
+        sql = " CREATE TABLE " + PLAYER_TABLE + " ( ";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
+        sql += NAME_KEY + " VARCHAR(225) NOT NULL";
+        sql += " );";
+        db.execSQL(sql);
+
+        // Sets name "Guest" to PLAYER_TABLE as a default name
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY, "Guest");
+        db.insert(PLAYER_TABLE, null, cvs);
 
 
         sql = " CREATE TABLE " + WHOLE_QUESTION_TABLE + " ( ";
@@ -191,12 +196,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // one method to add a high score to the data base
-    public void addHighScore(String name, int score){
+    public void addHighScore(String name, int score, int category){
         db = getWritableDatabase();
 
         ContentValues cvs = new ContentValues();
         cvs.put(NAME_KEY,name);
         cvs.put(SCORE_KEY, score);
+        cvs.put(ALL_CATEGORY_TABLE, category);
 
         long id = db.insert(HIGH_SCORE_TABLE, null, cvs);
 
@@ -210,12 +216,15 @@ public class DBHelper extends SQLiteOpenHelper {
      * @return - a list of high scores
      */
 
-    public ArrayList<Integer> getHighScore(){
+    public ArrayList<Integer> getHighScore(String category){
         db= getWritableDatabase();
         ArrayList<Integer> highScores = new ArrayList<Integer>();
-        String[] columns={"score"};
+        String[] columns={"score","allCategories"};
 
-        Cursor cursor = db.query(HIGH_SCORE_TABLE, columns, null, null, null, null, "score DESC");
+        String selection = "allCategories=?";
+        String[] selectionArgs = {Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+
+        Cursor cursor = db.query(HIGH_SCORE_TABLE, columns, selection, selectionArgs, null, null, "score DESC");
 
         if(cursor.moveToFirst()){
             int score;
@@ -410,7 +419,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 Log.d(TAG,"This category's ID is "+ categoryId);
             }while(cursor.moveToNext());
         }
-        db.close();
+        //db.close();
         return categoryId;
     }
 

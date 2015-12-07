@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class ResultActivity extends AppCompatActivity {
 
     protected static final String FINAL_SCORE="final_score";
+    private DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +25,22 @@ public class ResultActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_result);
 
+        //test
+        db=DBHelper.getDbHelperInstance(this);
+
         Intent intent = getIntent();
         String finalScore = intent.getStringExtra(FINAL_SCORE);
 
-        int rank= DBHelper.getDbHelperInstance(this).getRank(DBHelper.getDbHelperInstance(this).getHighScore(), 15);
+        // test
+        int rank= db.getRank(db.getHighScore("Sports"), 15);
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
         tvRank.setText("You are "+ rank +"th");
+
+        //add high scores to the data base.
+        DBHelper.getDbHelperInstance(this).addHighScore("Joe", 100, DBHelper.getDbHelperInstance(this).getIdFromCategoryTableByCategoryName("Sports"));
+
+
     }
 
 
@@ -91,10 +101,10 @@ public class ResultActivity extends AppCompatActivity {
 
     //test method. I remove this later.
     public void addHighScore(View view) {
-        DBHelper.getDbHelperInstance(this).addHighScore("Joe",58);
-        DBHelper.getDbHelperInstance(this).addHighScore("Michael",58);
-        DBHelper.getDbHelperInstance(this).addHighScore("Maria",58);
-        DBHelper.getDbHelperInstance(this).addHighScore("Johanna",20);
-        DBHelper.getDbHelperInstance(this).addHighScore("Mark", 6);
+        DBHelper.getDbHelperInstance(this).addHighScore("Joe",58,1);
+        DBHelper.getDbHelperInstance(this).addHighScore("Michael",58,1);
+        DBHelper.getDbHelperInstance(this).addHighScore("Maria",58,1);
+        DBHelper.getDbHelperInstance(this).addHighScore("Johanna",20,1);
+        DBHelper.getDbHelperInstance(this).addHighScore("Mark", 6,1);
     }
 }
