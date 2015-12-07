@@ -24,7 +24,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test"
+        android:text="All Qustions"
         android:onClick="goToQuestions"/>
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Custom Question"
+            android:text="Custom Category"
             android:onClick="goToAddQuestions"/>
 
 

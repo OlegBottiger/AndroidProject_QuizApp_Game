@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -19,24 +20,22 @@ public class CustomQuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_question);
+        db = DBHelper.getDbHelperInstance(this);
 
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_question);
+        Cursor customQuestiosCursor = db.getAllTable(DBHelper.WHOLE_QUESTION_TABLE);
 
         list = (ListView) findViewById(R.id.listview_custom_question);
 
-        Cursor customQuestiosCursor = db.getAllTable("Custom");
-        db = DBHelper.getDbHelperInstance(this);
-
-        String[] from = new String[] {"question", "alternative1", "alternative2", "alternative3", "alternative4", "correctAnswer"};
-        int[] to = new int[] {R.id.debug_question, R.id.debug_ans1, R.id.debug_ans2, R.id.debug_ans3, R.id.debug_ans4, R.id.debug_correct_answer};
+        String[] from = new String[] {db.QUESTION_KEY, db.ALTERNATIVE1_KEY, db.ALTERNATIVE2_KEY, db.ALTERNATIVE3_KEY, db.ALTERNATIVE4_KEY, db.CORRECT_ANSWER_KEY};
+        int[] to = new int[] {R.id.debug_question, R.id.debug_ans1, R.id.debug_ans2, R.id.debug_ans3, R.id.debug_ans4};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.question_list, customQuestiosCursor, from, to, 0);
+
         list.setAdapter(adapter);
-
-
 
     }
 
@@ -79,4 +78,6 @@ public class CustomQuestionActivity extends AppCompatActivity {
 
 
     }
+
+
 }

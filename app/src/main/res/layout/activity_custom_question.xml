@@ -15,4 +15,10 @@
         android:id="@+id/listview_custom_question">
     </ListView>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Custom Question"
+        android:onClick="goToAddQuestions"/>
+
 </LinearLayout>

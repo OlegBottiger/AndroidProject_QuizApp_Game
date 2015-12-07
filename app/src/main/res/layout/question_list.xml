@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
-    android:layout_marginTop="16dp">
+    android:layout_marginTop="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="16dp">
 
 
 
@@ -15,38 +17,58 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Question placeholder"
-        android:id="@+id/debug_question"/>
+        android:text="Lets see how it looks with more than one line of text:"
+        android:id="@+id/debug_question"
+        android:textSize="24sp"
+        android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Answer 1"
-        android:id="@+id/debug_ans1"/>
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer 2"
-        android:id="@+id/debug_ans2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer 1"
+            android:id="@+id/debug_ans1"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer 2"
+            android:id="@+id/debug_ans2"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Answer 3"
-        android:id="@+id/debug_ans3"/>
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Answer 4"
-        android:id="@+id/debug_ans4"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer 3"
+            android:id="@+id/debug_ans3"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Correct answer:"
-        android:id="@+id/debug_correct_answer"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer 4"
+            android:id="@+id/debug_ans4"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+
+
 
 
 

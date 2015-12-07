@@ -23,7 +23,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
         TextView ans2 = (TextView) findViewById(R.id.debug_ans2);
         TextView ans3 = (TextView) findViewById(R.id.debug_ans3);
         TextView ans4 = (TextView) findViewById(R.id.debug_ans4);
-        TextView correct = (TextView) findViewById(R.id.debug_correct_answer);
+//        TextView correctect = (TextView) findViewById(R.id.debug_correct_answer);
 
 
  /*       question.setText();
@@ -34,12 +34,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
         correct.setText();
 */
 
-
-    }
-
-    public void goToAddQuestions(View view) {
-        Intent i = new Intent(this, CustomQuestionAddActivity.class);
-        startActivity(i);
 
     }
 
