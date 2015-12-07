@@ -69,6 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
         sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
         sql += SCORE_KEY + " INTEGER";
+        sql += ALL_CATEGORY_TABLE + " INTEGER";
         sql += " );";
 
         db.execSQL(sql);
@@ -203,6 +204,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * retrieves information from HIGH_SCORE_TABLE and returns it as a list of integers.
+     * If there is no information in the table yet then it returns a list which includes only one element "0".
+     * @return - a list of high scores
+     */
+
     public ArrayList<Integer> getHighScore(){
         db= getWritableDatabase();
         ArrayList<Integer> highScores = new ArrayList<Integer>();
@@ -228,17 +235,25 @@ public class DBHelper extends SQLiteOpenHelper {
         return highScores;
     }
 
-    public int getRank(ArrayList<Integer> highScore, int myScore){
+    /**
+     * This method takes a number which you want to check which rank it is in.
+     * If there are numbers which are the same then they are the same rank.
+     *
+     * @param highScore - a list of high scores which is retrieved from the data base.
+     * @param finalScore - player's final score. It is checked which rank it is in.
+     * @return - the rank
+     */
+    public int getRank(ArrayList<Integer> highScore, int finalScore){
 
         int rank = 1;
         int multiple = 0;
 
-        for( int i =0; i < highScore.size(); i++){
+        for( int i = 0; i < highScore.size(); i++){
 
-            if(highScore.get(i) >= myScore){
+            if(highScore.get(i) >= finalScore){
                 rank++;
 
-                if(highScore.get(i)== myScore){
+                if(highScore.get(i)== finalScore){
                     multiple++;
                 }
             }
@@ -350,6 +365,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return questions;
     }
 
+    /**
+     * gets category's name by category's ID
+     *
+     * @param categoryID category's ID
+     * @return category's name
+     */
     public String getCategoryFromCategoryTableByID(int categoryID){
 
         db = getReadableDatabase();
@@ -369,7 +390,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return category;
     }
 
-
+    /**
+     * gets category's ID by category's name
+     * @param category category's name
+     * @return category's ID
+     */
     public int getIdFromCategoryTableByCategoryName(String category){
 
         db = getReadableDatabase();
@@ -389,6 +414,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return categoryId;
     }
 
+    /**
+     * adds category's name to the ALL_CATEGORY_TABLE in the data base.
+     * @param db
+     * @param category category's name
+     */
     public void insertCategory(SQLiteDatabase db, String category){
 
         ContentValues cvs = new ContentValues();

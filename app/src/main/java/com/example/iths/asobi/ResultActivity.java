@@ -80,7 +80,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     public void replay(View view) {
-        Intent i = new Intent(ResultActivity.this, GameActivity.class);
+        Intent i = new Intent(ResultActivity.this, GameModeActivity.class);
         startActivity(i);
     }
 
@@ -89,6 +89,7 @@ public class ResultActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    //test method. I remove this later.
     public void addHighScore(View view) {
         DBHelper.getDbHelperInstance(this).addHighScore("Joe",58);
         DBHelper.getDbHelperInstance(this).addHighScore("Michael",58);
