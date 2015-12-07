@@ -23,24 +23,25 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String SCORE_KEY = "score" ;
     private static final String HIGH_SCORE_TABLE = "highScores" ;
     private static final String PLAYER_TABLE = "players";
-    private static final String ALL_CATEGORY_TABLE = "allCategories";
+    static final String ALL_CATEGORY_TABLE = "allCategories";
     private static final String SPORT_TABLE = "Sports";
     private static final String MUSIC_TABLE ="Music" ;
     private static final String SCIENCE_TABLE = "Science";
     private static final String GEOGRAPHY_TABLE = "Geography";
     private static final String MATH_TABLE ="Mathematics" ;
-    private static final String GAME_TABLE ="Games" ;
+    private static final String GAME_TABLE ="Games";
+    private static final String CUSTIOM_TABLE = "Custom";
 
     public static final String ID_KEY = "_id";
-    private static final String QUESTION_KEY = "question";
-    private static final String ALTERNATIVE1_KEY = "alternative1";
-    private static final String ALTERNATIVE2_KEY = "alternative2";
-    private static final String ALTERNATIVE3_KEY = "alternative3";
-    private static final String ALTERNATIVE4_KEY = "alternative4";
-    private static final String CORRECT_ANSWER_KEY = "correctAnswer";
+    static final String QUESTION_KEY = "question";
+    static final String ALTERNATIVE1_KEY = "alternative1";
+    static final String ALTERNATIVE2_KEY = "alternative2";
+    static final String ALTERNATIVE3_KEY = "alternative3";
+    static final String ALTERNATIVE4_KEY = "alternative4";
+    static final String CORRECT_ANSWER_KEY = "correctAnswer";
     private static final String TAG= "debug";
     private static final String CATEGORY_KEY = "category";
-    private static final String WHOLE_QUESTION_TABLE = "wholeQuestion" ;
+    static final String WHOLE_QUESTION_TABLE = "wholeQuestion";
 
 
     private static DBHelper dbHelper = null;
