@@ -80,4 +80,8 @@ public class CustomQuestionActivity extends AppCompatActivity {
     }
 
 
+    public void goToAddQuestions(View view) {
+        Intent intent = new Intent(this, CustomQuestionAddActivity.class);
+        startActivity(intent);
+    }
 }
