@@ -20,20 +20,23 @@ public class CustomQuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_question);
 
-
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_question);
 
-
         list = (ListView) findViewById(R.id.listview_custom_question);
+
         Cursor customQuestiosCursor = db.getAllTable("Custom");
+        db = DBHelper.getDbHelperInstance(this);
 
         String[] from = new String[] {"question", "alternative1", "alternative2", "alternative3", "alternative4", "correctAnswer"};
         int[] to = new int[] {R.id.debug_question, R.id.debug_ans1, R.id.debug_ans2, R.id.debug_ans3, R.id.debug_ans4, R.id.debug_correct_answer};
-        ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.question_list, customQuestiosCursor, from, to, 0);
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.question_list, customQuestiosCursor, from, to, 0);
+        list.setAdapter(adapter);
+
+
 
     }
 
