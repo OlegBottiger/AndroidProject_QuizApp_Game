@@ -11,19 +11,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/category"
-            android:textSize="25dp"/>
+            android:textSize="32sp"/>
 
         <TextView
             android:id="@+id/category_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Sports"
-            android:textSize="25dp"/>
+            android:hint="@string/category_hint"
+            android:textSize="32sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -34,57 +34,61 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score: " />
+            android:textSize="24sp"
+            android:text="@string/score_title" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="-"
+            android:textSize="24sp"
+            android:hint="@string/zero_score_hint"
             android:id="@+id/score"/>
-
     </LinearLayout>
-
-
 
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:hint="Questions shows up here"
+        android:hint="@string/question_hint"
         android:gravity="center"
         android:layout_weight="2"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="--"
-        android:editable = "true"
-        android:textSize="36dp"
-
-        android:id="@+id/timer"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/timer_text"
+            android:textSize="36sp"
+            android:id="@+id/timer" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        style="?android:attr/buttonBarStyle">
         <Button
             android:id="@+id/buttonA"
+            android:layout_margin="2dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="A"
-            android:onClick="nextQuestion"/>
-            <!--android:background="@drawable/buttonstartstyle"-->
+            android:background="@color/answerButtom"
+            android:hint="@string/hint_button_A"
+            android:onClick="nextQuestion"
+            style="?android:attr/borderlessButtonStyle"/>
+
 
         <Button
             android:id="@+id/buttonB"
+            android:layout_margin="2dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="B"
-            android:onClick="nextQuestion"/>
+            android:background="@color/answerButtom"
+            android:hint="@string/hint_button_B"
+            android:onClick="nextQuestion"
+            style="?android:attr/buttonBarButtonStyle"/>
     </LinearLayout>
 
         <LinearLayout
@@ -92,22 +96,29 @@
             android:layout_height="90dp"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:gravity="center">
+            android:gravity="center"
+            style="?android:attr/buttonBarStyle">
         <Button
             android:id="@+id/buttonC"
+            android:layout_margin="2dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="C"
-            android:onClick="nextQuestion"/>
+            android:background="@color/answerButtom"
+            android:hint="@string/hint_button_C"
+            android:onClick="nextQuestion"
+            style="?android:attr/buttonBarButtonStyle"/>
 
         <Button
             android:id="@+id/buttonD"
+            android:layout_margin="2dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="D"
-            android:onClick="nextQuestion"/>
+            android:background="@color/answerButtom"
+            android:hint="@string/hint_button_D"
+            android:onClick="nextQuestion"
+            style="?android:attr/buttonBarButtonStyle"/>
         </LinearLayout>
 
 </LinearLayout>

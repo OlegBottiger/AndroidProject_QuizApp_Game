@@ -34,6 +34,7 @@ public class ResultActivity extends AppCompatActivity {
         // test
         int rank= db.getRank(db.getHighScore("Sports"), 15);
 
+
         TextView tvRank = (TextView) findViewById(R.id.rank);
         tvRank.setText("You are "+ rank +"th");
 
@@ -95,7 +96,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     public void goToMainMenu(View view) {
-        Intent i = new Intent(ResultActivity.this, HighscoreActivity.class);
+        Intent i = new Intent(ResultActivity.this, MainActivity.class);
         startActivity(i);
     }
 

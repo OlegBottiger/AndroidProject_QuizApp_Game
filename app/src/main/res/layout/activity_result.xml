@@ -14,6 +14,7 @@
         android:hint="Total score:"
         android:textSize="30dp"/>
     <TextView
+        android:id="@+id/final_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="You got ___ right answers"
