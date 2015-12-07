@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.iths.asobi.CustomQuestionAddActivity"
-    android:orientation="vertical">
+    tools:context="com.example.iths.asobi.CustomQuestionAddActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,6 +22,29 @@
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
         android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/category_text"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:hint="@string/typ_category"/>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,15 +53,15 @@
         android:gravity="center">
 
         <TextView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="@string/question_title"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"/>
         <EditText
             android:id="@+id/custom_question"
-
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:textAlignment="center"
@@ -127,11 +153,12 @@
     </LinearLayout>
 
     <Button
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_button_text"
         android:onClick="addCustomQuestion"/>
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
 
