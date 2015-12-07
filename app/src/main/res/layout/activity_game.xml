@@ -26,8 +26,6 @@
             android:textSize="32sp"/>
     </LinearLayout>
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,9 +59,6 @@
             android:text="@string/timer_text"
             android:textSize="36sp"
             android:id="@+id/timer" />
-
-
-
 
     <LinearLayout
         android:layout_width="match_parent"

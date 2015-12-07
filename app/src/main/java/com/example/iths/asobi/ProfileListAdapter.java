@@ -50,13 +50,13 @@ import java.util.ArrayList;
         }
 
         //Handle TextView and display string from your list
-        TextView listItemText = (TextView)view.findViewById(R.id.profile_name);
+        TextView listItemText = (TextView) view.findViewById(R.id.profile_name);
         listItemText.setText(dbHelper.get(position));
 
         //Handle buttons and add onClickListeners
-        Button deleteBtn = (Button)view.findViewById(R.id.delete_button);
+        Button deleteBtn = (Button) view.findViewById(R.id.delete_button);
 
-        deleteBtn.setOnClickListener(new View.OnClickListener(){
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //do something

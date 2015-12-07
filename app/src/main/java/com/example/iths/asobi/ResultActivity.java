@@ -27,6 +27,8 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String finalScore = intent.getStringExtra(FINAL_SCORE);
 
+
+
         int rank= DBHelper.getDbHelperInstance(this).getRank(DBHelper.getDbHelperInstance(this).getHighScore(), 15);
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
