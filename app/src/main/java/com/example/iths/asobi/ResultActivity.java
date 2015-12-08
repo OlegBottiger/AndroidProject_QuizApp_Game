@@ -3,6 +3,7 @@ package com.example.iths.asobi;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 public class ResultActivity extends AppCompatActivity {
 
     protected static final String FINAL_SCORE="final_score";
+    protected static final String CATEGORY="category";
+
     private DBHelper db;
 
     @Override
@@ -25,21 +28,28 @@ public class ResultActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_result);
 
-        //test
         db=DBHelper.getDbHelperInstance(this);
 
         Intent intent = getIntent();
-        String finalScore = intent.getStringExtra(FINAL_SCORE);
-
-        // test
-        int rank= db.getRank(db.getHighScore("Sports"), 15);
+        int finalScore = intent.getIntExtra(FINAL_SCORE, 0);
+        String category = intent.getStringExtra(CATEGORY);
 
 
-        TextView tvRank = (TextView) findViewById(R.id.rank);
-        tvRank.setText("You are "+ rank +"th");
+
+        if(finalScore > 0){
+            int rank= db.getRank(db.getHighScore(category), finalScore);
+            TextView tvRank = (TextView) findViewById(R.id.rank);
+            tvRank.setText("You are "+ rank +"th");
 
         //add high scores to the data base.
-        DBHelper.getDbHelperInstance(this).addHighScore("Joe", 100, DBHelper.getDbHelperInstance(this).getIdFromCategoryTableByCategoryName("Sports"));
+        db.addHighScore("Joe", finalScore, db.getIdFromCategoryTableByCategoryName(category));
+        }else{
+
+            TextView tvRank = (TextView) findViewById(R.id.rank);
+            tvRank.setText("You can not be ranked!");
+        }
+
+        Log.d("debug","players final score is "+finalScore +"category is "+category);
 
 
     }
@@ -102,10 +112,16 @@ public class ResultActivity extends AppCompatActivity {
 
     //test method. I remove this later.
     public void addHighScore(View view) {
+
+
+        DBHelper.getDbHelperInstance(this).insertCategory(db.getWritableDatabase(),"newTable!");
+        /*
         DBHelper.getDbHelperInstance(this).addHighScore("Joe",58,1);
         DBHelper.getDbHelperInstance(this).addHighScore("Michael",58,1);
         DBHelper.getDbHelperInstance(this).addHighScore("Maria",58,1);
         DBHelper.getDbHelperInstance(this).addHighScore("Johanna",20,1);
         DBHelper.getDbHelperInstance(this).addHighScore("Mark", 6,1);
+        */
+
     }
 }

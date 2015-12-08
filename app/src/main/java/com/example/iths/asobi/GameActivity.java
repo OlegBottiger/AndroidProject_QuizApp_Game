@@ -33,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView mTextField;
     private CountDownTimer timer;
     private int pointsToRecieve = 3;
+    private String getCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class GameActivity extends AppCompatActivity {
 
         // gets String category from GameModeActivity and saves it in getCategory.
         Intent intent = getIntent();
-        String getCategory = (String)intent.getSerializableExtra(CATEGORY);
+        getCategory = (String)intent.getSerializableExtra(CATEGORY);
 
         tvCategory = (TextView)findViewById(R.id.category_field);
         tvCategory.setText(getCategory);
@@ -206,7 +207,8 @@ public class GameActivity extends AppCompatActivity {
 
         if (round == questions.size()) {
             Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra(ResultActivity.FINAL_SCORE, "0");
+            intent.putExtra(ResultActivity.FINAL_SCORE, playerScore);
+            intent.putExtra(ResultActivity.CATEGORY,getCategory);
             startActivity(intent);
 
             // send information to the result activity

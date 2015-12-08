@@ -133,7 +133,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(NAME_KEY, "Guest");
         db.insert(PLAYER_TABLE, null, cvs);
 
-        
+
         sql = " CREATE TABLE " + WHOLE_QUESTION_TABLE + " ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
         sql += QUESTION_KEY + " VARCHAR(225) NOT NULL, ";
@@ -309,6 +309,21 @@ public class DBHelper extends SQLiteOpenHelper {
         return getReadableDatabase().query(category,null,null,null,null,null,null);
     }
 
+    public Cursor getCursorForOnesCategory(String category){
+
+        db= getWritableDatabase();
+
+        String selection = "allCategories=?";
+        String[] selectionArgs={Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+
+        Cursor cursor = db.query(WHOLE_QUESTION_TABLE, null, selection, selectionArgs, null, null, null);
+
+        return cursor;
+
+    }
+
+
+
     public int getLengthOfQuestions(String category){
         db = getReadableDatabase();
         Cursor cursor = getAllTable(category);
@@ -330,7 +345,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param categoryID
      * @return list of instances of Question
      */
-    public ArrayList<Question> getRandomFiveQuestions(int categoryID ){
+    public ArrayList<Question> getRandomFiveQuestions(int categoryID){
 
         db= getWritableDatabase();
         ArrayList<Question> questions = new ArrayList<Question>();
@@ -431,6 +446,9 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public void insertCategory(SQLiteDatabase db, String category){
 
+
+        //if there is not same name table
+
         ContentValues cvs = new ContentValues();
         cvs.put(CATEGORY_KEY, category);
 
@@ -439,5 +457,19 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.d(TAG, "All category table test. id is " + id);
 
     }
+
+    public void deleteCategory(String category){
+
+        db = getWritableDatabase();
+
+        String[] selectionArg = new String[]{Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+        db.delete(WHOLE_QUESTION_TABLE,"allCategories=?",selectionArg);
+
+        String[] selectionArgs = new String[]{category};
+        db.delete(ALL_CATEGORY_TABLE, "category=?", selectionArgs);
+
+        db.close();
+    }
+
 
 }

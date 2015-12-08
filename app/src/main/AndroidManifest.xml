@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.iths.asobi">
+    package="com.example.iths.asobi" >
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme" >
         <activity android:name=".AboutActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -32,16 +31,13 @@
                 android:value="com.example.iths.asobi.MainActivity" />
         </activity>
         //This is the main activity
-        <activity android:name=".MainActivity">
-
+        <activity android:name=".MainActivity" >
             <intent-filter>
-                <action android:name= "com.example.iths.asobi.MainActivity"/>
+                <action android:name="com.example.iths.asobi.MainActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
-
         <activity android:name=".GameModeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -57,24 +53,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.iths.asobi.MainActivity" />
         </activity>
-
         <activity android:name=".ProfilesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.iths.asobi.MainActivity" />
         </activity>
-
         //This activity is the launcher and is set to show 5 seconds (5000ms),
         //then It set´s to MainActivity.java
         //To change use StartActivity.java
         <activity android:name=".StartActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-           <intent-filter>
-               <action android:name="android.intent.action.MAIN" />
-
-               <category android:name="android.intent.category.LAUNCHER" />
-           </intent-filter>
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ShowHighScore" >
         </activity>
     </application>
 
