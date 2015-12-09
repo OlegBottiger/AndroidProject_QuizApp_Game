@@ -117,6 +117,7 @@ public class GameActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
+
                 mTextField.setText("0");
             }
         }.start();
@@ -185,6 +186,7 @@ public class GameActivity extends AppCompatActivity {
             case R.id.buttonD:
                 playersGuess = "4";
                 break;
+            default: break;
         }
         if (correctAnswer.equals(playersGuess)) {
 
@@ -223,13 +225,6 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("CATEGORY" ,getCategory);
             intent.putExtra("PLAYER", currentPlayer);
             startActivity(intent);
-
-            // send information to the result activity
-            // how many points player have
-            // how many right answer player got
-            // how long it took
-
-
         }
     }
 }
