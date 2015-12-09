@@ -65,7 +65,7 @@
         </activity>
 
         //This activity is the launcher and is set to show 5 seconds (5000ms),
-        //then It set´s to MainActinity.java
+        //then It set´s to MainActivity.java
         //To change use StartActivity.java
         <activity android:name=".StartActivity" >
 
