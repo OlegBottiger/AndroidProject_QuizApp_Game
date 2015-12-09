@@ -66,53 +66,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        sql = " CREATE TABLE " + HIGH_SCORE_TABLE + " ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
-        sql += SCORE_KEY + " INTEGER";
-        sql += " );";
-
-        db.execSQL(sql);
-
-        //those are for the test. I remove those later
-        ContentValues cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Joe");
-        cvs.put(SCORE_KEY, 58);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Michael");
-        cvs.put(SCORE_KEY, 58);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Maria");
-        cvs.put(SCORE_KEY, 58);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Johanna");
-        cvs.put(SCORE_KEY, 20);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Mark");
-        cvs.put(SCORE_KEY, 6);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
-
-
-        sql = " CREATE TABLE " + PLAYER_TABLE + " ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += NAME_KEY + " VARCHAR(225) NOT NULL";
-        sql += " );";
-        db.execSQL(sql);
-
-        // Sets name "Guest" to PLAYER_TABLE as a default name
-        cvs = new ContentValues();
-        cvs.put(NAME_KEY, "Guest");
-        db.insert(PLAYER_TABLE, null, cvs);
-
-
         sql = " CREATE TABLE " + ALL_CATEGORY_TABLE + " ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
         sql += CATEGORY_KEY + " VARCHAR(225) NOT NULL";
@@ -128,15 +81,68 @@ public class DBHelper extends SQLiteOpenHelper {
         insertCategory(db,GAME_TABLE);
 
 
-        sql = " CREATE TABLE " + WHOLE_QUESTION_TABLE + " ( ";
+        sql = " CREATE TABLE " + HIGH_SCORE_TABLE + " ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
-        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL,";
-        sql += ALTERNATIVE1_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE2_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE3_KEY + " VARCHAR(225),";
-        sql += ALTERNATIVE4_KEY + " VARCHAR(225),";
-        sql += CORRECT_ANSWER_KEY + " VARCHAR(225),";
+        sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
+        sql += SCORE_KEY + " INTEGER,";
         sql += ALL_CATEGORY_TABLE + " INTEGER";
+        sql += " );";
+
+        db.execSQL(sql);
+
+        //those are for the test. I remove those later
+        ContentValues cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Joe");
+        cvs.put(SCORE_KEY, 58);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Michael");
+        cvs.put(SCORE_KEY, 58);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Maria");
+        cvs.put(SCORE_KEY, 58);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Johanna");
+        cvs.put(SCORE_KEY, 20);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY,"Mark");
+        cvs.put(SCORE_KEY, 6);
+        cvs.put(ALL_CATEGORY_TABLE,1);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
+
+
+        sql = " CREATE TABLE " + PLAYER_TABLE + " ( ";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+        sql += NAME_KEY + " VARCHAR(225) NOT NULL ";
+        sql += " );";
+        db.execSQL(sql);
+
+        // Sets name "Guest" to PLAYER_TABLE as a default name
+        cvs = new ContentValues();
+        cvs.put(NAME_KEY, "Guest");
+        db.insert(PLAYER_TABLE, null, cvs);
+
+
+        sql = " CREATE TABLE " + WHOLE_QUESTION_TABLE + " ( ";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+        sql += QUESTION_KEY + " VARCHAR(225) NOT NULL, ";
+        sql += ALTERNATIVE1_KEY + " VARCHAR(225), ";
+        sql += ALTERNATIVE2_KEY + " VARCHAR(225), ";
+        sql += ALTERNATIVE3_KEY + " VARCHAR(225), ";
+        sql += ALTERNATIVE4_KEY + " VARCHAR(225), ";
+        sql += CORRECT_ANSWER_KEY + " VARCHAR(225) ,";
+        sql += ALL_CATEGORY_TABLE + " INTEGER ";
         sql += " );";
 
         db.execSQL(sql);
@@ -191,12 +197,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // one method to add a high score to the data base
-    public void addHighScore(String name, int score){
+    public void addHighScore(String name, int score, int category){
         db = getWritableDatabase();
 
         ContentValues cvs = new ContentValues();
         cvs.put(NAME_KEY,name);
         cvs.put(SCORE_KEY, score);
+        cvs.put(ALL_CATEGORY_TABLE, category);
 
         long id = db.insert(HIGH_SCORE_TABLE, null, cvs);
 
@@ -204,12 +211,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<Integer> getHighScore(){
+    /**
+     * retrieves information from HIGH_SCORE_TABLE and returns it as a list of integers.
+     * If there is no information in the table yet then it returns a list which includes only one element "0".
+     * @return - a list of high scores
+     */
+
+    public ArrayList<Integer> getHighScore(String category){
         db= getWritableDatabase();
         ArrayList<Integer> highScores = new ArrayList<Integer>();
-        String[] columns={"score"};
+        String[] columns={"score","allCategories"};
 
-        Cursor cursor = db.query(HIGH_SCORE_TABLE, columns, null, null, null, null, "score DESC");
+        String selection = "allCategories=?";
+        String[] selectionArgs = {Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+
+        Cursor cursor = db.query(HIGH_SCORE_TABLE, columns, selection, selectionArgs, null, null, "score DESC");
 
         if(cursor.moveToFirst()){
             int score;
@@ -229,17 +245,25 @@ public class DBHelper extends SQLiteOpenHelper {
         return highScores;
     }
 
-    public int getRank(ArrayList<Integer> highScore, int myScore){
+    /**
+     * This method takes a number which you want to check which rank it is in.
+     * If there are numbers which are the same then they are the same rank.
+     *
+     * @param highScore - a list of high scores which is retrieved from the data base.
+     * @param finalScore - player's final score. It is checked which rank it is in.
+     * @return - the rank
+     */
+    public int getRank(ArrayList<Integer> highScore, int finalScore){
 
         int rank = 1;
         int multiple = 0;
 
-        for( int i =0; i < highScore.size(); i++){
+        for( int i = 0; i < highScore.size(); i++){
 
-            if(highScore.get(i) >= myScore){
+            if(highScore.get(i) >= finalScore){
                 rank++;
 
-                if(highScore.get(i)== myScore){
+                if(highScore.get(i)== finalScore){
                     multiple++;
                 }
             }
@@ -285,6 +309,21 @@ public class DBHelper extends SQLiteOpenHelper {
         return getReadableDatabase().query(category,null,null,null,null,null,null);
     }
 
+    public Cursor getCursorForOnesCategory(String category){
+
+        db= getWritableDatabase();
+
+        String selection = "allCategories=?";
+        String[] selectionArgs={Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+
+        Cursor cursor = db.query(WHOLE_QUESTION_TABLE, null, selection, selectionArgs, null, null, null);
+
+        return cursor;
+
+    }
+
+
+
     public int getLengthOfQuestions(String category){
         db = getReadableDatabase();
         Cursor cursor = getAllTable(category);
@@ -306,7 +345,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param categoryID
      * @return list of instances of Question
      */
-    public ArrayList<Question> getRandomFiveQuestions(int categoryID ){
+    public ArrayList<Question> getRandomFiveQuestions(int categoryID){
 
         db= getWritableDatabase();
         ArrayList<Question> questions = new ArrayList<Question>();
@@ -351,6 +390,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return questions;
     }
 
+    /**
+     * gets category's name by category's ID
+     *
+     * @param categoryID category's ID
+     * @return category's name
+     */
     public String getCategoryFromCategoryTableByID(int categoryID){
 
         db = getReadableDatabase();
@@ -370,7 +415,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return category;
     }
 
-
+    /**
+     * gets category's ID by category's name
+     * @param category category's name
+     * @return category's ID
+     */
     public int getIdFromCategoryTableByCategoryName(String category){
 
         db = getReadableDatabase();
@@ -386,11 +435,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 Log.d(TAG,"This category's ID is "+ categoryId);
             }while(cursor.moveToNext());
         }
-        db.close();
+        //db.close();
         return categoryId;
     }
 
+    /**
+     * adds category's name to the ALL_CATEGORY_TABLE in the data base.
+     * @param db
+     * @param category category's name
+     */
     public void insertCategory(SQLiteDatabase db, String category){
+
+
+        //if there is not same name table
 
         ContentValues cvs = new ContentValues();
         cvs.put(CATEGORY_KEY, category);
@@ -408,5 +465,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.delete(PLAYER_TABLE, selection, selectionArgs);
     }
+
+    public void deleteCategory(String category){
+
+        db = getWritableDatabase();
+
+        String[] selectionArg = new String[]{Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+        db.delete(WHOLE_QUESTION_TABLE,"allCategories=?",selectionArg);
+
+        String[] selectionArgs = new String[]{category};
+        db.delete(ALL_CATEGORY_TABLE, "category=?", selectionArgs);
+
+        db.close();
+    }
+
 
 }

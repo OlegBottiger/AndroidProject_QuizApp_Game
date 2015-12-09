@@ -15,6 +15,8 @@ public class CustomQuestionActivity extends AppCompatActivity {
 
     private DBHelper db;
     private ListView list;
+    public static final String CATEGORY="category";
+    private Cursor customQuestiosCursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,15 @@ public class CustomQuestionActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_question);
-        Cursor customQuestiosCursor = db.getAllTable(DBHelper.WHOLE_QUESTION_TABLE);
+
+        Intent intent =getIntent();
+        String category = intent.getStringExtra(CATEGORY);
+
+        if(category.equals("ALL")) {
+            customQuestiosCursor = db.getAllTable(DBHelper.WHOLE_QUESTION_TABLE);
+        } else{
+            customQuestiosCursor= db.getCursorForOnesCategory(category);
+        }
 
         list = (ListView) findViewById(R.id.listview_custom_question);
 

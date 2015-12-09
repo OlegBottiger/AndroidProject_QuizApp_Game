@@ -45,11 +45,22 @@ public class ProfileListAdapter extends CursorAdapter {
         nameText.setText(name);
         scoreText.setText(score);
 
+<<<<<<< HEAD
         int pos = cursor.getPosition();
 
         //Deletes profile.
         deleteBtn.setOnClickListener(new View.OnClickListener() {
 
+=======
+        //Handle TextView and display string from your list
+        TextView listItemText = (TextView) view.findViewById(R.id.profile_name);
+        listItemText.setText(dbHelper.get(position));
+
+        //Handle buttons and add onClickListeners
+        Button deleteBtn = (Button) view.findViewById(R.id.delete_button);
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+>>>>>>> 7f025a39829448c828cbc7f89e0e54df406a2979
             @Override
             public void onClick(View view) {
                 dbHelper.deleteProfile(id);

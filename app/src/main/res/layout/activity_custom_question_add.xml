@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/custom_question_add_activity_text"
         android:text="@string/add_question_title"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textColor="@color/colorPrimary"
         android:gravity="center"/>
 
@@ -27,87 +27,109 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="30sp"
-            android:text="Category:"/>
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/category_text"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Type questions category"/>
+            android:textAlignment="center"
+            android:hint="@string/typ_category"/>
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <TextView
             android:layout_marginTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="@string/question_title"
-            android:textSize="30sp"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"/>
         <EditText
             android:id="@+id/custom_question"
-            android:layout_marginTop="0dp"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
+            android:textAlignment="center"
             android:hint="@string/add_questions_title"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+      >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/answers_title"
-            android:textSize="30sp"/>
-        <EditText
-            android:layout_marginLeft="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/alternative_1"
-            android:id="@+id/alternative_one"/>
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"/>
+
     </LinearLayout>
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/alternative_1"
+            android:textAlignment="center"
+            android:id="@+id/alternative_one"/>
 
         <EditText
-            android:layout_marginLeft="142dp"
-            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/alternative_2"
             android:id="@+id/alternative_two"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+>
         <EditText
             android:id="@+id/alternative_three"
-            android:layout_marginLeft="142dp"
+            android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/alternative_3"
-            android:layout_below="@id/alternative_two"
             />
         <EditText
-            android:layout_marginLeft="142dp"
-            android:layout_width="wrap_content"
+
+            android:textAlignment="center"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/alternative_4"
-            android:layout_below="@id/alternative_three"
             android:id="@+id/alternative_four"
             />
-    </RelativeLayout>
+    </LinearLayout>
+
+
 
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -116,7 +138,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/right_answer"
-            android:textSize="30sp"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
             android:gravity="center"/>
         <TextView
             android:layout_width="match_parent"

@@ -1,12 +1,20 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class HighscoreActivity extends AppCompatActivity {
+
+    private ListView listview;
+    private DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +27,40 @@ public class HighscoreActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_highscore);
+
+
+        db=DBHelper.getDbHelperInstance(this);
+        listview = (ListView) findViewById(R.id.high_score_list_view);
+
+        Cursor categories = db.getAllTable("allCategories");
+        String [] from = {"category"};
+        int [] to = {R.id.category};
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.category_list_item,categories ,from, to, 0);
+
+        listview.setAdapter(adapter);
+        listview.setOnItemClickListener(listListener);
+
+
     }
+
+    private AdapterView.OnItemClickListener listListener = new AdapterView.OnItemClickListener(){
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+
+            Cursor cur = (Cursor) parent.getItemAtPosition(position);
+            cur.moveToPosition(position);
+            String category = cur.getString(cur.getColumnIndex("category"));
+
+            Intent intent = new Intent(HighscoreActivity.this, ShowHighScore.class);
+
+            intent.putExtra(GameActivity.CATEGORY,category);
+            startActivity(intent);
+
+        }
+    };
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

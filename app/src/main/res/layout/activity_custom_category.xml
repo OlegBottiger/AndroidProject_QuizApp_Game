@@ -26,6 +26,15 @@
         android:layout_height="wrap_content"
         android:text="All Qustions"
         android:onClick="goToQuestions"/>
+
+    <ListView
+        android:id="@+id/list_of_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

@@ -16,7 +16,7 @@ public class StartActivity extends AppCompatActivity {
         Thread th = new Thread() {
             public void run() {
                 try {
-                    sleep(5000);
+                    sleep(2500);
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

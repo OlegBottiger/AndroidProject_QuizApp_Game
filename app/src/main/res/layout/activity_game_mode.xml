@@ -8,10 +8,12 @@
     android:orientation="vertical"
     tools:context="com.example.iths.asobi.GameModeActivity">
 
-    <Button
+    <TextView
+        android:id="@+id/all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ALL"
+        android:textSize="25dp"
         android:onClick="getQuestionsFromAll"/>
     <ListView
         android:id="@+id/category_list"

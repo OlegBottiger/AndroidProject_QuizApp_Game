@@ -3,12 +3,17 @@ package com.example.iths.asobi;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
+
+    protected static final String FINAL_SCORE="final_score";
+    protected static final String CATEGORY="category";
+    private DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +26,17 @@ public class ResultActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_result);
 
+        db=DBHelper.getDbHelperInstance(this);
+
         Intent intent = getIntent();
+
         int finalScore = intent.getIntExtra("FINAL_SCORE", 0);
         int correctAnswers = intent.getIntExtra("CORRECT_ANSWERS", 0);
         int minutes = intent.getIntExtra("MINUTES", 0);
         int seconds = intent.getIntExtra("SECONDS", 0);
         int rank= DBHelper.getDbHelperInstance(this).getRank(DBHelper.getDbHelperInstance(this).getHighScore(), 15);
 
-        DBHelper.getDbHelperInstance(this).addHighScore("name", finalScore);
+        DBHelper.getDbHelperInstance(this).addHighScore("name", finalScore, 1);
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
         tvRank.setText("You are "+ rank +"th");
@@ -38,6 +46,25 @@ public class ResultActivity extends AppCompatActivity {
         correctView.setText("Correct answers: " + correctAnswers);
         TextView timeView = (TextView) findViewById(R.id.time);
         timeView.setText("Time: " + minutes + " min & " + seconds + " sec");
+        int finalScore = intent.getIntExtra(FINAL_SCORE, 0);
+        String category = intent.getStringExtra(CATEGORY);
+
+
+
+        if(finalScore > 0){
+            int rank= db.getRank(db.getHighScore(category), finalScore);
+            TextView tvRank = (TextView) findViewById(R.id.rank);
+            tvRank.setText("You are "+ rank +"th");
+
+        //add high scores to the data base.
+        db.addHighScore("Joe", finalScore, db.getIdFromCategoryTableByCategoryName(category));
+        }else{
+
+            TextView tvRank = (TextView) findViewById(R.id.rank);
+            tvRank.setText("You can not be ranked!");
+        }
+
+        Log.d("debug","players final score is "+finalScore +"category is "+category);
     }
 
 
@@ -92,7 +119,22 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     public void goToMainMenu(View view) {
-        Intent i = new Intent(ResultActivity.this, HighscoreActivity.class);
+        Intent i = new Intent(ResultActivity.this, MainActivity.class);
         startActivity(i);
+    }
+
+    //test method. I remove this later.
+    public void addHighScore(View view) {
+
+
+        DBHelper.getDbHelperInstance(this).insertCategory(db.getWritableDatabase(),"newTable!");
+        /*
+        DBHelper.getDbHelperInstance(this).addHighScore("Joe",58,1);
+        DBHelper.getDbHelperInstance(this).addHighScore("Michael",58,1);
+        DBHelper.getDbHelperInstance(this).addHighScore("Maria",58,1);
+        DBHelper.getDbHelperInstance(this).addHighScore("Johanna",20,1);
+        DBHelper.getDbHelperInstance(this).addHighScore("Mark", 6,1);
+        */
+
     }
 }

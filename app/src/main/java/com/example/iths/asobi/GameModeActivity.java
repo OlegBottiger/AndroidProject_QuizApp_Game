@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,13 +14,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class GameModeActivity extends AppCompatActivity {
 
-    private ArrayList<String> category;
-    private ArrayAdapter<String> adapter;
     private ListView listview;
     private DBHelper db;
 
@@ -33,31 +34,18 @@ public class GameModeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_game_mode);
 
-        category = new ArrayList<String>();
-
-        category.add("Sports");
-        category.add("Music");
-        category.add("Science");
-        category.add("Geography");
-        category.add("Mathematics");
-        category.add("Games");
-
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, category);
-        listview = (ListView) findViewById(R.id.category_list);
-        listview.setAdapter(adapter);
-        listview.setOnItemClickListener(listListener);
-
-        /*
-        listview = (ListView) findViewById(R.id.category_list);
         db=DBHelper.getDbHelperInstance(this);
+
+        listview = (ListView) findViewById(R.id.category_list);
 
         Cursor categories = db.getAllTable("allCategories");
         String [] from = {"category"};
-        int [] to = {R.id.testList};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.test_category_list,categories ,from, to, 0);
+        int [] to = {R.id.category};
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.category_list_item,categories ,from, to, 0);
 
         listview.setAdapter(adapter);
-        */
+        listview.setOnItemClickListener(listListener);
+
     }
 
     private AdapterView.OnItemClickListener listListener = new AdapterView.OnItemClickListener(){
@@ -65,11 +53,20 @@ public class GameModeActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 
-            String category = (String)parent.getItemAtPosition(position);
+
+            Cursor cur = (Cursor) parent.getItemAtPosition(position);
+            cur.moveToPosition(position);
+            String category = cur.getString(cur.getColumnIndex("category"));
+
+
+            //If their length is longer than 5
+
             Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
 
             intent.putExtra(GameActivity.CATEGORY,category);
             startActivity(intent);
+
+            //else ... stay here and show message?
 
         }
     };
