@@ -34,9 +34,10 @@ public class ResultActivity extends AppCompatActivity {
         int minutes = intent.getIntExtra("MINUTES", 0);
         int seconds = intent.getIntExtra("SECONDS", 0);
         String category = intent.getStringExtra("CATEGORY");
+        String name = intent.getStringExtra("PLAYER");
         int rank= db.getRank(db.getHighScore(category), finalScore);
 
-       db.addHighScore("name", finalScore, db.getIdFromCategoryTableByCategoryName(category));
+       db.addHighScore(name, finalScore, db.getIdFromCategoryTableByCategoryName(category));
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
         tvRank.setText("You are "+ rank +"th");
@@ -62,11 +63,11 @@ public class ResultActivity extends AppCompatActivity {
             }
 
         //add high scores to the data base.
-        db.addHighScore("Joe", finalScore, db.getIdFromCategoryTableByCategoryName(category));
+        db.addHighScore(name, finalScore, db.getIdFromCategoryTableByCategoryName(category));
         }else{
 
             tvRank = (TextView) findViewById(R.id.rank);
-            tvRank.setText("You can not be ranked!");
+            tvRank.setText("You didn't enter High Score");
         }
 
         Log.d("debug","players final score is "+finalScore +"category is "+category);

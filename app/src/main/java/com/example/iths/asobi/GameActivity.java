@@ -221,6 +221,7 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("MINUTES", minutes);
             intent.putExtra("SECONDS", seconds);
             intent.putExtra("CATEGORY" ,getCategory);
+            intent.putExtra("PLAYER", currentPlayer);
             startActivity(intent);
 
             // send information to the result activity
