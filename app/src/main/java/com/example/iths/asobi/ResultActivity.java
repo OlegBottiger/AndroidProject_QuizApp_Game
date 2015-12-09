@@ -49,7 +49,17 @@ public class ResultActivity extends AppCompatActivity {
 
         if(finalScore > 0){
             tvRank = (TextView) findViewById(R.id.rank);
-            tvRank.setText("You are " + rank + "th");
+            if(rank == 1) {
+                tvRank.setText("You placed " + rank + "st place on High Score");
+            }
+            else if (rank == 2) {
+                tvRank.setText("You placed " + rank + "nd place on High Score");
+            }
+            else if (rank == 3) {
+                tvRank.setText("You placed " + rank + "rd place on High Score");
+            } else {
+                tvRank.setText("You placed " + rank + "th place on High Score");
+            }
 
         //add high scores to the data base.
         db.addHighScore("Joe", finalScore, db.getIdFromCategoryTableByCategoryName(category));

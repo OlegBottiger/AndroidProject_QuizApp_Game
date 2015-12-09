@@ -38,7 +38,7 @@ public class GameActivity extends AppCompatActivity {
     private int time;
     private int minutes;
     private int seconds;
-    private Player player;
+    public static String currentPlayer;
 
     private String getCategory;
 

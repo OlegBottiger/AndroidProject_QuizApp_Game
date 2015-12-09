@@ -1,9 +1,11 @@
 package com.example.iths.asobi;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 
@@ -15,15 +17,17 @@ import android.view.MenuItem;
 import android.database.Cursor;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ProfilesActivity extends AppCompatActivity {
 
     private ListView listView;
     private DBHelper dbHelper;
-    private TextView textView;
+    private EditText nameInput;
     SimpleCursorAdapter adapter;
     private String z;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +59,21 @@ public class ProfilesActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener listListener = new AdapterView.OnItemClickListener(){
 
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            //Login
+            Cursor cur = (Cursor) parent.getItemAtPosition(position);
+            cur.moveToPosition(position);
+            name = cur.getString(cur.getColumnIndex("name"));
+            GameActivity.currentPlayer = name;
+
+            Context context = getApplicationContext();
+            CharSequence text = ("Logged in as " + name);
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+            Intent i = new Intent(ProfilesActivity.this, MainActivity.class);
+            startActivity(i);
 
         }
     };
@@ -153,11 +169,12 @@ public class ProfilesActivity extends AppCompatActivity {
     }
 
     public void addProfile(View view) {
-        textView = (TextView) findViewById(R.id.enter_name);
-        String name = textView.getText().toString();
+        nameInput = (EditText) findViewById(R.id.enter_name);
+        String name = nameInput.getText().toString();
         dbHelper.addProfile(name);
         Cursor cursor = dbHelper.getPlayers();
         adapter.changeCursor(cursor);
+        nameInput.getText().clear();
     }
 
 }
