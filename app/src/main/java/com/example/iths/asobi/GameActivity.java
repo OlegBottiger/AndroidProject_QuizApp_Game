@@ -17,6 +17,7 @@ public class GameActivity extends AppCompatActivity {
 
     public static final String CATEGORY="category";
     private static final String TAG = "GameActivity debug" ;
+    public static String currentPlayer;
     private DBHelper dbHelper;
     private TextView tvCategory;
     private TextView tvQuestion;
@@ -24,22 +25,18 @@ public class GameActivity extends AppCompatActivity {
     private Button buttonB;
     private Button buttonC;
     private Button buttonD;
-
     private ArrayList<Question> questions;
     private String correctAnswer;
     private String playersGuess;
-    private int round = 0;
+    private int round = 1;
     private int playerScore = 0;
     private TextView mTextField;
     private CountDownTimer timer;
     private int pointsToRecieve = 3;
-
     private int numberOfCorrectAnswer = 0;
     private int time;
     private int minutes;
     private int seconds;
-    public static String currentPlayer;
-
     private String getCategory;
 
     @Override
@@ -88,18 +85,13 @@ public class GameActivity extends AppCompatActivity {
 
         correctAnswer = questions.get(round).getCorrectAnswer();
 
-
-
-
-
-
         Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion()+questions.get(2).getQuestion()
                 +questions.get(3).getQuestion()+questions.get(4).getQuestion());
 
     }
 
     private void countDownTimer() {
-        timer = new CountDownTimer(16000, 1000) {
+        timer = new CountDownTimer(15100, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
@@ -117,10 +109,77 @@ public class GameActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-
                 mTextField.setText("0");
+                goToNextQuestion();
             }
         }.start();
+    }
+
+    public void nextQuestion(View view) {
+
+        timer.cancel();
+
+        switch (view.getId()) {
+            case R.id.buttonA:
+                playersGuess = "1";
+                break;
+            case R.id.buttonB:
+                playersGuess = "2";
+                break;
+
+            case R.id.buttonC:
+                playersGuess = "3";
+                break;
+
+            case R.id.buttonD:
+                playersGuess = "4";
+                break;
+        }
+        if (correctAnswer.equals(playersGuess)) {
+
+            numberOfCorrectAnswer ++;
+
+            // Player's score increases
+            playerScore = playerScore + pointsToRecieve;
+
+            TextView scoreView = (TextView) findViewById(R.id.score);
+            scoreView.setText("" + playerScore);
+
+        }
+
+        goToNextQuestion();
+
+    }
+
+    public void goToNextQuestion() {
+
+        if (round == questions.size()) {
+            minutes = time / 60;
+            seconds = time % 60;
+            Intent intent = new Intent(this, ResultActivity.class);
+            intent.putExtra("FINAL_SCORE", playerScore);
+            intent.putExtra("CORRECT_ANSWERS", numberOfCorrectAnswer);
+            intent.putExtra("MINUTES", minutes);
+            intent.putExtra("SECONDS", seconds);
+            intent.putExtra("CATEGORY", getCategory);
+            intent.putExtra("PLAYER", currentPlayer);
+            startActivity(intent);
+        }
+        else {
+            tvQuestion.setText(questions.get(round).getQuestion());
+            buttonA.setText(questions.get(round).getAlternative1());
+            buttonB.setText(questions.get(round).getAlternative2());
+            buttonC.setText(questions.get(round).getAlternative3());
+            buttonD.setText(questions.get(round).getAlternative4());
+            correctAnswer = questions.get(round).getCorrectAnswer();
+
+            round++;
+            TextView roundView = (TextView) findViewById(R.id.round);
+            roundView.setText("" + round);
+            pointsToRecieve = 3;
+            countDownTimer();
+
+        }
     }
 
     @Override
@@ -160,71 +219,5 @@ public class GameActivity extends AppCompatActivity {
         }
 
 
-    }
-
-    public void nextQuestion(View view) {
-        goToNextQuestion(view);
-        }
-
-    public void goToNextQuestion(View view) {
-
-        timer.cancel();
-        countDownTimer();
-
-        switch (view.getId()) {
-            case R.id.buttonA:
-                playersGuess = "1";
-                break;
-            case R.id.buttonB:
-                playersGuess = "2";
-                break;
-
-            case R.id.buttonC:
-                playersGuess = "3";
-                break;
-
-            case R.id.buttonD:
-                playersGuess = "4";
-                break;
-            default: break;
-        }
-        if (correctAnswer.equals(playersGuess)) {
-
-            numberOfCorrectAnswer ++;
-
-            // Player's score increases
-            playerScore = playerScore + pointsToRecieve;
-
-            TextView scoreView = (TextView) findViewById(R.id.score);
-            scoreView.setText("" + playerScore);
-
-        }
-        // increase the number of the round
-        round++;
-
-        pointsToRecieve = 3;
-
-
-        if (round < questions.size()) {
-            tvQuestion.setText(questions.get(round).getQuestion());
-            buttonA.setText(questions.get(round).getAlternative1());
-            buttonB.setText(questions.get(round).getAlternative2());
-            buttonC.setText(questions.get(round).getAlternative3());
-            buttonD.setText(questions.get(round).getAlternative4());
-            correctAnswer = questions.get(round).getCorrectAnswer();
-        }
-
-        if (round == questions.size()) {
-            int minutes = time/60;
-            int seconds = time % 60;
-            Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra("FINAL_SCORE", playerScore);
-            intent.putExtra("CORRECT_ANSWERS", numberOfCorrectAnswer);
-            intent.putExtra("MINUTES", minutes);
-            intent.putExtra("SECONDS", seconds);
-            intent.putExtra("CATEGORY" ,getCategory);
-            intent.putExtra("PLAYER", currentPlayer);
-            startActivity(intent);
-        }
     }
 }
