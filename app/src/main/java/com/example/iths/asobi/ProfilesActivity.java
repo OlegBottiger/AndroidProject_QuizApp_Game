@@ -1,6 +1,9 @@
 package com.example.iths.asobi;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 
@@ -20,6 +23,7 @@ public class ProfilesActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private TextView textView;
     SimpleCursorAdapter adapter;
+    private String z;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +40,75 @@ public class ProfilesActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.profile_list);
         dbHelper = DBHelper.getDbHelperInstance(this);
 
-        //Cursor players = dbHelper.getPlayers();
-        Cursor allProfilesCursor = dbHelper.getPlayers();
+        Cursor players = dbHelper.getPlayers();
 
-        //ProfileListAdapter adapter = new ProfileListAdapter(this, allProfilesCursor);
-
-        //String [] from = {dbHelper.getName(), DBHelper.ID_KEY};
-        //int [] to = {R.id.profile_name};
-        //adapter = new SimpleCursorAdapter(this, R.layout.profile_list_item,players ,from, to, 0);
+        String [] from = {dbHelper.getName()};
+        int [] to = {R.id.profile_name};
+        adapter = new SimpleCursorAdapter(this, R.layout.profile_list_item,players ,from, to, 0);
 
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(listListener);
+        listView.setOnItemLongClickListener(listListenerLong);
+
+    }
+
+    private AdapterView.OnItemClickListener listListener = new AdapterView.OnItemClickListener(){
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+            //Login
+
+        }
+    };
+
+    private AdapterView.OnItemLongClickListener listListenerLong = new AdapterView.OnItemLongClickListener(){
+
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
+
+            Cursor cur = (Cursor) parent.getItemAtPosition(position);
+            cur.moveToPosition(position);
+            z = cur.getString(cur.getColumnIndex("name"));
+
+            AlertDialog diaBox = AskOption();
+            diaBox.show();
+
+            return true;
+        }
+
+    };
+
+
+    private AlertDialog AskOption() {
+        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
+                //set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Do you want to delete?")
+                .setIcon(R.drawable.ic_delete)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dbHelper.deleteProfile(z);
+                        Cursor cursor = dbHelper.getPlayers();
+                        adapter.changeCursor(cursor);
+                        dialog.dismiss();
+                    }
+
+                })
+
+
+
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        return myQuittingDialogBox;
 
     }
 
@@ -93,7 +156,8 @@ public class ProfilesActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.enter_name);
         String name = textView.getText().toString();
         dbHelper.addProfile(name);
-        adapter.notifyDataSetChanged();
+        Cursor cursor = dbHelper.getPlayers();
+        adapter.changeCursor(cursor);
     }
 
 }

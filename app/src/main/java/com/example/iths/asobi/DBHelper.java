@@ -458,12 +458,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void deleteProfile(String id) {
-        SQLiteDatabase db = getWritableDatabase();
-        String selection = "_id=?";
-        String[] selectionArgs = {id};
+    public void deleteProfile(String name) {
+        db = getWritableDatabase();
+        String selection = "name=?";
+        String[] selectionArgs = {name};
 
         db.delete(PLAYER_TABLE, selection, selectionArgs);
+
+        db.close();
     }
 
     public void deleteCategory(String category){

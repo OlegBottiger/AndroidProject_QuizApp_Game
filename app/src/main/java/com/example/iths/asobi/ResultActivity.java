@@ -11,9 +11,8 @@ import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
-    protected static final String FINAL_SCORE="final_score";
-    protected static final String CATEGORY="category";
     private DBHelper db;
+    private TextView tvRank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +33,10 @@ public class ResultActivity extends AppCompatActivity {
         int correctAnswers = intent.getIntExtra("CORRECT_ANSWERS", 0);
         int minutes = intent.getIntExtra("MINUTES", 0);
         int seconds = intent.getIntExtra("SECONDS", 0);
-        int rank= DBHelper.getDbHelperInstance(this).getRank(DBHelper.getDbHelperInstance(this).getHighScore(), 15);
+        String category = intent.getStringExtra("CATEGORY");
+        int rank= db.getRank(db.getHighScore(category), finalScore);
 
-        DBHelper.getDbHelperInstance(this).addHighScore("name", finalScore, 1);
+       db.addHighScore("name", finalScore, db.getIdFromCategoryTableByCategoryName(category));
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
         tvRank.setText("You are "+ rank +"th");
@@ -45,22 +45,17 @@ public class ResultActivity extends AppCompatActivity {
         TextView correctView = (TextView) findViewById(R.id.correct_anwsers);
         correctView.setText("Correct answers: " + correctAnswers);
         TextView timeView = (TextView) findViewById(R.id.time);
-        timeView.setText("Time: " + minutes + " min & " + seconds + " sec");
-        int finalScore = intent.getIntExtra(FINAL_SCORE, 0);
-        String category = intent.getStringExtra(CATEGORY);
-
-
+        timeView.setText("Time: " + minutes + " min & " + seconds + " sec");;
 
         if(finalScore > 0){
-            int rank= db.getRank(db.getHighScore(category), finalScore);
-            TextView tvRank = (TextView) findViewById(R.id.rank);
-            tvRank.setText("You are "+ rank +"th");
+            tvRank = (TextView) findViewById(R.id.rank);
+            tvRank.setText("You are " + rank + "th");
 
         //add high scores to the data base.
         db.addHighScore("Joe", finalScore, db.getIdFromCategoryTableByCategoryName(category));
         }else{
 
-            TextView tvRank = (TextView) findViewById(R.id.rank);
+            tvRank = (TextView) findViewById(R.id.rank);
             tvRank.setText("You can not be ranked!");
         }
 

@@ -1,5 +1,7 @@
 package com.example.iths.asobi;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
     private DBHelper db;
     private ListView listview;
     private SimpleCursorAdapter adapter;
+    private String z;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,21 +80,17 @@ public class CustomCategoryActivity extends AppCompatActivity {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
 
-
-            Log.d("list test", "do you want to delete this?");
-
             Cursor cur = (Cursor) parent.getItemAtPosition(position);
             cur.moveToPosition(position);
-            String s = cur.getString(cur.getColumnIndex("category"));
+            z = cur.getString(cur.getColumnIndex("category"));
 
             //Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
 
             //intent.putExtra(GameActivity.CATEGORY, s);
             //startActivity(intent);
-            db.deleteCategory(s);
-            Cursor cursor = db.getAllTable("allCategories");
-            adapter.changeCursor(cursor);
 
+            AlertDialog diaBox = AskOption();
+            diaBox.show();
 
             return true;
         }
@@ -102,6 +101,38 @@ public class CustomCategoryActivity extends AppCompatActivity {
         Intent i = new Intent(this, CustomQuestionActivity.class);
         i.putExtra(CustomQuestionActivity.CATEGORY,"ALL");
         startActivity(i);
+    }
+
+    private AlertDialog AskOption() {
+        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
+                //set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Do you want to delete?")
+                .setIcon(R.drawable.ic_delete)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        db.deleteCategory(z);
+                        Cursor cursor = db.getAllTable("allCategories");
+                        adapter.changeCursor(cursor);
+                        dialog.dismiss();
+                    }
+
+                })
+
+
+
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        return myQuittingDialogBox;
+
     }
 
 }

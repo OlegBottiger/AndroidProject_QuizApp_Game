@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity {
     private int minutes;
     private int seconds;
     private Player player;
-    
+
     private String getCategory;
 
     @Override
@@ -220,8 +220,7 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("CORRECT_ANSWERS", numberOfCorrectAnswer);
             intent.putExtra("MINUTES", minutes);
             intent.putExtra("SECONDS", seconds);
-            intent.putExtra(ResultActivity.FINAL_SCORE, playerScore);
-            intent.putExtra(ResultActivity.CATEGORY,getCategory);
+            intent.putExtra("CATEGORY" ,getCategory);
             startActivity(intent);
 
             // send information to the result activity
