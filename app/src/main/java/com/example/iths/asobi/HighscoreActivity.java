@@ -53,7 +53,7 @@ public class HighscoreActivity extends AppCompatActivity {
             cur.moveToPosition(position);
             String category = cur.getString(cur.getColumnIndex("category"));
 
-            Intent intent = new Intent(HighscoreActivity.this, ShowHighScore.class);
+            Intent intent = new Intent(HighscoreActivity.this, ShowHighScoreActivity.class);
 
             intent.putExtra(GameActivity.CATEGORY,category);
             startActivity(intent);
@@ -99,5 +99,10 @@ public class HighscoreActivity extends AppCompatActivity {
         }
 
 
+    }
+    public void showHighScores(View view) {
+        Intent intent = new Intent(this, ShowHighScoreActivity.class);
+        intent.putExtra(ShowHighScoreActivity.CATEGORY, "ALL");
+        startActivity(intent);
     }
 }

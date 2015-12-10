@@ -284,6 +284,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public Cursor getHighScoreTable(){
+        return getReadableDatabase().query(HIGH_SCORE_TABLE,null,null,null,null,null,"score DESC");
+    }
+
     /**
      * adds a player's name to the data base
      * @param name - player's name
@@ -322,6 +326,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public Cursor getCategorisedTable(String category) {
+        db= getWritableDatabase();
+        String selection = "allCategories=?";
+        String[] selectionArgs={Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+        Cursor cursor = db.query(HIGH_SCORE_TABLE, null, selection, selectionArgs, null, null, "score DESC");
+        return cursor;
+    }
 
 
     public int getLengthOfQuestions(String category){
