@@ -21,6 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String NAME_KEY ="name" ;
     private static final String SCORE_KEY = "score" ;
+    private static final String RANK_KEY = "rank" ;
     private static final String HIGH_SCORE_TABLE = "highScores" ;
     private static final String PLAYER_TABLE = "players";
     static final String ALL_CATEGORY_TABLE = "allCategories";
@@ -85,6 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
         sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
         sql += SCORE_KEY + " INTEGER,";
+        sql += RANK_KEY + " INTEGER, ";
         sql += ALL_CATEGORY_TABLE + " INTEGER";
         sql += " );";
 
@@ -92,7 +94,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //those are for the test. I remove those later
         ContentValues cvs = new ContentValues();
-        cvs.put(NAME_KEY,"Joe");
+ /*       cvs.put(NAME_KEY,"Joe");
         cvs.put(SCORE_KEY, 58);
         cvs.put(ALL_CATEGORY_TABLE,1);
         db.insert(HIGH_SCORE_TABLE, null, cvs);
@@ -119,7 +121,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(NAME_KEY,"Mark");
         cvs.put(SCORE_KEY, 6);
         cvs.put(ALL_CATEGORY_TABLE,1);
-        db.insert(HIGH_SCORE_TABLE, null, cvs);
+        db.insert(HIGH_SCORE_TABLE, null, cvs);*/
 
 
         sql = " CREATE TABLE " + PLAYER_TABLE + " ( ";
@@ -197,13 +199,14 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // one method to add a high score to the data base
-    public void addHighScore(String name, int score, int category){
+    public void addHighScore(String name, int score, int category, int rank){
         db = getWritableDatabase();
 
         ContentValues cvs = new ContentValues();
-        cvs.put(NAME_KEY,name);
+        cvs.put(NAME_KEY, name);
         cvs.put(SCORE_KEY, score);
         cvs.put(ALL_CATEGORY_TABLE, category);
+        cvs.put(RANK_KEY, rank);
 
         long id = db.insert(HIGH_SCORE_TABLE, null, cvs);
 
@@ -279,7 +282,6 @@ public class DBHelper extends SQLiteOpenHelper {
      * @return - cursor which points to the player's table
      */
     public Cursor getPlayers(){
-
          return getReadableDatabase().query(PLAYER_TABLE,null,null,null,null,null,null);
 
     }
