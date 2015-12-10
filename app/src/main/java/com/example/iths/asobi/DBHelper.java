@@ -491,6 +491,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.close();
     }
-
+    public Cursor getCategory(){
+        return getReadableDatabase().query(ALL_CATEGORY_TABLE,null,null,null,null,null,null);
+    }
 
 }

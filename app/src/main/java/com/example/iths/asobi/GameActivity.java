@@ -1,6 +1,7 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -222,6 +223,16 @@ public class GameActivity extends AppCompatActivity {
                 Intent k = new Intent(GameActivity.this, ProfilesActivity.class);
                 startActivity(k);
                 return true;
+            case R.id.send_sms:
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setData(Uri.parse("sms:"));
+                String quest = tvQuestion.getText().toString();
+                String a = buttonA.getText().toString();
+                String b = buttonB.getText().toString();
+                String c = buttonC.getText().toString();
+                String d = buttonD.getText().toString();
+                sendIntent.putExtra("sms_body", quest + "\n A: " + a + "\n B: " + b + "\n C: " + c + "\n D: " + d);
+                startActivity(sendIntent);
 
             default:
                 return super.onOptionsItemSelected(item);
