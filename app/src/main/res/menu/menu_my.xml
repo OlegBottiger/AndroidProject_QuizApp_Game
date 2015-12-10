@@ -20,9 +20,16 @@
     <item
         android:id="@+id/profile"
         android:icon="@drawable/ic_account_box_black_48dp"
-        android:title="@string/hidden"
+        android:title="PROFILE"
         android:orderInCategory="3"
         app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/send_sms"
+        android:icon="@drawable/ic_textsms"
+        android:title="SEND QUESTION"
+        android:orderInCategory="4"
+        app:showAsAction="always"
         />
 
 </menu>
