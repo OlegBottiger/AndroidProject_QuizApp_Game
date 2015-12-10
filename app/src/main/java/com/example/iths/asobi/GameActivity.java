@@ -96,7 +96,7 @@ public class GameActivity extends AppCompatActivity {
 
         roundView=(TextView)findViewById(R.id.round);
         roundView.setText(""+showRound);
-        
+
         Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion() + questions.get(2).getQuestion()
                 + questions.get(3).getQuestion() + questions.get(4).getQuestion());
 
