@@ -34,9 +34,9 @@ public class ResultActivity extends AppCompatActivity {
         int minutes = intent.getIntExtra("MINUTES", 0);
         int seconds = intent.getIntExtra("SECONDS", 0);
         String category = intent.getStringExtra("CATEGORY");
+        String name = intent.getStringExtra("PLAYER");
         int rank= db.getRank(db.getHighScore(category), finalScore);
 
-       db.addHighScore("name", finalScore, db.getIdFromCategoryTableByCategoryName(category));
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
         tvRank.setText("You are "+ rank +"th");
@@ -49,20 +49,20 @@ public class ResultActivity extends AppCompatActivity {
 
         if(finalScore > 0){
             tvRank = (TextView) findViewById(R.id.rank);
-            if(rank == 1) {
+            if(rank == 1 || rank == 21) {
                 tvRank.setText("You placed " + rank + "st place on High Score");
             }
-            else if (rank == 2) {
+            else if (rank == 2 || rank == 22) {
                 tvRank.setText("You placed " + rank + "nd place on High Score");
             }
-            else if (rank == 3) {
+            else if (rank == 3 || rank == 23) {
                 tvRank.setText("You placed " + rank + "rd place on High Score");
             } else {
                 tvRank.setText("You placed " + rank + "th place on High Score");
             }
 
         //add high scores to the data base.
-        db.addHighScore("Joe", finalScore, db.getIdFromCategoryTableByCategoryName(category));
+        db.addHighScore(name, finalScore, db.getIdFromCategoryTableByCategoryName(category), rank);
         }else{
 
             tvRank = (TextView) findViewById(R.id.rank);

@@ -164,7 +164,9 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("SECONDS", seconds);
             intent.putExtra("CATEGORY", getCategory);
             intent.putExtra("PLAYER", currentPlayer);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+
 
             // send information to the result activity
             // how many points player have

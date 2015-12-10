@@ -31,8 +31,8 @@ public class ShowHighScoreActivity extends AppCompatActivity {
             cursor= db.getCategorisedTable(category);
         }
 
-        String [] from = {"name","score"};
-        int [] to = {R.id.high_score_name,R.id.high_score_point};
+        String [] from = {"name","score", "rank"};
+        int [] to = {R.id.high_score_name,R.id.high_score_point,R.id.high_score_rank};
         adapter = new SimpleCursorAdapter(this, R.layout.high_scores_list_item,cursor,from, to, 0);
 
         listview.setAdapter(adapter);
