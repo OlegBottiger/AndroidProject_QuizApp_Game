@@ -119,18 +119,37 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Sets information to WHOLE_QUESTION_TABLE ( just for test for now )
 
+        // Sports questions
         addQuestionsToDataBase(db," Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4",1);
         addQuestionsToDataBase(db," Who won The World Highland Games Championships a record six times?","Geoff Capes","someone","someone","someone","1",1);
         addQuestionsToDataBase(db," What jobs did Mike ‘Fluff’ Cowan, Jim ‘Bones’ Mackay and Fanny Sunesson do?","something","Golf caddies","something","something","2",1);
         addQuestionsToDataBase(db," Which former rugby player once called the English RFU committee 'Old Farts'?", "something", "something", "Will Carling", "something", "3",1);
         addQuestionsToDataBase(db," In inches, how big is the diameter of a basketball hoop?", "11", "13", "16", "18", "4",1);
 
+        // Music questions
         addQuestionsToDataBase(db," music 1","Rihanna","Maroon 5","Pitbull","Justin Bieber","4",2);
         addQuestionsToDataBase(db," music 2","jazz","rock","classic","hiphop","4",2);
         addQuestionsToDataBase(db," music 3","Adele","Avicii","Drake","Ariana Grande","4",2);
         addQuestionsToDataBase(db," music 4","Lady Gaga","Beyonce","Michael Jackson","Madonna","4",2);
         addQuestionsToDataBase(db," music 5","Katy Perry","Elle King","Shawn Mendes","Ellie Goulding","4",2);
 
+        // Science questions
+        addQuestionsToDataBase(db," Who came up with the Theory of Relativity?", "Robert Brown", "John Dalton", "Erwin Schrödinger", "Albert Einstein", "4", 3);
+        addQuestionsToDataBase(db," Approximately how old is the universe?", "11,5 billion years", "12,3 billion years", "13,8 billion years", "14,6 billion years", "3", 3);
+        addQuestionsToDataBase(db," What type of gas does a star mostly contain of?", "Oxygen and Helium", "Hydrogen and Helium", "Nitrogen and Boron", "Lithium and Neon", "2", 3);
+        addQuestionsToDataBase(db," Which year was the Hubble space telescope sent into space?", "1990", "1987", "1992", "1994", "1", 3);
+        addQuestionsToDataBase(db," Which letters does Gold have in the periodic table?", "Al", "Au", "Ac", "Ag", "2", 3);
+        addQuestionsToDataBase(db," What is Earth's circumference?", "39,895km", "38,371km", "41,550km", "40,075km", "4", 3);
+        addQuestionsToDataBase(db," Which planet is closest to the sun in our solar system?", "Uranus", "Mars", "Mercury", "Venus", "3", 3);
+
+        // Geography questions
+        addQuestionsToDataBase(db," What is the capital city of Iran?", "Teheran", "Ankara", "Dushanbe", "Riyadh", "1", 4);
+        addQuestionsToDataBase(db," Which lake is the biggest in Sweden?", "Mälaren", "Vättern", "Vänern", "Storsjön", "3", 4);
+
+        // Mathematics questions
+
+
+        // Games questions
         addQuestionsToDataBase(db," What is Mario & Luigi’s last name? ","Luigi","Mario","Lombardi","Alfredo","2",6);
         addQuestionsToDataBase(db," When was Nintendo as a company founded?","1991","1979","1889","1981","3",6);
         addQuestionsToDataBase(db," Before Nintendo made Video Games they made...","Card Games","Chairs","Electronics","Amusement Parks","1",6);
