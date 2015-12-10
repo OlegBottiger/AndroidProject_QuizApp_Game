@@ -164,6 +164,13 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("CATEGORY", getCategory);
             intent.putExtra("PLAYER", currentPlayer);
             startActivity(intent);
+
+            // send information to the result activity
+            // how many points player have
+            // how many right answer player got
+            // how long it took
+
+
         }
         else {
             tvQuestion.setText(questions.get(round).getQuestion());
