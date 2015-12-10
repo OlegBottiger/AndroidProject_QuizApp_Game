@@ -145,5 +145,4 @@ public class CustomCategoryActivity extends AppCompatActivity {
         adapter.changeCursor(cursor);
         categoryInput.getText().clear();
     }
-
 }
