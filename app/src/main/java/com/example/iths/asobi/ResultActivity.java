@@ -37,7 +37,6 @@ public class ResultActivity extends AppCompatActivity {
         String name = intent.getStringExtra("PLAYER");
         int rank= db.getRank(db.getHighScore(category), finalScore);
 
-       db.addHighScore("name", finalScore, db.getIdFromCategoryTableByCategoryName(category));
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
         tvRank.setText("You are "+ rank +"th");
@@ -63,7 +62,7 @@ public class ResultActivity extends AppCompatActivity {
             }
 
         //add high scores to the data base.
-        db.addHighScore("Joe", finalScore, db.getIdFromCategoryTableByCategoryName(category));
+        db.addHighScore(name, finalScore, db.getIdFromCategoryTableByCategoryName(category));
         }else{
 
             tvRank = (TextView) findViewById(R.id.rank);
