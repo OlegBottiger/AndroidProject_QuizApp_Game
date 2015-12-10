@@ -34,6 +34,7 @@ public class ResultActivity extends AppCompatActivity {
         int minutes = intent.getIntExtra("MINUTES", 0);
         int seconds = intent.getIntExtra("SECONDS", 0);
         String category = intent.getStringExtra("CATEGORY");
+        String name = intent.getStringExtra("PLAYER");
         int rank= db.getRank(db.getHighScore(category), finalScore);
 
        db.addHighScore("name", finalScore, db.getIdFromCategoryTableByCategoryName(category));
@@ -69,7 +70,7 @@ public class ResultActivity extends AppCompatActivity {
             tvRank.setText("You can not be ranked!");
         }
 
-        Log.d("debug","players final score is "+finalScore +"category is "+category);
+        Log.d("debug","players final score is "+finalScore +" category is "+category+" players name is "+name);
     }
 
 
