@@ -176,7 +176,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Geography questions
         addQuestionsToDataBase(db," What is the capital city of Iran?", "Teheran", "Ankara", "Dushanbe", "Riyadh", "1", 4);
-        addQuestionsToDataBase(db," Which lake is the biggest in Sweden?", "Mälaren", "Vättern". "Vänern", "Storsjön", "3", 4);
+        addQuestionsToDataBase(db," Which lake is the biggest in Sweden?", "Mälaren", "Vättern", "Vänern", "Storsjön", "3", 4);
 
         // Mathematics questions
 
