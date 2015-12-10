@@ -14,6 +14,12 @@
         android:hint="Highscores"
         android:layout_gravity="center"
         android:textSize="30sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All"
+        android:textSize="25dp"
+        android:onClick="showHighScores"/>
     <ListView
         android:id="@+id/high_score_list_view"
         android:layout_width="match_parent"
