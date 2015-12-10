@@ -18,7 +18,7 @@ public class GameActivity extends AppCompatActivity {
 
     public static final String CATEGORY="category";
     private static final String TAG = "GameActivity debug" ;
-    public static String currentPlayer;
+    public static String currentPlayer="Guest";
     private DBHelper dbHelper;
     private TextView tvCategory;
     private TextView tvQuestion;
@@ -29,7 +29,8 @@ public class GameActivity extends AppCompatActivity {
     private ArrayList<Question> questions;
     private String correctAnswer;
     private String playersGuess;
-    private int round = 1;
+    private int round = 0;
+    private int showRound=1;
     private int playerScore = 0;
     private TextView mTextField;
     private CountDownTimer timer;
@@ -39,6 +40,7 @@ public class GameActivity extends AppCompatActivity {
     private int minutes;
     private int seconds;
     private String getCategory;
+    private TextView roundView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class GameActivity extends AppCompatActivity {
             questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdFromCategoryTableByCategoryName(getCategory));
         }
 
+
         tvQuestion = (TextView)findViewById(R.id.question);
         tvQuestion.setText(questions.get(round).getQuestion());
 
@@ -86,8 +89,12 @@ public class GameActivity extends AppCompatActivity {
 
         correctAnswer = questions.get(round).getCorrectAnswer();
 
-        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion()+questions.get(2).getQuestion()
-                +questions.get(3).getQuestion()+questions.get(4).getQuestion());
+
+        roundView=(TextView)findViewById(R.id.round);
+        roundView.setText(""+showRound);
+
+        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion() + questions.get(2).getQuestion()
+                + questions.get(3).getQuestion() + questions.get(4).getQuestion());
 
     }
 
@@ -111,6 +118,8 @@ public class GameActivity extends AppCompatActivity {
 
             public void onFinish() {
                 mTextField.setText("0");
+                round++;
+                showRound++;
                 goToNextQuestion();
             }
         }.start();
@@ -119,6 +128,7 @@ public class GameActivity extends AppCompatActivity {
     public void nextQuestion(View view) {
 
         timer.cancel();
+
 
         switch (view.getId()) {
             case R.id.buttonA:
@@ -147,8 +157,10 @@ public class GameActivity extends AppCompatActivity {
             scoreView.setText("" + playerScore);
 
         }
-
+        round++;
+        showRound++;
         goToNextQuestion();
+
 
     }
 
@@ -164,7 +176,9 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("SECONDS", seconds);
             intent.putExtra("CATEGORY", getCategory);
             intent.putExtra("PLAYER", currentPlayer);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+
 
             // send information to the result activity
             // how many points player have
@@ -174,6 +188,8 @@ public class GameActivity extends AppCompatActivity {
 
         }
         else {
+
+
             tvQuestion.setText(questions.get(round).getQuestion());
             buttonA.setText(questions.get(round).getAlternative1());
             buttonB.setText(questions.get(round).getAlternative2());
@@ -181,9 +197,9 @@ public class GameActivity extends AppCompatActivity {
             buttonD.setText(questions.get(round).getAlternative4());
             correctAnswer = questions.get(round).getCorrectAnswer();
 
-            round++;
-            TextView roundView = (TextView) findViewById(R.id.round);
-            roundView.setText("" + round);
+
+            //TextView roundView = (TextView) findViewById(R.id.round);
+            roundView.setText("" + showRound);
             pointsToRecieve = 3;
             countDownTimer();
 

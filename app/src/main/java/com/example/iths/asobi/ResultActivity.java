@@ -49,20 +49,22 @@ public class ResultActivity extends AppCompatActivity {
 
         if(finalScore > 0){
             tvRank = (TextView) findViewById(R.id.rank);
-            if(rank == 1) {
+            if(rank == 1 || rank == 21) {
                 tvRank.setText("You placed " + rank + "st place on High Score");
             }
-            else if (rank == 2) {
+            else if (rank == 2 || rank == 22) {
                 tvRank.setText("You placed " + rank + "nd place on High Score");
             }
-            else if (rank == 3) {
+            else if (rank == 3 || rank == 23) {
                 tvRank.setText("You placed " + rank + "rd place on High Score");
             } else {
                 tvRank.setText("You placed " + rank + "th place on High Score");
             }
 
         //add high scores to the data base.
-        db.addHighScore(name, finalScore, db.getIdFromCategoryTableByCategoryName(category));
+
+        db.addHighScore(name, finalScore, db.getIdFromCategoryTableByCategoryName(category), rank);
+
         }else{
 
             tvRank = (TextView) findViewById(R.id.rank);
@@ -126,20 +128,5 @@ public class ResultActivity extends AppCompatActivity {
     public void goToMainMenu(View view) {
         Intent i = new Intent(ResultActivity.this, MainActivity.class);
         startActivity(i);
-    }
-
-    //test method. I remove this later.
-    public void addHighScore(View view) {
-
-
-        DBHelper.getDbHelperInstance(this).insertCategory(db.getWritableDatabase(),"newTable!");
-        /*
-        DBHelper.getDbHelperInstance(this).addHighScore("Joe",58,1);
-        DBHelper.getDbHelperInstance(this).addHighScore("Michael",58,1);
-        DBHelper.getDbHelperInstance(this).addHighScore("Maria",58,1);
-        DBHelper.getDbHelperInstance(this).addHighScore("Johanna",20,1);
-        DBHelper.getDbHelperInstance(this).addHighScore("Mark", 6,1);
-        */
-
     }
 }
