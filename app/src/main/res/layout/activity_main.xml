@@ -33,23 +33,7 @@
         android:layout_height="0dp"
         android:layout_width="fill_parent"
         android:text="" />
-    <Button
-        android:layout_weight = "3"
-        android:layout_height="0dp"
-        android:layout_width="fill_parent"
-        android:onClick="getHighScore"
-        android:text="@string/high_scores"
-        android:background="@drawable/buttonstartstyle"
-        android:textColor = "@drawable/startcolor"
-        android:textSize = "40sp"
-        android:textStyle = "bold"
-        style="?android:attr/borderlessButtonStyle"
-        />
-    <TextView
-        android:layout_weight = "1"
-        android:layout_height="0dp"
-        android:layout_width="fill_parent"
-        android:text="" />
+
     <Button
         android:layout_weight = "3"
         android:layout_height="0dp"
@@ -74,6 +58,23 @@
         android:layout_width="fill_parent"
         android:onClick="getInfo"
         android:text="@string/info"
+        android:background="@drawable/buttonstartstyle"
+        android:textColor = "@drawable/startcolor"
+        android:textSize = "40sp"
+        android:textStyle = "bold"
+        style="?android:attr/borderlessButtonStyle"
+        />
+    <TextView
+        android:layout_weight = "1"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:text="" />
+    <Button
+        android:layout_weight = "3"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:onClick="getHighScore"
+        android:text="@string/high_scores"
         android:background="@drawable/buttonstartstyle"
         android:textColor = "@drawable/startcolor"
         android:textSize = "40sp"
