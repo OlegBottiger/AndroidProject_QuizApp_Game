@@ -1,6 +1,7 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -39,11 +40,15 @@ public class GameActivity extends AppCompatActivity {
     private int minutes;
     private int seconds;
     private String getCategory;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        mp = MediaPlayer.create(this, R.raw.vitas2);
+        mp.start();
 
         countDownTimer();
 
@@ -86,14 +91,13 @@ public class GameActivity extends AppCompatActivity {
 
         correctAnswer = questions.get(round).getCorrectAnswer();
 
-        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion()+questions.get(2).getQuestion()
-                +questions.get(3).getQuestion()+questions.get(4).getQuestion());
+        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion() + questions.get(2).getQuestion()
+                + questions.get(3).getQuestion() + questions.get(4).getQuestion());
 
     }
 
     private void countDownTimer() {
         timer = new CountDownTimer(15100, 1000) {
-
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
                 mTextField.setText("" + millisUntilFinished / 1000);
@@ -165,6 +169,7 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("CATEGORY", getCategory);
             intent.putExtra("PLAYER", currentPlayer);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            mp.stop();
             startActivity(intent);
 
 
@@ -211,16 +216,19 @@ public class GameActivity extends AppCompatActivity {
             case R.id.action_play:
                 // Play action
                 Intent i = new Intent(GameActivity.this, GameModeActivity.class);
+                mp.stop();
                 startActivity(i);
                 return true;
             case R.id.info:
                 // Asobi presentation activity
                 Intent j = new Intent(GameActivity.this, AboutActivity.class);
+                mp.stop();
                 startActivity(j);
                 return true;
             case R.id.profile:
                 // Create profile activity
                 Intent k = new Intent(GameActivity.this, ProfilesActivity.class);
+                mp.stop();
                 startActivity(k);
                 return true;
             case R.id.send_sms:
@@ -232,6 +240,7 @@ public class GameActivity extends AppCompatActivity {
                 String c = buttonC.getText().toString();
                 String d = buttonD.getText().toString();
                 sendIntent.putExtra("sms_body", quest + "\n A: " + a + "\n B: " + b + "\n C: " + c + "\n D: " + d);
+                mp.stop();
                 startActivity(sendIntent);
 
             default:
