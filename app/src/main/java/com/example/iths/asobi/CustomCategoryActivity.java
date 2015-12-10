@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -18,8 +19,10 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
     private DBHelper db;
     private ListView listview;
+    private EditText categoryInput;
     private SimpleCursorAdapter adapter;
     private String z;
+    private String categoryName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +136,14 @@ public class CustomCategoryActivity extends AppCompatActivity {
                 .create();
         return myQuittingDialogBox;
 
+    }
+    public void addCategory(View view) {
+        categoryInput = (EditText) findViewById(R.id.name_category);
+        String categoryName = categoryInput.getText().toString();
+        db.insertCategory(db.getWritableDatabase(), categoryName);
+        Cursor cursor = db.getCategory();
+        adapter.changeCursor(cursor);
+        categoryInput.getText().clear();
     }
 
 }
