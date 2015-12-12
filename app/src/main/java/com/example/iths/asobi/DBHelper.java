@@ -535,7 +535,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db = getWritableDatabase();
         db.delete(RANK_TABLE, RANK_KEY, null);
         db.delete(RANK_TABLE, ID_KEY, null);
-        Log.d("reank test", "test rank");
+        Log.d("rank test", "test rank");
     }
 
 }
