@@ -44,9 +44,9 @@ public class ProfilesActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.profile_list);
         dbHelper = DBHelper.getDbHelperInstance(this);
 
-        Cursor players = dbHelper.getOneTable("players");
+        Cursor players = dbHelper.getOneTable(dbHelper.getPlayerTable());
 
-        String [] from = {dbHelper.getName()};
+        String [] from = {dbHelper.getNameKey()};
         int [] to = {R.id.profile_name};
         adapter = new SimpleCursorAdapter(this, R.layout.profile_list_item,players ,from, to, 0);
 
@@ -63,7 +63,7 @@ public class ProfilesActivity extends AppCompatActivity {
 
             Cursor cur = (Cursor) parent.getItemAtPosition(position);
             cur.moveToPosition(position);
-            name = cur.getString(cur.getColumnIndex("name"));
+            name = cur.getString(cur.getColumnIndex(dbHelper.getNameKey()));
             GameActivity.currentPlayer = name;
 
             Context context = getApplicationContext();
@@ -85,7 +85,7 @@ public class ProfilesActivity extends AppCompatActivity {
 
             Cursor cur = (Cursor) parent.getItemAtPosition(position);
             cur.moveToPosition(position);
-            z = cur.getString(cur.getColumnIndex("name"));
+            z = cur.getString(cur.getColumnIndex(dbHelper.getNameKey()));
 
             AlertDialog diaBox = AskOption();
             diaBox.show();
@@ -107,7 +107,7 @@ public class ProfilesActivity extends AppCompatActivity {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         dbHelper.deleteProfile(z);
-                        Cursor cursor = dbHelper.getOneTable("players");
+                        Cursor cursor = dbHelper.getOneTable(dbHelper.getPlayerTable());
                         adapter.changeCursor(cursor);
                         dialog.dismiss();
                     }
@@ -172,7 +172,7 @@ public class ProfilesActivity extends AppCompatActivity {
         nameInput = (EditText) findViewById(R.id.enter_name);
         String name = nameInput.getText().toString();
 
-        Cursor cursor = dbHelper.getOneTable("players");
+        Cursor cursor = dbHelper.getOneTable(dbHelper.getPlayerTable());
         int sameName = 0;
 
             if(cursor.moveToFirst()){
@@ -190,7 +190,7 @@ public class ProfilesActivity extends AppCompatActivity {
             nameInput.getText().clear();
         } else {
             dbHelper.addProfile(name);
-            cursor = dbHelper.getOneTable("players");
+            cursor = dbHelper.getOneTable(dbHelper.getPlayerTable());
             adapter.changeCursor(cursor);
             nameInput.getText().clear();
         }

@@ -32,8 +32,8 @@ public class HighscoreActivity extends AppCompatActivity {
         db=DBHelper.getDbHelperInstance(this);
         listview = (ListView) findViewById(R.id.high_score_list_view);
 
-        Cursor categories = db.getOneTable("allCategories");
-        String [] from = {"category"};
+        Cursor categories = db.getOneTable(db.getAllCategoryTable());
+        String [] from = {db.getCategoryKey()};
         int [] to = {R.id.category};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.category_list_item,categories ,from, to, 0);
 
@@ -51,11 +51,11 @@ public class HighscoreActivity extends AppCompatActivity {
 
             Cursor cur = (Cursor) parent.getItemAtPosition(position);
             cur.moveToPosition(position);
-            String category = cur.getString(cur.getColumnIndex("category"));
+            String category = cur.getString(cur.getColumnIndex(db.getCategoryKey()));
 
             Intent intent = new Intent(HighscoreActivity.this, ShowHighScoreActivity.class);
 
-            intent.putExtra(GameActivity.CATEGORY,category);
+            intent.putExtra(ShowHighScoreActivity.CATEGORY,category);
             startActivity(intent);
 
         }
