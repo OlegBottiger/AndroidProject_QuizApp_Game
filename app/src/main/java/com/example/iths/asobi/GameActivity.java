@@ -1,6 +1,7 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
@@ -43,6 +44,7 @@ public class GameActivity extends AppCompatActivity {
     private String getCategory;
     private TextView roundView;
     private MediaPlayer mp;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,10 +135,9 @@ public class GameActivity extends AppCompatActivity {
 
     // This method handles the input and check if answer is correct.
 
-    public void nextQuestion(View view) {
+    public void nextQuestion(final View view) {
 
         timer.cancel();
-
 
         switch (view.getId()) {
             case R.id.buttonA:
@@ -154,7 +155,10 @@ public class GameActivity extends AppCompatActivity {
                 playersGuess = "4";
                 break;
         }
+
         if (correctAnswer.equals(playersGuess)) {
+
+            view.setBackgroundColor(Color.parseColor("#00cc00"));
 
             numberOfCorrectAnswer ++;
 
@@ -165,11 +169,24 @@ public class GameActivity extends AppCompatActivity {
             scoreView.setText("" + playerScore);
 
         }
+        else {
+            view.setBackgroundColor(Color.parseColor("#ff3300"));
+        }
+
         round++;
         showRound++;
-        goToNextQuestion();
 
+        new CountDownTimer(200, 1000) {
 
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            public void onFinish() {
+                view.setBackgroundColor(Color.parseColor("#573b3a3a"));
+                goToNextQuestion();
+            }
+        }.start();
     }
 
     // This method sends you to the result screen when the rounds are over.
@@ -190,7 +207,6 @@ public class GameActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else {
-
 
             tvQuestion.setText(questions.get(round).getQuestion());
             buttonA.setText(questions.get(round).getAlternative1());

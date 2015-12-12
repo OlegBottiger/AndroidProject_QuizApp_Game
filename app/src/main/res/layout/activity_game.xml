@@ -91,7 +91,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/answerButtom"
+            android:background="@color/answerButton"
             android:hint="@string/hint_button_A"
             android:onClick="nextQuestion"
             style="?android:attr/borderlessButtonStyle"/>
@@ -103,10 +103,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/answerButtom"
+            android:background="@color/answerButton"
             android:hint="@string/hint_button_B"
             android:onClick="nextQuestion"
-            style="?android:attr/buttonBarButtonStyle"/>
+            style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
 
         <LinearLayout
@@ -122,10 +122,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/answerButtom"
+            android:background="@color/answerButton"
             android:hint="@string/hint_button_C"
             android:onClick="nextQuestion"
-            style="?android:attr/buttonBarButtonStyle"/>
+            style="?android:attr/borderlessButtonStyle"/>
 
         <Button
             android:id="@+id/buttonD"
@@ -133,10 +133,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/answerButtom"
+            android:background="@color/answerButton"
             android:hint="@string/hint_button_D"
             android:onClick="nextQuestion"
-            style="?android:attr/buttonBarButtonStyle"/>
+            style="?android:attr/borderlessButtonStyle"/>
         </LinearLayout>
 
 </LinearLayout>
