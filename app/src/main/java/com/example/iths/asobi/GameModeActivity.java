@@ -4,19 +4,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-
-import java.util.ArrayList;
+import android.widget.Toast;
 
 public class GameModeActivity extends AppCompatActivity {
 
@@ -38,7 +32,7 @@ public class GameModeActivity extends AppCompatActivity {
 
         listview = (ListView) findViewById(R.id.category_list);
 
-        Cursor categories = db.getAllTable("allCategories");
+        Cursor categories = db.getOneTable("allCategories");
         String [] from = {"category"};
         int [] to = {R.id.category};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.category_list_item,categories ,from, to, 0);
@@ -58,8 +52,11 @@ public class GameModeActivity extends AppCompatActivity {
             cur.moveToPosition(position);
             String category = cur.getString(cur.getColumnIndex("category"));
 
+            int length=db.getLengthOfQuestions(category) ;
 
-            //If their length is longer than 5
+            if(length<5){
+                Toast.makeText(GameModeActivity.this, "You need at least 5 questions in this category!", Toast.LENGTH_SHORT).show();
+            } else{
 
             Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
 
@@ -67,6 +64,7 @@ public class GameModeActivity extends AppCompatActivity {
             startActivity(intent);
 
             //else ... stay here and show message?
+            }
 
         }
     };

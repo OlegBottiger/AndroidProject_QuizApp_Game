@@ -73,7 +73,7 @@ public class GameActivity extends AppCompatActivity {
         if(getCategory.equals("ALL")){
             questions = dbHelper.getRandomFiveQuestions(0);
         } else{
-            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdFromCategoryTableByCategoryName(getCategory));
+            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdByCategoryName(getCategory));
         }
 
 

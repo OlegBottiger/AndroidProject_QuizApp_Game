@@ -71,7 +71,7 @@ public class ResultActivity extends AppCompatActivity {
 
         //add high scores to the data base.
 
-        db.addHighScore(name, finalScore, db.getIdFromCategoryTableByCategoryName(category), rank);
+        db.addHighScore(name, finalScore, db.getIdByCategoryName(category));
 
         }else{
 

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CustomCategoryActivity extends AppCompatActivity {
 
@@ -50,7 +51,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.list_of_categories);
         db=DBHelper.getDbHelperInstance(this);
 
-        Cursor categories = db.getAllTable("allCategories");
+        Cursor categories = db.getOneTable("allCategories");
         String [] from = {"category"};
         int [] to = {R.id.category_name};
         adapter = new SimpleCursorAdapter(this, R.layout.deletable_category_list_item,categories ,from, to, 0);
@@ -87,11 +88,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
             cur.moveToPosition(position);
             z = cur.getString(cur.getColumnIndex("category"));
 
-            //Intent intent = new Intent(CustomCategoryActivity.this, GameActivity.class);
-
-            //intent.putExtra(GameActivity.CATEGORY, s);
-            //startActivity(intent);
-
             AlertDialog diaBox = AskOption();
             diaBox.show();
 
@@ -117,7 +113,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         db.deleteCategory(z);
-                        Cursor cursor = db.getAllTable("allCategories");
+                        Cursor cursor = db.getOneTable("allCategories");
                         adapter.changeCursor(cursor);
                         dialog.dismiss();
                     }
@@ -138,11 +134,33 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
     }
     public void addCategory(View view) {
+
         categoryInput = (EditText) findViewById(R.id.name_category);
         String categoryName = categoryInput.getText().toString();
-        db.insertCategory(db.getWritableDatabase(), categoryName);
-        Cursor cursor = db.getCategory();
-        adapter.changeCursor(cursor);
-        categoryInput.getText().clear();
+
+        Cursor cursor = db.getOneTable("allCategories");
+        int sameTable = 0;
+
+            if(cursor.moveToFirst()){
+                String category;
+                do{
+                    category = cursor.getString(1);
+                        if(categoryName.equals(category)){
+                            sameTable++;
+                        }
+                }while(cursor.moveToNext());
+            }
+
+        if(sameTable > 0){
+            Toast.makeText(this, "There is already "+categoryName+" category!", Toast.LENGTH_SHORT).show();
+            categoryInput.getText().clear();
+        } else {
+
+            db.insertCategory(db.getWritableDatabase(), categoryName);
+            cursor = db.getOneTable("allCategories");
+            adapter.changeCursor(cursor);
+            categoryInput.getText().clear();
+
+        }
     }
 }

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
  * Created by iths on 2015-11-25.
  */
 public class DBHelper extends SQLiteOpenHelper {
-
 
     public static final String GAME_DB = "Game_Databas";
     private static final int VERSION = 1;
@@ -43,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TAG= "debug";
     private static final String CATEGORY_KEY = "category";
     static final String WHOLE_QUESTION_TABLE = "wholeQuestion";
-
+    private static final String RANK_TABLE = "Rank";
 
     private static DBHelper dbHelper = null;
     private SQLiteDatabase db;
@@ -78,18 +76,22 @@ public class DBHelper extends SQLiteOpenHelper {
         insertCategory(db,MUSIC_TABLE);
         insertCategory(db,SCIENCE_TABLE);
         insertCategory(db,GEOGRAPHY_TABLE);
-        insertCategory(db,MATH_TABLE);
+        insertCategory(db, MATH_TABLE);
         insertCategory(db,GAME_TABLE);
-
 
         sql = " CREATE TABLE " + HIGH_SCORE_TABLE + " ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
         sql += NAME_KEY + " VARCHAR(225) NOT NULL,";
         sql += SCORE_KEY + " INTEGER,";
-        sql += RANK_KEY + " INTEGER, ";
         sql += ALL_CATEGORY_TABLE + " INTEGER";
         sql += " );";
 
+        db.execSQL(sql);
+
+        sql = " CREATE TABLE " + RANK_TABLE + " ( ";
+        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+        sql += RANK_KEY + " INTEGER";
+        sql += " );";
         db.execSQL(sql);
 
         sql = " CREATE TABLE " + PLAYER_TABLE + " ( ";
@@ -102,7 +104,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cvs = new ContentValues();
         cvs.put(NAME_KEY, "Guest");
         db.insert(PLAYER_TABLE, null, cvs);
-
 
         sql = " CREATE TABLE " + WHOLE_QUESTION_TABLE + " ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
@@ -117,8 +118,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(sql);
 
-        // Sets information to WHOLE_QUESTION_TABLE ( just for test for now )
-
+        // Sets information to WHOLE_QUESTION_TABLE
         // Sports questions
         addQuestionsToDataBase(db," Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4",1);
         addQuestionsToDataBase(db," Who won The World Highland Games Championships a record six times?","Geoff Capes","someone","someone","someone","1",1);
@@ -164,9 +164,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // one method to add a question to the data base.
-    // I have to fix this because db could cause a problem (it may happen recursively)
-
-
     public void addQuestionsToDataBase(SQLiteDatabase db,String question,String alt1,String alt2, String alt3,String alt4,String correctAnswer,int category){
 
         ContentValues cvs = new ContentValues();
@@ -186,14 +183,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // one method to add a high score to the data base
-    public void addHighScore(String name, int score, int category, int rank){
+    public void addHighScore(String name, int score, int category){
         db = getWritableDatabase();
 
         ContentValues cvs = new ContentValues();
         cvs.put(NAME_KEY, name);
         cvs.put(SCORE_KEY, score);
         cvs.put(ALL_CATEGORY_TABLE, category);
-        cvs.put(RANK_KEY, rank);
 
         long id = db.insert(HIGH_SCORE_TABLE, null, cvs);
 
@@ -211,24 +207,28 @@ public class DBHelper extends SQLiteOpenHelper {
         db= getWritableDatabase();
         ArrayList<Integer> highScores = new ArrayList<Integer>();
         String[] columns={"score","allCategories"};
+        long id = getIdByCategoryName(category);
 
         String selection = "allCategories=?";
-        String[] selectionArgs = {Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+        String[] selectionArgs = {Integer.toString(getIdByCategoryName(category))};
 
-        Cursor cursor = db.query(HIGH_SCORE_TABLE, columns, selection, selectionArgs, null, null, "score DESC");
+        Cursor cursor;
+            if(id==0){
+                cursor = db.query(HIGH_SCORE_TABLE, columns, null, null, null, null,"score DESC" );
+            } else {
+                cursor = db.query(HIGH_SCORE_TABLE, columns, selection, selectionArgs, null, null, "score DESC");
+            }
 
-        if(cursor.moveToFirst()){
-            int score;
-            do{
-                score = cursor.getInt(0);
-                highScores.add(score);
+            if(cursor.moveToFirst()){
+                int score;
+                do{
+                    score = cursor.getInt(0);
+                    highScores.add(score);
 
-            }while(cursor.moveToNext());
-        }else{
-            highScores.add(0);
-        }
-
-        db.close();
+                }while(cursor.moveToNext());
+            }else{
+                highScores.add(0);
+            }
 
         //just for a check
         Log.d(TAG, "high scores are " + highScores);
@@ -245,35 +245,37 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public int getRank(ArrayList<Integer> highScore, int finalScore){
 
-        int rank = 1;
-        int multiple = 0;
+        ArrayList<Integer> newHighScore = new ArrayList<Integer>();
 
-        for( int i = 0; i < highScore.size(); i++){
+            for( int i = 0; i < highScore.size(); i++){
 
-            if(highScore.get(i) >= finalScore){
-                rank++;
-
-                if(highScore.get(i)== finalScore){
-                    multiple++;
+                if(!newHighScore.contains(highScore.get(i))){
+                    newHighScore.add(highScore.get(i));
                 }
             }
-        }
-        if (multiple>0){
-            return rank-multiple ;
-        }else return rank;
 
+        int rank = 1;
+
+            for( int i = 0; i < newHighScore.size(); i++){
+
+                if(newHighScore.get(i) > finalScore){
+                    rank++;
+                }
+            }
+        return rank;
     }
 
     /**
      *
-     * @return - cursor which points to the player's table
+     * @param tableName - a name of a table
+     * @return category's cursor
      */
-    public Cursor getPlayers(){
-         return getReadableDatabase().query(PLAYER_TABLE,null,null,null,null,null,null);
-
+    public Cursor getOneTable(String tableName){
+        return getReadableDatabase().query(tableName,null,null,null,null,null,null);
     }
 
     public Cursor getHighScoreTable(){
+
         return getReadableDatabase().query(HIGH_SCORE_TABLE,null,null,null,null,null,"score DESC");
     }
 
@@ -287,19 +289,10 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cvs = new ContentValues();
         cvs.put(NAME_KEY,name);
 
-        long id = db.insert(PLAYER_TABLE,null,cvs);
+        long id = db.insert(PLAYER_TABLE, null, cvs);
         Log.d(TAG, "Player table test, ID is"+ id);
         db.close();
 
-    }
-
-    /**
-     *
-     * @param category - a name of a table
-     * @return category's cursor
-     */
-    public Cursor getAllTable(String category){
-        return getReadableDatabase().query(category,null,null,null,null,null,null);
     }
 
     public Cursor getCursorForOnesCategory(String category){
@@ -307,7 +300,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db= getWritableDatabase();
 
         String selection = "allCategories=?";
-        String[] selectionArgs={Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+        String[] selectionArgs={Integer.toString(getIdByCategoryName(category))};
 
         Cursor cursor = db.query(WHOLE_QUESTION_TABLE, null, selection, selectionArgs, null, null, null);
 
@@ -318,25 +311,22 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getCategorisedTable(String category) {
         db= getWritableDatabase();
         String selection = "allCategories=?";
-        String[] selectionArgs={Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+        String[] selectionArgs={Integer.toString(getIdByCategoryName(category))};
         Cursor cursor = db.query(HIGH_SCORE_TABLE, null, selection, selectionArgs, null, null, "score DESC");
         return cursor;
     }
 
-
     public int getLengthOfQuestions(String category){
         db = getReadableDatabase();
-        Cursor cursor = getAllTable(category);
+        Cursor cursor = getCursorForOnesCategory(category);
         int lengthOfQuestions = 0;
 
-            if(cursor.moveToFirst()){
-                do{
-                    lengthOfQuestions++;
+        if(cursor.moveToFirst()){
+            do{
+                lengthOfQuestions++;
 
-                } while(cursor.moveToNext());
-            }
-
-        db.close();
+            } while(cursor.moveToNext());
+        }
         return lengthOfQuestions;
     }
 
@@ -378,7 +368,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 alternativeC = cursor.getString(4);
                 alternativeD = cursor.getString(5);
                 correctAnswer = cursor.getString(6);
-                category= getCategoryFromCategoryTableByID(cursor.getInt(7));
+                category= getCategoryByID(cursor.getInt(7));
 
                 questions.add(new Question(category,question,alternativeA,alternativeB,alternativeC,alternativeD,correctAnswer));
                 //just for a check
@@ -396,7 +386,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param categoryID category's ID
      * @return category's name
      */
-    public String getCategoryFromCategoryTableByID(int categoryID){
+    public String getCategoryByID(int categoryID){
 
         db = getReadableDatabase();
         String category = null;
@@ -420,7 +410,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param category category's name
      * @return category's ID
      */
-    public int getIdFromCategoryTableByCategoryName(String category){
+    public int getIdByCategoryName(String category){
 
         db = getReadableDatabase();
         int categoryId=0;
@@ -435,7 +425,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 Log.d(TAG,"This category's ID is "+ categoryId);
             }while(cursor.moveToNext());
         }
-        //db.close();
+        Log.d(TAG,"This category's ID is "+ categoryId);
         return categoryId;
     }
 
@@ -446,9 +436,6 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public void insertCategory(SQLiteDatabase db, String category){
 
-
-        //if there is not same name table
-
         ContentValues cvs = new ContentValues();
         cvs.put(CATEGORY_KEY, category);
 
@@ -458,13 +445,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public void insertRank(int rank){
+        ContentValues cvs = new ContentValues();
+        cvs.put(RANK_KEY, rank);
+        db.insert(RANK_TABLE, null, cvs);
+    }
+
+
     public void deleteProfile(String name) {
         db = getWritableDatabase();
         String selection = "name=?";
         String[] selectionArgs = {name};
 
         db.delete(PLAYER_TABLE, selection, selectionArgs);
-
         db.close();
     }
 
@@ -472,7 +465,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db = getWritableDatabase();
 
-        String[] selectionArg = new String[]{Integer.toString(getIdFromCategoryTableByCategoryName(category))};
+        String[] selectionArg = new String[]{Integer.toString(getIdByCategoryName(category))};
         db.delete(WHOLE_QUESTION_TABLE,"allCategories=?",selectionArg);
 
         String[] selectionArgs = new String[]{category};
@@ -480,8 +473,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.close();
     }
-    public Cursor getCategory(){
-        return getReadableDatabase().query(ALL_CATEGORY_TABLE,null,null,null,null,null,null);
+
+    public void deleteRank() {
+        db = getWritableDatabase();
+        db.delete(RANK_TABLE, "rank", null);
+        db.delete(RANK_TABLE, "_id", null);
+        Log.d("reank test","test rank");
     }
 
 }

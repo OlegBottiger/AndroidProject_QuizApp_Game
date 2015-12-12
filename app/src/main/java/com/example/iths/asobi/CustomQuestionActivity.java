@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -17,6 +16,7 @@ public class CustomQuestionActivity extends AppCompatActivity {
     private ListView list;
     public static final String CATEGORY="category";
     private Cursor customQuestiosCursor;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +31,10 @@ public class CustomQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_question);
 
         Intent intent =getIntent();
-        String category = intent.getStringExtra(CATEGORY);
+        category = intent.getStringExtra(CATEGORY);
 
         if(category.equals("ALL")) {
-            customQuestiosCursor = db.getAllTable(DBHelper.WHOLE_QUESTION_TABLE);
+            customQuestiosCursor = db.getOneTable(DBHelper.WHOLE_QUESTION_TABLE);
         } else{
             customQuestiosCursor= db.getCursorForOnesCategory(category);
         }
@@ -92,6 +92,7 @@ public class CustomQuestionActivity extends AppCompatActivity {
 
     public void goToAddQuestions(View view) {
         Intent intent = new Intent(this, CustomQuestionAddActivity.class);
+        intent.putExtra(CustomQuestionAddActivity.CATEGORY,category);
         startActivity(intent);
     }
 }
