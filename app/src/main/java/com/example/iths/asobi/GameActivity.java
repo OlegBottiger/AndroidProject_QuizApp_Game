@@ -196,12 +196,12 @@ public class GameActivity extends AppCompatActivity {
             minutes = time / 60;
             seconds = time % 60;
             Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra("FINAL_SCORE", playerScore);
-            intent.putExtra("CORRECT_ANSWERS", numberOfCorrectAnswer);
-            intent.putExtra("MINUTES", minutes);
-            intent.putExtra("SECONDS", seconds);
-            intent.putExtra("CATEGORY", getCategory);
-            intent.putExtra("PLAYER", currentPlayer);
+            intent.putExtra(ResultActivity.FINAL_SCORE, playerScore);
+            intent.putExtra(ResultActivity.CORRECT_ANSWERS, numberOfCorrectAnswer);
+            intent.putExtra(ResultActivity.MINUTES, minutes);
+            intent.putExtra(ResultActivity.SECONDS, seconds);
+            intent.putExtra(ResultActivity.CATEGORY, getCategory);
+            intent.putExtra(ResultActivity.PLAYER, currentPlayer);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mp.stop();
             startActivity(intent);
