@@ -34,14 +34,14 @@ public class CustomQuestionActivity extends AppCompatActivity {
         category = intent.getStringExtra(CATEGORY);
 
         if(category.equals("ALL")) {
-            customQuestiosCursor = db.getOneTable(DBHelper.WHOLE_QUESTION_TABLE);
+            customQuestiosCursor = db.getOneTable(DBHelper.getWholeQuestionTable());
         } else{
             customQuestiosCursor= db.getCursorForOnesCategory(category);
         }
 
         list = (ListView) findViewById(R.id.listview_custom_question);
 
-        String[] from = new String[] {db.QUESTION_KEY, db.ALTERNATIVE1_KEY, db.ALTERNATIVE2_KEY, db.ALTERNATIVE3_KEY, db.ALTERNATIVE4_KEY, db.CORRECT_ANSWER_KEY};
+        String[] from = new String[] {db.getQuestionKey(), db.getAlternative1Key(), db.getAlternative2Key(), db.getAlternative3Key(), db.getAlternative4Key(), db.getCorrectAnswerKey()};
         int[] to = new int[] {R.id.debug_question, R.id.debug_ans1, R.id.debug_ans2, R.id.debug_ans3, R.id.debug_ans4};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.question_list, customQuestiosCursor, from, to, 0);
 

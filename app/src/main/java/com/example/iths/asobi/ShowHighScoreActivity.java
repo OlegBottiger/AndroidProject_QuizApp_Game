@@ -34,7 +34,7 @@ public class ShowHighScoreActivity extends AppCompatActivity {
                 cursor= db.getCategorisedTable(category);
             }
 
-        String [] from = {"name","score"};
+        String [] from = {db.getNameKey(),db.getScoreKey()};
         int [] to = {R.id.high_score_name,R.id.high_score_point};
         adapter = new SimpleCursorAdapter(this, R.layout.high_scores_list_item,cursor,from, to, 0);
         listview.setAdapter(adapter);
@@ -48,10 +48,10 @@ public class ShowHighScoreActivity extends AppCompatActivity {
                 for (int i = 0; i < highscore.size(); i++) {
                     db.insertRank(db.getRank(highscore, highscore.get(i)));
                 }
-                cursor = db.getOneTable("Rank");
+                cursor = db.getOneTable(db.getRankTable());
                 ListView rank = (ListView) findViewById(R.id.show_rank);
 
-                String[] from2 = {"rank"};
+                String[] from2 = {db.getRankKey()};
                 int[] to2 = {R.id.high_score_rank_test};
                 adapter = new SimpleCursorAdapter(this, R.layout.rank_list_item, cursor, from2, to2, 0);
                 rank.setAdapter(adapter);

@@ -20,28 +20,27 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String NAME_KEY ="name" ;
     private static final String SCORE_KEY = "score" ;
     private static final String RANK_KEY = "rank" ;
-    private static final String HIGH_SCORE_TABLE = "highScores" ;
-    private static final String PLAYER_TABLE = "players";
-    static final String ALL_CATEGORY_TABLE = "allCategories";
-    private static final String SPORT_TABLE = "Sports";
-    private static final String MUSIC_TABLE ="Music" ;
-    private static final String SCIENCE_TABLE = "Science";
-    private static final String GEOGRAPHY_TABLE = "Geography";
-    private static final String MATH_TABLE ="Mathematics" ;
-    private static final String GAME_TABLE ="Games";
-    private static final String CUSTIOM_TABLE = "Custom";
+    private static final String HIGH_SCORE_TABLE = "HighScores" ;
+    private static final String PLAYER_TABLE = "Players";
+    private static final String RANK_TABLE = "Rank";
+    private static final String WHOLE_QUESTION_TABLE = "wholeQuestion";
+    private static final String ALL_CATEGORY_TABLE = "allCategories";
+    private static final String SPORT_CATEGORY = "Sports";
+    private static final String MUSIC_CATEGORY ="Music" ;
+    private static final String SCIENCE_CATEGORY = "Science";
+    private static final String GEOGRAPHY_CATEGORY = "Geography";
+    private static final String MATH_CATEGORY ="Mathematics" ;
+    private static final String GAME_CATEGORY ="Games";
 
-    public static final String ID_KEY = "_id";
-    static final String QUESTION_KEY = "question";
-    static final String ALTERNATIVE1_KEY = "alternative1";
-    static final String ALTERNATIVE2_KEY = "alternative2";
-    static final String ALTERNATIVE3_KEY = "alternative3";
-    static final String ALTERNATIVE4_KEY = "alternative4";
-    static final String CORRECT_ANSWER_KEY = "correctAnswer";
+    private static final String ID_KEY = "_id";
+    private static final String QUESTION_KEY = "question";
+    private static final String ALTERNATIVE1_KEY = "alternative1";
+    private static final String ALTERNATIVE2_KEY = "alternative2";
+    private static final String ALTERNATIVE3_KEY = "alternative3";
+    private static final String ALTERNATIVE4_KEY = "alternative4";
+    private static final String CORRECT_ANSWER_KEY = "correctAnswer";
     private static final String TAG= "debug";
     private static final String CATEGORY_KEY = "category";
-    static final String WHOLE_QUESTION_TABLE = "wholeQuestion";
-    private static final String RANK_TABLE = "Rank";
 
     private static DBHelper dbHelper = null;
     private SQLiteDatabase db;
@@ -58,8 +57,61 @@ public class DBHelper extends SQLiteOpenHelper {
 
         super(context, GAME_DB, null, VERSION);
     }
-    public String getName(){
-        return this.NAME_KEY;
+
+    public static String getNameKey() {
+        return NAME_KEY;
+    }
+
+    public static String getScoreKey() {
+        return SCORE_KEY;
+    }
+
+    public static String getRankKey() {
+        return RANK_KEY;
+    }
+
+    public static String getPlayerTable() {
+        return PLAYER_TABLE;
+    }
+
+    public static String getAllCategoryTable() {
+        return ALL_CATEGORY_TABLE;
+    }
+
+    public static String getRankTable() {
+        return RANK_TABLE;
+    }
+
+    public static String getWholeQuestionTable() {
+        return WHOLE_QUESTION_TABLE;
+    }
+
+    public static String getCategoryKey() {
+        return CATEGORY_KEY;
+    }
+
+    public static String getQuestionKey() {
+        return QUESTION_KEY;
+    }
+
+    public static String getAlternative1Key() {
+        return ALTERNATIVE1_KEY;
+    }
+
+    public static String getAlternative2Key() {
+        return ALTERNATIVE2_KEY;
+    }
+
+    public static String getAlternative3Key() {
+        return ALTERNATIVE3_KEY;
+    }
+
+    public static String getAlternative4Key() {
+        return ALTERNATIVE4_KEY;
+    }
+
+    public static String getCorrectAnswerKey() {
+        return CORRECT_ANSWER_KEY;
     }
 
     @Override
@@ -72,12 +124,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(sql);
 
-        insertCategory(db,SPORT_TABLE);
-        insertCategory(db,MUSIC_TABLE);
-        insertCategory(db,SCIENCE_TABLE);
-        insertCategory(db,GEOGRAPHY_TABLE);
-        insertCategory(db, MATH_TABLE);
-        insertCategory(db,GAME_TABLE);
+        insertCategory(db, SPORT_CATEGORY);
+        insertCategory(db, MUSIC_CATEGORY);
+        insertCategory(db, SCIENCE_CATEGORY);
+        insertCategory(db, GEOGRAPHY_CATEGORY);
+        insertCategory(db, MATH_CATEGORY);
+        insertCategory(db, GAME_CATEGORY);
 
         sql = " CREATE TABLE " + HIGH_SCORE_TABLE + " ( ";
         sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT,";
@@ -225,7 +277,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<Integer> getHighScore(String category){
         db= getWritableDatabase();
         ArrayList<Integer> highScores = new ArrayList<Integer>();
-        String[] columns={"score","allCategories"};
+        String[] columns={SCORE_KEY,ALL_CATEGORY_TABLE};
         long id = getIdByCategoryName(category);
 
         String selection = "allCategories=?";
@@ -495,9 +547,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void deleteRank() {
         db = getWritableDatabase();
-        db.delete(RANK_TABLE, "rank", null);
-        db.delete(RANK_TABLE, "_id", null);
-        Log.d("rank test","test rank");
+        db.delete(RANK_TABLE, RANK_KEY, null);
+        db.delete(RANK_TABLE, ID_KEY, null);
+        Log.d("rank test", "test rank");
     }
 
 }

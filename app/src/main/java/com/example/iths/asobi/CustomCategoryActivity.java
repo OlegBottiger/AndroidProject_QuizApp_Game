@@ -51,8 +51,8 @@ public class CustomCategoryActivity extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.list_of_categories);
         db=DBHelper.getDbHelperInstance(this);
 
-        Cursor categories = db.getOneTable("allCategories");
-        String [] from = {"category"};
+        Cursor categories = db.getOneTable(db.getAllCategoryTable());
+        String [] from = {db.getCategoryKey()};
         int [] to = {R.id.category_name};
         adapter = new SimpleCursorAdapter(this, R.layout.deletable_category_list_item,categories ,from, to, 0);
 
@@ -69,7 +69,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
             Cursor cur = (Cursor) parent.getItemAtPosition(position);
             cur.moveToPosition(position);
-            String s = cur.getString(cur.getColumnIndex("category"));
+            String s = cur.getString(cur.getColumnIndex(db.getCategoryKey()));
 
             Intent intent = new Intent(CustomCategoryActivity.this, CustomQuestionActivity.class);
 
@@ -86,7 +86,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
             Cursor cur = (Cursor) parent.getItemAtPosition(position);
             cur.moveToPosition(position);
-            z = cur.getString(cur.getColumnIndex("category"));
+            z = cur.getString(cur.getColumnIndex(db.getCategoryKey()));
 
             AlertDialog diaBox = AskOption();
             diaBox.show();
@@ -113,7 +113,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         db.deleteCategory(z);
-                        Cursor cursor = db.getOneTable("allCategories");
+                        Cursor cursor = db.getOneTable(db.getAllCategoryTable());
                         adapter.changeCursor(cursor);
                         dialog.dismiss();
                     }
@@ -138,7 +138,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
         categoryInput = (EditText) findViewById(R.id.name_category);
         String categoryName = categoryInput.getText().toString();
 
-        Cursor cursor = db.getOneTable("allCategories");
+        Cursor cursor = db.getOneTable(db.getAllCategoryTable());
         int sameTable = 0;
 
             if(cursor.moveToFirst()){
@@ -157,7 +157,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
         } else {
 
             db.insertCategory(db.getWritableDatabase(), categoryName);
-            cursor = db.getOneTable("allCategories");
+            cursor = db.getOneTable(db.getAllCategoryTable());
             adapter.changeCursor(cursor);
             categoryInput.getText().clear();
 
