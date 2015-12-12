@@ -91,6 +91,9 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    //Starts 15 second countdown. Every 5 seconds the points received is reduced by 1 point.
+    // When the count reaches 0, the next question is displayed.
+
     private void countDownTimer() {
         timer = new CountDownTimer(15100, 1000) {
 
@@ -115,6 +118,8 @@ public class GameActivity extends AppCompatActivity {
             }
         }.start();
     }
+
+    // This method handles the input and check if answer is correct.
 
     public void nextQuestion(View view) {
 
@@ -152,6 +157,7 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    // This method sends you to the result screen when the rounds are over.
     public void goToNextQuestion() {
 
         if (round == questions.size()) {
@@ -166,12 +172,6 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("PLAYER", currentPlayer);
             startActivity(intent);
 
-            // send information to the result activity
-            // how many points player have
-            // how many right answer player got
-            // how long it took
-
-
         }
         else {
             tvQuestion.setText(questions.get(round).getQuestion());
@@ -185,6 +185,7 @@ public class GameActivity extends AppCompatActivity {
             TextView roundView = (TextView) findViewById(R.id.round);
             roundView.setText("" + round);
             pointsToRecieve = 3;
+
             countDownTimer();
 
         }
@@ -193,31 +194,25 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_my, menu);
+        getMenuInflater().inflate(R.menu.gameactivity_toolbar, menu);
         return true;
     }
 
+    // This actionbar contains some navigation buttons and a send sms function.
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-
 
         switch (item.getItemId()) {
             case R.id.action_play:
-                // Play action
                 Intent i = new Intent(GameActivity.this, GameModeActivity.class);
                 startActivity(i);
                 return true;
             case R.id.info:
-                // Asobi presentation activity
                 Intent j = new Intent(GameActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
             case R.id.profile:
-                // Create profile activity
                 Intent k = new Intent(GameActivity.this, ProfilesActivity.class);
                 startActivity(k);
                 return true;
@@ -235,7 +230,5 @@ public class GameActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 }
