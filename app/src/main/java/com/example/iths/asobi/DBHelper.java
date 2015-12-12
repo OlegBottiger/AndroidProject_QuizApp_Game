@@ -249,7 +249,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(ALL_CATEGORY_TABLE, category);
 
         long id = db.insert(HIGH_SCORE_TABLE, null, cvs);
-        
+
     }
 
     /**
