@@ -173,26 +173,40 @@ public class DBHelper extends SQLiteOpenHelper {
         // Sets information to WHOLE_QUESTION_TABLE
         // Sports questions
         addQuestionsToDataBase(db," Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4",1);
-        addQuestionsToDataBase(db," Who won The World Highland Games Championships a record six times?","Geoff Capes","someone","someone","someone","1",1);
-        addQuestionsToDataBase(db," What jobs did Mike ‘Fluff’ Cowan, Jim ‘Bones’ Mackay and Fanny Sunesson do?","something","Golf caddies","something","something","2",1);
-        addQuestionsToDataBase(db," Which former rugby player once called the English RFU committee 'Old Farts'?", "something", "something", "Will Carling", "something", "3",1);
+        addQuestionsToDataBase(db," Who won The World Highland Games Championships a record six times?","Geoff Capes","Ben Affleck","Jonathan Summers","Dick Johnsson","1",1);
+        addQuestionsToDataBase(db," What jobs did Mike ‘Fluff’ Cowan, Jim ‘Bones’ Mackay and Fanny Sunesson do?","Coaches","Golf caddies","Equipment manager","Doctors","2",1);
+        addQuestionsToDataBase(db," Which former rugby player once called the English RFU committee 'Old Farts'?", "Ben Thompsson", "Jay Chris", "Will Carling", "John Smith", "3",1);
         addQuestionsToDataBase(db," In inches, how big is the diameter of a basketball hoop?", "11", "13", "16", "18", "4",1);
+        addQuestionsToDataBase(db," What is the world record in highjump for men?", "2.45m", "2.42m", "2.40m", "2.49m", "1", 1);
+        addQuestionsToDataBase(db," How many times have Brazil won the worlds championship in football?", "3", "5", "7", "9", "2", 1);
+        addQuestionsToDataBase(db," Which NHL hockey club Henrik Lundqvist go to?", "Ottawa Senators", "Detroit Red Wings", "New York Rangers", "Calgary Flames", "3", 1);
+        addQuestionsToDataBase(db," In what year was the summer olympic games in Sweden?", "1908", "1912", "1916", "1920", "2", 1);
+        addQuestionsToDataBase(db," In what year was the athletics world championship in Gothenburg?", "1992", "1993", "1994", "1995", "4", 1);
+
 
         // Music questions
-        addQuestionsToDataBase(db," music 1","Rihanna","Maroon 5","Pitbull","Justin Bieber","4",2);
-        addQuestionsToDataBase(db," music 2","jazz","rock","classic","hiphop","4",2);
-        addQuestionsToDataBase(db," music 3","Adele","Avicii","Drake","Ariana Grande","4",2);
-        addQuestionsToDataBase(db," music 4","Lady Gaga","Beyonce","Michael Jackson","Madonna","4",2);
-        addQuestionsToDataBase(db," music 5","Katy Perry","Elle King","Shawn Mendes","Ellie Goulding","4",2);
+        addQuestionsToDataBase(db," In which country was Cliff Richard born in?", "England", "Ireland", "India", "USA", "3", 2);
+        addQuestionsToDataBase(db," What is Alice Cooper's real name?", "Robert Smith", "David Hammich", "Mich Hammond", "Vincent Furnier", "4", 2);
+        addQuestionsToDataBase(db," In which year was the group ABBA created?", "1971", "1972", "1973", "1974", "2", 2);
+        addQuestionsToDataBase(db," From what country does ACDC originate?", "USA", "Belgium", "Austria", "Australia", "4",2);
+        addQuestionsToDataBase(db," Which country won Eurovision song contest 1985?", "Norway", "Sweden", "Denmark", "England", "1", 2);
+        addQuestionsToDataBase(db," Who wrote the song Moonlight Shadow?", "Mick Jagger", "Elton John", "Mike Oldfield", "Céline Dion", "3", 2);
+        addQuestionsToDataBase(db," In what year was the album Dark Side of The Moon released", "1972", "1969", "1970", "1973", "4", 2);
+        addQuestionsToDataBase(db," In what year did the singer Donna Summer die?", "2008", "2012", "2010", "2014", "2", 2);
+        addQuestionsToDataBase(db," When did the Woodstock festival take place?", "1969", "1962", "1966", "1973", "1", 2);
+        addQuestionsToDataBase(db," When was the song Darude Sandstorm released?", "1996", "1997", "1998", "1999", "4", 2);
 
         // Science questions
         addQuestionsToDataBase(db," Who came up with the Theory of Relativity?", "Robert Brown", "John Dalton", "Erwin Schrödinger", "Albert Einstein", "4", 3);
-        addQuestionsToDataBase(db," Approximately how old is the universe?", "11,5 billion years", "12,3 billion years", "13,8 billion years", "14,6 billion years", "3", 3);
+        addQuestionsToDataBase(db," Approximately how old is the universe?", "11.5 billion years", "12.3 billion years", "13.8 billion years", "14.6 billion years", "3", 3);
         addQuestionsToDataBase(db," What type of gas does a star mostly contain of?", "Oxygen and Helium", "Hydrogen and Helium", "Nitrogen and Boron", "Lithium and Neon", "2", 3);
         addQuestionsToDataBase(db," Which year was the Hubble space telescope sent into space?", "1990", "1987", "1992", "1994", "1", 3);
         addQuestionsToDataBase(db," Which letters does Gold have in the periodic table?", "Al", "Au", "Ac", "Ag", "2", 3);
-        addQuestionsToDataBase(db," What is Earth's circumference?", "39,895km", "38,371km", "41,550km", "40,075km", "4", 3);
+        addQuestionsToDataBase(db," What is Earth's circumference?", "39.895km", "38.371km", "41.550km", "40.075km", "4", 3);
         addQuestionsToDataBase(db," Which planet is closest to the sun in our solar system?", "Uranus", "Mars", "Mercury", "Venus", "3", 3);
+        addQuestionsToDataBase(db," What's the name of the first Soviet satellite?", "Sputnik", "Puttnik", "Vutnik", "Sutnik", "1", 3);
+        addQuestionsToDataBase(db," What's earth's latin name?", "Tirra", "Terra", "Torra", "Tarra", "2", 3);
+        addQuestionsToDataBase(db," What is our galaxy called?", "The chocolate way", "The milky way", "The strawberry way", "The vanilla way", "2", 3);
 
         // Geography questions
         addQuestionsToDataBase(db," What is the capital city of Iran?", "Teheran", "Ankara", "Dushanbe", "Riyadh", "1", 4);
