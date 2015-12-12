@@ -145,16 +145,21 @@ public class DBHelper extends SQLiteOpenHelper {
         // Geography questions
         addQuestionsToDataBase(db," What is the capital city of Iran?", "Teheran", "Ankara", "Dushanbe", "Riyadh", "1", 4);
         addQuestionsToDataBase(db," Which lake is the biggest in Sweden?", "Mälaren", "Vättern", "Vänern", "Storsjön", "3", 4);
+        addQuestionsToDataBase(db," What percentage of Japan consist of mountains?", "80%", "54%", "73%", "63%", "3", 4);
 
         // Mathematics questions
-
+        addQuestionsToDataBase(db,"What is the value of pi(π)?", "3.14159265359", "3.1321343", "3.412131436", "4.130054", "1", 5);
+        addQuestionsToDataBase(db,"What is 2+2?", "22", "Cheese Cakes", "2", "4", "4", 5);
+        addQuestionsToDataBase(db,"How do you calculate the circumference of a circle?", "C=2πr", "C=2πd", "C=4πr", "A=wl", "1", 5);
 
         // Games questions
-        addQuestionsToDataBase(db," What is Mario & Luigi’s last name? ","Luigi","Mario","Lombardi","Alfredo","2",6);
+        addQuestionsToDataBase(db," What is Mario & Luigi’s last name?","Luigi","Mario","Lombardi","Alfredo","2",6);
         addQuestionsToDataBase(db," When was Nintendo as a company founded?","1991","1979","1889","1981","3",6);
         addQuestionsToDataBase(db," Before Nintendo made Video Games they made...","Card Games","Chairs","Electronics","Amusement Parks","1",6);
         addQuestionsToDataBase(db," Who is the creator of Super Mario?", "Satoru Iwata", "Reginald Fils-Aime", "Shigeru Miyamoto", "Gunpei Yokoi", "3",6);
         addQuestionsToDataBase(db," What is the name of the main character in the “The Legend of Zelda”?","Zelda","Link","Roy","Master Chief","2",6);
+        addQuestionsToDataBase(db," How many Pokémons were in the first generation of Pokémon? ","150","100","200","151","4",6);
+        addQuestionsToDataBase(db," Which platform was Halo: Combat Evolved first in development for? ","MAC OS X","Windows","Linux","Xbox","1",6);
 
     }
 
@@ -478,7 +483,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db = getWritableDatabase();
         db.delete(RANK_TABLE, "rank", null);
         db.delete(RANK_TABLE, "_id", null);
-        Log.d("reank test","test rank");
+        Log.d("rank test","test rank");
     }
 
 }
