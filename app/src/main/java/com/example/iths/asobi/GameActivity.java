@@ -1,6 +1,7 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,7 @@ public class GameActivity extends AppCompatActivity {
 
     public static final String CATEGORY="category";
     private static final String TAG = "GameActivity debug" ;
-    public static String currentPlayer;
+    public static String currentPlayer="Guest";
     private DBHelper dbHelper;
     private TextView tvCategory;
     private TextView tvQuestion;
@@ -29,7 +30,8 @@ public class GameActivity extends AppCompatActivity {
     private ArrayList<Question> questions;
     private String correctAnswer;
     private String playersGuess;
-    private int round = 1;
+    private int round = 0;
+    private int showRound=1;
     private int playerScore = 0;
     private TextView mTextField;
     private CountDownTimer timer;
@@ -39,11 +41,16 @@ public class GameActivity extends AppCompatActivity {
     private int minutes;
     private int seconds;
     private String getCategory;
+    private TextView roundView;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        mp = MediaPlayer.create(this, R.raw.vitas2);
+        mp.start();
 
         countDownTimer();
 
@@ -66,8 +73,9 @@ public class GameActivity extends AppCompatActivity {
         if(getCategory.equals("ALL")){
             questions = dbHelper.getRandomFiveQuestions(0);
         } else{
-            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdFromCategoryTableByCategoryName(getCategory));
+            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdByCategoryName(getCategory));
         }
+
 
         tvQuestion = (TextView)findViewById(R.id.question);
         tvQuestion.setText(questions.get(round).getQuestion());
@@ -86,8 +94,11 @@ public class GameActivity extends AppCompatActivity {
 
         correctAnswer = questions.get(round).getCorrectAnswer();
 
-        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion()+questions.get(2).getQuestion()
-                +questions.get(3).getQuestion()+questions.get(4).getQuestion());
+        roundView=(TextView)findViewById(R.id.round);
+        roundView.setText(""+showRound);
+
+        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion() + questions.get(2).getQuestion()
+                + questions.get(3).getQuestion() + questions.get(4).getQuestion());
 
     }
 
@@ -96,7 +107,6 @@ public class GameActivity extends AppCompatActivity {
 
     private void countDownTimer() {
         timer = new CountDownTimer(15100, 1000) {
-
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
                 mTextField.setText("" + millisUntilFinished / 1000);
@@ -114,6 +124,8 @@ public class GameActivity extends AppCompatActivity {
 
             public void onFinish() {
                 mTextField.setText("0");
+                round++;
+                showRound++;
                 goToNextQuestion();
             }
         }.start();
@@ -124,6 +136,7 @@ public class GameActivity extends AppCompatActivity {
     public void nextQuestion(View view) {
 
         timer.cancel();
+
 
         switch (view.getId()) {
             case R.id.buttonA:
@@ -152,8 +165,10 @@ public class GameActivity extends AppCompatActivity {
             scoreView.setText("" + playerScore);
 
         }
-
+        round++;
+        showRound++;
         goToNextQuestion();
+
 
     }
 
@@ -170,10 +185,13 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra("SECONDS", seconds);
             intent.putExtra("CATEGORY", getCategory);
             intent.putExtra("PLAYER", currentPlayer);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            mp.stop();
             startActivity(intent);
-
         }
         else {
+
+
             tvQuestion.setText(questions.get(round).getQuestion());
             buttonA.setText(questions.get(round).getAlternative1());
             buttonB.setText(questions.get(round).getAlternative2());
@@ -181,9 +199,9 @@ public class GameActivity extends AppCompatActivity {
             buttonD.setText(questions.get(round).getAlternative4());
             correctAnswer = questions.get(round).getCorrectAnswer();
 
-            round++;
-            TextView roundView = (TextView) findViewById(R.id.round);
-            roundView.setText("" + round);
+
+            //TextView roundView = (TextView) findViewById(R.id.round);
+            roundView.setText("" + showRound);
             pointsToRecieve = 3;
 
             countDownTimer();
@@ -206,14 +224,17 @@ public class GameActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_play:
                 Intent i = new Intent(GameActivity.this, GameModeActivity.class);
+                mp.stop();
                 startActivity(i);
                 return true;
             case R.id.info:
                 Intent j = new Intent(GameActivity.this, AboutActivity.class);
+                mp.stop();
                 startActivity(j);
                 return true;
             case R.id.profile:
                 Intent k = new Intent(GameActivity.this, ProfilesActivity.class);
+                mp.stop();
                 startActivity(k);
                 return true;
             case R.id.send_sms:
@@ -225,6 +246,7 @@ public class GameActivity extends AppCompatActivity {
                 String c = buttonC.getText().toString();
                 String d = buttonD.getText().toString();
                 sendIntent.putExtra("sms_body", quest + "\n A: " + a + "\n B: " + b + "\n C: " + c + "\n D: " + d);
+                mp.stop();
                 startActivity(sendIntent);
 
             default:

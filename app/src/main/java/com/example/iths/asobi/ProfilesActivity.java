@@ -44,7 +44,7 @@ public class ProfilesActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.profile_list);
         dbHelper = DBHelper.getDbHelperInstance(this);
 
-        Cursor players = dbHelper.getPlayers();
+        Cursor players = dbHelper.getOneTable("players");
 
         String [] from = {dbHelper.getName()};
         int [] to = {R.id.profile_name};
@@ -107,7 +107,7 @@ public class ProfilesActivity extends AppCompatActivity {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         dbHelper.deleteProfile(z);
-                        Cursor cursor = dbHelper.getPlayers();
+                        Cursor cursor = dbHelper.getOneTable("players");
                         adapter.changeCursor(cursor);
                         dialog.dismiss();
                     }
@@ -171,10 +171,28 @@ public class ProfilesActivity extends AppCompatActivity {
     public void addProfile(View view) {
         nameInput = (EditText) findViewById(R.id.enter_name);
         String name = nameInput.getText().toString();
-        dbHelper.addProfile(name);
-        Cursor cursor = dbHelper.getPlayers();
-        adapter.changeCursor(cursor);
-        nameInput.getText().clear();
-    }
 
+        Cursor cursor = dbHelper.getOneTable("players");
+        int sameName = 0;
+
+            if(cursor.moveToFirst()){
+                String existName;
+                do{
+                    existName = cursor.getString(1);
+                    if(name.equals(existName)){
+                        sameName++;
+                    }
+                }while(cursor.moveToNext());
+            }
+
+        if(sameName > 0){
+            Toast.makeText(this, "There is already "+name+" !", Toast.LENGTH_SHORT).show();
+            nameInput.getText().clear();
+        } else {
+            dbHelper.addProfile(name);
+            cursor = dbHelper.getOneTable("players");
+            adapter.changeCursor(cursor);
+            nameInput.getText().clear();
+        }
+    }
 }

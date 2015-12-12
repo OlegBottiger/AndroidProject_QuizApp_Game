@@ -1,6 +1,7 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +14,18 @@ public class ResultActivity extends AppCompatActivity {
 
     private DBHelper db;
     private TextView tvRank;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        if(mp != null){
+            if(mp.isPlaying()){
+                mp.stop();
+            }
+         }
 
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -34,9 +42,9 @@ public class ResultActivity extends AppCompatActivity {
         int minutes = intent.getIntExtra("MINUTES", 0);
         int seconds = intent.getIntExtra("SECONDS", 0);
         String category = intent.getStringExtra("CATEGORY");
+        String name = intent.getStringExtra("PLAYER");
         int rank= db.getRank(db.getHighScore(category), finalScore);
 
-       db.addHighScore("name", finalScore, db.getIdFromCategoryTableByCategoryName(category));
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
         tvRank.setText("You are "+ rank +"th");
@@ -49,27 +57,29 @@ public class ResultActivity extends AppCompatActivity {
 
         if(finalScore > 0){
             tvRank = (TextView) findViewById(R.id.rank);
-            if(rank == 1) {
+            if(rank == 1 || rank == 21) {
                 tvRank.setText("You placed " + rank + "st place on High Score");
             }
-            else if (rank == 2) {
+            else if (rank == 2 || rank == 22) {
                 tvRank.setText("You placed " + rank + "nd place on High Score");
             }
-            else if (rank == 3) {
+            else if (rank == 3 || rank == 23) {
                 tvRank.setText("You placed " + rank + "rd place on High Score");
             } else {
                 tvRank.setText("You placed " + rank + "th place on High Score");
             }
 
         //add high scores to the data base.
-        db.addHighScore("Joe", finalScore, db.getIdFromCategoryTableByCategoryName(category));
+
+        db.addHighScore(name, finalScore, db.getIdByCategoryName(category));
+
         }else{
 
             tvRank = (TextView) findViewById(R.id.rank);
             tvRank.setText("You can not be ranked!");
         }
 
-        Log.d("debug","players final score is "+finalScore +"category is "+category);
+        Log.d("debug","players final score is "+finalScore +" category is "+category+" players name is "+name);
     }
 
 
@@ -126,20 +136,5 @@ public class ResultActivity extends AppCompatActivity {
     public void goToMainMenu(View view) {
         Intent i = new Intent(ResultActivity.this, MainActivity.class);
         startActivity(i);
-    }
-
-    //test method. I remove this later.
-    public void addHighScore(View view) {
-
-
-        DBHelper.getDbHelperInstance(this).insertCategory(db.getWritableDatabase(),"newTable!");
-        /*
-        DBHelper.getDbHelperInstance(this).addHighScore("Joe",58,1);
-        DBHelper.getDbHelperInstance(this).addHighScore("Michael",58,1);
-        DBHelper.getDbHelperInstance(this).addHighScore("Maria",58,1);
-        DBHelper.getDbHelperInstance(this).addHighScore("Johanna",20,1);
-        DBHelper.getDbHelperInstance(this).addHighScore("Mark", 6,1);
-        */
-
     }
 }

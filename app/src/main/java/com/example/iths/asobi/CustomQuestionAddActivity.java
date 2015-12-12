@@ -12,6 +12,7 @@ import android.widget.EditText;
 public class CustomQuestionAddActivity extends AppCompatActivity {
 
     private static final String TAG = "DEBUG";
+    public static final String CATEGORY="category";
     private EditText customQuestion;
     private EditText alternativeOne;
     private EditText alternativeTwo;
@@ -19,9 +20,7 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
     private EditText alternativeFour;
     private EditText rightAnswer;
     private DBHelper db;
-
-
-
+    private String selectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +52,7 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
 
         db = DBHelper.getDbHelperInstance(this);
 
-
-
+        selectedCategory=getIntent().getStringExtra(CATEGORY);
 
     }
 
@@ -104,11 +102,9 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
     String alt3 = alternativeThree.getText().toString();
     String alt4 = alternativeFour.getText().toString();
     String correct = rightAnswer.getText().toString();
-    String category = "Custom";
+    String category = selectedCategory;
 
-    db.insertCategory(db.getWritableDatabase(), category);
-
-    int catId = db.getIdFromCategoryTableByCategoryName(category);
+    int catId = db.getIdByCategoryName(category);
 
     db.addQuestionsToDataBase(db.getWritableDatabase(), question, alt1, alt2, alt3, alt4, correct, catId);
 

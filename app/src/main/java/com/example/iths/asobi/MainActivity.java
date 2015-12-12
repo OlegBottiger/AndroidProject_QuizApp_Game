@@ -1,6 +1,7 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextField;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,4 +89,11 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this, AboutActivity.class);
         startActivity(i);
     }
+
+    public void playClickSound() {
+        mp = MediaPlayer.create(this, R.raw.test);
+        mp.start();
+    }
+
+
 }
