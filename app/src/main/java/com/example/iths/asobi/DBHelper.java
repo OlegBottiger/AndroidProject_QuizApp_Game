@@ -46,6 +46,12 @@ public class DBHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
     private String sql;
 
+    /**
+     * If there is a DBHelper it returns it,
+     * if it does not exist yet, it creates DBHelper and returns it
+     * @param context - date to send to DBHelper instance
+     * @return instance of DBHelper
+     */
     public static DBHelper getDbHelperInstance(Context context){
         if (dbHelper == null){
             dbHelper = new DBHelper(context);
@@ -234,7 +240,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    // one method to add a question to the data base.
+    /**
+     * adds one question, 4 alternative answers, one correct answer and a category number to the data base.
+     * @param db data base to add
+     * @param question question
+     * @param alt1 alternative 1
+     * @param alt2 alternative 2
+     * @param alt3 alternative 3
+     * @param alt4 alternative 4
+     * @param correctAnswer correct answer's number
+     * @param category a category number
+     */
     public void addQuestionsToDataBase(SQLiteDatabase db,String question,String alt1,String alt2, String alt3,String alt4,String correctAnswer,int category){
 
         ContentValues cvs = new ContentValues();
@@ -245,25 +261,23 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(ALTERNATIVE4_KEY,alt4);
         cvs.put(CORRECT_ANSWER_KEY, correctAnswer);
         cvs.put(ALL_CATEGORY_TABLE, category);
-
-        long id = db.insert(WHOLE_QUESTION_TABLE, null, cvs);
-
-        Log.d(TAG, "test id is " + id);
-        Log.d(TAG, cvs.toString());
+        db.insert(WHOLE_QUESTION_TABLE, null, cvs);
 
     }
 
-    // one method to add a high score to the data base
+    /**
+     * adds a high score to the data base
+     * @param name player's name
+     * @param score player's final score
+     * @param category game category
+     */
     public void addHighScore(String name, int score, int category){
         db = getWritableDatabase();
-
         ContentValues cvs = new ContentValues();
         cvs.put(NAME_KEY, name);
         cvs.put(SCORE_KEY, score);
         cvs.put(ALL_CATEGORY_TABLE, category);
-
-        long id = db.insert(HIGH_SCORE_TABLE, null, cvs);
-
+        db.insert(HIGH_SCORE_TABLE, null, cvs);
     }
 
     /**
@@ -298,9 +312,6 @@ public class DBHelper extends SQLiteOpenHelper {
             }else{
                 highScores.add(0);
             }
-
-        //just for a check
-        Log.d(TAG, "high scores are " + highScores);
         return highScores;
     }
 
@@ -336,15 +347,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /**
      *
-     * @param tableName - a name of a table
+     * @param tableName - a name of the table
      * @return category's cursor
      */
     public Cursor getOneTable(String tableName){
         return getReadableDatabase().query(tableName,null,null,null,null,null,null);
     }
 
+    /**
+     * @return cursor for the HIGH_SCORE_TABLE which is sorted by scores
+     */
     public Cursor getHighScoreTable(){
-
         return getReadableDatabase().query(HIGH_SCORE_TABLE,null,null,null,null,null,"score DESC");
     }
 
@@ -354,29 +367,31 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public void addProfile(String name){
         db = getWritableDatabase();
-
         ContentValues cvs = new ContentValues();
         cvs.put(NAME_KEY,name);
-
-        long id = db.insert(PLAYER_TABLE, null, cvs);
-        Log.d(TAG, "Player table test, ID is"+ id);
+        db.insert(PLAYER_TABLE, null, cvs);
         db.close();
 
     }
 
+    /**
+     * choose one category, and the cursor points at the information only in that category in WHOLE_QUESTION_TABLE
+     * @param category category to choose
+     * @return the cursor which is selected by category
+     */
     public Cursor getCursorForOnesCategory(String category){
-
         db= getWritableDatabase();
-
         String selection = "allCategories=?";
         String[] selectionArgs={Integer.toString(getIdByCategoryName(category))};
-
         Cursor cursor = db.query(WHOLE_QUESTION_TABLE, null, selection, selectionArgs, null, null, null);
-
         return cursor;
-
     }
 
+    /**
+     * choose one category, and the cursor points at the information only in that category in HIGH_SCORE_TABLE
+     * @param category category to choose
+     * @return cursor
+     */
     public Cursor getCategorisedTable(String category) {
         db= getWritableDatabase();
         String selection = "allCategories=?";
@@ -385,6 +400,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    /**
+     * choose one category, and this method counts how many questions there are in that category
+     * @param category category to choose
+     * @return length of questions
+     */
     public int getLengthOfQuestions(String category){
         db = getReadableDatabase();
         Cursor cursor = getCursorForOnesCategory(category);
@@ -400,8 +420,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /**
-     *
-     * @param categoryID
+     * choose one category, and this method returns a list of instances of Question in that category
+     * @param categoryID category's ID number
      * @return list of instances of Question
      */
     public ArrayList<Question> getRandomFiveQuestions(int categoryID){
@@ -500,7 +520,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /**
      * adds category's name to the ALL_CATEGORY_TABLE in the data base.
-     * @param db
+     * @param db the data base to add
      * @param category category's name
      */
     public void insertCategory(SQLiteDatabase db, String category){
@@ -514,24 +534,34 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * adds rank to the RANK_TABLE
+     * @param rank -rank to add
+     */
     public void insertRank(int rank){
         ContentValues cvs = new ContentValues();
         cvs.put(RANK_KEY, rank);
         db.insert(RANK_TABLE, null, cvs);
     }
 
-
+    /**
+     * deletes name from the PLAYER_TABLE
+     * @param name -name to delete
+     */
     public void deleteProfile(String name) {
         db = getWritableDatabase();
         String selection = "name=?";
         String[] selectionArgs = {name};
-
         db.delete(PLAYER_TABLE, selection, selectionArgs);
         db.close();
     }
 
+    /**
+     * choose one category, and this method deletes information in that category from WHOLE_QUESTION_TABLE
+     * and that category from ALL_CATEGORY_TABLE
+     * @param category - category to choose
+     */
     public void deleteCategory(String category){
-
         db = getWritableDatabase();
 
         String[] selectionArg = new String[]{Integer.toString(getIdByCategoryName(category))};
@@ -543,6 +573,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * deletes rank and id from RANK_TABLE
+     */
     public void deleteRank() {
         db = getWritableDatabase();
         db.delete(RANK_TABLE, RANK_KEY, null);
