@@ -1,6 +1,7 @@
 package com.example.iths.asobi;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -160,6 +161,11 @@ public class CustomCategoryActivity extends AppCompatActivity {
             cursor = db.getOneTable(db.getAllCategoryTable());
             adapter.changeCursor(cursor);
             categoryInput.getText().clear();
+            Context context = getApplicationContext();
+            CharSequence text = ("Category added!");
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
 
         }
     }
