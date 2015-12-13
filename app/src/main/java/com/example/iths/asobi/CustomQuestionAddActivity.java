@@ -1,5 +1,6 @@
 package com.example.iths.asobi;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class CustomQuestionAddActivity extends AppCompatActivity {
 
@@ -96,19 +98,30 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
 
     public void addCustomQuestion(View view) {
 
-    String question = customQuestion.getText().toString();
-    String alt1 = alternativeOne.getText().toString();
-    String alt2 = alternativeTwo.getText().toString();
-    String alt3 = alternativeThree.getText().toString();
-    String alt4 = alternativeFour.getText().toString();
-    String correct = rightAnswer.getText().toString();
-    String category = selectedCategory;
+        String question = customQuestion.getText().toString();
+        String alt1 = alternativeOne.getText().toString();
+        String alt2 = alternativeTwo.getText().toString();
+        String alt3 = alternativeThree.getText().toString();
+        String alt4 = alternativeFour.getText().toString();
+        String correct = rightAnswer.getText().toString();
+        String category = selectedCategory;
 
-    int catId = db.getIdByCategoryName(category);
+        int catId = db.getIdByCategoryName(category);
 
-    db.addQuestionsToDataBase(db.getWritableDatabase(), question, alt1, alt2, alt3, alt4, correct, catId);
+        db.addQuestionsToDataBase(db.getWritableDatabase(), question, alt1, alt2, alt3, alt4, correct, catId);
 
-    Log.d(TAG, "test");
+        Context context = getApplicationContext();
+        CharSequence text = ("Question added!");
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        customQuestion.getText().clear();
+        alternativeOne.getText().clear();
+        alternativeTwo.getText().clear();
+        alternativeThree.getText().clear();
+        alternativeFour.getText().clear();
+        rightAnswer.getText().clear();
     }
 }
 

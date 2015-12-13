@@ -35,6 +35,7 @@ public class GameActivity extends AppCompatActivity {
     private int showRound=1;
     private int playerScore = 0;
     private TextView mTextField;
+    private CountDownTimer countDown;
     private CountDownTimer timer;
     private int pointsToRecieve = 3;
     private int numberOfCorrectAnswer = 0;
@@ -50,6 +51,16 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        timer = new CountDownTimer(300000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                time = time + 1;
+            }
+
+            public void onFinish() {
+            }
+        }.start();
 
         mp = MediaPlayer.create(this, R.raw.vitas2);
         mp.start();
@@ -108,11 +119,10 @@ public class GameActivity extends AppCompatActivity {
     // When the count reaches 0, the next question is displayed.
 
     private void countDownTimer() {
-        timer = new CountDownTimer(15100, 1000) {
+        countDown = new CountDownTimer(15100, 1000) {
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
                 mTextField.setText("" + millisUntilFinished / 1000);
-                time = time + 1;
                 if (millisUntilFinished < 10000) {
                     pointsToRecieve = 2;
                 }
@@ -137,12 +147,13 @@ public class GameActivity extends AppCompatActivity {
 
     public void nextQuestion(final View view) {
 
-        timer.cancel();
+        countDown.cancel();
 
         switch (view.getId()) {
             case R.id.buttonA:
                 playersGuess = "1";
                 break;
+
             case R.id.buttonB:
                 playersGuess = "2";
                 break;
@@ -193,6 +204,7 @@ public class GameActivity extends AppCompatActivity {
     public void goToNextQuestion() {
 
         if (round == questions.size()) {
+            timer.cancel();
             minutes = time / 60;
             seconds = time % 60;
             Intent intent = new Intent(this, ResultActivity.class);
