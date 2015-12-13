@@ -183,7 +183,7 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db," What jobs did Mike ‘Fluff’ Cowan, Jim ‘Bones’ Mackay and Fanny Sunesson do?","Coaches","Golf caddies","Equipment manager","Doctors","2",1);
         addQuestionsToDataBase(db," Which former rugby player once called the English RFU committee 'Old Farts'?", "Ben Thompsson", "Jay Chris", "Will Carling", "John Smith", "3",1);
         addQuestionsToDataBase(db," In inches, how big is the diameter of a basketball hoop?", "11", "13", "16", "18", "4",1);
-        addQuestionsToDataBase(db," What is the world record in highjump for men?", "2.45m", "2.42m", "2.40m", "2.49m", "1", 1);
+        addQuestionsToDataBase(db," What is the world record in highjump for men?", "2,45m", "2,42m", "2,40m", "2,49m", "1", 1);
         addQuestionsToDataBase(db," How many times have Brazil won the worlds championship in football?", "3", "5", "7", "9", "2", 1);
         addQuestionsToDataBase(db," Which NHL hockey club Henrik Lundqvist go to?", "Ottawa Senators", "Detroit Red Wings", "New York Rangers", "Calgary Flames", "3", 1);
         addQuestionsToDataBase(db," In what year was the summer olympic games in Sweden?", "1908", "1912", "1916", "1920", "2", 1);
@@ -197,7 +197,7 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db," From what country does ACDC originate?", "USA", "Belgium", "Austria", "Australia", "4",2);
         addQuestionsToDataBase(db," Which country won Eurovision song contest 1985?", "Norway", "Sweden", "Denmark", "England", "1", 2);
         addQuestionsToDataBase(db," Who wrote the song Moonlight Shadow?", "Mick Jagger", "Elton John", "Mike Oldfield", "Céline Dion", "3", 2);
-        addQuestionsToDataBase(db," In what year was the album Dark Side of The Moon released", "1972", "1969", "1970", "1973", "4", 2);
+        addQuestionsToDataBase(db," In what year was the album Dark Side of The Moon released?", "1972", "1969", "1970", "1973", "4", 2);
         addQuestionsToDataBase(db," In what year did the singer Donna Summer die?", "2008", "2012", "2010", "2014", "2", 2);
         addQuestionsToDataBase(db," When did the Woodstock festival take place?", "1969", "1962", "1966", "1973", "1", 2);
         addQuestionsToDataBase(db," When was the song Darude Sandstorm released?", "1996", "1997", "1998", "1999", "4", 2);
@@ -208,7 +208,7 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db," What type of gas does a star mostly contain of?", "Oxygen and Helium", "Hydrogen and Helium", "Nitrogen and Boron", "Lithium and Neon", "2", 3);
         addQuestionsToDataBase(db," Which year was the Hubble space telescope sent into space?", "1990", "1987", "1992", "1994", "1", 3);
         addQuestionsToDataBase(db," Which letters does Gold have in the periodic table?", "Al", "Au", "Ac", "Ag", "2", 3);
-        addQuestionsToDataBase(db," What is Earth's circumference?", "39.895km", "38.371km", "41.550km", "40.075km", "4", 3);
+        addQuestionsToDataBase(db," What is Earth's circumference?", "39,895km", "38,371km", "41,550km", "40,075km", "4", 3);
         addQuestionsToDataBase(db," Which planet is closest to the sun in our solar system?", "Uranus", "Mars", "Mercury", "Venus", "3", 3);
         addQuestionsToDataBase(db," What's the name of the first Soviet satellite?", "Sputnik", "Puttnik", "Vutnik", "Sutnik", "1", 3);
         addQuestionsToDataBase(db," What's earth's latin name?", "Tirra", "Terra", "Torra", "Tarra", "2", 3);
@@ -218,11 +218,25 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db," What is the capital city of Iran?", "Teheran", "Ankara", "Dushanbe", "Riyadh", "1", 4);
         addQuestionsToDataBase(db," Which lake is the biggest in Sweden?", "Mälaren", "Vättern", "Vänern", "Storsjön", "3", 4);
         addQuestionsToDataBase(db," What percentage of Japan consist of mountains?", "80%", "54%", "73%", "63%", "3", 4);
+        addQuestionsToDataBase(db," How tall is Mount Everest?", "8398m", "8530m", "8713m", "8848m", "4", 4);
+        addQuestionsToDataBase(db," Which country is to the west of Sweden?", "Finland", "Norway", "Denmark", "Russia", "1", 4);
+        addQuestionsToDataBase(db," What is earth's second largest continent by population", "South America", "Africa", "North America", "Europe", "2", 4);
+        addQuestionsToDataBase(db," In which american state is Grand Canyon?", "Alaska", "Texas", "Virginia", "Arizona", "4", 4);
+        addQuestionsToDataBase(db," What is the longest river in South America?", "Madeira", "Amazon", "Parana", "Araguaia", "2", 4);
+        addQuestionsToDataBase(db," What is earth's largest continent by surface size?", "Africa", "North America", "Europe", "Asia", "4", 4);
+        addQuestionsToDataBase(db," What is the largest lake in Africa?", "Lake Malawi", "Lake Albert", "Lake Victoria", "Lake Tanganyika", "3", 4);
 
         // Mathematics questions
-        addQuestionsToDataBase(db,"What is the value of pi(π)?", "3.14159265359", "3.1321343", "3.412131436", "4.130054", "1", 5);
-        addQuestionsToDataBase(db,"What is 2+2?", "22", "Cheese Cakes", "2", "4", "4", 5);
-        addQuestionsToDataBase(db,"How do you calculate the circumference of a circle?", "C=2πr", "C=2πd", "C=4πr", "A=wl", "1", 5);
+        addQuestionsToDataBase(db," What is the value of pi(π)?", "3.14159265359", "3.1321343", "3.412131436", "4.130054", "1", 5);
+        addQuestionsToDataBase(db," What is 2+2?", "22", "Cheese Cakes", "2", "4", "4", 5);
+        addQuestionsToDataBase(db," How do you calculate the circumference of a circle?", "C=2πr", "C=2πd", "C=4πr", "A=wl", "1", 5);
+        addQuestionsToDataBase(db," What is x times x?", "2x", "x^2", "2x2", "x2", "2", 5);
+        addQuestionsToDataBase(db," What is x+3=5", "x=5", "x=3", "x=2", "x=4", "3", 5);
+        addQuestionsToDataBase(db," How many sides does a hexagon have?", "4", "5", "6", "7", "3", 5);
+        addQuestionsToDataBase(db," What is the square root of 49?", "6", "9", "4", "7", "4", 5);
+        addQuestionsToDataBase(db," What is 13 times 13?", "169", "157", "175", "163", "1", 5);
+        addQuestionsToDataBase(db," What is 213-75", "123", "130", "138", "143", "3", 5);
+        addQuestionsToDataBase(db," If 1 euro = 9,30 SEK, how many SEK do you get from 7 euros?", "63,70 SEK", "65,10 SEK", "67,40 SEK", "64,85 SEK", "2", 5);
 
         // Games questions
         addQuestionsToDataBase(db," What is Mario & Luigi’s last name?","Luigi","Mario","Lombardi","Alfredo","2",6);
@@ -232,6 +246,9 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db," What is the name of the main character in the “The Legend of Zelda”?","Zelda","Link","Roy","Master Chief","2",6);
         addQuestionsToDataBase(db," How many Pokémons were in the first generation of Pokémon? ","150","100","200","151","4",6);
         addQuestionsToDataBase(db," Which platform was Halo: Combat Evolved first in development for? ","MAC OS X","Windows","Linux","Xbox","1",6);
+        addQuestionsToDataBase(db," Which game has the most unique players each month?", "League of Legends", "Dota2", "Counter-Strike:GO", "World of Warcraft", "1", 6);
+        addQuestionsToDataBase(db," What's your robot called in Fallout4?", "Hedreck", "Codsworth", "Tincan", "Millow", "2", 6);
+        addQuestionsToDataBase(db," In what year was the game The sims released?", "1998", "1999", "2000", "2001", "3", 6);
 
     }
 
