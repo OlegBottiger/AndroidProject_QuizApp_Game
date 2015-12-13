@@ -460,8 +460,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 category= getCategoryByID(cursor.getInt(7));
 
                 questions.add(new Question(category,question,alternativeA,alternativeB,alternativeC,alternativeD,correctAnswer));
-                //just for a check
-                Log.d(TAG,"Cursor working"+ question+alternativeA+alternativeB+alternativeC+alternativeD+correctAnswer);
 
             }while(cursor.moveToNext());
         }
@@ -487,7 +485,6 @@ public class DBHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do{
                 category = cursor.getString(1);
-                Log.d(TAG,"Category's name by this id is "+ category);
             }while(cursor.moveToNext());
         }
         db.close();
@@ -511,10 +508,8 @@ public class DBHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do{
                 categoryId = cursor.getInt(0);
-                Log.d(TAG,"This category's ID is "+ categoryId);
             }while(cursor.moveToNext());
         }
-        Log.d(TAG,"This category's ID is "+ categoryId);
         return categoryId;
     }
 
@@ -524,14 +519,9 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param category category's name
      */
     public void insertCategory(SQLiteDatabase db, String category){
-
         ContentValues cvs = new ContentValues();
         cvs.put(CATEGORY_KEY, category);
-
-        long id = db.insert(ALL_CATEGORY_TABLE, null, cvs);
-
-        Log.d(TAG, "All category table test. id is " + id);
-
+        db.insert(ALL_CATEGORY_TABLE, null, cvs);
     }
 
     /**
@@ -580,7 +570,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db = getWritableDatabase();
         db.delete(RANK_TABLE, RANK_KEY, null);
         db.delete(RANK_TABLE, ID_KEY, null);
-        Log.d("rank test", "test rank");
     }
 
 }
