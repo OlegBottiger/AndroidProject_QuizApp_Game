@@ -93,7 +93,6 @@ public class ResultActivity extends AppCompatActivity {
         Log.d("debug","players final score is "+finalScore +" category is "+category+" players name is "+name);
     }
 
-
     /**
      * Gets the actionbar.
      * @param menu the actionbar menu.
