@@ -27,7 +27,6 @@ public class ShowHighScoreActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        setContentView(R.layout.activity_highscore);
 
         listview = (ListView) findViewById(R.id.show_high_score);
         db=DBHelper.getDbHelperInstance(this);
@@ -44,8 +43,9 @@ public class ShowHighScoreActivity extends AppCompatActivity {
         String [] from = {db.getNameKey(),db.getScoreKey()};
         int [] to = {R.id.high_score_name,R.id.high_score_point};
         adapter = new SimpleCursorAdapter(this, R.layout.high_scores_list_item,cursor,from, to, 0);
+
         listview.setAdapter(adapter);
-        
+
         //refresh RANK_TABLE
         db.deleteRank();
         ArrayList<Integer> highscore = db.getHighScore(category);

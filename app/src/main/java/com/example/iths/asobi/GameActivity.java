@@ -147,7 +147,7 @@ public class GameActivity extends AppCompatActivity {
         }.start();
     }
 
-    @Override
+/*    @Override
     protected void onPause() {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("timeLeft", timeLeft);
@@ -182,7 +182,7 @@ public class GameActivity extends AppCompatActivity {
             }
         }.start();
         super.onResume();
-    }
+    }*/
 
     /**
      * This method handles the game input and check if answer is correct.
