@@ -68,26 +68,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Upon click this starts a new game.
+     * @param view the button that calls the method.
+     */
     public void startGame(View view) {
         Intent intent = new Intent(MainActivity.this, GameModeActivity.class);
         startActivity(intent);
-
     }
+
+    /**
+     * Upon click this takes you to the highscore activity.
+     * @param view the button that calls the method.
+     */
     public void getHighScore(View view) {
         Intent i = new Intent(MainActivity.this, HighscoreActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Takes you to the activity where you create custom categories/questions.
+     * @param view the button that calls the method.
+     */
     public void custom(View view) {
         Intent i = new Intent(MainActivity.this, CustomCategoryActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Takes you to the activity that shows information about Asobi.
+     * @param view the button that calls the method.
+     */
     public void getInfo(View view) {
         Intent i = new Intent(MainActivity.this, AboutActivity.class);
         startActivity(i);
     }
 
+    /**
+     * A method used for making the buttons do a sound when clicked.
+     */
     public void playClickSound() {
         mp = MediaPlayer.create(this, R.raw.test);
         mp.start();

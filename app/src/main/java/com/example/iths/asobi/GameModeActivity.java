@@ -103,10 +103,12 @@ public class GameModeActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 
+    /**
+     * gets all possible questions that is in the database.
+     * @param view shows the questions it has gathered.
+     */
     public void getQuestionsFromAll(View view) {
         Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
 

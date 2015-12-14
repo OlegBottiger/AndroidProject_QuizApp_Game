@@ -95,9 +95,12 @@ public class HighscoreActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
+
+    /**
+     * Grabs the scores that are stored in the database and display them here.
+     * @param view shows the highscores.
+     */
     public void showHighScores(View view) {
         Intent intent = new Intent(this, ShowHighScoreActivity.class);
         intent.putExtra(ShowHighScoreActivity.CATEGORY, "ALL");
