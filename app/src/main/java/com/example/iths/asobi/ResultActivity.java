@@ -93,7 +93,6 @@ public class ResultActivity extends AppCompatActivity {
         Log.d("debug","players final score is "+finalScore +" category is "+category+" players name is "+name);
     }
 
-
     /**
      * Gets the actionbar.
      * @param menu the actionbar menu.
@@ -163,5 +162,13 @@ public class ResultActivity extends AppCompatActivity {
     public void goToMainMenu(View view) {
         Intent i = new Intent(ResultActivity.this, MainActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, GameModeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
