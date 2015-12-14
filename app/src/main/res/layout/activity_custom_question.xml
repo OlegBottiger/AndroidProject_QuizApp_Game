@@ -18,7 +18,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=" Add Custom Question"
+        android:text="@string/add_custom_question"
         android:onClick="goToAddQuestions"/>
 
 </LinearLayout>

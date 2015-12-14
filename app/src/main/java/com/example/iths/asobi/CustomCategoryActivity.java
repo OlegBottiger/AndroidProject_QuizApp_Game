@@ -145,11 +145,11 @@ public class CustomCategoryActivity extends AppCompatActivity {
     private AlertDialog AskOption() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
                 //set message, title, and icon
-                .setTitle("Delete")
-                .setMessage("Do you want to delete?")
+                .setTitle(R.string.delete)
+                .setMessage(R.string.do_you_want_to_delete)
                 .setIcon(R.drawable.ic_delete)
 
-                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         db.deleteCategory(z);
@@ -160,9 +160,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
                 })
 
-
-
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         dialog.dismiss();
@@ -196,7 +194,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
             }
 
         if(sameTable > 0){
-            Toast.makeText(this, "There is already "+categoryName+" category!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, String.format(getString(R.string.category_already_exists), categoryName), Toast.LENGTH_SHORT).show();
             categoryInput.getText().clear();
         } else {
 
@@ -205,7 +203,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
             adapter.changeCursor(cursor);
             categoryInput.getText().clear();
             Context context = getApplicationContext();
-            CharSequence text = ("Category added!");
+            CharSequence text = (getString(R.string.category_added));
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();

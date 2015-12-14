@@ -226,7 +226,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Sets information to WHOLE_QUESTION_TABLE
         // Sports questions
-        addQuestionsToDataBase(db,"Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","4",1);
+        addQuestionsToDataBase(db,"Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","2",1);
         addQuestionsToDataBase(db,"Who won The World Highland Games Championships a record six times?","Geoff Capes","Ben Affleck","Jonathan Summers","Dick Johnsson","1",1);
         addQuestionsToDataBase(db,"What jobs did Mike ‘Fluff’ Cowan, Jim ‘Bones’ Mackay and Fanny Sunesson do?","Coaches","Golf caddies","Equipment manager","Doctors","2",1);
         addQuestionsToDataBase(db,"Which former rugby player once called the English RFU committee 'Old Farts'?", "Ben Thompsson", "Jay Chris", "Will Carling", "John Smith", "3",1);

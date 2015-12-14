@@ -18,21 +18,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Rank" />
+            android:text="@string/rank" />
         <TextView
             android:gravity="center"
             android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Name"/>
+            android:text="@string/name"/>
         <TextView
             android:gravity="right"
             android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Score"/>
+            android:text="@string/score"/>
 
   </LinearLayout>
 
@@ -55,6 +55,5 @@
         android:layout_weight="1"/>
 
     </LinearLayout>
-
 
 </LinearLayout>

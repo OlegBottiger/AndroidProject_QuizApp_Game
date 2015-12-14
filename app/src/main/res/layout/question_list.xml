@@ -9,15 +9,9 @@
     android:layout_marginRight="16dp"
     android:layout_marginBottom="16dp">
 
-
-
-
-    <!--Testing db with custom questions-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lets see how it looks with more than one line of text:"
         android:id="@+id/debug_question"
         android:textSize="24sp"
         android:layout_marginBottom="16dp"/>
@@ -31,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Answer 1"
+            android:text="@string/answer_1"
             android:id="@+id/debug_ans1"
             android:layout_weight="1"
             android:textSize="20sp"/>
@@ -39,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Answer 2"
+            android:text="@string/answer_2"
             android:id="@+id/debug_ans2"
             android:layout_weight="1"
             android:textSize="20sp"/>
@@ -53,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Answer 3"
+            android:text="@string/answer_3"
             android:id="@+id/debug_ans3"
             android:layout_weight="1"
             android:textSize="20sp"/>
@@ -61,17 +55,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Answer 4"
+            android:text="@string/answer_4"
             android:id="@+id/debug_ans4"
             android:layout_weight="1"
             android:textSize="20sp"/>
     </LinearLayout>
-
-
-
-
-
-
-    <!--End of testing code-->
 
 </LinearLayout>

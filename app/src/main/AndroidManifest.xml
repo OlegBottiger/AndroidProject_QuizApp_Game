@@ -19,6 +19,9 @@
                 android:value="com.example.iths.asobi.MainActivity" />
         </activity>
         <activity android:name=".CustomCategoryActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.MainActivity" />
         </activity>
         <activity android:name=".CustomQuestionActivity" >
             <meta-data
