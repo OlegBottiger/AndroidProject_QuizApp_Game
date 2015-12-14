@@ -94,9 +94,8 @@
             android:layout_weight="1"
             android:background="@color/answerButton"
             android:hint="@string/hint_button_A"
-            android:onClick="nextQuestion"
+            android:onClick="gameInput"
             style="?android:attr/borderlessButtonStyle"/>
-
 
         <Button
             android:id="@+id/buttonB"
@@ -106,7 +105,7 @@
             android:layout_weight="1"
             android:background="@color/answerButton"
             android:hint="@string/hint_button_B"
-            android:onClick="nextQuestion"
+            android:onClick="gameInput"
             style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
 
@@ -125,7 +124,7 @@
             android:layout_weight="1"
             android:background="@color/answerButton"
             android:hint="@string/hint_button_C"
-            android:onClick="nextQuestion"
+            android:onClick="gameInput"
             style="?android:attr/borderlessButtonStyle"/>
 
         <Button
@@ -136,7 +135,7 @@
             android:layout_weight="1"
             android:background="@color/answerButton"
             android:hint="@string/hint_button_D"
-            android:onClick="nextQuestion"
+            android:onClick="gameInput"
             style="?android:attr/borderlessButtonStyle"/>
         </LinearLayout>
 

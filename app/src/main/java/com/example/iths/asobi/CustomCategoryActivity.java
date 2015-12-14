@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -31,6 +33,10 @@ public class CustomCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_category);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        setContentView(R.layout.activity_custom_category);
 
         TextView question = (TextView) findViewById(R.id.debug_question);
         TextView ans1 = (TextView) findViewById(R.id.debug_ans1);
@@ -38,16 +44,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
         TextView ans3 = (TextView) findViewById(R.id.debug_ans3);
         TextView ans4 = (TextView) findViewById(R.id.debug_ans4);
 //        TextView correctect = (TextView) findViewById(R.id.debug_correct_answer);
-
-
- /*       question.setText();
-        ans1.setText();
-        ans2.setText();
-        ans3.setText();
-        ans4.setText();
-        correct.setText();
-*/
-
 
         listview = (ListView) findViewById(R.id.list_of_categories);
         db=DBHelper.getDbHelperInstance(this);
@@ -60,7 +56,46 @@ public class CustomCategoryActivity extends AppCompatActivity {
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(listListener);
         listview.setOnItemLongClickListener(listListenerLong);
+    }
 
+    /**
+     * Gets the actionbar.
+     * @param menu the actionbar menu.
+     * @return true so you can see the actionbar.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_my, menu);
+        return true;
+    }
+    /**
+     * Handles the item clicks here.
+     * @param item is the symbol showed up on the actionbar.
+     * @return returns true if clicked and takes you to the next activity.
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_play:
+                // Play action
+                Intent i = new Intent(CustomCategoryActivity.this, GameModeActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.info:
+                // Asobi presentation activity
+                Intent j = new Intent(CustomCategoryActivity.this, AboutActivity.class);
+                startActivity(j);
+                return true;
+            case R.id.profile:
+                // Create profile activity
+                Intent k = new Intent(CustomCategoryActivity.this, ProfilesActivity.class);
+                startActivity(k);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private AdapterView.OnItemClickListener listListener = new AdapterView.OnItemClickListener(){
@@ -76,7 +111,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
             intent.putExtra(CustomQuestionActivity.CATEGORY,s);
             startActivity(intent);
-
         }
     };
 
@@ -97,6 +131,10 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
     };
 
+    /**
+     * Takes you to a new activity.
+     * @param view is waiting for being clicked on and then calls this method.
+     */
     public void goToQuestions(View view) {
         Intent i = new Intent(this, CustomQuestionActivity.class);
         i.putExtra(CustomQuestionActivity.CATEGORY,"ALL");
@@ -132,8 +170,12 @@ public class CustomCategoryActivity extends AppCompatActivity {
                 })
                 .create();
         return myQuittingDialogBox;
-
     }
+
+    /**
+     * Handles the information and creates a category from the input.
+     * @param view checks if there already is a category with that name.
+     */
     public void addCategory(View view) {
 
         categoryInput = (EditText) findViewById(R.id.name_category);
@@ -166,7 +208,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-
         }
     }
 }

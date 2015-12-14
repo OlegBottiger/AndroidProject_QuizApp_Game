@@ -22,6 +22,11 @@ public class ResultActivity extends AppCompatActivity {
     public static final String CATEGORY = "category" ;
     public static final String PLAYER = "player";
 
+    /**
+     * Displays the game results.
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,8 +108,6 @@ public class ResultActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-
-
         switch (item.getItemId()) {
             case R.id.action_play:
                 // Play action
@@ -129,15 +132,30 @@ public class ResultActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Goes to High Score List.
+     * @param view
+     */
+
     public void goToHighScore(View view) {
         Intent i = new Intent(ResultActivity.this, HighscoreActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Returns to game mode selection.
+     * @param view
+     */
+
     public void replay(View view) {
         Intent i = new Intent(ResultActivity.this, GameModeActivity.class);
         startActivity(i);
     }
+
+    /**
+     * Returns to main menu.
+     * @param view
+     */
 
     public void goToMainMenu(View view) {
         Intent i = new Intent(ResultActivity.this, MainActivity.class);
