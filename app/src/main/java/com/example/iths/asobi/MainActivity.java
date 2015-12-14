@@ -21,30 +21,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_main);
-
-
-
     }
 
+    /**
+     * Gets the actionbar.
+     * @param menu the actionbar menu.
+     * @return true so you can see the actionbar.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_my, menu);
         return true;
     }
 
+    /**
+     * Handles the item clicks here.
+     * @param item is the symbol showed up on the actionbar.
+     * @return returns true if clicked and takes you to the next activity.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-
 
         switch (item.getItemId()) {
             case R.id.action_play:
@@ -66,30 +66,47 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 
+    /**
+     * Upon click this starts a new game.
+     * @param view the button that calls the method.
+     */
     public void startGame(View view) {
         Intent intent = new Intent(MainActivity.this, GameModeActivity.class);
         startActivity(intent);
-
     }
+
+    /**
+     * Upon click this takes you to the highscore activity.
+     * @param view the button that calls the method.
+     */
     public void getHighScore(View view) {
         Intent i = new Intent(MainActivity.this, HighscoreActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Takes you to the activity where you create custom categories/questions.
+     * @param view the button that calls the method.
+     */
     public void custom(View view) {
         Intent i = new Intent(MainActivity.this, CustomCategoryActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Takes you to the activity that shows information about Asobi.
+     * @param view the button that calls the method.
+     */
     public void getInfo(View view) {
         Intent i = new Intent(MainActivity.this, AboutActivity.class);
         startActivity(i);
     }
 
+    /**
+     * A method used for making the buttons do a sound when clicked.
+     */
     public void playClickSound() {
         mp = MediaPlayer.create(this, R.raw.test);
         mp.start();

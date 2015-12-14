@@ -68,6 +68,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_my, menu);
         return true;
     }
+
     /**
      * Handles the item clicks here.
      * @param item is the symbol showed up on the actionbar.
