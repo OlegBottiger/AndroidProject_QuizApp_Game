@@ -145,6 +145,10 @@ public class GameActivity extends AppCompatActivity {
 
     // This method handles the input and check if answer is correct.
 
+    /**
+     * Handles the input and checks if the answer is correct or not.
+     * @param view checks which button the player clicks on
+     */
     public void nextQuestion(final View view) {
 
         countDown.cancel();
@@ -201,6 +205,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     // This method sends you to the result screen when the rounds are over.
+
+    /**
+     * 
+     */
     public void goToNextQuestion() {
 
         if (round == questions.size()) {
