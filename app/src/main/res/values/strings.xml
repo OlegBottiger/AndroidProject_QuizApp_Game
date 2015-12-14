@@ -53,4 +53,5 @@
     <string name="Thomas_Månsson">Thomas Månsson</string>
     <string name="category_text">Category:</string>
     <string name="typ_category">Type questions category!</string>
+    <string name="profile_item">PROFILE</string>
 </resources>
