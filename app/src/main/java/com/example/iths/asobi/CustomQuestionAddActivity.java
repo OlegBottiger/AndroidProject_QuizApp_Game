@@ -29,7 +29,6 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_question_add);
 
-        //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -55,9 +54,13 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         db = DBHelper.getDbHelperInstance(this);
 
         selectedCategory=getIntent().getStringExtra(CATEGORY);
-
     }
 
+    /**
+     * Gets the actionbar.
+     * @param menu the actionbar menu.
+     * @return true so you can see the actionbar.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -65,12 +68,13 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Handles the item clicks here.
+     * @param item is the symbol showed up on the actionbar.
+     * @return returns true if clicked and takes you to the next activity.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
 
         switch (item.getItemId()) {
             case R.id.action_play:
@@ -92,10 +96,12 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 
+    /**
+     * Creates a new question with 4 different answers.
+     * @param view collects the input from the different EditText fields.
+     */
     public void addCustomQuestion(View view) {
 
         String question = customQuestion.getText().toString();
