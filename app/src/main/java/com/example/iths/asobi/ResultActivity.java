@@ -58,7 +58,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
-        tvRank.setText("You are "+ rank +"th");
+        tvRank.setText(String.format("You are %dth", rank));
         TextView scoreView = (TextView) findViewById(R.id.score);
         scoreView.setText("Total score: " + finalScore);
         TextView correctView = (TextView) findViewById(R.id.correct_anwsers);
