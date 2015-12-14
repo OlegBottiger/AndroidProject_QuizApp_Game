@@ -132,16 +132,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
     };
 
-    /**
-     * Takes you to a new activity.
-     * @param view is waiting for being clicked on and then calls this method.
-     */
-    public void goToQuestions(View view) {
-        Intent i = new Intent(this, CustomQuestionActivity.class);
-        i.putExtra(CustomQuestionActivity.CATEGORY,"ALL");
-        startActivity(i);
-    }
-
     private AlertDialog AskOption() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
                 //set message, title, and icon
