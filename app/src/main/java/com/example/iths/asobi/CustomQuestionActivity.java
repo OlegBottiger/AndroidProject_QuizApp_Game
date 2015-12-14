@@ -1,5 +1,8 @@
 package com.example.iths.asobi;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +10,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -17,6 +23,9 @@ public class CustomQuestionActivity extends AppCompatActivity {
     public static final String CATEGORY="category";
     private Cursor customQuestiosCursor;
     private String category;
+    private String longClickString;
+    private SimpleCursorAdapter adapter;
+    private long idFromPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +52,65 @@ public class CustomQuestionActivity extends AppCompatActivity {
 
         String[] from = new String[] {db.getQuestionKey(), db.getAlternative1Key(), db.getAlternative2Key(), db.getAlternative3Key(), db.getAlternative4Key(), db.getCorrectAnswerKey()};
         int[] to = new int[] {R.id.debug_question, R.id.debug_ans1, R.id.debug_ans2, R.id.debug_ans3, R.id.debug_ans4};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.question_list, customQuestiosCursor, from, to, 0);
+        adapter = new SimpleCursorAdapter(this, R.layout.question_list, customQuestiosCursor, from, to, 0);
 
         list.setAdapter(adapter);
+
+    }
+
+    private AdapterView.OnItemLongClickListener listListenerLong = new AdapterView.OnItemLongClickListener(){
+
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
+
+            Cursor cur = (Cursor) parent.getItemAtPosition(position);
+            cur.moveToPosition(position);
+            longClickString = cur.getString(cur.getColumnIndex(db.getCategoryKey()));
+            idFromPosition = adapter.getItemId(position);
+
+            AlertDialog diaBox = AskOption();
+            diaBox.show();
+
+            return true;
+        }
+
+    };
+
+    public void goToQuestions(View view) {
+        Intent i = new Intent(this, CustomQuestionActivity.class);
+        i.putExtra(CustomQuestionActivity.CATEGORY,"ALL");
+        startActivity(i);
+    }
+
+    private AlertDialog AskOption() {
+        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
+                //set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Do you want to delete?")
+                .setIcon(R.drawable.ic_delete)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        db.(longClickString);
+                        Cursor cursor = db.getOneTable(db.getAllCategoryTable());
+                        simpleCursor.changeCursor(cursor);
+                        dialog.dismiss();
+                    }
+
+                })
+
+
+
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        return myQuittingDialogBox;
 
     }
 
@@ -96,3 +161,4 @@ public class CustomQuestionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
