@@ -110,9 +110,6 @@ public class GameActivity extends AppCompatActivity {
         //Starts the countDownTimer;
         countDownTimer();
 
-        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion() + questions.get(2).getQuestion()
-                + questions.get(3).getQuestion() + questions.get(4).getQuestion());
-
     }
 
     /**
