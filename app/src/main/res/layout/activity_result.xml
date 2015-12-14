@@ -14,25 +14,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:textColor="@drawable/startcolor"
+        android:textColor="@color/black"
         android:id="@+id/score"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:textColor="@drawable/startcolor"
+        android:textColor="@color/black"
         android:id="@+id/correct_anwsers"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:textColor="@drawable/startcolor"
+        android:textSize="30sp"
+        android:textColor="@color/black"
         android:id="@+id/time"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:textColor="@drawable/startcolor"
+        android:textColor="@color/black"
         android:id="@+id/rank"/>
     <Button
         android:layout_width="match_parent"

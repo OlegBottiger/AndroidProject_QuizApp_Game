@@ -21,11 +21,16 @@
         android:layout_height="wrap_content"
         android:text="@string/add_custom_category"
         android:gravity="center"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="15sp"
         android:text="This is where you add your own categories. To start with they will be empty"/>
 
     <ListView
@@ -56,6 +61,7 @@
             android:layout_height="wrap_content"
             android:text="@string/add_category"
             android:onClick="addCategory"
+            android:textColor="@drawable/startcolor"
             android:background="@color/answerButton"
             style="?android:attr/borderlessButtonStyle"/>
 

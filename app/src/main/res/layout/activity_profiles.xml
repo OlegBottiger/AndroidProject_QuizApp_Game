@@ -20,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        style="?android:attr/buttonBarStyle">
 
         <EditText
             android:layout_width="0dp"
@@ -34,7 +35,10 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/add_profile"
-            android:onClick="addProfile"/>
+            android:onClick="addProfile"
+            android:textColor="@drawable/startcolor"
+            android:background="@color/answerButton"
+            style="?android:attr/borderlessButtonStyle"/>
 
     </LinearLayout>
 
