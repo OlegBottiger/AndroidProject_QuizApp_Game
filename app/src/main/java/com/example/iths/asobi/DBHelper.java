@@ -189,7 +189,6 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db,"In what year was the summer olympic games in Sweden?", "1908", "1912", "1916", "1920", "2", 1);
         addQuestionsToDataBase(db,"In what year was the athletics world championship in Gothenburg?", "1992", "1993", "1994", "1995", "4", 1);
 
-
         // Music questions
         addQuestionsToDataBase(db,"In which country was Cliff Richard born in?", "England", "Ireland", "India", "USA", "3", 2);
         addQuestionsToDataBase(db,"What is Alice Cooper's real name?", "Robert Smith", "David Hammich", "Mich Hammond", "Vincent Furnier", "4", 2);
@@ -588,6 +587,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.delete(RANK_TABLE, ID_KEY, null);
     }
 
+    /**
+     * Deletes a question you have created.
+     * @param ID the id on the question.
+     */
     public void deleteQuestion(long ID){
         db = getWritableDatabase();
         String[] selectionArg = {Integer.toString((int) ID)};
