@@ -8,6 +8,11 @@ public class Player {
     private final String name;
     private int score;
 
+    /**
+     *
+     * @param name
+     * @param score
+     */
     public Player(String name, int score) {
         this.name = name;
         this.score=score;
