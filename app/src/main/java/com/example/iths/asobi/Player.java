@@ -28,7 +28,7 @@ public class Player {
         }
         return player;
     }
-    
+
     /**
      * sets name to instance variable name.
      * @param name name to set
