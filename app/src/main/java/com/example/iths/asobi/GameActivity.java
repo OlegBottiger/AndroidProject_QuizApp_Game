@@ -65,8 +65,6 @@ public class GameActivity extends AppCompatActivity {
         mp = MediaPlayer.create(this, R.raw.vitas2);
         mp.start();
 
-        countDownTimer();
-
         //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
@@ -110,13 +108,18 @@ public class GameActivity extends AppCompatActivity {
         roundView=(TextView)findViewById(R.id.round);
         roundView.setText(""+showRound);
 
+        //Starts the countDownTimer;
+        countDownTimer();
+
         Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion() + questions.get(2).getQuestion()
                 + questions.get(3).getQuestion() + questions.get(4).getQuestion());
 
     }
 
-    //Starts 15 second countdown. Every 5 seconds the points received is reduced by 1 point.
-    // When the count reaches 0, the next question is displayed.
+    /**
+     * Starts 15 second countdown. Every 5 seconds the points received is reduced by 1 point.
+     * When the count reaches 0, the next question is displayed.
+     */
 
     private void countDownTimer() {
         countDown = new CountDownTimer(15100, 1000) {
@@ -138,14 +141,20 @@ public class GameActivity extends AppCompatActivity {
                 mTextField.setText("0");
                 round++;
                 showRound++;
-                goToNextQuestion();
+                nextQuestion();
             }
         }.start();
     }
 
-    // This method handles the input and check if answer is correct.
+    /**
+     * This method handles the game input and check if answer is correct.
+     * If the answer is correct the button turns green and the player's score increases.
+     * If not, the button turns red and the player receives no points.
+     * Finally the method calls on the next question.
+     * @param view
+      */
 
-    public void nextQuestion(final View view) {
+    public void gameInput (final View view) {
 
         countDown.cancel();
 
@@ -195,13 +204,16 @@ public class GameActivity extends AppCompatActivity {
 
             public void onFinish() {
                 view.setBackgroundColor(Color.parseColor("#573b3a3a"));
-                goToNextQuestion();
+                nextQuestion();
             }
         }.start();
     }
 
-    // This method sends you to the result screen when the rounds are over.
-    public void goToNextQuestion() {
+    /**
+     * This method starts a new round and retrieves a new questions.
+     * If the round limit has been reached the user is sent to the result screen together with all the results from that game.
+     */
+    public void nextQuestion() {
 
         if (round == questions.size()) {
             timer.cancel();
@@ -227,13 +239,11 @@ public class GameActivity extends AppCompatActivity {
             buttonD.setText(questions.get(round).getAlternative4());
             correctAnswer = questions.get(round).getCorrectAnswer();
 
-
             //TextView roundView = (TextView) findViewById(R.id.round);
             roundView.setText("" + showRound);
             pointsToRecieve = 3;
 
             countDownTimer();
-
         }
     }
 
@@ -245,7 +255,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     // This actionbar contains some navigation buttons and a send sms function.
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
