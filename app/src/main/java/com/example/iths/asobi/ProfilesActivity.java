@@ -65,7 +65,7 @@ public class ProfilesActivity extends AppCompatActivity {
             GameActivity.currentPlayer = name;
 
             Context context = getApplicationContext();
-            CharSequence text = ("Logged in as " + name);
+            CharSequence text = (String.format("Logged in as %s", name));
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
@@ -97,11 +97,11 @@ public class ProfilesActivity extends AppCompatActivity {
     private AlertDialog AskOption() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
                 //set message, title, and icon
-                .setTitle("Delete")
-                .setMessage("Do you want to delete?")
+                .setTitle(R.string.delete)
+                .setMessage(R.string.do_you_want_to_delete)
                 .setIcon(R.drawable.ic_delete)
 
-                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         dbHelper.deleteProfile(z);
@@ -114,7 +114,7 @@ public class ProfilesActivity extends AppCompatActivity {
 
 
 
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         dialog.dismiss();
@@ -188,13 +188,14 @@ public class ProfilesActivity extends AppCompatActivity {
             }
 
         if(sameName > 0){
-            Toast.makeText(this, "There is already "+name+" !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.this_name_already_exists, Toast.LENGTH_SHORT).show();
             nameInput.getText().clear();
         } else {
             dbHelper.addProfile(name);
             cursor = dbHelper.getOneTable(dbHelper.getPlayerTable());
             adapter.changeCursor(cursor);
             nameInput.getText().clear();
+            Toast.makeText(this, R.string.profile_created, Toast.LENGTH_SHORT).show();
         }
     }
 }

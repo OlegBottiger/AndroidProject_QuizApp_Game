@@ -15,18 +15,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add custom Category!"
+        android:text="@string/add_custom_category"
         android:gravity="center"
         android:textSize="30sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is where you add your own categories. To start with they will be empty"/>
+        android:text="@string/paragraf1"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="All Questions"
+        android:text="@string/all_questions"
         android:onClick="goToQuestions"/>
 
     <ListView
@@ -48,13 +48,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Name of category"
+            android:hint="@string/name_of_category"
             android:id="@+id/name_category"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ADD CATEGORY"
+            android:text="@string/add_category"
             android:onClick="addCategory"/>
 
     </LinearLayout>

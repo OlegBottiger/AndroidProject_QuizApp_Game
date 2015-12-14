@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/custom_question_add_activity_text"
-        android:text="@string/add_question_title"
+        android:text="@string/type_your_question_here"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
         android:gravity="center"/>
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/question_title"
+            android:text="@string/question"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"/>
         <EditText
@@ -52,7 +52,7 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:textAlignment="center"
-            android:hint="@string/add_questions_title"/>
+            android:hint="@string/type_your_question_here"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/answers_title"
+            android:text="@string/answers"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"/>
