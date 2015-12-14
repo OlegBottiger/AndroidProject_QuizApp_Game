@@ -1,32 +1,47 @@
 package com.example.iths.asobi;
 
 /**
+ * This Player class has information about a player's name.
+ * It is used to check who is playing the game currently.
  * Created by iths on 2015-11-25.
  */
 public class Player {
-
-    private final String name;
-    private int score;
+    private String name;
+    private static Player player=null;
 
     /**
-     *
-     * @param name
-     * @param score
+     * constructor for Player
+     * @param name name to initialize
      */
-    public Player(String name, int score) {
+    public Player(String name) {
         this.name = name;
-        this.score=score;
     }
 
+    /**
+     * This makes Player class singleton.
+     * @param name name to set when Player is initialized
+     * @return instance of Player
+     */
+    public static Player getPlayerInstance(String name){
+        if (player == null){
+            player = new Player(name);
+        }
+        return player;
+    }
+    
+    /**
+     * sets name to instance variable name.
+     * @param name name to set
+     */
+    public void setName(String name){
+        this.name=name;
+    }
+
+    /**
+     * @return String name
+     */
     public String getName() {
         return name;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
 }

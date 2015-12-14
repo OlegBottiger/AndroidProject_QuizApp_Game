@@ -28,6 +28,7 @@ public class ProfilesActivity extends AppCompatActivity {
     SimpleCursorAdapter adapter;
     private String z;
     private String name;
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,8 @@ public class ProfilesActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(listListener);
         listView.setOnItemLongClickListener(listListenerLong);
+
+        player = Player.getPlayerInstance(name);
     }
 
     private AdapterView.OnItemClickListener listListener = new AdapterView.OnItemClickListener(){
@@ -62,7 +65,7 @@ public class ProfilesActivity extends AppCompatActivity {
             Cursor cur = (Cursor) parent.getItemAtPosition(position);
             cur.moveToPosition(position);
             name = cur.getString(cur.getColumnIndex(dbHelper.getNameKey()));
-            GameActivity.currentPlayer = name;
+            player.setName(name);
 
             Context context = getApplicationContext();
             CharSequence text = ("Logged in as " + name);

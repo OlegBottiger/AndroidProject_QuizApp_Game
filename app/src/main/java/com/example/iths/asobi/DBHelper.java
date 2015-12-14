@@ -60,7 +60,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private DBHelper(Context context){
-
         super(context, GAME_DB, null, VERSION);
     }
 
@@ -435,7 +434,6 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(NAME_KEY,name);
         db.insert(PLAYER_TABLE, null, cvs);
         db.close();
-
     }
 
     /**

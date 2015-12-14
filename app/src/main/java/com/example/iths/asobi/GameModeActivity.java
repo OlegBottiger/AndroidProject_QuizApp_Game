@@ -17,6 +17,7 @@ public class GameModeActivity extends AppCompatActivity {
     private ListView listview;
     private DBHelper db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +112,6 @@ public class GameModeActivity extends AppCompatActivity {
      */
     public void getQuestionsFromAll(View view) {
         Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
-
         intent.putExtra(GameActivity.CATEGORY,"ALL");
         startActivity(intent);
     }

@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextField;
     private MediaPlayer mp;
+    public static String currentPlayer="Guest";
+    private Player player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_main);
+
+        player = Player.getPlayerInstance("Guest");
+        currentPlayer = player.getName();
     }
 
     /**

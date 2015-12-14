@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,6 @@ public class GameActivity extends AppCompatActivity {
 
     public static final String CATEGORY="category";
     private static final String TAG = "GameActivity debug" ;
-    public static String currentPlayer="Guest";
     private DBHelper dbHelper;
     private TextView tvCategory;
     private TextView tvQuestion;
@@ -86,7 +84,6 @@ public class GameActivity extends AppCompatActivity {
             questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdByCategoryName(getCategory));
         }
 
-
         tvQuestion = (TextView)findViewById(R.id.question);
         tvQuestion.setText(questions.get(round).getQuestion());
 
@@ -105,7 +102,7 @@ public class GameActivity extends AppCompatActivity {
         correctAnswer = questions.get(round).getCorrectAnswer();
 
         roundView=(TextView)findViewById(R.id.round);
-        roundView.setText(""+showRound);
+        roundView.setText("" + showRound);
 
         //Starts the countDownTimer;
         countDownTimer();
@@ -220,7 +217,6 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra(ResultActivity.MINUTES, minutes);
             intent.putExtra(ResultActivity.SECONDS, seconds);
             intent.putExtra(ResultActivity.CATEGORY, getCategory);
-            intent.putExtra(ResultActivity.PLAYER, currentPlayer);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mp.stop();
             startActivity(intent);

@@ -20,7 +20,8 @@ public class ResultActivity extends AppCompatActivity {
     public static final String MINUTES = "minutes";
     public static final String SECONDS = "seconds";
     public static final String CATEGORY = "category" ;
-    public static final String PLAYER = "player";
+    private String name="";
+    private Player player;
 
     /**
      * Displays the game results.
@@ -45,6 +46,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         db=DBHelper.getDbHelperInstance(this);
+        player = Player.getPlayerInstance("Guest");
 
         Intent intent = getIntent();
 
@@ -53,9 +55,8 @@ public class ResultActivity extends AppCompatActivity {
         int minutes = intent.getIntExtra(MINUTES, 0);
         int seconds = intent.getIntExtra(SECONDS, 0);
         String category = intent.getStringExtra(CATEGORY);
-        String name = intent.getStringExtra(PLAYER);
+        name = player.getName();
         int rank= db.getRank(db.getHighScore(category), finalScore);
-
 
         TextView tvRank = (TextView) findViewById(R.id.rank);
         tvRank.setText(String.format("You are %dth", rank));
@@ -79,9 +80,6 @@ public class ResultActivity extends AppCompatActivity {
             } else {
                 tvRank.setText("You placed " + rank + "th place on High Score");
             }
-
-        //add high scores to the data base.
-
         db.addHighScore(name, finalScore, db.getIdByCategoryName(category));
 
         }else{
@@ -89,8 +87,6 @@ public class ResultActivity extends AppCompatActivity {
             tvRank = (TextView) findViewById(R.id.rank);
             tvRank.setText("You can not be ranked!");
         }
-
-        Log.d("debug","players final score is "+finalScore +" category is "+category+" players name is "+name);
     }
 
 
