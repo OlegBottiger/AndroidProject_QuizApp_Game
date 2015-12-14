@@ -166,6 +166,10 @@ public class ProfilesActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Creates a profile from the used input used in the EditText field.
+     * @param view collects the input from the user.
+     */
     public void addProfile(View view) {
         nameInput = (EditText) findViewById(R.id.enter_name);
         String name = nameInput.getText().toString();
