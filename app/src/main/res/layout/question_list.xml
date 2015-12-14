@@ -7,13 +7,17 @@
     android:layout_marginLeft="16dp"
     android:layout_marginTop="16dp"
     android:layout_marginRight="16dp"
-    android:layout_marginBottom="16dp">
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/buttonstartstyle">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/debug_question"
         android:textSize="24sp"
+        android:textColor="@drawable/startcolor"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginBottom="16dp"/>
 
     <LinearLayout
@@ -28,7 +32,10 @@
             android:text="@string/answer_1"
             android:id="@+id/debug_ans1"
             android:layout_weight="1"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textColor="@drawable/startcolor"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,7 +43,10 @@
             android:text="@string/answer_2"
             android:id="@+id/debug_ans2"
             android:layout_weight="1"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textColor="@drawable/startcolor"
+            android:layout_gravity="center"
+            android:gravity="center"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,7 +60,10 @@
             android:text="@string/answer_3"
             android:id="@+id/debug_ans3"
             android:layout_weight="1"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textColor="@drawable/startcolor"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,7 +71,10 @@
             android:text="@string/answer_4"
             android:id="@+id/debug_ans4"
             android:layout_weight="1"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textColor="@drawable/startcolor"
+            android:layout_gravity="center"
+            android:gravity="center"/>
     </LinearLayout>
 
 </LinearLayout>

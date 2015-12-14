@@ -6,48 +6,67 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.iths.asobi.ResultActivity">
+    android:background="@drawable/asobi_background_symbols"
+    tools:context="com.example.iths.asobi.ResultActivity"
+    style="?android:attr/buttonBarStyle">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:textColor="@drawable/startcolor"
         android:id="@+id/score"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:textColor="@drawable/startcolor"
         android:id="@+id/correct_anwsers"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
+        android:textColor="@drawable/startcolor"
         android:id="@+id/time"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:textColor="@drawable/startcolor"
         android:id="@+id/rank"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/see_high_score"
         android:textSize="24sp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:onClick="goToHighScore"/>
+        android:onClick="goToHighScore"
+        android:textColor="@drawable/startcolor"
+        android:background="@color/answerButton"
+        style="?android:attr/borderlessButtonStyle"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/replay"
         android:textSize="24sp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:onClick="replay"/>
+        android:onClick="replay"
+        android:textColor="@drawable/startcolor"
+        android:background="@color/answerButton"
+        style="?android:attr/borderlessButtonStyle"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/return_to_main_menu"
         android:textSize="24sp"
         android:layout_gravity="center"
-        android:onClick="goToMainMenu"/>
+        android:onClick="goToMainMenu"
+        android:textColor="@drawable/startcolor"
+        android:background="@color/answerButton"
+        style="?android:attr/borderlessButtonStyle"/>
+
+
 
 </LinearLayout>

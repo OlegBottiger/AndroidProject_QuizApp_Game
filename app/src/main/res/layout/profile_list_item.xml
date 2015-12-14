@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@drawable/buttonstartstyle">
 
     <TextView
         android:layout_width="0dp"
@@ -11,6 +12,8 @@
         android:layout_weight="1"
         android:id="@+id/profile_name"
         android:textSize="32sp"
+        android:textColor="@drawable/startcolor"
+        android:textAlignment="center"
         />
 
 </LinearLayout>
