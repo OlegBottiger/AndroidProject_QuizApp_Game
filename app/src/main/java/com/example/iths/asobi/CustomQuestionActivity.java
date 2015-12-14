@@ -75,12 +75,20 @@ public class CustomQuestionActivity extends AppCompatActivity {
 
     };
 
+    /**
+     * Sends us to All Questions Activity (Is now not needed)
+     * @param view
+     */
     public void goToQuestions(View view) {
         Intent i = new Intent(this, CustomQuestionActivity.class);
         i.putExtra(CustomQuestionActivity.CATEGORY,"ALL");
         startActivity(i);
     }
 
+    /**
+     * Method that handles long click so that we can remove
+     * @return
+     */
     private AlertDialog AskOption() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
                 //set message, title, and icon

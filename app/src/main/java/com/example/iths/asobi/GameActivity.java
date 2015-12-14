@@ -46,6 +46,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView roundView;
     private MediaPlayer mp;
     private View view;
+    private String timeLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
         correctAnswer = questions.get(round).getCorrectAnswer();
 
         roundView=(TextView)findViewById(R.id.round);
-        roundView.setText(""+showRound);
+        roundView.setText("" + showRound);
 
         //Starts the countDownTimer;
         countDownTimer();
@@ -121,7 +122,11 @@ public class GameActivity extends AppCompatActivity {
         countDown = new CountDownTimer(15100, 1000) {
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
-                mTextField.setText("" + millisUntilFinished / 1000);
+                timeLeft = "" + millisUntilFinished / 1000;
+                mTextField.setText(timeLeft);
+                Log.d("debug", timeLeft);
+
+
                 if (millisUntilFinished < 10000) {
                     pointsToRecieve = 2;
                 }
@@ -140,6 +145,43 @@ public class GameActivity extends AppCompatActivity {
                 nextQuestion();
             }
         }.start();
+    }
+
+    @Override
+    protected void onPause() {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("timeLeft", timeLeft);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        Intent intent = getIntent();
+        int timeLeftBack = intent.getIntExtra("timeLeft", 15);
+        countDown = new CountDownTimer(timeLeftBack, 1000) {
+            public void onTick(long millisUntilFinished) {
+                mTextField = (TextView) findViewById(R.id.timer);
+                mTextField.setText("" + millisUntilFinished / 1000);
+
+                if (millisUntilFinished < 10000) {
+                    pointsToRecieve = 2;
+                }
+                else if (millisUntilFinished < 5000) {
+                    pointsToRecieve = 1;
+                }
+                else if (millisUntilFinished <= 0) {
+                    pointsToRecieve = 0;
+                }
+            }
+
+            public void onFinish() {
+                mTextField.setText("0");
+                round++;
+                showRound++;
+                nextQuestion();
+            }
+        }.start();
+        super.onResume();
     }
 
     /**
