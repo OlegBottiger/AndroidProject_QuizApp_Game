@@ -152,7 +152,7 @@ public class GameActivity extends AppCompatActivity {
      * If not, the button turns red and the player receives no points.
      * Finally the method calls on the next question.
      * @param view
-      */
+     */
 
     public void gameInput (final View view) {
 

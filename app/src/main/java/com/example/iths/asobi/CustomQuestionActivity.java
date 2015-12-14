@@ -25,7 +25,7 @@ public class CustomQuestionActivity extends AppCompatActivity {
     private String category;
     private String longClickString;
     private SimpleCursorAdapter adapter;
-    private long idFromPosition;
+    private String idFromPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,6 @@ public class CustomQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_question);
         db = DBHelper.getDbHelperInstance(this);
 
-        //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -55,7 +54,7 @@ public class CustomQuestionActivity extends AppCompatActivity {
         adapter = new SimpleCursorAdapter(this, R.layout.question_list, customQuestiosCursor, from, to, 0);
 
         list.setAdapter(adapter);
-
+        list.setOnItemLongClickListener(listListenerLong);
     }
 
     private AdapterView.OnItemLongClickListener listListenerLong = new AdapterView.OnItemLongClickListener(){
@@ -65,8 +64,8 @@ public class CustomQuestionActivity extends AppCompatActivity {
 
             Cursor cur = (Cursor) parent.getItemAtPosition(position);
             cur.moveToPosition(position);
-            longClickString = cur.getString(cur.getColumnIndex(db.getCategoryKey()));
-            idFromPosition = adapter.getItemId(position);
+            longClickString = cur.getString(cur.getColumnIndex(db.getIdKey()));
+            idFromPosition = longClickString;
 
             AlertDialog diaBox = AskOption();
             diaBox.show();
@@ -92,9 +91,9 @@ public class CustomQuestionActivity extends AppCompatActivity {
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        db.(longClickString);
-                        Cursor cursor = db.getOneTable(db.getAllCategoryTable());
-                        simpleCursor.changeCursor(cursor);
+                        db.deleteQuestion(idFromPosition);
+                        Cursor cursor = db.getOneTable(db.getWholeQuestionTable());
+                        adapter.changeCursor(cursor);
                         dialog.dismiss();
                     }
 
@@ -114,21 +113,18 @@ public class CustomQuestionActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_my, menu);
         return true;
     }
-
+    /**
+     * Handles the item clicks here.
+     * @param item is the symbol showed up on the actionbar.
+     * @return returns true if clicked and takes you to the next activity.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-
 
         switch (item.getItemId()) {
             case R.id.action_play:
@@ -150,8 +146,6 @@ public class CustomQuestionActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 
 

@@ -67,7 +67,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static String getNameKey() {
         return NAME_KEY;
     }
-
+    public static String getIdKey() {
+        return ID_KEY;
+    }
     public static String getScoreKey() {
         return SCORE_KEY;
     }
@@ -587,6 +589,12 @@ public class DBHelper extends SQLiteOpenHelper {
         db = getWritableDatabase();
         db.delete(RANK_TABLE, RANK_KEY, null);
         db.delete(RANK_TABLE, ID_KEY, null);
+    }
+
+    public void deleteQuestion(String ID){
+        db = getWritableDatabase();
+        String[] selectionArg = {ID};
+        db.delete(WHOLE_QUESTION_TABLE, "_id=?", selectionArg);
     }
 
 }
