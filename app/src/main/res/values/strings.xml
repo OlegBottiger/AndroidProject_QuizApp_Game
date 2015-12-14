@@ -87,4 +87,7 @@
     <string name="answer_3">Answer 3</string>
     <string name="answer_4">Answer 4</string>
     <string name="profile_created">Profile created.</string>
+    <string name="profile_item">PROFILE</string>
+    <string name="round">Round:</string>
+    <string name="one">1</string>
 </resources>
