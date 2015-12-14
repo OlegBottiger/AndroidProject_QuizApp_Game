@@ -7,4 +7,5 @@
     <color name="red">#FF0000</color>
     <color name="coolAboutColor">#FF9005</color>
     <color name="answerButton">#573b3a3a</color>
+    <color name="black">#000000</color>
 </resources>

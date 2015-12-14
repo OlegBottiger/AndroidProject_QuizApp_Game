@@ -61,7 +61,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.iths.asobi.MainActivity" />
         </activity>
-        //This activity is the launcher and is set to show 5 seconds (5000ms),
+        //This activity is the launcher and is set to show 5 seconds (2500ms),
         //then It set´s to MainActivity.java
         //To change use StartActivity.java
         <activity android:name=".StartActivity" >
@@ -72,6 +72,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ShowHighScoreActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.iths.asobi.HighscoreActivity" />
         </activity>
     </application>
 
