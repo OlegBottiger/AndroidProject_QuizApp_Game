@@ -65,7 +65,6 @@ public class GameActivity extends AppCompatActivity {
         mp = MediaPlayer.create(this, R.raw.vitas2);
         mp.start();
 
-        //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -111,9 +110,6 @@ public class GameActivity extends AppCompatActivity {
         //Starts the countDownTimer;
         countDownTimer();
 
-        Log.d(TAG, questions.get(0).getQuestion() + questions.get(1).getQuestion() + questions.get(2).getQuestion()
-                + questions.get(3).getQuestion() + questions.get(4).getQuestion());
-
     }
 
     /**
@@ -153,7 +149,6 @@ public class GameActivity extends AppCompatActivity {
      * Finally the method calls on the next question.
      * @param view
      */
-
     public void gameInput (final View view) {
 
         countDown.cancel();
@@ -247,14 +242,22 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gets the actionbar.
+     * @param menu the actionbar menu.
+     * @return true so you can see the actionbar.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.gameactivity_toolbar, menu);
         return true;
     }
 
-    // This actionbar contains some navigation buttons and a send sms function.
+    /**
+     * Handles the item clicks here and also has a sms function.
+     * @param item is the symbol showed up on the actionbar.
+     * @return returns true if clicked and takes you to the next activity or sms.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

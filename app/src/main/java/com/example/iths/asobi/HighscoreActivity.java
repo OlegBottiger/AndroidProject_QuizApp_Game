@@ -21,8 +21,6 @@ public class HighscoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
-
-        //Set actionbar item
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -40,14 +38,12 @@ public class HighscoreActivity extends AppCompatActivity {
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(listListener);
 
-
     }
 
     private AdapterView.OnItemClickListener listListener = new AdapterView.OnItemClickListener(){
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-
 
             Cursor cur = (Cursor) parent.getItemAtPosition(position);
             cur.moveToPosition(position);
@@ -57,25 +53,27 @@ public class HighscoreActivity extends AppCompatActivity {
 
             intent.putExtra(ShowHighScoreActivity.CATEGORY,category);
             startActivity(intent);
-
         }
     };
 
-
+    /**
+     * Gets the actionbar.
+     * @param menu the actionbar menu.
+     * @return true so you can see the actionbar.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_my, menu);
         return true;
     }
 
+    /**
+     * Handles the item clicks here.
+     * @param item is the symbol showed up on the actionbar.
+     * @return returns true if clicked and takes you to the next activity.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-
 
         switch (item.getItemId()) {
             case R.id.action_play:
@@ -97,9 +95,12 @@ public class HighscoreActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
+
+    /**
+     * Grabs the scores that are stored in the database and display them here.
+     * @param view shows the highscores.
+     */
     public void showHighScores(View view) {
         Intent intent = new Intent(this, ShowHighScoreActivity.class);
         intent.putExtra(ShowHighScoreActivity.CATEGORY, "ALL");
