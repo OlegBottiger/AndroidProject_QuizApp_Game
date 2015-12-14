@@ -15,6 +15,12 @@ public class ResultActivity extends AppCompatActivity {
     private DBHelper db;
     private TextView tvRank;
     private MediaPlayer mp;
+    public static final String FINAL_SCORE = "finalScore";
+    public static final String CORRECT_ANSWERS = "correctAnswers";
+    public static final String MINUTES = "minutes";
+    public static final String SECONDS = "seconds";
+    public static final String CATEGORY = "category" ;
+    public static final String PLAYER = "player";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +43,12 @@ public class ResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        int finalScore = intent.getIntExtra("FINAL_SCORE", 0);
-        int correctAnswers = intent.getIntExtra("CORRECT_ANSWERS", 0);
-        int minutes = intent.getIntExtra("MINUTES", 0);
-        int seconds = intent.getIntExtra("SECONDS", 0);
-        String category = intent.getStringExtra("CATEGORY");
-        String name = intent.getStringExtra("PLAYER");
+        int finalScore = intent.getIntExtra(FINAL_SCORE, 0);
+        int correctAnswers = intent.getIntExtra(CORRECT_ANSWERS, 0);
+        int minutes = intent.getIntExtra(MINUTES, 0);
+        int seconds = intent.getIntExtra(SECONDS, 0);
+        String category = intent.getStringExtra(CATEGORY);
+        String name = intent.getStringExtra(PLAYER);
         int rank= db.getRank(db.getHighScore(category), finalScore);
 
 
@@ -71,7 +77,7 @@ public class ResultActivity extends AppCompatActivity {
 
         //add high scores to the data base.
 
-        db.addHighScore(name, finalScore, db.getIdFromCategoryTableByCategoryName(category), rank);
+        db.addHighScore(name, finalScore, db.getIdByCategoryName(category));
 
         }else{
 

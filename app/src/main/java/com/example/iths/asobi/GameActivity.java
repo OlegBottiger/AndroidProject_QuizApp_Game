@@ -1,6 +1,7 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
@@ -34,6 +35,7 @@ public class GameActivity extends AppCompatActivity {
     private int showRound=1;
     private int playerScore = 0;
     private TextView mTextField;
+    private CountDownTimer countDown;
     private CountDownTimer timer;
     private int pointsToRecieve = 3;
     private int numberOfCorrectAnswer = 0;
@@ -43,11 +45,22 @@ public class GameActivity extends AppCompatActivity {
     private String getCategory;
     private TextView roundView;
     private MediaPlayer mp;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        timer = new CountDownTimer(300000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                time = time + 1;
+            }
+
+            public void onFinish() {
+            }
+        }.start();
 
         mp = MediaPlayer.create(this, R.raw.vitas2);
         mp.start();
@@ -73,7 +86,7 @@ public class GameActivity extends AppCompatActivity {
         if(getCategory.equals("ALL")){
             questions = dbHelper.getRandomFiveQuestions(0);
         } else{
-            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdFromCategoryTableByCategoryName(getCategory));
+            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdByCategoryName(getCategory));
         }
 
 
@@ -102,12 +115,14 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    //Starts 15 second countdown. Every 5 seconds the points received is reduced by 1 point.
+    // When the count reaches 0, the next question is displayed.
+
     private void countDownTimer() {
-        timer = new CountDownTimer(15100, 1000) {
+        countDown = new CountDownTimer(15100, 1000) {
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
                 mTextField.setText("" + millisUntilFinished / 1000);
-                time = time + 1;
                 if (millisUntilFinished < 10000) {
                     pointsToRecieve = 2;
                 }
@@ -128,15 +143,17 @@ public class GameActivity extends AppCompatActivity {
         }.start();
     }
 
-    public void nextQuestion(View view) {
+    // This method handles the input and check if answer is correct.
 
-        timer.cancel();
+    public void nextQuestion(final View view) {
 
+        countDown.cancel();
 
         switch (view.getId()) {
             case R.id.buttonA:
                 playersGuess = "1";
                 break;
+
             case R.id.buttonB:
                 playersGuess = "2";
                 break;
@@ -149,7 +166,10 @@ public class GameActivity extends AppCompatActivity {
                 playersGuess = "4";
                 break;
         }
+
         if (correctAnswer.equals(playersGuess)) {
+
+            view.setBackgroundColor(Color.parseColor("#00cc00"));
 
             numberOfCorrectAnswer ++;
 
@@ -160,39 +180,45 @@ public class GameActivity extends AppCompatActivity {
             scoreView.setText("" + playerScore);
 
         }
+        else {
+            view.setBackgroundColor(Color.parseColor("#ff3300"));
+        }
+
         round++;
         showRound++;
-        goToNextQuestion();
 
+        new CountDownTimer(200, 1000) {
 
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            public void onFinish() {
+                view.setBackgroundColor(Color.parseColor("#573b3a3a"));
+                goToNextQuestion();
+            }
+        }.start();
     }
 
+    // This method sends you to the result screen when the rounds are over.
     public void goToNextQuestion() {
 
         if (round == questions.size()) {
+            timer.cancel();
             minutes = time / 60;
             seconds = time % 60;
             Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra("FINAL_SCORE", playerScore);
-            intent.putExtra("CORRECT_ANSWERS", numberOfCorrectAnswer);
-            intent.putExtra("MINUTES", minutes);
-            intent.putExtra("SECONDS", seconds);
-            intent.putExtra("CATEGORY", getCategory);
-            intent.putExtra("PLAYER", currentPlayer);
+            intent.putExtra(ResultActivity.FINAL_SCORE, playerScore);
+            intent.putExtra(ResultActivity.CORRECT_ANSWERS, numberOfCorrectAnswer);
+            intent.putExtra(ResultActivity.MINUTES, minutes);
+            intent.putExtra(ResultActivity.SECONDS, seconds);
+            intent.putExtra(ResultActivity.CATEGORY, getCategory);
+            intent.putExtra(ResultActivity.PLAYER, currentPlayer);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mp.stop();
             startActivity(intent);
-
-
-            // send information to the result activity
-            // how many points player have
-            // how many right answer player got
-            // how long it took
-
-
         }
         else {
-
 
             tvQuestion.setText(questions.get(round).getQuestion());
             buttonA.setText(questions.get(round).getAlternative1());
@@ -205,6 +231,7 @@ public class GameActivity extends AppCompatActivity {
             //TextView roundView = (TextView) findViewById(R.id.round);
             roundView.setText("" + showRound);
             pointsToRecieve = 3;
+
             countDownTimer();
 
         }
@@ -213,33 +240,27 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_my, menu);
+        getMenuInflater().inflate(R.menu.gameactivity_toolbar, menu);
         return true;
     }
 
+    // This actionbar contains some navigation buttons and a send sms function.
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-
 
         switch (item.getItemId()) {
             case R.id.action_play:
-                // Play action
                 Intent i = new Intent(GameActivity.this, GameModeActivity.class);
                 mp.stop();
                 startActivity(i);
                 return true;
             case R.id.info:
-                // Asobi presentation activity
                 Intent j = new Intent(GameActivity.this, AboutActivity.class);
                 mp.stop();
                 startActivity(j);
                 return true;
             case R.id.profile:
-                // Create profile activity
                 Intent k = new Intent(GameActivity.this, ProfilesActivity.class);
                 mp.stop();
                 startActivity(k);
@@ -259,7 +280,5 @@ public class GameActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 }

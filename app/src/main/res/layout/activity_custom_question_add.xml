@@ -9,7 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.iths.asobi.CustomQuestionAddActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +21,6 @@
             android:textSize="20sp"
             android:textColor="@color/colorPrimary"
             android:gravity="center"/>
-
         <LinearLayout
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
@@ -30,20 +28,6 @@
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textSize="20sp"
-                android:textColor="@color/colorPrimary"
-                android:text="@string/category_text"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAlignment="center"
-                android:hint="@string/typ_category"/>
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,7 +35,6 @@
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:gravity="center">
-
             <TextView
                 android:layout_marginTop="0dp"
                 android:layout_width="match_parent"
@@ -73,7 +56,6 @@
             android:orientation="horizontal"
             android:layout_marginTop="5dp"
             >
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -81,7 +63,6 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"/>
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,19 +70,19 @@
             android:orientation="horizontal"
             android:layout_marginTop="5dp">
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:hint="@string/alternative_1"
                 android:textAlignment="center"
                 android:id="@+id/alternative_one"/>
-
             <EditText
                 android:textAlignment="center"
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:hint="@string/alternative_2"
                 android:id="@+id/alternative_two"/>
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,28 +93,25 @@
             <EditText
                 android:id="@+id/alternative_three"
                 android:textAlignment="center"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:hint="@string/alternative_3"
                 />
             <EditText
-
                 android:textAlignment="center"
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:hint="@string/alternative_4"
                 android:id="@+id/alternative_four"
                 />
         </LinearLayout>
-
-
-
         <LinearLayout
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -151,14 +129,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"/>
         </LinearLayout>
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_button_text"
             android:onClick="addCustomQuestion"/>
-
     </LinearLayout>
-
 </ScrollView>
 

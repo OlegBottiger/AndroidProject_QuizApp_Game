@@ -14,32 +14,47 @@
         android:orientation="horizontal">
 
         <TextView
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Rank"/>
+            android:text="Rank" />
         <TextView
             android:gravity="center"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Name"/>
         <TextView
             android:gravity="right"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Score"/>
 
-    </LinearLayout>
+  </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/show_rank"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            />
 
     <ListView
         android:id="@+id/show_high_score"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

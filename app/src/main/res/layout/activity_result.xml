@@ -11,12 +11,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:id="@+id/score"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:id="@+id/correct_anwsers"/>
     <TextView
         android:layout_width="match_parent"
@@ -26,24 +26,27 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:id="@+id/rank"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/see_high_score"
+        android:textSize="24sp"
         android:layout_gravity="center"
         android:onClick="goToHighScore"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/replay"
+        android:textSize="24sp"
         android:layout_gravity="center"
         android:onClick="replay"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/return_to_main_menu"
+        android:textSize="24sp"
         android:layout_gravity="center"
         android:onClick="goToMainMenu"/>
 

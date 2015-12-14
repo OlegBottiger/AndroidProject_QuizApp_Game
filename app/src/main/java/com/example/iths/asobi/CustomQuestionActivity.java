@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -17,6 +16,7 @@ public class CustomQuestionActivity extends AppCompatActivity {
     private ListView list;
     public static final String CATEGORY="category";
     private Cursor customQuestiosCursor;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +31,17 @@ public class CustomQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_question);
 
         Intent intent =getIntent();
-        String category = intent.getStringExtra(CATEGORY);
+        category = intent.getStringExtra(CATEGORY);
 
         if(category.equals("ALL")) {
-            customQuestiosCursor = db.getAllTable(DBHelper.WHOLE_QUESTION_TABLE);
+            customQuestiosCursor = db.getOneTable(DBHelper.getWholeQuestionTable());
         } else{
             customQuestiosCursor= db.getCursorForOnesCategory(category);
         }
 
         list = (ListView) findViewById(R.id.listview_custom_question);
 
-        String[] from = new String[] {db.QUESTION_KEY, db.ALTERNATIVE1_KEY, db.ALTERNATIVE2_KEY, db.ALTERNATIVE3_KEY, db.ALTERNATIVE4_KEY, db.CORRECT_ANSWER_KEY};
+        String[] from = new String[] {db.getQuestionKey(), db.getAlternative1Key(), db.getAlternative2Key(), db.getAlternative3Key(), db.getAlternative4Key(), db.getCorrectAnswerKey()};
         int[] to = new int[] {R.id.debug_question, R.id.debug_ans1, R.id.debug_ans2, R.id.debug_ans3, R.id.debug_ans4};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.question_list, customQuestiosCursor, from, to, 0);
 
@@ -92,6 +92,7 @@ public class CustomQuestionActivity extends AppCompatActivity {
 
     public void goToAddQuestions(View view) {
         Intent intent = new Intent(this, CustomQuestionAddActivity.class);
+        intent.putExtra(CustomQuestionAddActivity.CATEGORY,category);
         startActivity(intent);
     }
 }
