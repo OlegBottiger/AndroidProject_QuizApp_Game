@@ -94,19 +94,24 @@ public class ResultActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Gets the actionbar.
+     * @param menu the actionbar menu.
+     * @return true so you can see the actionbar.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_my, menu);
         return true;
     }
 
+    /**
+     * Handles the item clicks here.
+     * @param item is the symbol showed up on the actionbar.
+     * @return returns true if clicked and takes you to the next activity.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
 
         switch (item.getItemId()) {
             case R.id.action_play:
@@ -128,8 +133,6 @@ public class ResultActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 
     /**
