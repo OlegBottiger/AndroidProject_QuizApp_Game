@@ -589,4 +589,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.delete(RANK_TABLE, ID_KEY, null);
     }
 
+    public void deleteQuestion(long ID){
+        db = getWritableDatabase();
+        String[] selectionArg = {Integer.toString((int) ID)};
+        db.delete(WHOLE_QUESTION_TABLE,"id=?",selectionArg);
+        db.close();
+    }
+
 }
