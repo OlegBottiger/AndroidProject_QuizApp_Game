@@ -53,12 +53,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="Round: " />
+            android:text="@string/round" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:hint="1"
+            android:hint="@string/one"
             android:id="@+id/round"/>
     </LinearLayout>
 
