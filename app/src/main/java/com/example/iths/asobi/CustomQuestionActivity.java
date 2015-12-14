@@ -92,7 +92,7 @@ public class CustomQuestionActivity extends AppCompatActivity {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         db.deleteQuestion(idFromPosition);
-                        Cursor cursor = db.getOneTable(db.getWholeQuestionTable());
+                        Cursor cursor = db.getCursorForOnesCategory(category);
                         adapter.changeCursor(cursor);
                         dialog.dismiss();
                     }
