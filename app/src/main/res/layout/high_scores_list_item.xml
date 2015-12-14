@@ -13,7 +13,7 @@
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="name"
+        android:hint="@string/name"
         android:textSize="20sp"
         android:layout_weight="1"/>
     <TextView
@@ -21,9 +21,8 @@
         android:id="@+id/high_score_point"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="score"
+        android:hint="@string/score"
         android:textSize="20sp"
         android:layout_weight="1"/>
-
 
 </LinearLayout>

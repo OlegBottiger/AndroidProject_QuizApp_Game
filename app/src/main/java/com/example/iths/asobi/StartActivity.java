@@ -1,6 +1,7 @@
 package com.example.iths.asobi;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,30 +12,15 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        new CountDownTimer(2000, 1000) {
 
-
-        Thread th = new Thread() {
-            public void run() {
-                try {
-                    sleep(2500);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    onPause();
-                    startActivity(new Intent(getString(R.string.Main_Activity)));
-                }
+            public void onTick(long millisUntilFinished) {
             }
-        };
-        th.start();
 
+            public void onFinish() {
+                startActivity(new Intent(getString(R.string.Main_Activity)));
+            }
+        }.start();
     }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        finish();
-    }
-
-    }
+}
 

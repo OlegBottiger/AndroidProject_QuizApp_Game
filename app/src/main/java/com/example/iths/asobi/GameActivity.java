@@ -20,7 +20,6 @@ public class GameActivity extends AppCompatActivity {
 
     public static final String CATEGORY="category";
     private static final String TAG = "GameActivity debug" ;
-    public static String currentPlayer="Guest";
     private DBHelper dbHelper;
     private TextView tvCategory;
     private TextView tvQuestion;
@@ -86,7 +85,6 @@ public class GameActivity extends AppCompatActivity {
         } else{
             questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdByCategoryName(getCategory));
         }
-
 
         tvQuestion = (TextView)findViewById(R.id.question);
         tvQuestion.setText(questions.get(round).getQuestion());
@@ -262,7 +260,6 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra(ResultActivity.MINUTES, minutes);
             intent.putExtra(ResultActivity.SECONDS, seconds);
             intent.putExtra(ResultActivity.CATEGORY, getCategory);
-            intent.putExtra(ResultActivity.PLAYER, currentPlayer);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mp.stop();
             startActivity(intent);

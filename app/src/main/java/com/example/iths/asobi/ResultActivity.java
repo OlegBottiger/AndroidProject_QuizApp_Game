@@ -20,10 +20,11 @@ public class ResultActivity extends AppCompatActivity {
     public static final String MINUTES = "minutes";
     public static final String SECONDS = "seconds";
     public static final String CATEGORY = "category" ;
-    public static final String PLAYER = "player";
+    private String name="";
+    private Player player;
 
     /**
-     * Displays the game results.
+     * Displays the game results and saves the score in the high score table.
      * @param savedInstanceState
      */
 
@@ -45,6 +46,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         db=DBHelper.getDbHelperInstance(this);
+        player = Player.getPlayerInstance("Guest");
 
         Intent intent = getIntent();
 
@@ -53,44 +55,39 @@ public class ResultActivity extends AppCompatActivity {
         int minutes = intent.getIntExtra(MINUTES, 0);
         int seconds = intent.getIntExtra(SECONDS, 0);
         String category = intent.getStringExtra(CATEGORY);
-        String name = intent.getStringExtra(PLAYER);
+        name = player.getName();
         int rank= db.getRank(db.getHighScore(category), finalScore);
 
-
         TextView tvRank = (TextView) findViewById(R.id.rank);
-        tvRank.setText(String.format("You are %dth", rank));
+        tvRank.setText(String.format(getString(R.string.you_are_rank), rank));
         TextView scoreView = (TextView) findViewById(R.id.score);
-        scoreView.setText("Total score: " + finalScore);
+        scoreView.setText(String.format(getString(R.string.total_score), finalScore));
         TextView correctView = (TextView) findViewById(R.id.correct_anwsers);
-        correctView.setText("Correct answers: " + correctAnswers);
+        correctView.setText(String.format(getString(R.string.correct_answers), correctAnswers));
         TextView timeView = (TextView) findViewById(R.id.time);
-        timeView.setText("Time: " + minutes + " min & " + seconds + " sec");;
+        timeView.setText(String.format(getString(R.string.minutes_seconds), minutes, seconds));;
+
+        int lastDigit = rank % 10;
 
         if(finalScore > 0){
             tvRank = (TextView) findViewById(R.id.rank);
-            if(rank == 1 || rank == 21) {
-                tvRank.setText("You placed " + rank + "st place on High Score");
+            if(lastDigit == 1) {
+                tvRank.setText(String.format(getString(R.string.you_placed_xst_place_on_high_score), rank));
             }
-            else if (rank == 2 || rank == 22) {
-                tvRank.setText("You placed " + rank + "nd place on High Score");
+            else if (lastDigit == 2 && rank != 12) {
+                tvRank.setText(String.format(getString(R.string.you_placed_xnd_place_on_high_score), rank));
             }
-            else if (rank == 3 || rank == 23) {
-                tvRank.setText("You placed " + rank + "rd place on High Score");
+            else if (lastDigit == 3 && rank != 13) {
+                tvRank.setText(String.format(getString(R.string.you_placed_xrd_place_on_high_score), rank));
             } else {
-                tvRank.setText("You placed " + rank + "th place on High Score");
+                tvRank.setText(String.format(getString(R.string.you_placed_xth_place_on_high_score), rank));
             }
-
-        //add high scores to the data base.
-
         db.addHighScore(name, finalScore, db.getIdByCategoryName(category));
 
         }else{
-
             tvRank = (TextView) findViewById(R.id.rank);
-            tvRank.setText("You can not be ranked!");
+            tvRank.setText(R.string.you_can_not_be_ranked);
         }
-
-        Log.d("debug","players final score is "+finalScore +" category is "+category+" players name is "+name);
     }
 
     /**

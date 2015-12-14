@@ -25,14 +25,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="Name"
+            android:hint="@string/name"
             android:id="@+id/enter_name"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="ADD PROFILE"
+            android:text="@string/add_profile"
             android:onClick="addProfile"/>
 
     </LinearLayout>
