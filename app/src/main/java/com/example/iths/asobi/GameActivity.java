@@ -332,4 +332,11 @@ public class GameActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        countDown.cancel();
+        Intent intent = new Intent(GameActivity.this,MainActivity.class);
+        startActivity(intent);
+    }
 }
