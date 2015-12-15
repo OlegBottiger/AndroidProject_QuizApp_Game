@@ -253,28 +253,28 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db,context.getString(R.string.question_music_10),context.getString(R.string.music_answer_10_1),context.getString(R.string.music_answer_10_2),context.getString(R.string.music_answer_10_3),context.getString(R.string.music_answer_10_4),context.getString(R.string.music_correct_answer_10),2);
 
         // Science questions
-        addQuestionsToDataBase(db,"Who came up with the Theory of Relativity?", "Robert Brown", "John Dalton", "Erwin Schrödinger", "Albert Einstein", "4", 3);
-        addQuestionsToDataBase(db,"Approximately how old is the universe?", "11.5 billion years", "12.3 billion years", "13.8 billion years", "14.6 billion years", "3", 3);
-        addQuestionsToDataBase(db,"What type of gas does a star mostly contain of?", "Oxygen and Helium", "Hydrogen and Helium", "Nitrogen and Boron", "Lithium and Neon", "2", 3);
-        addQuestionsToDataBase(db,"Which year was the Hubble space telescope sent into space?", "1990", "1987", "1992", "1994", "1", 3);
-        addQuestionsToDataBase(db,"Which letters does Gold have in the periodic table?", "Al", "Au", "Ac", "Ag", "2", 3);
-        addQuestionsToDataBase(db,"What is Earth's circumference?", "39,895km", "38,371km", "41,550km", "40,075km", "4", 3);
-        addQuestionsToDataBase(db,"Which planet is closest to the sun in our solar system?", "Uranus", "Mars", "Mercury", "Venus", "3", 3);
-        addQuestionsToDataBase(db,"What's the name of the first Soviet satellite?", "Sputnik", "Puttnik", "Vutnik", "Sutnik", "1", 3);
-        addQuestionsToDataBase(db,"What's earth's latin name?", "Tirra", "Terra", "Torra", "Tarra", "2", 3);
-        addQuestionsToDataBase(db,"What is our galaxy called?", "The chocolate way", "The milky way", "The strawberry way", "The vanilla way", "2", 3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_1),context.getString(R.string.science_answer_1_1),context.getString(R.string.science_answer_1_2),context.getString(R.string.science_answer_1_3),context.getString(R.string.science_answer_1_4),context.getString(R.string.science_correct_answer_1),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_2),context.getString(R.string.science_answer_2_1),context.getString(R.string.science_answer_2_2),context.getString(R.string.science_answer_2_3),context.getString(R.string.science_answer_2_4),context.getString(R.string.science_correct_answer_2),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_3),context.getString(R.string.science_answer_3_1),context.getString(R.string.science_answer_3_2),context.getString(R.string.science_answer_3_3),context.getString(R.string.science_answer_3_4),context.getString(R.string.science_correct_answer_3),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_4),context.getString(R.string.science_answer_4_1),context.getString(R.string.science_answer_4_2),context.getString(R.string.science_answer_4_3),context.getString(R.string.science_answer_4_4),context.getString(R.string.science_correct_answer_4),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_5),context.getString(R.string.science_answer_5_1),context.getString(R.string.science_answer_5_2),context.getString(R.string.science_answer_5_3),context.getString(R.string.science_answer_5_4),context.getString(R.string.science_correct_answer_5),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_6),context.getString(R.string.science_answer_6_1),context.getString(R.string.science_answer_6_2),context.getString(R.string.science_answer_6_3),context.getString(R.string.science_answer_6_4),context.getString(R.string.science_correct_answer_6),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_7),context.getString(R.string.science_answer_7_1),context.getString(R.string.science_answer_7_2),context.getString(R.string.science_answer_7_3),context.getString(R.string.science_answer_7_4),context.getString(R.string.science_correct_answer_7),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_8),context.getString(R.string.science_answer_8_1),context.getString(R.string.science_answer_8_2),context.getString(R.string.science_answer_8_3),context.getString(R.string.science_answer_8_4),context.getString(R.string.science_correct_answer_8),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_9),context.getString(R.string.science_answer_9_1),context.getString(R.string.science_answer_9_2),context.getString(R.string.science_answer_9_3),context.getString(R.string.science_answer_9_4),context.getString(R.string.science_correct_answer_9),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_10),context.getString(R.string.science_answer_10_1),context.getString(R.string.science_answer_10_2),context.getString(R.string.science_answer_10_3),context.getString(R.string.science_answer_10_4),context.getString(R.string.science_correct_answer_10),3);
 
         // Geography questions
-        addQuestionsToDataBase(db,"What is the capital city of Iran?", "Teheran", "Ankara", "Dushanbe", "Riyadh", "1", 4);
-        addQuestionsToDataBase(db,"Which lake is the biggest in Sweden?", "Mälaren", "Vättern", "Vänern", "Storsjön", "3", 4);
-        addQuestionsToDataBase(db,"What percentage of Japan consist of mountains?", "80%", "54%", "73%", "63%", "3", 4);
-        addQuestionsToDataBase(db,"How tall is Mount Everest?", "8398m", "8530m", "8713m", "8848m", "4", 4);
-        addQuestionsToDataBase(db,"Which country is to the west of Sweden?", "Finland", "Norway", "Denmark", "Russia", "1", 4);
-        addQuestionsToDataBase(db,"What is earth's second largest continent by population", "South America", "Africa", "North America", "Europe", "2", 4);
-        addQuestionsToDataBase(db,"In which american state is Grand Canyon?", "Alaska", "Texas", "Virginia", "Arizona", "4", 4);
-        addQuestionsToDataBase(db,"What is the longest river in South America?", "Madeira", "Amazon", "Parana", "Araguaia", "2", 4);
-        addQuestionsToDataBase(db,"What is earth's largest continent by surface size?", "Africa", "North America", "Europe", "Asia", "4", 4);
-        addQuestionsToDataBase(db,"What is the largest lake in Africa?", "Lake Malawi", "Lake Albert", "Lake Victoria", "Lake Tanganyika", "3", 4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_1),context.getString(R.string.geography_answer_1_1),context.getString(R.string.geography_answer_1_2),context.getString(R.string.geography_answer_1_3),context.getString(R.string.geography_answer_1_4),context.getString(R.string.geography_correct_answer_1),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_2),context.getString(R.string.geography_answer_2_1),context.getString(R.string.geography_answer_2_2),context.getString(R.string.geography_answer_2_3),context.getString(R.string.geography_answer_2_4),context.getString(R.string.geography_correct_answer_2),4);
+        addQuestionsToDataBase(db,"What percentage of Japan consist of mountains?", "80%", "54%", "73%", "63%", "3",4);
+        addQuestionsToDataBase(db,"How tall is Mount Everest?", "8398m", "8530m", "8713m", "8848m", "4",4);
+        addQuestionsToDataBase(db,"Which country is to the west of Sweden?", "Finland", "Norway", "Denmark", "Russia", "1",4);
+        addQuestionsToDataBase(db,"What is earth's second largest continent by population", "South America", "Africa", "North America", "Europe", "2",4);
+        addQuestionsToDataBase(db,"In which american state is Grand Canyon?", "Alaska", "Texas", "Virginia", "Arizona", "4",4);
+        addQuestionsToDataBase(db,"What is the longest river in South America?", "Madeira", "Amazon", "Parana", "Araguaia", "2",4);
+        addQuestionsToDataBase(db,"What is earth's largest continent by surface size?", "Africa", "North America", "Europe", "Asia", "4",4);
+        addQuestionsToDataBase(db,"What is the largest lake in Africa?", "Lake Malawi", "Lake Albert", "Lake Victoria", "Lake Tanganyika", "3",4);
 
         // Mathematics questions
         addQuestionsToDataBase(db,"What is the value of pi(π)?", "3.14159265359", "3.1321343", "3.412131436", "4.130054", "1", 5);
