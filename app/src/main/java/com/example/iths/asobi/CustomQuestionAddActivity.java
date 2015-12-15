@@ -113,7 +113,7 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         db.addQuestionsToDataBase(db.getWritableDatabase(), question, alt1, alt2, alt3, alt4, correct, catId);
 
         Context context = getApplicationContext();
-        CharSequence text = (getString(R.string.question_addded));
+        CharSequence text = (getString(R.string.question_added));
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();

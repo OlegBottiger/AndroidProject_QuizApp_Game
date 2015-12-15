@@ -7,9 +7,10 @@
     <TextView
         android:id="@+id/high_score_rank_test"
         android:layout_width="wrap_content"
-        android:gravity="center_horizontal"
+        android:layout_gravity="left"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:paddingLeft="@dimen/activity_vertical_margin"
         android:text="@string/rank"
         android:textSize="20sp"
         android:textColor="@drawable/startcolor"

@@ -27,7 +27,7 @@
     <string name="right_answer">Right answer:</string>
     <string name="right_answer_int">Which alternative is the right one</string>
     <string name="add_button_text">Add</string>
-    <string name="hint_text">Which of the answers above is the right one. Please right down the number of the answer below</string>
+    <string name="hint_text"><![CDATA[Which of the answers above is the right one. \nPlease right down the number of the answer below]]></string>
     <string name="custom_categories">Categories</string>
     <string name="hint_button_A">A</string>
     <string name="hint_button_B">B</string>
@@ -87,4 +87,6 @@
     <string name="profile_item">PROFILE</string>
     <string name="round">Round:</string>
     <string name="one">1</string>
+    <string name="category_message"><![CDATA[This is where you add your own categories. \nTo start with they will be empty]]></string>
+    <string name="hint_right_answer">Number of right answer</string>
 </resources>
