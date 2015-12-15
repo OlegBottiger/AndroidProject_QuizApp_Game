@@ -277,16 +277,16 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db,context.getString(R.string.question_geography_10),context.getString(R.string.geography_answer_10_1),context.getString(R.string.geography_answer_10_2),context.getString(R.string.geography_answer_10_3),context.getString(R.string.geography_answer_10_4),context.getString(R.string.geography_correct_answer_10),4);
 
         // Mathematics questions
-        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_1), "3.14159265359", "3.1321343", "3.412131436", "4.130054", "1", 5);
-        addQuestionsToDataBase(db,"What is 2+2?", "22", "Cheese Cakes", "2", "4", "4", 5);
-        addQuestionsToDataBase(db,"How do you calculate the circumference of a circle?", "C=2πr", "C=2πd", "C=4πr", "A=wl", "1", 5);
-        addQuestionsToDataBase(db,"What is x times x?", "2x", "x^2", "2x2", "x2", "2", 5);
-        addQuestionsToDataBase(db,"What is x+3=5", "x=5", "x=3", "x=2", "x=4", "3", 5);
-        addQuestionsToDataBase(db,"How many sides does a hexagon have?", "4", "5", "6", "7", "3", 5);
-        addQuestionsToDataBase(db,"What is the square root of 49?", "6", "9", "4", "7", "4", 5);
-        addQuestionsToDataBase(db,"What is 13 times 13?", "169", "157", "175", "163", "1", 5);
-        addQuestionsToDataBase(db,"What is 213-75", "123", "130", "138", "143", "3", 5);
-        addQuestionsToDataBase(db,"If 1 euro = 9,30 SEK, how many SEK do you get from 7 euros?", "63,70 SEK", "65,10 SEK", "67,40 SEK", "64,85 SEK", "2", 5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_1),context.getString(R.string.mathematics_answer_1_1),context.getString(R.string.mathematics_answer_1_2),context.getString(R.string.mathematics_answer_1_3),context.getString(R.string.mathematics_answer_1_4),context.getString(R.string.mathematics_correct_answer_1),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_2),context.getString(R.string.mathematics_answer_2_1),context.getString(R.string.mathematics_answer_2_2),context.getString(R.string.mathematics_answer_2_3),context.getString(R.string.mathematics_answer_2_4),context.getString(R.string.mathematics_correct_answer_2),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_3),context.getString(R.string.mathematics_answer_3_1),context.getString(R.string.mathematics_answer_3_2),context.getString(R.string.mathematics_answer_3_3),context.getString(R.string.mathematics_answer_3_4),context.getString(R.string.mathematics_correct_answer_3),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_4),context.getString(R.string.mathematics_answer_4_1),context.getString(R.string.mathematics_answer_4_2),context.getString(R.string.mathematics_answer_4_3),context.getString(R.string.mathematics_answer_4_4),context.getString(R.string.mathematics_correct_answer_4),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_5),context.getString(R.string.mathematics_answer_5_1),context.getString(R.string.mathematics_answer_5_2),context.getString(R.string.mathematics_answer_5_3),context.getString(R.string.mathematics_answer_5_4),context.getString(R.string.mathematics_correct_answer_5),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_6),context.getString(R.string.mathematics_answer_6_1),context.getString(R.string.mathematics_answer_6_2),context.getString(R.string.mathematics_answer_6_3),context.getString(R.string.mathematics_answer_6_4),context.getString(R.string.mathematics_correct_answer_6),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_7),context.getString(R.string.mathematics_answer_7_1),context.getString(R.string.mathematics_answer_7_2),context.getString(R.string.mathematics_answer_7_3),context.getString(R.string.mathematics_answer_7_4),context.getString(R.string.mathematics_correct_answer_7),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_8),context.getString(R.string.mathematics_answer_8_1),context.getString(R.string.mathematics_answer_8_2),context.getString(R.string.mathematics_answer_8_3),context.getString(R.string.mathematics_answer_8_4),context.getString(R.string.mathematics_correct_answer_8),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_9),context.getString(R.string.mathematics_answer_9_1),context.getString(R.string.mathematics_answer_9_2),context.getString(R.string.mathematics_answer_9_3),context.getString(R.string.mathematics_answer_9_4),context.getString(R.string.mathematics_correct_answer_9),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_10),context.getString(R.string.mathematics_answer_10_1),context.getString(R.string.mathematics_answer_10_2),context.getString(R.string.mathematics_answer_10_3),context.getString(R.string.mathematics_answer_10_4),context.getString(R.string.mathematics_correct_answer_10),5);
 
         // Games questions
         addQuestionsToDataBase(db,"What is Mario & Luigi’s last name?","Luigi","Mario","Lombardi","Alfredo","2",6);

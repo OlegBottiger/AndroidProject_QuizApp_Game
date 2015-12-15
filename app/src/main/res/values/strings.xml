@@ -325,4 +325,63 @@
     <string name="geography_answer_10_4">Lake Tanganyika</string>
     <string name="geography_correct_answer_10">3</string>
     <string name="question_mathematics_1">What is the value of pi(π)?</string>
+    <string name="mathematics_answer_1_1">3.14159265359</string>
+    <string name="mathematics_answer_1_2">3.1321343</string>
+    <string name="mathematics_answer_1_3">3.412131436</string>
+    <string name="mathematics_answer_1_4">4.130054</string>
+    <string name="mathematics_correct_answer_1">1</string>
+    <string name="question_mathematics_2">What is 2+2?</string>
+    <string name="mathematics_answer_2_1">22</string>
+    <string name="mathematics_answer_2_2">Cheese Cakes</string>
+    <string name="mathematics_answer_2_3">2</string>
+    <string name="mathematics_answer_2_4">4</string>
+    <string name="mathematics_correct_answer_2">4</string>
+    <string name="question_mathematics_3">How do you calculate the circumference of a circle?</string>
+    <string name="mathematics_answer_3_1">C=2πr</string>
+    <string name="mathematics_answer_3_2">C=2πd</string>
+    <string name="mathematics_answer_3_3">C=4πr</string>
+    <string name="mathematics_answer_3_4">A=wl</string>
+    <string name="mathematics_correct_answer_3">1</string>
+    <string name="question_mathematics_4">What is x times x?</string>
+    <string name="mathematics_answer_4_1">2x</string>
+    <string name="mathematics_answer_4_2">x^2</string>
+    <string name="mathematics_answer_4_3">2x2</string>
+    <string name="mathematics_answer_4_4">x2</string>
+    <string name="mathematics_correct_answer_4">2</string>
+    <string name="question_mathematics_5">What is x+3=5</string>
+    <string name="mathematics_answer_5_1">x=5</string>
+    <string name="mathematics_answer_5_2">x=3</string>
+    <string name="mathematics_answer_5_3">x=2</string>
+    <string name="mathematics_answer_5_4">x=4</string>
+    <string name="mathematics_correct_answer_5">3</string>
+    <string name="question_mathematics_6">How many sides does a hexagon have?</string>
+    <string name="mathematics_answer_6_1">4</string>
+    <string name="mathematics_answer_6_2">5</string>
+    <string name="mathematics_answer_6_3">6</string>
+    <string name="mathematics_answer_6_4">7</string>
+    <string name="mathematics_correct_answer_6">3</string>
+    <string name="question_mathematics_7">What is the square root of 49?</string>
+    <string name="mathematics_answer_7_1">6</string>
+    <string name="mathematics_answer_7_2">9</string>
+    <string name="mathematics_answer_7_3">4</string>
+    <string name="mathematics_answer_7_4">7</string>
+    <string name="mathematics_correct_answer_7">4</string>
+    <string name="question_mathematics_8">What is 13 times 13?</string>
+    <string name="mathematics_answer_8_1">169</string>
+    <string name="mathematics_answer_8_2">157</string>
+    <string name="mathematics_answer_8_3">175</string>
+    <string name="mathematics_answer_8_4">163</string>
+    <string name="mathematics_correct_answer_8">1</string>
+    <string name="question_mathematics_9">What is 213-75</string>
+    <string name="mathematics_answer_9_1">123</string>
+    <string name="mathematics_answer_9_2">130</string>
+    <string name="mathematics_answer_9_3">138</string>
+    <string name="mathematics_answer_9_4">143</string>
+    <string name="mathematics_correct_answer_9">3</string>
+    <string name="question_mathematics_10">If 1 euro = 9,30 SEK, how many SEK do you get from 7 euros?</string>
+    <string name="mathematics_answer_10_1">63,70 SEK</string>
+    <string name="mathematics_answer_10_2">65,10 SEK</string>
+    <string name="mathematics_answer_10_3">67,40 SEK</string>
+    <string name="mathematics_answer_10_4">64,85 SEK</string>
+    <string name="mathematics_correct_answer_10">2</string>
 </resources>
