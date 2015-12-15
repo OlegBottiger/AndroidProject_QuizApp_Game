@@ -267,17 +267,17 @@ public class DBHelper extends SQLiteOpenHelper {
         // Geography questions
         addQuestionsToDataBase(db,context.getString(R.string.question_geography_1),context.getString(R.string.geography_answer_1_1),context.getString(R.string.geography_answer_1_2),context.getString(R.string.geography_answer_1_3),context.getString(R.string.geography_answer_1_4),context.getString(R.string.geography_correct_answer_1),4);
         addQuestionsToDataBase(db,context.getString(R.string.question_geography_2),context.getString(R.string.geography_answer_2_1),context.getString(R.string.geography_answer_2_2),context.getString(R.string.geography_answer_2_3),context.getString(R.string.geography_answer_2_4),context.getString(R.string.geography_correct_answer_2),4);
-        addQuestionsToDataBase(db,"What percentage of Japan consist of mountains?", "80%", "54%", "73%", "63%", "3",4);
-        addQuestionsToDataBase(db,"How tall is Mount Everest?", "8398m", "8530m", "8713m", "8848m", "4",4);
-        addQuestionsToDataBase(db,"Which country is to the west of Sweden?", "Finland", "Norway", "Denmark", "Russia", "1",4);
-        addQuestionsToDataBase(db,"What is earth's second largest continent by population", "South America", "Africa", "North America", "Europe", "2",4);
-        addQuestionsToDataBase(db,"In which american state is Grand Canyon?", "Alaska", "Texas", "Virginia", "Arizona", "4",4);
-        addQuestionsToDataBase(db,"What is the longest river in South America?", "Madeira", "Amazon", "Parana", "Araguaia", "2",4);
-        addQuestionsToDataBase(db,"What is earth's largest continent by surface size?", "Africa", "North America", "Europe", "Asia", "4",4);
-        addQuestionsToDataBase(db,"What is the largest lake in Africa?", "Lake Malawi", "Lake Albert", "Lake Victoria", "Lake Tanganyika", "3",4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_3),context.getString(R.string.geography_answer_3_1),context.getString(R.string.geography_answer_3_2),context.getString(R.string.geography_answer_3_3),context.getString(R.string.geography_answer_3_4),context.getString(R.string.geography_correct_answer_3),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_4),context.getString(R.string.geography_answer_4_1),context.getString(R.string.geography_answer_4_2),context.getString(R.string.geography_answer_4_3),context.getString(R.string.geography_answer_4_4),context.getString(R.string.geography_correct_answer_4),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_5),context.getString(R.string.geography_answer_5_1),context.getString(R.string.geography_answer_5_2),context.getString(R.string.geography_answer_5_3),context.getString(R.string.geography_answer_5_4),context.getString(R.string.geography_correct_answer_5),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_6),context.getString(R.string.geography_answer_6_1),context.getString(R.string.geography_answer_6_2),context.getString(R.string.geography_answer_6_3),context.getString(R.string.geography_answer_6_4),context.getString(R.string.geography_correct_answer_6),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_7),context.getString(R.string.geography_answer_7_1),context.getString(R.string.geography_answer_7_2),context.getString(R.string.geography_answer_7_3),context.getString(R.string.geography_answer_7_4),context.getString(R.string.geography_correct_answer_7),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_8),context.getString(R.string.geography_answer_8_1),context.getString(R.string.geography_answer_8_2),context.getString(R.string.geography_answer_8_3),context.getString(R.string.geography_answer_8_4),context.getString(R.string.geography_correct_answer_8),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_9),context.getString(R.string.geography_answer_9_1),context.getString(R.string.geography_answer_9_2),context.getString(R.string.geography_answer_9_3),context.getString(R.string.geography_answer_9_4),context.getString(R.string.geography_correct_answer_9),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_10),context.getString(R.string.geography_answer_10_1),context.getString(R.string.geography_answer_10_2),context.getString(R.string.geography_answer_10_3),context.getString(R.string.geography_answer_10_4),context.getString(R.string.geography_correct_answer_10),4);
 
         // Mathematics questions
-        addQuestionsToDataBase(db,"What is the value of pi(π)?", "3.14159265359", "3.1321343", "3.412131436", "4.130054", "1", 5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_1), "3.14159265359", "3.1321343", "3.412131436", "4.130054", "1", 5);
         addQuestionsToDataBase(db,"What is 2+2?", "22", "Cheese Cakes", "2", "4", "4", 5);
         addQuestionsToDataBase(db,"How do you calculate the circumference of a circle?", "C=2πr", "C=2πd", "C=4πr", "A=wl", "1", 5);
         addQuestionsToDataBase(db,"What is x times x?", "2x", "x^2", "2x2", "x2", "2", 5);
