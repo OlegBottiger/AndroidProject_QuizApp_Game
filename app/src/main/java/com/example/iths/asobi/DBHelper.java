@@ -242,15 +242,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Music questions
         addQuestionsToDataBase(db,context.getString(R.string.question_music_1),context.getString(R.string.music_answer_1_1),context.getString(R.string.music_answer_1_2),context.getString(R.string.music_answer_1_3),context.getString(R.string.music_answer_1_4),context.getString(R.string.music_correct_answer_1),2);
-        addQuestionsToDataBase(db,context.getString(R.string.question_music_2),context.getString(R.string.music_answer_2_1),context.getString(R.string.music_answer_2_2),context.getString(R.string.music_answer_2_3),context.getString(R.string.music_answer_2_4),context.getString(R.string.msuic_correct_answer_2),2);
-        addQuestionsToDataBase(db,"In which year was the group ABBA created?", "1971", "1972", "1973", "1974", "2", 2);
-        addQuestionsToDataBase(db,"From what country does ACDC originate?", "USA", "Belgium", "Austria", "Australia", "4",2);
-        addQuestionsToDataBase(db,"Which country won Eurovision song contest 1985?", "Norway", "Sweden", "Denmark", "England", "1", 2);
-        addQuestionsToDataBase(db,"Who wrote the song Moonlight Shadow?", "Mick Jagger", "Elton John", "Mike Oldfield", "Céline Dion", "3", 2);
-        addQuestionsToDataBase(db,"In what year was the album Dark Side of The Moon released?", "1972", "1969", "1970", "1973", "4", 2);
-        addQuestionsToDataBase(db,"In what year did the singer Donna Summer die?", "2008", "2012", "2010", "2014", "2", 2);
-        addQuestionsToDataBase(db,"When did the Woodstock festival take place?", "1969", "1962", "1966", "1973", "1", 2);
-        addQuestionsToDataBase(db,"When was the song Darude Sandstorm released?", "1996", "1997", "1998", "1999", "4", 2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_2),context.getString(R.string.music_answer_2_1),context.getString(R.string.music_answer_2_2),context.getString(R.string.music_answer_2_3),context.getString(R.string.music_answer_2_4),context.getString(R.string.music_correct_answer_2),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_3),context.getString(R.string.music_answer_3_1),context.getString(R.string.music_answer_3_2),context.getString(R.string.music_answer_3_3),context.getString(R.string.music_answer_3_4),context.getString(R.string.music_correct_answer_3),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_4),context.getString(R.string.music_answer_4_1),context.getString(R.string.music_answer_4_2),context.getString(R.string.music_answer_4_3),context.getString(R.string.music_answer_4_4),context.getString(R.string.music_correct_answer_4),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_5),context.getString(R.string.music_answer_5_1),context.getString(R.string.music_answer_5_2),context.getString(R.string.music_answer_5_3),context.getString(R.string.music_answer_5_4),context.getString(R.string.music_correct_answer_5),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_6),context.getString(R.string.music_answer_6_1),context.getString(R.string.music_answer_6_2),context.getString(R.string.music_answer_6_3),context.getString(R.string.music_answer_6_4),context.getString(R.string.music_correct_answer_6),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_7),context.getString(R.string.music_answer_7_1),context.getString(R.string.music_answer_7_2),context.getString(R.string.music_answer_7_3),context.getString(R.string.music_answer_7_4),context.getString(R.string.music_correct_answer_7),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_8),context.getString(R.string.music_answer_8_1),context.getString(R.string.music_answer_8_2),context.getString(R.string.music_answer_8_3),context.getString(R.string.music_answer_8_4),context.getString(R.string.music_correct_answer_8),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_9),context.getString(R.string.music_answer_9_1),context.getString(R.string.music_answer_9_2),context.getString(R.string.music_answer_9_3),context.getString(R.string.music_answer_9_4),context.getString(R.string.music_correct_answer_9),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_10),context.getString(R.string.music_answer_10_1),context.getString(R.string.music_answer_10_2),context.getString(R.string.music_answer_10_3),context.getString(R.string.music_answer_10_4),context.getString(R.string.music_correct_answer_10),2);
 
         // Science questions
         addQuestionsToDataBase(db,"Who came up with the Theory of Relativity?", "Robert Brown", "John Dalton", "Erwin Schrödinger", "Albert Einstein", "4", 3);
