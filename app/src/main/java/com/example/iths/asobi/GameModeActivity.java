@@ -17,7 +17,6 @@ public class GameModeActivity extends AppCompatActivity {
     private ListView listview;
     private DBHelper db;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

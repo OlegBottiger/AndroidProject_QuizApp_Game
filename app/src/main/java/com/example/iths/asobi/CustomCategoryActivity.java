@@ -38,13 +38,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_category);
 
-        TextView question = (TextView) findViewById(R.id.debug_question);
-        TextView ans1 = (TextView) findViewById(R.id.debug_ans1);
-        TextView ans2 = (TextView) findViewById(R.id.debug_ans2);
-        TextView ans3 = (TextView) findViewById(R.id.debug_ans3);
-        TextView ans4 = (TextView) findViewById(R.id.debug_ans4);
-//        TextView correctect = (TextView) findViewById(R.id.debug_correct_answer);
-
         listview = (ListView) findViewById(R.id.list_of_categories);
         db=DBHelper.getDbHelperInstance(this);
 
@@ -192,11 +185,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
             cursor = db.getOneTable(db.getAllCategoryTable());
             adapter.changeCursor(cursor);
             categoryInput.getText().clear();
-            Context context = getApplicationContext();
-            CharSequence text = (getString(R.string.category_added));
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            Toast.makeText(this, String.format(getString(R.string.category_added), categoryName), Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -67,7 +67,7 @@
     <string name="you_placed_xth_place_on_high_score">You placed %1$sth place on High Score</string>
     <string name="category_already_exists">%1$s already exists.</string>
     <string name="category_added">Category added!</string>
-    <string name="question_addded">Question added!</string>
+    <string name="question_added">Question added!</string>
     <string name="you_need_at_least_five_questions">You need at least 5 questions in this category!</string>
     <string name="paragraf1">This is where you add your own categories. To start with they will be empty</string>
     <string name="all_questions">All Questions</string>
