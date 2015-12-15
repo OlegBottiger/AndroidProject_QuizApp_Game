@@ -2,6 +2,7 @@ package com.example.iths.asobi;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -45,6 +46,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static DBHelper dbHelper = null;
     private SQLiteDatabase db;
     private String sql;
+    private Context context =null;
+
 
     /**
      * If there is a DBHelper it returns it,
@@ -59,10 +62,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return dbHelper;
     }
 
-    private DBHelper(Context context){
+    private DBHelper(Context context) {
         super(context, GAME_DB, null, VERSION);
+        this.context = context;
     }
-
     /**
      * @return String "name"
      */
@@ -226,20 +229,20 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Sets information to WHOLE_QUESTION_TABLE
         // Sports questions
-        addQuestionsToDataBase(db,"Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","2",1);
-        addQuestionsToDataBase(db,"Who won The World Highland Games Championships a record six times?","Geoff Capes","Ben Affleck","Jonathan Summers","Dick Johnsson","1",1);
-        addQuestionsToDataBase(db,"What jobs did Mike ‘Fluff’ Cowan, Jim ‘Bones’ Mackay and Fanny Sunesson do?","Coaches","Golf caddies","Equipment manager","Doctors","2",1);
-        addQuestionsToDataBase(db,"Which former rugby player once called the English RFU committee 'Old Farts'?", "Ben Thompsson", "Jay Chris", "Will Carling", "John Smith", "3",1);
-        addQuestionsToDataBase(db,"In inches, how big is the diameter of a basketball hoop?", "11", "13", "16", "18", "4",1);
-        addQuestionsToDataBase(db,"What is the world record in highjump for men?", "2,45m", "2,42m", "2,40m", "2,49m", "1", 1);
-        addQuestionsToDataBase(db,"How many times have Brazil won the worlds championship in football?", "3", "5", "7", "9", "2", 1);
-        addQuestionsToDataBase(db,"Which NHL hockey club Henrik Lundqvist go to?", "Ottawa Senators", "Detroit Red Wings", "New York Rangers", "Calgary Flames", "3", 1);
-        addQuestionsToDataBase(db,"In what year was the summer olympic games in Sweden?", "1908", "1912", "1916", "1920", "2", 1);
-        addQuestionsToDataBase(db,"In what year was the athletics world championship in Gothenburg?", "1992", "1993", "1994", "1995", "4", 1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_1),context.getString(R.string.sports_answer_1_1),context.getString(R.string.sports_answer_1_2),context.getString(R.string.sports_answer_1_3),context.getString(R.string.sports_answer_1_4),context.getString(R.string.sports_correct_answer_1),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_2),context.getString(R.string.sports_answer_2_1),context.getString(R.string.sports_answer_2_2),context.getString(R.string.sports_answer_2_3),context.getString(R.string.sports_answer_2_4),context.getString(R.string.sports_correct_answer_2),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_3),context.getString(R.string.sports_answer_3_1),context.getString(R.string.sports_answer_3_2),context.getString(R.string.sports_answer_3_3),context.getString(R.string.sports_answer_3_4),context.getString(R.string.sports_correct_answer_3),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_4),context.getString(R.string.sports_answer_4_1),context.getString(R.string.sports_answer_4_2),context.getString(R.string.sports_answer_4_3),context.getString(R.string.sports_answer_4_4),context.getString(R.string.sports_correct_answer_4),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_5),context.getString(R.string.sports_answer_5_1),context.getString(R.string.sports_answer_5_2),context.getString(R.string.sports_answer_5_3),context.getString(R.string.sports_answer_5_4),context.getString(R.string.sports_correct_answer_5),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_6),context.getString(R.string.sports_answer_6_1),context.getString(R.string.sports_answer_6_2),context.getString(R.string.sports_answer_6_3),context.getString(R.string.sports_answer_6_4),context.getString(R.string.sports_correct_answer_6),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_7),context.getString(R.string.sports_answer_7_1),context.getString(R.string.sports_answer_7_2),context.getString(R.string.sports_answer_7_3),context.getString(R.string.sports_answer_7_4),context.getString(R.string.sports_correct_answer_7),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_8),context.getString(R.string.sports_answer_8_1),context.getString(R.string.sports_answer_8_2),context.getString(R.string.sports_answer_8_3),context.getString(R.string.sports_answer_8_4),context.getString(R.string.sports_correct_answer_8),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_9),context.getString(R.string.sports_answer_9_1),context.getString(R.string.sports_answer_9_2),context.getString(R.string.sports_answer_9_3),context.getString(R.string.sports_answer_9_4),context.getString(R.string.sports_correct_answer_9),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_10),context.getString(R.string.sports_answer_10_1),context.getString(R.string.sports_answer_10_2),context.getString(R.string.sports_answer_10_3),context.getString(R.string.sports_answer_10_4),context.getString(R.string.sports_correct_answer_10),1);
 
         // Music questions
-        addQuestionsToDataBase(db,"In which country was Cliff Richard born in?", "England", "Ireland", "India", "USA", "3", 2);
-        addQuestionsToDataBase(db,"What is Alice Cooper's real name?", "Robert Smith", "David Hammich", "Mich Hammond", "Vincent Furnier", "4", 2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_1),context.getString(R.string.music_answer_1_1),context.getString(R.string.music_answer_1_2),context.getString(R.string.music_answer_1_3),context.getString(R.string.music_answer_1_4),context.getString(R.string.music_correct_answer_1),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_2),context.getString(R.string.music_answer_2_1),context.getString(R.string.music_answer_2_2),context.getString(R.string.music_answer_2_3),context.getString(R.string.music_answer_2_4),context.getString(R.string.msuic_correct_answer_2),2);
         addQuestionsToDataBase(db,"In which year was the group ABBA created?", "1971", "1972", "1973", "1974", "2", 2);
         addQuestionsToDataBase(db,"From what country does ACDC originate?", "USA", "Belgium", "Austria", "Australia", "4",2);
         addQuestionsToDataBase(db,"Which country won Eurovision song contest 1985?", "Norway", "Sweden", "Denmark", "England", "1", 2);
@@ -297,6 +300,8 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db,"What's your robot called in Fallout4?", "Hedreck", "Codsworth", "Tincan", "Millow", "2", 6);
         addQuestionsToDataBase(db,"In what year was the game The sims released?", "1998", "1999", "2000", "2001", "3", 6);
     }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
