@@ -289,16 +289,16 @@ public class DBHelper extends SQLiteOpenHelper {
         addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_10),context.getString(R.string.mathematics_answer_10_1),context.getString(R.string.mathematics_answer_10_2),context.getString(R.string.mathematics_answer_10_3),context.getString(R.string.mathematics_answer_10_4),context.getString(R.string.mathematics_correct_answer_10),5);
 
         // Games questions
-        addQuestionsToDataBase(db,"What is Mario & Luigi’s last name?","Luigi","Mario","Lombardi","Alfredo","2",6);
-        addQuestionsToDataBase(db,"When was Nintendo as a company founded?","1991","1979","1889","1981","3",6);
-        addQuestionsToDataBase(db,"Before Nintendo made Video Games they made...","Card Games","Chairs","Electronics","Amusement Parks","1",6);
-        addQuestionsToDataBase(db,"Who is the creator of Super Mario?", "Satoru Iwata", "Reginald Fils-Aime", "Shigeru Miyamoto", "Gunpei Yokoi", "3",6);
-        addQuestionsToDataBase(db,"What is the name of the main character in the “The Legend of Zelda”?","Zelda","Link","Roy","Master Chief","2",6);
-        addQuestionsToDataBase(db,"How many Pokémons were in the first generation of Pokémon? ","150","100","200","151","4",6);
-        addQuestionsToDataBase(db,"Which platform was Halo: Combat Evolved first in development for? ","MAC OS X","Windows","Linux","Xbox","1",6);
-        addQuestionsToDataBase(db,"Which game has the most unique players each month?", "League of Legends", "Dota2", "Counter-Strike:GO", "World of Warcraft", "1", 6);
-        addQuestionsToDataBase(db,"What's your robot called in Fallout4?", "Hedreck", "Codsworth", "Tincan", "Millow", "2", 6);
-        addQuestionsToDataBase(db,"In what year was the game The sims released?", "1998", "1999", "2000", "2001", "3", 6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_1),context.getString(R.string.games_answer_1_1),context.getString(R.string.games_answer_1_2),context.getString(R.string.games_answer_1_3),context.getString(R.string.games_answer_1_4),context.getString(R.string.games_correct_answer_1),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_2),context.getString(R.string.games_answer_2_1),context.getString(R.string.games_answer_2_2),context.getString(R.string.games_answer_2_3),context.getString(R.string.games_answer_2_4),context.getString(R.string.games_correct_answer_2),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_3),context.getString(R.string.games_answer_3_1),context.getString(R.string.games_answer_3_2),context.getString(R.string.games_answer_3_3),context.getString(R.string.games_answer_3_4),context.getString(R.string.games_correct_answer_3),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_4),context.getString(R.string.games_answer_4_1),context.getString(R.string.games_answer_4_2),context.getString(R.string.games_answer_4_3),context.getString(R.string.games_answer_4_4),context.getString(R.string.games_correct_answer_4),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_5),context.getString(R.string.games_answer_5_1),context.getString(R.string.games_answer_5_2),context.getString(R.string.games_answer_5_3),context.getString(R.string.games_answer_5_4),context.getString(R.string.games_correct_answer_5),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_6),context.getString(R.string.games_answer_6_1),context.getString(R.string.games_answer_6_2),context.getString(R.string.games_answer_6_3),context.getString(R.string.games_answer_6_4),context.getString(R.string.games_correct_answer_6),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_7),context.getString(R.string.games_answer_7_1),context.getString(R.string.games_answer_7_2),context.getString(R.string.games_answer_7_3),context.getString(R.string.games_answer_7_4),context.getString(R.string.games_correct_answer_7),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_8),context.getString(R.string.games_answer_8_1),context.getString(R.string.games_answer_8_2),context.getString(R.string.games_answer_8_3),context.getString(R.string.games_answer_8_4),context.getString(R.string.games_correct_answer_8),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_9),context.getString(R.string.games_answer_9_1),context.getString(R.string.games_answer_9_2),context.getString(R.string.games_answer_9_3),context.getString(R.string.games_answer_9_4),context.getString(R.string.games_correct_answer_9),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_10),context.getString(R.string.games_answer_10_1),context.getString(R.string.games_answer_10_2),context.getString(R.string.games_answer_10_3),context.getString(R.string.games_answer_10_4),context.getString(R.string.games_correct_answer_10),6);
     }
 
 
