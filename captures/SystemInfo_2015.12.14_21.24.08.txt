@@ -1,0 +1,38 @@
+Applications Memory Usage (kB):
+Uptime: 17375559 Realtime: 17375559
+
+** MEMINFO in pid 4748 [com.example.iths.asobi] **
+                   Pss  Private  Private  Swapped     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap     6594     6436        0        0    17239    17239     2216
+  Dalvik Heap    24858    24792        0        0    27479    24599     2880
+ Dalvik Other      356      344        0        0                           
+        Stack      116      116        0        0                           
+       Cursor        4        4        0        0                           
+    Other dev        4        0        4        0                           
+     .so mmap      788      120        4        0                           
+    .apk mmap      192        0       16        0                           
+    .ttf mmap       77        0       52        0                           
+    .dex mmap     2224        0     2220        0                           
+    code mmap     1114        0       84        0                           
+   image mmap     1131      616        0        0                           
+   Other mmap       23        4        0        0                           
+      Unknown       73       72        0        0                           
+        TOTAL    37554    32504     2380        0    44718    41838     5096
+ 
+ Objects
+               Views:      188         ViewRootImpl:        6
+         AppContexts:        7           Activities:        5
+              Assets:        2        AssetManagers:        2
+       Local Binders:       13        Proxy Binders:       20
+    Death Recipients:        0
+     OpenSSL Sockets:        0
+ 
+ SQL
+         MEMORY_USED:      104
+  PAGECACHE_OVERFLOW:       28          MALLOC_SIZE:       62
+ 
+ DATABASES
+      pgsz     dbsz   Lookaside(b)          cache  Dbname
+         4       44             19         1/16/2  /data/data/com.example.iths.asobi/databases/Game_Databas

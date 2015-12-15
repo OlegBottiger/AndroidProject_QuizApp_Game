@@ -1,0 +1,37 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      com.example.iths.asobi.MainActivity:
+        39dc49fb com.example.iths.asobi/.MainActivity filter 8c87ced
+          Action: "com.example.iths.asobi.MainActivity"
+          Category: "android.intent.category.DEFAULT"
+      android.intent.action.MAIN:
+        34782a18 com.example.iths.asobi/.StartActivity filter 1fbb9722
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Key Set Manager:
+  [com.example.iths.asobi]
+      Signing KeySets: 22
+
+Packages:
+  Package [com.example.iths.asobi] (19bb7c4):
+    userId=10060 gids=[]
+    pkg=Package{1a8d6c71 com.example.iths.asobi}
+    codePath=/data/app/com.example.iths.asobi-2
+    resourcePath=/data/app/com.example.iths.asobi-2
+    legacyNativeLibraryDir=/data/app/com.example.iths.asobi-2/lib
+    primaryCpuAbi=null
+    secondaryCpuAbi=null
+    versionCode=1 targetSdk=23
+    versionName=1.0
+    applicationInfo=ApplicationInfo{35a7ca56 com.example.iths.asobi}
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    dataDir=/data/data/com.example.iths.asobi
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2015-12-14 15:34:13
+    firstInstallTime=2015-12-14 14:43:50
+    lastUpdateTime=2015-12-14 15:34:14
+    signatures=PackageSignatures{1fc50573 [c9b8ad7]}
+    permissionsFixed=true haveGids=true installStatus=1
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    User 0:  installed=true hidden=false stopped=false notLaunched=false enabled=0

@@ -1,0 +1,98 @@
+Applications Graphics Acceleration Info:
+Uptime: 17359779 Realtime: 17359779
+
+** Graphics info for pid 4748 [com.example.iths.asobi] **
+
+Recent DisplayList operations
+              Save
+              Save
+              DrawBitmap
+              RestoreToCount
+            DrawRenderNode
+              Save
+              DrawBitmap
+              RestoreToCount
+            DrawRenderNode
+              DrawRenderNode
+                DrawRenderNode
+                Save
+                Translate
+                DrawBitmapRect
+                RestoreToCount
+                Save
+                ClipRect
+                Translate
+                RestoreToCount
+              DrawRenderNode
+                DrawRenderNode
+                Save
+                ConcatMatrix
+                Save
+                Save
+                DrawBitmap
+                RestoreToCount
+    RestoreToCount
+  DrawRenderNode
+    DrawRenderNode
+      DrawRect
+RestoreToCount
+DrawRect
+multiDraw
+  DrawText
+multiDraw
+  DrawPatch
+DrawPatch
+DrawText
+DrawShadow
+DrawRoundRect
+DrawText
+DrawShadow
+DrawRect
+DrawRect
+DrawText
+DrawBitmap
+DrawBitmap
+DrawBitmapRect
+DrawBitmap
+
+Caches:
+Current memory usage / total memory usage (bytes):
+  TextureCache         22793540 / 25165824
+  LayerCache                  0 / 16777216 (numLayers = 0)
+  Garbage layers              0
+  Active layers               0
+  RenderBufferCache           0 /  2097152
+  GradientCache               0 /   524288
+  PathCache                   0 / 10485760
+  TessellationCache        1824 /  1048576
+  TextDropShadowCache         0 /  2097152
+  PatchCache                128 /   131072
+  FontRenderer 0 A8      524288 /   524288
+  FontRenderer 0 RGBA         0 /        0
+  FontRenderer 0 total   524288 /   524288
+Other:
+  FboCache                    0 /        0
+Total memory usage:
+  23319780 bytes, 22.24 MB
+
+Profile data in ms:
+
+	com.example.iths.asobi/com.example.iths.asobi.StartActivity/android.view.ViewRootImpl@395abd77 (visibility=8)
+	com.example.iths.asobi/com.example.iths.asobi.MainActivity/android.view.ViewRootImpl@12671de4 (visibility=8)
+	com.example.iths.asobi/com.example.iths.asobi.CustomCategoryActivity/android.view.ViewRootImpl@35b624d (visibility=0)
+View hierarchy:
+
+  com.example.iths.asobi/com.example.iths.asobi.StartActivity/android.view.ViewRootImpl@395abd77
+  13 views, 10.36 kB of display lists
+
+  com.example.iths.asobi/com.example.iths.asobi.MainActivity/android.view.ViewRootImpl@12671de4
+  25 views, 19.92 kB of display lists
+
+  com.example.iths.asobi/com.example.iths.asobi.CustomCategoryActivity/android.view.ViewRootImpl@35b624d
+  36 views, 40.09 kB of display lists
+
+
+Total ViewRootImpl: 3
+Total Views:        74
+Total DisplayList:  70.37 kB
+
