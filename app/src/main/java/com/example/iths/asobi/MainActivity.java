@@ -116,6 +116,4 @@ public class MainActivity extends AppCompatActivity {
         mp = MediaPlayer.create(this, R.raw.test);
         mp.start();
     }
-
-
 }
