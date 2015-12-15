@@ -18,10 +18,10 @@ import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
 
-    public static final String CATEGORY="category";
-    private static final String TAG = "GameActivity debug" ;
-    private static final String TIME_LEFT = "savedTimeLeft" ;
-    public static String currentPlayer="Guest";
+    public static final String CATEGORY = "category";
+    private static final String TAG = "GameActivity debug";
+    private static final String TIME_LEFT = "savedTimeLeft";
+    public static String currentPlayer = "Guest";
     private DBHelper dbHelper;
     private TextView tvCategory;
     private TextView tvQuestion;
@@ -33,7 +33,7 @@ public class GameActivity extends AppCompatActivity {
     private String correctAnswer;
     private String playersGuess;
     private int round = 0;
-    private int showRound=1;
+    private int showRound = 1;
     private int playerScore = 0;
     private TextView mTextField;
     private CountDownTimer countDown;
@@ -79,37 +79,36 @@ public class GameActivity extends AppCompatActivity {
 
         // gets String category from GameModeActivity and saves it in getCategory.
         Intent intent = getIntent();
-        getCategory = (String)intent.getSerializableExtra(CATEGORY);
+        getCategory = (String) intent.getSerializableExtra(CATEGORY);
 
-        tvCategory = (TextView)findViewById(R.id.category_field);
+        tvCategory = (TextView) findViewById(R.id.category_field);
         tvCategory.setText(getCategory);
 
         // gets 5 random questions from the data base and sets them to the list of arrays "question"
-        if(getCategory.equals("ALL")){
+        if (getCategory.equals("ALL")) {
             questions = dbHelper.getRandomFiveQuestions(0);
-        } else{
-            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdByCategoryName(getCategory));
+        } else {
+            questions = dbHelper.getRandomFiveQuestions(dbHelper.getIdByCategoryName(getCategory));
         }
 
-
-        tvQuestion = (TextView)findViewById(R.id.question);
+        tvQuestion = (TextView) findViewById(R.id.question);
         tvQuestion.setText(questions.get(round).getQuestion());
 
-        buttonA =(Button)findViewById(R.id.buttonA);
+        buttonA = (Button) findViewById(R.id.buttonA);
         buttonA.setText(questions.get(round).getAlternative1());
 
-        buttonB =(Button)findViewById(R.id.buttonB);
+        buttonB = (Button) findViewById(R.id.buttonB);
         buttonB.setText(questions.get(round).getAlternative2());
 
-        buttonC =(Button)findViewById(R.id.buttonC);
+        buttonC = (Button) findViewById(R.id.buttonC);
         buttonC.setText(questions.get(round).getAlternative3());
 
-        buttonD =(Button)findViewById(R.id.buttonD);
+        buttonD = (Button) findViewById(R.id.buttonD);
         buttonD.setText(questions.get(round).getAlternative4());
 
         correctAnswer = questions.get(round).getCorrectAnswer();
 
-        roundView=(TextView)findViewById(R.id.round);
+        roundView = (TextView) findViewById(R.id.round);
         roundView.setText("" + showRound);
 
         //Starts the countDownTimer;
@@ -214,9 +213,10 @@ public class GameActivity extends AppCompatActivity {
      * If the answer is correct the button turns green and the player's score increases.
      * If not, the button turns red and the player receives no points.
      * Finally the method calls on the next question.
+     *
      * @param view
      */
-    public void gameInput (final View view) {
+    public void gameInput(final View view) {
 
         countDown.cancel();
 
@@ -242,7 +242,7 @@ public class GameActivity extends AppCompatActivity {
 
             view.setBackgroundColor(Color.parseColor("#00cc00"));
 
-            numberOfCorrectAnswer ++;
+            numberOfCorrectAnswer++;
 
             // Player's score increases
             playerScore = playerScore + pointsToRecieve;
@@ -250,8 +250,7 @@ public class GameActivity extends AppCompatActivity {
             TextView scoreView = (TextView) findViewById(R.id.score);
             scoreView.setText("" + playerScore);
 
-        }
-        else {
+        } else {
             view.setBackgroundColor(Color.parseColor("#ff3300"));
         }
 
@@ -287,12 +286,10 @@ public class GameActivity extends AppCompatActivity {
             intent.putExtra(ResultActivity.MINUTES, minutes);
             intent.putExtra(ResultActivity.SECONDS, seconds);
             intent.putExtra(ResultActivity.CATEGORY, getCategory);
-            intent.putExtra(ResultActivity.PLAYER, currentPlayer);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mp.stop();
             startActivity(intent);
-        }
-        else {
+        } else {
 
             tvQuestion.setText(questions.get(round).getQuestion());
             buttonA.setText(questions.get(round).getAlternative1());
@@ -311,6 +308,7 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Gets the actionbar.
+     *
      * @param menu the actionbar menu.
      * @return true so you can see the actionbar.
      */
@@ -322,6 +320,7 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Handles the item clicks here and also has a sms function.
+     *
      * @param item is the symbol showed up on the actionbar.
      * @return returns true if clicked and takes you to the next activity or sms.
      */
@@ -363,12 +362,13 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Helper method for our countdown timer. Was a part of more extended workaround with onPause and onResume.
+     *
      * @param time from wich we start our timer.
      */
     public void questionTimer(int time) {
         /*Intent intent = getIntent();
         long time = intent.getLongExtra(TIME_LEFT, 0);*/
-        if(countDown != null) {
+        if (countDown != null) {
             countDown.cancel();
             Log.d("debug", "if körs");
             countDown = new CountDownTimer(time, 1000) {
@@ -427,5 +427,14 @@ public class GameActivity extends AppCompatActivity {
             }.start();
 
         }
+
+    }
+
+    @Override
+    public void onBackPressed(){
+        countDown.cancel();
+        Intent intent = new Intent(GameActivity.this, MainActivity.class);
+        startActivity(intent);
+
     }
 }

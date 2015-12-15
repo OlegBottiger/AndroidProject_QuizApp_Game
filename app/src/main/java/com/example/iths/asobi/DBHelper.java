@@ -60,64 +60,110 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private DBHelper(Context context){
-
         super(context, GAME_DB, null, VERSION);
     }
 
+    /**
+     * @return String "name"
+     */
     public static String getNameKey() {
         return NAME_KEY;
     }
+
+    /**
+     * @return String "_id"
+     */
     public static String getIdKey() {
         return ID_KEY;
     }
+
+    /**
+     * @return String "score"
+     */
     public static String getScoreKey() {
         return SCORE_KEY;
     }
 
+    /**
+     * @return String "rank"
+     */
     public static String getRankKey() {
         return RANK_KEY;
     }
 
+    /**
+     * @return String "Players"
+     */
     public static String getPlayerTable() {
         return PLAYER_TABLE;
     }
 
+    /**
+     * @return String "allCategories"
+     */
     public static String getAllCategoryTable() {
         return ALL_CATEGORY_TABLE;
     }
 
+    /**
+     * @return String "Rank"
+     */
     public static String getRankTable() {
         return RANK_TABLE;
     }
 
+    /**
+     * @return String "wholeQuestion"
+     */
     public static String getWholeQuestionTable() {
         return WHOLE_QUESTION_TABLE;
     }
 
+    /**
+     * @return String "category"
+     */
     public static String getCategoryKey() {
         return CATEGORY_KEY;
     }
 
+    /**
+     * @return String "question"
+     */
     public static String getQuestionKey() {
         return QUESTION_KEY;
     }
 
+    /**
+     * @return String "alternative1"
+     */
     public static String getAlternative1Key() {
         return ALTERNATIVE1_KEY;
     }
 
+    /**
+     * @return String "alternative2"
+     */
     public static String getAlternative2Key() {
         return ALTERNATIVE2_KEY;
     }
 
+    /**
+     * @return String "alternative3"
+     */
     public static String getAlternative3Key() {
         return ALTERNATIVE3_KEY;
     }
 
+    /**
+     * @return String "alternative4"
+     */
     public static String getAlternative4Key() {
         return ALTERNATIVE4_KEY;
     }
 
+    /**
+     * @return String "correctAnswer"
+     */
     public static String getCorrectAnswerKey() {
         return CORRECT_ANSWER_KEY;
     }
@@ -388,7 +434,6 @@ public class DBHelper extends SQLiteOpenHelper {
         cvs.put(NAME_KEY,name);
         db.insert(PLAYER_TABLE, null, cvs);
         db.close();
-
     }
 
     /**
@@ -589,6 +634,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.delete(RANK_TABLE, ID_KEY, null);
     }
 
+    /**
+     * deletes one question from the WHOLE_QUESTION_TABLE
+     * @param ID question's unique ID
+     */
     public void deleteQuestion(String ID){
         db = getWritableDatabase();
         String[] selectionArg = {ID};

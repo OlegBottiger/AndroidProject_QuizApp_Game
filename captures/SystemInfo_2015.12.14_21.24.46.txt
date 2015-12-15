@@ -1,0 +1,177 @@
+AGGREGATED OVER LAST 24 HOURS:
+System memory usage:
+  SOn /Norm: 11 samples:
+    Cached: 318MB min, 372MB avg, 615MB max
+    Free: 13MB min, 266MB avg, 339MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 21MB min, 27MB avg, 33MB max
+    Native: 33MB min, 36MB avg, 42MB max
+       Mod : 3 samples:
+    Cached: 357MB min, 362MB avg, 366MB max
+    Free: 251MB min, 260MB avg, 276MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 28MB min, 31MB avg, 34MB max
+    Native: 35MB min, 40MB avg, 43MB max
+
+Per-Package Stats:
+  * com.example.iths.asobi / u0a59 / v1:
+      * com.example.iths.asobi / u0a59 / v1:
+               TOTAL: 69% (9.8MB-16MB-32MB/7.4MB-13MB-29MB over 300)
+                 Top: 69% (9.8MB-16MB-32MB/7.4MB-13MB-29MB over 300)
+            (Cached): 0.34% (3.1MB-3.1MB-3.1MB/2.0MB-2.0MB-2.0MB over 1)
+  * com.example.iths.asobi / u0a60 / v1:
+      * com.example.iths.asobi / u0a60 / v1:
+               TOTAL: 6.3% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+                 Top: 6.3% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+            (Cached): 0.05%
+
+Summary:
+  * com.example.iths.asobi / u0a59 / v1:
+           TOTAL: 69% (9.8MB-16MB-32MB/7.4MB-13MB-29MB over 300)
+             Top: 69% (9.8MB-16MB-32MB/7.4MB-13MB-29MB over 300)
+        (Cached): 0.34% (3.1MB-3.1MB-3.1MB/2.0MB-2.0MB-2.0MB over 1)
+  * com.example.iths.asobi / u0a60 / v1:
+           TOTAL: 6.3% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+             Top: 6.3% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+        (Cached): 0.05%
+
+Run time Stats:
+  SOn /Norm: +12h20m7s306ms
+       Mod : +1h5m49s727ms
+      TOTAL: +13h25m57s33ms
+
+Memory usage:
+  Kernel : 28MB (98 samples)
+  Native : 36MB (98 samples)
+  Persist: 111MB (261 samples)
+  Top    : 19MB (651 samples)
+  ImpFg  : 58MB (417 samples)
+  ImpBg  : 9.6MB (359 samples)
+  Service: 23MB (650 samples)
+  Receivr: 26KB (798 samples)
+  Home   : 19MB (63 samples)
+  LastAct: 6.0MB (31 samples)
+  CchEmty: 67MB (807 samples)
+  Cached : 371MB (98 samples)
+  Free   : 266MB (98 samples)
+  TOTAL  : 0.99GB
+  ServRst: 14KB (100 samples)
+
+          Start time: 2015-11-24 10:04:07
+  Total elapsed time: +13h26m30s385ms (partial) libart.so
+
+AGGREGATED OVER LAST 3 HOURS:
+System memory usage:
+  SOn /Norm: 4 samples:
+    Cached: 360MB min, 364MB avg, 373MB max
+    Free: 218MB min, 265MB avg, 292MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 31MB min, 32MB avg, 33MB max
+    Native: 35MB min, 37MB avg, 42MB max
+       Mod : 2 samples:
+    Cached: 364MB min, 365MB avg, 366MB max
+    Free: 251MB min, 263MB avg, 276MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 31MB min, 32MB avg, 34MB max
+    Native: 35MB min, 39MB avg, 43MB max
+
+Per-Package Stats:
+  * com.example.iths.asobi / u0a59 / v1:
+      * com.example.iths.asobi / u0a59 / v1:
+               TOTAL: 78% (9.8MB-17MB-32MB/7.4MB-14MB-29MB over 110)
+                 Top: 78% (9.8MB-17MB-32MB/7.4MB-14MB-29MB over 110)
+            (Cached): 0.50% (3.1MB-3.1MB-3.1MB/2.0MB-2.0MB-2.0MB over 1)
+  * com.example.iths.asobi / u0a60 / v1:
+      * com.example.iths.asobi / u0a60 / v1:
+               TOTAL: 19% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+                 Top: 19% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+            (Cached): 0.15%
+
+Summary:
+  * com.example.iths.asobi / u0a59 / v1:
+           TOTAL: 78% (9.8MB-17MB-32MB/7.4MB-14MB-29MB over 110)
+             Top: 78% (9.8MB-17MB-32MB/7.4MB-14MB-29MB over 110)
+        (Cached): 0.50% (3.1MB-3.1MB-3.1MB/2.0MB-2.0MB-2.0MB over 1)
+  * com.example.iths.asobi / u0a60 / v1:
+           TOTAL: 19% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+             Top: 19% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+        (Cached): 0.15%
+
+Run time Stats:
+  SOn /Norm: +3h17m52s509ms
+       Mod : +1h5m25s575ms
+      TOTAL: +4h23m18s84ms
+
+Memory usage:
+  Kernel : 32MB (46 samples)
+  Native : 37MB (46 samples)
+  Persist: 109MB (100 samples)
+  Top    : 21MB (235 samples)
+  ImpFg  : 66MB (189 samples)
+  ImpBg  : 9.6MB (109 samples)
+  Service: 20MB (237 samples)
+  Receivr: 8.0KB (274 samples)
+  Home   : 22MB (25 samples)
+  LastAct: 7.6MB (18 samples)
+  CchEmty: 62MB (246 samples)
+  Cached : 364MB (46 samples)
+  Free   : 265MB (46 samples)
+  TOTAL  : 0.99GB
+
+          Start time: 2015-12-14 11:12:44
+  Total elapsed time: +4h23m18s953ms (partial) libart.so
+
+CURRENT STATS:
+System memory usage:
+  SOn /Norm: 1 samples:
+    Cached: 373MB min, 373MB avg, 373MB max
+    Free: 218MB min, 218MB avg, 218MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 33MB min, 33MB avg, 33MB max
+    Native: 42MB min, 42MB avg, 42MB max
+
+Per-Package Stats:
+  * com.example.iths.asobi / u0a59 / v1:
+      * com.example.iths.asobi / u0a59 / v1:
+               TOTAL: 34% (12MB-17MB-32MB/9.8MB-15MB-29MB over 15)
+                 Top: 34% (12MB-17MB-32MB/9.8MB-15MB-29MB over 15)
+            (Cached): 1.0% (3.1MB-3.1MB-3.1MB/2.0MB-2.0MB-2.0MB over 1)
+  * com.example.iths.asobi / u0a60 / v1:
+      * com.example.iths.asobi / u0a60 / v1:
+               TOTAL: 62% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+                 Top: 62% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+            (Cached): 0.47%
+
+Summary:
+  * com.example.iths.asobi / u0a60 / v1:
+           TOTAL: 62% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+             Top: 62% (24MB-35MB-47MB/22MB-32MB-44MB over 29)
+        (Cached): 0.47%
+  * com.example.iths.asobi / u0a59 / v1:
+           TOTAL: 34% (12MB-17MB-32MB/9.8MB-15MB-29MB over 15)
+             Top: 34% (12MB-17MB-32MB/9.8MB-15MB-29MB over 15)
+        (Cached): 1.0% (3.1MB-3.1MB-3.1MB/2.0MB-2.0MB-2.0MB over 1)
+
+Run time Stats:
+  SOn /Norm: +54m28s692ms (running)
+       Mod : +28m34s987ms
+      TOTAL: +1h23m3s679ms
+
+Memory usage:
+  Kernel : 33MB (8 samples)
+  Native : 42MB (8 samples)
+  Persist: 115MB (28 samples)
+  Top    : 28MB (95 samples)
+  ImpFg  : 82MB (38 samples)
+  ImpBg  : 8.1MB (12 samples)
+  Service: 9.5MB (55 samples)
+  Receivr: 9.2KB (87 samples)
+  Home   : 23MB (12 samples)
+  LastAct: 8.6MB (25 samples)
+  CchEmty: 73MB (82 samples)
+  Cached : 373MB (8 samples)
+  Free   : 218MB (8 samples)
+  TOTAL  : 0.99GB
+
+          Start time: 2015-12-14 14:13:00
+  Total elapsed time: +1h23m3s735ms (partial) libart.so

@@ -47,10 +47,6 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
 
         rightAnswer = (EditText) findViewById(R.id.right_answer);
 
-        //Adds questions to our database
-
-//        DBHelper.addQuestionsToDataBase();
-
         db = DBHelper.getDbHelperInstance(this);
 
         selectedCategory=getIntent().getStringExtra(CATEGORY);
@@ -117,10 +113,12 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         db.addQuestionsToDataBase(db.getWritableDatabase(), question, alt1, alt2, alt3, alt4, correct, catId);
 
         Context context = getApplicationContext();
-        CharSequence text = ("Question added!");
+        CharSequence text = (getString(R.string.question_added));
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+
+        Toast.makeText(this, getString(R.string.question_added), Toast.LENGTH_SHORT).show();
 
         customQuestion.getText().clear();
         alternativeOne.getText().clear();

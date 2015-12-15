@@ -6,6 +6,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@drawable/asobi_background_symbols"
     tools:context="com.example.iths.asobi.ShowHighScoreActivity">
 
     <LinearLayout
@@ -18,28 +19,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Rank" />
+            android:text="@string/rank"
+            android:textColor="@drawable/startcolor"/>
         <TextView
             android:gravity="center"
             android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Name"/>
+            android:text="@string/name"
+            android:textColor="@drawable/startcolor"/>
         <TextView
             android:gravity="right"
             android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Score"/>
+            android:text="@string/score"
+            android:textColor="@drawable/startcolor"/>
 
   </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <ListView
             android:id="@+id/show_rank"
@@ -55,6 +60,5 @@
         android:layout_weight="1"/>
 
     </LinearLayout>
-
 
 </LinearLayout>

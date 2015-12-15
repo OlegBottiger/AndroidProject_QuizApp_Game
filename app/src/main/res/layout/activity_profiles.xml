@@ -6,6 +6,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@drawable/asobi_background_symbols"
     tools:context="com.example.iths.asobi.ProfilesActivity">
 
     <ListView
@@ -19,21 +20,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        style="?android:attr/buttonBarStyle">
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="Name"
+            android:hint="@string/name"
             android:id="@+id/enter_name"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="ADD PROFILE"
-            android:onClick="addProfile"/>
+            android:text="@string/add_profile"
+            android:onClick="addProfile"
+            android:textColor="@drawable/startcolor"
+            android:background="@color/answerButton"
+            style="?android:attr/borderlessButtonStyle"/>
 
     </LinearLayout>
 

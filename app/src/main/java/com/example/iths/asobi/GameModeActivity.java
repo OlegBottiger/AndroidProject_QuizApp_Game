@@ -53,7 +53,7 @@ public class GameModeActivity extends AppCompatActivity {
             int length=db.getLengthOfQuestions(category) ;
 
             if(length<5){
-                Toast.makeText(GameModeActivity.this, "You need at least 5 questions in this category!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GameModeActivity.this, R.string.you_need_at_least_five_questions, Toast.LENGTH_SHORT).show();
             } else{
 
             Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
@@ -111,7 +111,6 @@ public class GameModeActivity extends AppCompatActivity {
      */
     public void getQuestionsFromAll(View view) {
         Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
-
         intent.putExtra(GameActivity.CATEGORY,"ALL");
         startActivity(intent);
     }

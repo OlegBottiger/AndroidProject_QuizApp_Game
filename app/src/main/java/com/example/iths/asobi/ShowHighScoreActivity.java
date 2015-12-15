@@ -63,8 +63,6 @@ public class ShowHighScoreActivity extends AppCompatActivity {
                 adapter = new SimpleCursorAdapter(this, R.layout.rank_list_item, cursor, from2, to2, 0);
                 rank.setAdapter(adapter);
             }
-
-
     }
 
     /**

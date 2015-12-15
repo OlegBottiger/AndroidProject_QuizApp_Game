@@ -38,13 +38,6 @@ public class CustomCategoryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_category);
 
-        TextView question = (TextView) findViewById(R.id.debug_question);
-        TextView ans1 = (TextView) findViewById(R.id.debug_ans1);
-        TextView ans2 = (TextView) findViewById(R.id.debug_ans2);
-        TextView ans3 = (TextView) findViewById(R.id.debug_ans3);
-        TextView ans4 = (TextView) findViewById(R.id.debug_ans4);
-//        TextView correctect = (TextView) findViewById(R.id.debug_correct_answer);
-
         listview = (ListView) findViewById(R.id.list_of_categories);
         db=DBHelper.getDbHelperInstance(this);
 
@@ -132,24 +125,14 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
     };
 
-    /**
-     * Takes you to a new activity.
-     * @param view is waiting for being clicked on and then calls this method.
-     */
-    public void goToQuestions(View view) {
-        Intent i = new Intent(this, CustomQuestionActivity.class);
-        i.putExtra(CustomQuestionActivity.CATEGORY,"ALL");
-        startActivity(i);
-    }
-
     private AlertDialog AskOption() {
         AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
                 //set message, title, and icon
-                .setTitle("Delete")
-                .setMessage("Do you want to delete?")
+                .setTitle(R.string.delete)
+                .setMessage(R.string.do_you_want_to_delete)
                 .setIcon(R.drawable.ic_delete)
 
-                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         db.deleteCategory(z);
@@ -160,9 +143,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
                 })
 
-
-
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
                         dialog.dismiss();
@@ -196,7 +177,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
             }
 
         if(sameTable > 0){
-            Toast.makeText(this, "There is already "+categoryName+" category!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, String.format(getString(R.string.category_already_exists), categoryName), Toast.LENGTH_SHORT).show();
             categoryInput.getText().clear();
         } else {
 
@@ -204,11 +185,7 @@ public class CustomCategoryActivity extends AppCompatActivity {
             cursor = db.getOneTable(db.getAllCategoryTable());
             adapter.changeCursor(cursor);
             categoryInput.getText().clear();
-            Context context = getApplicationContext();
-            CharSequence text = ("Category added!");
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            Toast.makeText(this, String.format(getString(R.string.category_added), categoryName), Toast.LENGTH_SHORT).show();
         }
     }
 }
