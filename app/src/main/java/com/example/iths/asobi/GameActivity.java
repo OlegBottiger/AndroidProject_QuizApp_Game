@@ -18,8 +18,10 @@ import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
 
-    public static final String CATEGORY="category";
-    private static final String TAG = "GameActivity debug" ;
+    public static final String CATEGORY = "category";
+    private static final String TAG = "GameActivity debug";
+    private static final String TIME_LEFT = "savedTimeLeft";
+    public static String currentPlayer = "Guest";
     private DBHelper dbHelper;
     private TextView tvCategory;
     private TextView tvQuestion;
@@ -31,11 +33,12 @@ public class GameActivity extends AppCompatActivity {
     private String correctAnswer;
     private String playersGuess;
     private int round = 0;
-    private int showRound=1;
+    private int showRound = 1;
     private int playerScore = 0;
     private TextView mTextField;
     private CountDownTimer countDown;
     private CountDownTimer timer;
+    private CountDownTimer countDownAgain;
     private int pointsToRecieve = 3;
     private int numberOfCorrectAnswer = 0;
     private int time;
@@ -46,6 +49,8 @@ public class GameActivity extends AppCompatActivity {
     private MediaPlayer mp;
     private View view;
     private String timeLeft;
+    private int defaultTime = 15100;
+    private int savedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,40 +79,40 @@ public class GameActivity extends AppCompatActivity {
 
         // gets String category from GameModeActivity and saves it in getCategory.
         Intent intent = getIntent();
-        getCategory = (String)intent.getSerializableExtra(CATEGORY);
+        getCategory = (String) intent.getSerializableExtra(CATEGORY);
 
-        tvCategory = (TextView)findViewById(R.id.category_field);
+        tvCategory = (TextView) findViewById(R.id.category_field);
         tvCategory.setText(getCategory);
 
         // gets 5 random questions from the data base and sets them to the list of arrays "question"
-        if(getCategory.equals("ALL")){
+        if (getCategory.equals("ALL")) {
             questions = dbHelper.getRandomFiveQuestions(0);
-        } else{
-            questions= dbHelper.getRandomFiveQuestions(dbHelper.getIdByCategoryName(getCategory));
+        } else {
+            questions = dbHelper.getRandomFiveQuestions(dbHelper.getIdByCategoryName(getCategory));
         }
 
-        tvQuestion = (TextView)findViewById(R.id.question);
+        tvQuestion = (TextView) findViewById(R.id.question);
         tvQuestion.setText(questions.get(round).getQuestion());
 
-        buttonA =(Button)findViewById(R.id.buttonA);
+        buttonA = (Button) findViewById(R.id.buttonA);
         buttonA.setText(questions.get(round).getAlternative1());
 
-        buttonB =(Button)findViewById(R.id.buttonB);
+        buttonB = (Button) findViewById(R.id.buttonB);
         buttonB.setText(questions.get(round).getAlternative2());
 
-        buttonC =(Button)findViewById(R.id.buttonC);
+        buttonC = (Button) findViewById(R.id.buttonC);
         buttonC.setText(questions.get(round).getAlternative3());
 
-        buttonD =(Button)findViewById(R.id.buttonD);
+        buttonD = (Button) findViewById(R.id.buttonD);
         buttonD.setText(questions.get(round).getAlternative4());
 
         correctAnswer = questions.get(round).getCorrectAnswer();
 
-        roundView=(TextView)findViewById(R.id.round);
+        roundView = (TextView) findViewById(R.id.round);
         roundView.setText("" + showRound);
 
         //Starts the countDownTimer;
-        countDownTimer();
+        countDownTimer(defaultTime);
 
     }
 
@@ -116,14 +121,16 @@ public class GameActivity extends AppCompatActivity {
      * When the count reaches 0, the next question is displayed.
      */
 
-    private void countDownTimer() {
+    private void countDownTimer(int time) {
+        questionTimer(time);
+
+ /*       Log.d("debug", "countDownTimer körs");
         countDown = new CountDownTimer(15100, 1000) {
             public void onTick(long millisUntilFinished) {
                 mTextField = (TextView) findViewById(R.id.timer);
                 timeLeft = "" + millisUntilFinished / 1000;
                 mTextField.setText(timeLeft);
-                Log.d("debug", timeLeft);
-
+                Log.d("debug", "timer " + timeLeft);
 
                 if (millisUntilFinished < 10000) {
                     pointsToRecieve = 2;
@@ -137,29 +144,48 @@ public class GameActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
+                Log.d("debug", "first onFinish ");
                 mTextField.setText("0");
                 round++;
                 showRound++;
                 nextQuestion();
             }
-        }.start();
+
+        }.start();*/
     }
 
-/*    @Override
+    @Override
     protected void onPause() {
-        Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra("timeLeft", timeLeft);
         super.onPause();
+        Log.d("debug", "onPause körs");
+        Intent intent = new Intent(this, GameActivity.class);
+        savedTime = Integer.parseInt(timeLeft);
+        intent.putExtra(TIME_LEFT, savedTime);
+        this.countDown.cancel();
+        Log.d("debug", String.valueOf(savedTime));
+
+
     }
 
     @Override
     protected void onResume() {
+        super.onResume();
+        //this.countDown.cancel();
+        Log.d("debug", "onResume körs");
+        Log.d("debug", "där har vi " + (mTextField == null));
         Intent intent = getIntent();
-        int timeLeftBack = intent.getIntExtra("timeLeft", 15);
-        countDown = new CountDownTimer(timeLeftBack, 1000) {
+        int newTime = intent.getIntExtra(TIME_LEFT, 15100);
+        Log.d("debug", String.valueOf(savedTime));
+
+        questionTimer(newTime);
+        // countDownTimer();
+        /*countDownAgain = new CountDownTimer(timeLeftBack, 1000) {
             public void onTick(long millisUntilFinished) {
+                Log.d("debug", "second onTick " + (mTextField == null));
                 mTextField = (TextView) findViewById(R.id.timer);
                 mTextField.setText("" + millisUntilFinished / 1000);
+
+                Log.d("debug", "second 2 onTick " + (mTextField == null));
 
                 if (millisUntilFinished < 10000) {
                     pointsToRecieve = 2;
@@ -174,22 +200,23 @@ public class GameActivity extends AppCompatActivity {
 
             public void onFinish() {
                 mTextField.setText("0");
+                Log.d("debug", "second onFinish " + (mTextField == null));
                 round++;
                 showRound++;
                 nextQuestion();
             }
-        }.start();
-        super.onResume();
-    }*/
+        }.start();*/
+    }
 
     /**
      * This method handles the game input and check if answer is correct.
      * If the answer is correct the button turns green and the player's score increases.
      * If not, the button turns red and the player receives no points.
      * Finally the method calls on the next question.
+     *
      * @param view
      */
-    public void gameInput (final View view) {
+    public void gameInput(final View view) {
 
         countDown.cancel();
 
@@ -215,7 +242,7 @@ public class GameActivity extends AppCompatActivity {
 
             view.setBackgroundColor(Color.parseColor("#00cc00"));
 
-            numberOfCorrectAnswer ++;
+            numberOfCorrectAnswer++;
 
             // Player's score increases
             playerScore = playerScore + pointsToRecieve;
@@ -223,8 +250,7 @@ public class GameActivity extends AppCompatActivity {
             TextView scoreView = (TextView) findViewById(R.id.score);
             scoreView.setText("" + playerScore);
 
-        }
-        else {
+        } else {
             view.setBackgroundColor(Color.parseColor("#ff3300"));
         }
 
@@ -263,8 +289,7 @@ public class GameActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mp.stop();
             startActivity(intent);
-        }
-        else {
+        } else {
 
             tvQuestion.setText(questions.get(round).getQuestion());
             buttonA.setText(questions.get(round).getAlternative1());
@@ -277,12 +302,13 @@ public class GameActivity extends AppCompatActivity {
             roundView.setText("" + showRound);
             pointsToRecieve = 3;
 
-            countDownTimer();
+            questionTimer(defaultTime);
         }
     }
 
     /**
      * Gets the actionbar.
+     *
      * @param menu the actionbar menu.
      * @return true so you can see the actionbar.
      */
@@ -294,6 +320,7 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Handles the item clicks here and also has a sms function.
+     *
      * @param item is the symbol showed up on the actionbar.
      * @return returns true if clicked and takes you to the next activity or sms.
      */
@@ -331,5 +358,83 @@ public class GameActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * Helper method for our countdown timer. Was a part of more extended workaround with onPause and onResume.
+     *
+     * @param time from wich we start our timer.
+     */
+    public void questionTimer(int time) {
+        /*Intent intent = getIntent();
+        long time = intent.getLongExtra(TIME_LEFT, 0);*/
+        if (countDown != null) {
+            countDown.cancel();
+            Log.d("debug", "if körs");
+            countDown = new CountDownTimer(time, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    mTextField = (TextView) findViewById(R.id.timer);
+                    timeLeft = "" + millisUntilFinished / 1000;
+                    mTextField.setText(timeLeft);
+                    Log.d("debug", "timer " + timeLeft);
+
+                    if (millisUntilFinished < 10000) {
+                        pointsToRecieve = 2;
+                    } else if (millisUntilFinished < 5000) {
+                        pointsToRecieve = 1;
+                    } else if (millisUntilFinished <= 0) {
+                        pointsToRecieve = 0;
+                    }
+                }
+
+                public void onFinish() {
+                    Log.d("debug", "first onFinish ");
+                    mTextField.setText("0");
+                    round++;
+                    showRound++;
+                    cancel();
+                    nextQuestion();
+                }
+
+            }.start();
+        } else {
+            Log.d("debug", "esle körs");
+            countDown = new CountDownTimer(15100, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    mTextField = (TextView) findViewById(R.id.timer);
+                    timeLeft = "" + millisUntilFinished / 1000;
+                    mTextField.setText(timeLeft);
+                    Log.d("debug", "timer " + timeLeft);
+
+                    if (millisUntilFinished < 10000) {
+                        pointsToRecieve = 2;
+                    } else if (millisUntilFinished < 5000) {
+                        pointsToRecieve = 1;
+                    } else if (millisUntilFinished <= 0) {
+                        pointsToRecieve = 0;
+                    }
+                }
+
+                public void onFinish() {
+                    Log.d("debug", "first onFinish ");
+                    mTextField.setText("0");
+                    round++;
+                    showRound++;
+                    cancel();
+                    nextQuestion();
+                }
+
+            }.start();
+
+        }
+
+    }
+
+    @Override
+    public void onBackPressed(){
+        countDown.cancel();
+        Intent intent = new Intent(GameActivity.this, MainActivity.class);
+        startActivity(intent);
+
     }
 }

@@ -2,6 +2,7 @@ package com.example.iths.asobi;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -45,6 +46,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static DBHelper dbHelper = null;
     private SQLiteDatabase db;
     private String sql;
+    private Context context =null;
+
 
     /**
      * If there is a DBHelper it returns it,
@@ -59,10 +62,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return dbHelper;
     }
 
-    private DBHelper(Context context){
+    private DBHelper(Context context) {
         super(context, GAME_DB, null, VERSION);
+        this.context = context;
     }
-
     /**
      * @return String "name"
      */
@@ -226,77 +229,79 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Sets information to WHOLE_QUESTION_TABLE
         // Sports questions
-        addQuestionsToDataBase(db,"Which sports is the most popular sport in Sweden?","Tennis","Soccer","Ice hockey","Bandy","2",1);
-        addQuestionsToDataBase(db,"Who won The World Highland Games Championships a record six times?","Geoff Capes","Ben Affleck","Jonathan Summers","Dick Johnsson","1",1);
-        addQuestionsToDataBase(db,"What jobs did Mike ‘Fluff’ Cowan, Jim ‘Bones’ Mackay and Fanny Sunesson do?","Coaches","Golf caddies","Equipment manager","Doctors","2",1);
-        addQuestionsToDataBase(db,"Which former rugby player once called the English RFU committee 'Old Farts'?", "Ben Thompsson", "Jay Chris", "Will Carling", "John Smith", "3",1);
-        addQuestionsToDataBase(db,"In inches, how big is the diameter of a basketball hoop?", "11", "13", "16", "18", "4",1);
-        addQuestionsToDataBase(db,"What is the world record in highjump for men?", "2,45m", "2,42m", "2,40m", "2,49m", "1", 1);
-        addQuestionsToDataBase(db,"How many times have Brazil won the worlds championship in football?", "3", "5", "7", "9", "2", 1);
-        addQuestionsToDataBase(db,"Which NHL hockey club Henrik Lundqvist go to?", "Ottawa Senators", "Detroit Red Wings", "New York Rangers", "Calgary Flames", "3", 1);
-        addQuestionsToDataBase(db,"In what year was the summer olympic games in Sweden?", "1908", "1912", "1916", "1920", "2", 1);
-        addQuestionsToDataBase(db,"In what year was the athletics world championship in Gothenburg?", "1992", "1993", "1994", "1995", "4", 1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_1),context.getString(R.string.sports_answer_1_1),context.getString(R.string.sports_answer_1_2),context.getString(R.string.sports_answer_1_3),context.getString(R.string.sports_answer_1_4),context.getString(R.string.sports_correct_answer_1),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_2),context.getString(R.string.sports_answer_2_1),context.getString(R.string.sports_answer_2_2),context.getString(R.string.sports_answer_2_3),context.getString(R.string.sports_answer_2_4),context.getString(R.string.sports_correct_answer_2),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_3),context.getString(R.string.sports_answer_3_1),context.getString(R.string.sports_answer_3_2),context.getString(R.string.sports_answer_3_3),context.getString(R.string.sports_answer_3_4),context.getString(R.string.sports_correct_answer_3),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_4),context.getString(R.string.sports_answer_4_1),context.getString(R.string.sports_answer_4_2),context.getString(R.string.sports_answer_4_3),context.getString(R.string.sports_answer_4_4),context.getString(R.string.sports_correct_answer_4),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_5),context.getString(R.string.sports_answer_5_1),context.getString(R.string.sports_answer_5_2),context.getString(R.string.sports_answer_5_3),context.getString(R.string.sports_answer_5_4),context.getString(R.string.sports_correct_answer_5),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_6),context.getString(R.string.sports_answer_6_1),context.getString(R.string.sports_answer_6_2),context.getString(R.string.sports_answer_6_3),context.getString(R.string.sports_answer_6_4),context.getString(R.string.sports_correct_answer_6),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_7),context.getString(R.string.sports_answer_7_1),context.getString(R.string.sports_answer_7_2),context.getString(R.string.sports_answer_7_3),context.getString(R.string.sports_answer_7_4),context.getString(R.string.sports_correct_answer_7),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_8),context.getString(R.string.sports_answer_8_1),context.getString(R.string.sports_answer_8_2),context.getString(R.string.sports_answer_8_3),context.getString(R.string.sports_answer_8_4),context.getString(R.string.sports_correct_answer_8),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_9),context.getString(R.string.sports_answer_9_1),context.getString(R.string.sports_answer_9_2),context.getString(R.string.sports_answer_9_3),context.getString(R.string.sports_answer_9_4),context.getString(R.string.sports_correct_answer_9),1);
+        addQuestionsToDataBase(db,context.getString(R.string.question_sports_10),context.getString(R.string.sports_answer_10_1),context.getString(R.string.sports_answer_10_2),context.getString(R.string.sports_answer_10_3),context.getString(R.string.sports_answer_10_4),context.getString(R.string.sports_correct_answer_10),1);
 
         // Music questions
-        addQuestionsToDataBase(db,"In which country was Cliff Richard born in?", "England", "Ireland", "India", "USA", "3", 2);
-        addQuestionsToDataBase(db,"What is Alice Cooper's real name?", "Robert Smith", "David Hammich", "Mich Hammond", "Vincent Furnier", "4", 2);
-        addQuestionsToDataBase(db,"In which year was the group ABBA created?", "1971", "1972", "1973", "1974", "2", 2);
-        addQuestionsToDataBase(db,"From what country does ACDC originate?", "USA", "Belgium", "Austria", "Australia", "4",2);
-        addQuestionsToDataBase(db,"Which country won Eurovision song contest 1985?", "Norway", "Sweden", "Denmark", "England", "1", 2);
-        addQuestionsToDataBase(db,"Who wrote the song Moonlight Shadow?", "Mick Jagger", "Elton John", "Mike Oldfield", "Céline Dion", "3", 2);
-        addQuestionsToDataBase(db,"In what year was the album Dark Side of The Moon released?", "1972", "1969", "1970", "1973", "4", 2);
-        addQuestionsToDataBase(db,"In what year did the singer Donna Summer die?", "2008", "2012", "2010", "2014", "2", 2);
-        addQuestionsToDataBase(db,"When did the Woodstock festival take place?", "1969", "1962", "1966", "1973", "1", 2);
-        addQuestionsToDataBase(db,"When was the song Darude Sandstorm released?", "1996", "1997", "1998", "1999", "4", 2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_1),context.getString(R.string.music_answer_1_1),context.getString(R.string.music_answer_1_2),context.getString(R.string.music_answer_1_3),context.getString(R.string.music_answer_1_4),context.getString(R.string.music_correct_answer_1),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_2),context.getString(R.string.music_answer_2_1),context.getString(R.string.music_answer_2_2),context.getString(R.string.music_answer_2_3),context.getString(R.string.music_answer_2_4),context.getString(R.string.music_correct_answer_2),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_3),context.getString(R.string.music_answer_3_1),context.getString(R.string.music_answer_3_2),context.getString(R.string.music_answer_3_3),context.getString(R.string.music_answer_3_4),context.getString(R.string.music_correct_answer_3),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_4),context.getString(R.string.music_answer_4_1),context.getString(R.string.music_answer_4_2),context.getString(R.string.music_answer_4_3),context.getString(R.string.music_answer_4_4),context.getString(R.string.music_correct_answer_4),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_5),context.getString(R.string.music_answer_5_1),context.getString(R.string.music_answer_5_2),context.getString(R.string.music_answer_5_3),context.getString(R.string.music_answer_5_4),context.getString(R.string.music_correct_answer_5),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_6),context.getString(R.string.music_answer_6_1),context.getString(R.string.music_answer_6_2),context.getString(R.string.music_answer_6_3),context.getString(R.string.music_answer_6_4),context.getString(R.string.music_correct_answer_6),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_7),context.getString(R.string.music_answer_7_1),context.getString(R.string.music_answer_7_2),context.getString(R.string.music_answer_7_3),context.getString(R.string.music_answer_7_4),context.getString(R.string.music_correct_answer_7),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_8),context.getString(R.string.music_answer_8_1),context.getString(R.string.music_answer_8_2),context.getString(R.string.music_answer_8_3),context.getString(R.string.music_answer_8_4),context.getString(R.string.music_correct_answer_8),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_9),context.getString(R.string.music_answer_9_1),context.getString(R.string.music_answer_9_2),context.getString(R.string.music_answer_9_3),context.getString(R.string.music_answer_9_4),context.getString(R.string.music_correct_answer_9),2);
+        addQuestionsToDataBase(db,context.getString(R.string.question_music_10),context.getString(R.string.music_answer_10_1),context.getString(R.string.music_answer_10_2),context.getString(R.string.music_answer_10_3),context.getString(R.string.music_answer_10_4),context.getString(R.string.music_correct_answer_10),2);
 
         // Science questions
-        addQuestionsToDataBase(db,"Who came up with the Theory of Relativity?", "Robert Brown", "John Dalton", "Erwin Schrödinger", "Albert Einstein", "4", 3);
-        addQuestionsToDataBase(db,"Approximately how old is the universe?", "11.5 billion years", "12.3 billion years", "13.8 billion years", "14.6 billion years", "3", 3);
-        addQuestionsToDataBase(db,"What type of gas does a star mostly contain of?", "Oxygen and Helium", "Hydrogen and Helium", "Nitrogen and Boron", "Lithium and Neon", "2", 3);
-        addQuestionsToDataBase(db,"Which year was the Hubble space telescope sent into space?", "1990", "1987", "1992", "1994", "1", 3);
-        addQuestionsToDataBase(db,"Which letters does Gold have in the periodic table?", "Al", "Au", "Ac", "Ag", "2", 3);
-        addQuestionsToDataBase(db,"What is Earth's circumference?", "39,895km", "38,371km", "41,550km", "40,075km", "4", 3);
-        addQuestionsToDataBase(db,"Which planet is closest to the sun in our solar system?", "Uranus", "Mars", "Mercury", "Venus", "3", 3);
-        addQuestionsToDataBase(db,"What's the name of the first Soviet satellite?", "Sputnik", "Puttnik", "Vutnik", "Sutnik", "1", 3);
-        addQuestionsToDataBase(db,"What's earth's latin name?", "Tirra", "Terra", "Torra", "Tarra", "2", 3);
-        addQuestionsToDataBase(db,"What is our galaxy called?", "The chocolate way", "The milky way", "The strawberry way", "The vanilla way", "2", 3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_1),context.getString(R.string.science_answer_1_1),context.getString(R.string.science_answer_1_2),context.getString(R.string.science_answer_1_3),context.getString(R.string.science_answer_1_4),context.getString(R.string.science_correct_answer_1),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_2),context.getString(R.string.science_answer_2_1),context.getString(R.string.science_answer_2_2),context.getString(R.string.science_answer_2_3),context.getString(R.string.science_answer_2_4),context.getString(R.string.science_correct_answer_2),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_3),context.getString(R.string.science_answer_3_1),context.getString(R.string.science_answer_3_2),context.getString(R.string.science_answer_3_3),context.getString(R.string.science_answer_3_4),context.getString(R.string.science_correct_answer_3),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_4),context.getString(R.string.science_answer_4_1),context.getString(R.string.science_answer_4_2),context.getString(R.string.science_answer_4_3),context.getString(R.string.science_answer_4_4),context.getString(R.string.science_correct_answer_4),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_5),context.getString(R.string.science_answer_5_1),context.getString(R.string.science_answer_5_2),context.getString(R.string.science_answer_5_3),context.getString(R.string.science_answer_5_4),context.getString(R.string.science_correct_answer_5),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_6),context.getString(R.string.science_answer_6_1),context.getString(R.string.science_answer_6_2),context.getString(R.string.science_answer_6_3),context.getString(R.string.science_answer_6_4),context.getString(R.string.science_correct_answer_6),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_7),context.getString(R.string.science_answer_7_1),context.getString(R.string.science_answer_7_2),context.getString(R.string.science_answer_7_3),context.getString(R.string.science_answer_7_4),context.getString(R.string.science_correct_answer_7),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_8),context.getString(R.string.science_answer_8_1),context.getString(R.string.science_answer_8_2),context.getString(R.string.science_answer_8_3),context.getString(R.string.science_answer_8_4),context.getString(R.string.science_correct_answer_8),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_9),context.getString(R.string.science_answer_9_1),context.getString(R.string.science_answer_9_2),context.getString(R.string.science_answer_9_3),context.getString(R.string.science_answer_9_4),context.getString(R.string.science_correct_answer_9),3);
+        addQuestionsToDataBase(db,context.getString(R.string.question_science_10),context.getString(R.string.science_answer_10_1),context.getString(R.string.science_answer_10_2),context.getString(R.string.science_answer_10_3),context.getString(R.string.science_answer_10_4),context.getString(R.string.science_correct_answer_10),3);
 
         // Geography questions
-        addQuestionsToDataBase(db,"What is the capital city of Iran?", "Teheran", "Ankara", "Dushanbe", "Riyadh", "1", 4);
-        addQuestionsToDataBase(db,"Which lake is the biggest in Sweden?", "Mälaren", "Vättern", "Vänern", "Storsjön", "3", 4);
-        addQuestionsToDataBase(db,"What percentage of Japan consist of mountains?", "80%", "54%", "73%", "63%", "3", 4);
-        addQuestionsToDataBase(db,"How tall is Mount Everest?", "8398m", "8530m", "8713m", "8848m", "4", 4);
-        addQuestionsToDataBase(db,"Which country is to the west of Sweden?", "Finland", "Norway", "Denmark", "Russia", "1", 4);
-        addQuestionsToDataBase(db,"What is earth's second largest continent by population", "South America", "Africa", "North America", "Europe", "2", 4);
-        addQuestionsToDataBase(db,"In which american state is Grand Canyon?", "Alaska", "Texas", "Virginia", "Arizona", "4", 4);
-        addQuestionsToDataBase(db,"What is the longest river in South America?", "Madeira", "Amazon", "Parana", "Araguaia", "2", 4);
-        addQuestionsToDataBase(db,"What is earth's largest continent by surface size?", "Africa", "North America", "Europe", "Asia", "4", 4);
-        addQuestionsToDataBase(db,"What is the largest lake in Africa?", "Lake Malawi", "Lake Albert", "Lake Victoria", "Lake Tanganyika", "3", 4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_1),context.getString(R.string.geography_answer_1_1),context.getString(R.string.geography_answer_1_2),context.getString(R.string.geography_answer_1_3),context.getString(R.string.geography_answer_1_4),context.getString(R.string.geography_correct_answer_1),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_2),context.getString(R.string.geography_answer_2_1),context.getString(R.string.geography_answer_2_2),context.getString(R.string.geography_answer_2_3),context.getString(R.string.geography_answer_2_4),context.getString(R.string.geography_correct_answer_2),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_3),context.getString(R.string.geography_answer_3_1),context.getString(R.string.geography_answer_3_2),context.getString(R.string.geography_answer_3_3),context.getString(R.string.geography_answer_3_4),context.getString(R.string.geography_correct_answer_3),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_4),context.getString(R.string.geography_answer_4_1),context.getString(R.string.geography_answer_4_2),context.getString(R.string.geography_answer_4_3),context.getString(R.string.geography_answer_4_4),context.getString(R.string.geography_correct_answer_4),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_5),context.getString(R.string.geography_answer_5_1),context.getString(R.string.geography_answer_5_2),context.getString(R.string.geography_answer_5_3),context.getString(R.string.geography_answer_5_4),context.getString(R.string.geography_correct_answer_5),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_6),context.getString(R.string.geography_answer_6_1),context.getString(R.string.geography_answer_6_2),context.getString(R.string.geography_answer_6_3),context.getString(R.string.geography_answer_6_4),context.getString(R.string.geography_correct_answer_6),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_7),context.getString(R.string.geography_answer_7_1),context.getString(R.string.geography_answer_7_2),context.getString(R.string.geography_answer_7_3),context.getString(R.string.geography_answer_7_4),context.getString(R.string.geography_correct_answer_7),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_8),context.getString(R.string.geography_answer_8_1),context.getString(R.string.geography_answer_8_2),context.getString(R.string.geography_answer_8_3),context.getString(R.string.geography_answer_8_4),context.getString(R.string.geography_correct_answer_8),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_9),context.getString(R.string.geography_answer_9_1),context.getString(R.string.geography_answer_9_2),context.getString(R.string.geography_answer_9_3),context.getString(R.string.geography_answer_9_4),context.getString(R.string.geography_correct_answer_9),4);
+        addQuestionsToDataBase(db,context.getString(R.string.question_geography_10),context.getString(R.string.geography_answer_10_1),context.getString(R.string.geography_answer_10_2),context.getString(R.string.geography_answer_10_3),context.getString(R.string.geography_answer_10_4),context.getString(R.string.geography_correct_answer_10),4);
 
         // Mathematics questions
-        addQuestionsToDataBase(db,"What is the value of pi(π)?", "3.14159265359", "3.1321343", "3.412131436", "4.130054", "1", 5);
-        addQuestionsToDataBase(db,"What is 2+2?", "22", "Cheese Cakes", "2", "4", "4", 5);
-        addQuestionsToDataBase(db,"How do you calculate the circumference of a circle?", "C=2πr", "C=2πd", "C=4πr", "A=wl", "1", 5);
-        addQuestionsToDataBase(db,"What is x times x?", "2x", "x^2", "2x2", "x2", "2", 5);
-        addQuestionsToDataBase(db,"What is x+3=5", "x=5", "x=3", "x=2", "x=4", "3", 5);
-        addQuestionsToDataBase(db,"How many sides does a hexagon have?", "4", "5", "6", "7", "3", 5);
-        addQuestionsToDataBase(db,"What is the square root of 49?", "6", "9", "4", "7", "4", 5);
-        addQuestionsToDataBase(db,"What is 13 times 13?", "169", "157", "175", "163", "1", 5);
-        addQuestionsToDataBase(db,"What is 213-75", "123", "130", "138", "143", "3", 5);
-        addQuestionsToDataBase(db,"If 1 euro = 9,30 SEK, how many SEK do you get from 7 euros?", "63,70 SEK", "65,10 SEK", "67,40 SEK", "64,85 SEK", "2", 5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_1),context.getString(R.string.mathematics_answer_1_1),context.getString(R.string.mathematics_answer_1_2),context.getString(R.string.mathematics_answer_1_3),context.getString(R.string.mathematics_answer_1_4),context.getString(R.string.mathematics_correct_answer_1),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_2),context.getString(R.string.mathematics_answer_2_1),context.getString(R.string.mathematics_answer_2_2),context.getString(R.string.mathematics_answer_2_3),context.getString(R.string.mathematics_answer_2_4),context.getString(R.string.mathematics_correct_answer_2),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_3),context.getString(R.string.mathematics_answer_3_1),context.getString(R.string.mathematics_answer_3_2),context.getString(R.string.mathematics_answer_3_3),context.getString(R.string.mathematics_answer_3_4),context.getString(R.string.mathematics_correct_answer_3),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_4),context.getString(R.string.mathematics_answer_4_1),context.getString(R.string.mathematics_answer_4_2),context.getString(R.string.mathematics_answer_4_3),context.getString(R.string.mathematics_answer_4_4),context.getString(R.string.mathematics_correct_answer_4),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_5),context.getString(R.string.mathematics_answer_5_1),context.getString(R.string.mathematics_answer_5_2),context.getString(R.string.mathematics_answer_5_3),context.getString(R.string.mathematics_answer_5_4),context.getString(R.string.mathematics_correct_answer_5),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_6),context.getString(R.string.mathematics_answer_6_1),context.getString(R.string.mathematics_answer_6_2),context.getString(R.string.mathematics_answer_6_3),context.getString(R.string.mathematics_answer_6_4),context.getString(R.string.mathematics_correct_answer_6),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_7),context.getString(R.string.mathematics_answer_7_1),context.getString(R.string.mathematics_answer_7_2),context.getString(R.string.mathematics_answer_7_3),context.getString(R.string.mathematics_answer_7_4),context.getString(R.string.mathematics_correct_answer_7),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_8),context.getString(R.string.mathematics_answer_8_1),context.getString(R.string.mathematics_answer_8_2),context.getString(R.string.mathematics_answer_8_3),context.getString(R.string.mathematics_answer_8_4),context.getString(R.string.mathematics_correct_answer_8),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_9),context.getString(R.string.mathematics_answer_9_1),context.getString(R.string.mathematics_answer_9_2),context.getString(R.string.mathematics_answer_9_3),context.getString(R.string.mathematics_answer_9_4),context.getString(R.string.mathematics_correct_answer_9),5);
+        addQuestionsToDataBase(db,context.getString(R.string.question_mathematics_10),context.getString(R.string.mathematics_answer_10_1),context.getString(R.string.mathematics_answer_10_2),context.getString(R.string.mathematics_answer_10_3),context.getString(R.string.mathematics_answer_10_4),context.getString(R.string.mathematics_correct_answer_10),5);
 
         // Games questions
-        addQuestionsToDataBase(db,"What is Mario & Luigi’s last name?","Luigi","Mario","Lombardi","Alfredo","2",6);
-        addQuestionsToDataBase(db,"When was Nintendo as a company founded?","1991","1979","1889","1981","3",6);
-        addQuestionsToDataBase(db,"Before Nintendo made Video Games they made...","Card Games","Chairs","Electronics","Amusement Parks","1",6);
-        addQuestionsToDataBase(db,"Who is the creator of Super Mario?", "Satoru Iwata", "Reginald Fils-Aime", "Shigeru Miyamoto", "Gunpei Yokoi", "3",6);
-        addQuestionsToDataBase(db,"What is the name of the main character in the “The Legend of Zelda”?","Zelda","Link","Roy","Master Chief","2",6);
-        addQuestionsToDataBase(db,"How many Pokémons were in the first generation of Pokémon? ","150","100","200","151","4",6);
-        addQuestionsToDataBase(db,"Which platform was Halo: Combat Evolved first in development for? ","MAC OS X","Windows","Linux","Xbox","1",6);
-        addQuestionsToDataBase(db,"Which game has the most unique players each month?", "League of Legends", "Dota2", "Counter-Strike:GO", "World of Warcraft", "1", 6);
-        addQuestionsToDataBase(db,"What's your robot called in Fallout4?", "Hedreck", "Codsworth", "Tincan", "Millow", "2", 6);
-        addQuestionsToDataBase(db,"In what year was the game The sims released?", "1998", "1999", "2000", "2001", "3", 6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_1),context.getString(R.string.games_answer_1_1),context.getString(R.string.games_answer_1_2),context.getString(R.string.games_answer_1_3),context.getString(R.string.games_answer_1_4),context.getString(R.string.games_correct_answer_1),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_2),context.getString(R.string.games_answer_2_1),context.getString(R.string.games_answer_2_2),context.getString(R.string.games_answer_2_3),context.getString(R.string.games_answer_2_4),context.getString(R.string.games_correct_answer_2),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_3),context.getString(R.string.games_answer_3_1),context.getString(R.string.games_answer_3_2),context.getString(R.string.games_answer_3_3),context.getString(R.string.games_answer_3_4),context.getString(R.string.games_correct_answer_3),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_4),context.getString(R.string.games_answer_4_1),context.getString(R.string.games_answer_4_2),context.getString(R.string.games_answer_4_3),context.getString(R.string.games_answer_4_4),context.getString(R.string.games_correct_answer_4),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_5),context.getString(R.string.games_answer_5_1),context.getString(R.string.games_answer_5_2),context.getString(R.string.games_answer_5_3),context.getString(R.string.games_answer_5_4),context.getString(R.string.games_correct_answer_5),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_6),context.getString(R.string.games_answer_6_1),context.getString(R.string.games_answer_6_2),context.getString(R.string.games_answer_6_3),context.getString(R.string.games_answer_6_4),context.getString(R.string.games_correct_answer_6),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_7),context.getString(R.string.games_answer_7_1),context.getString(R.string.games_answer_7_2),context.getString(R.string.games_answer_7_3),context.getString(R.string.games_answer_7_4),context.getString(R.string.games_correct_answer_7),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_8),context.getString(R.string.games_answer_8_1),context.getString(R.string.games_answer_8_2),context.getString(R.string.games_answer_8_3),context.getString(R.string.games_answer_8_4),context.getString(R.string.games_correct_answer_8),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_9),context.getString(R.string.games_answer_9_1),context.getString(R.string.games_answer_9_2),context.getString(R.string.games_answer_9_3),context.getString(R.string.games_answer_9_4),context.getString(R.string.games_correct_answer_9),6);
+        addQuestionsToDataBase(db,context.getString(R.string.question_games_10),context.getString(R.string.games_answer_10_1),context.getString(R.string.games_answer_10_2),context.getString(R.string.games_answer_10_3),context.getString(R.string.games_answer_10_4),context.getString(R.string.games_correct_answer_10),6);
     }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
