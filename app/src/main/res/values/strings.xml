@@ -24,7 +24,7 @@
     <string name="right_answer">Right answer:</string>
     <string name="right_answer_int">Which alternative is the right one</string>
     <string name="add_button_text">Add</string>
-    <string name="hint_text">Which of the answers above is the right one. Please right down the number of the answer below</string>
+    <string name="hint_text"><![CDATA[Which of the answers above is the right one. \nPlease right down the number of the answer below]]></string>
     <string name="custom_categories">Categories</string>
     <string name="hint_button_A">A</string>
     <string name="hint_button_B">B</string>
@@ -35,7 +35,7 @@
     <string name="question_hint">Questions shows up here</string>
     <string name="timer_text">--</string>
     <string name="category_hint">—</string>
-    <string name="about_title">About the Asobi team</string>
+    <string name="about_title">About the Asobi Team</string>
     <string name="about_paragraf1">The Asobi team is a group of 5 people who had the dreams and passion to create an outstanding game!</string>
     <string name="about_paragraf2">With a tight budget and not much time we accomplished the impossible.</string>
     <string name="about_paragraf3">The name of the programmers can be found below:</string>
@@ -84,6 +84,8 @@
     <string name="profile_item">PROFILE</string>
     <string name="round">Round:</string>
     <string name="one">1</string>
+    <string name="category_message"><![CDATA[This is where you add your own categories. \nTo start with they will be empty]]></string>
+    <string name="hint_right_answer">Number of right answer</string>
     <string name="question_sports_1">Which sports is the most popular sport in Sweden?</string>
     <string name="sports_answer_1_1">Tennis</string>
     <string name="sports_answer_1_2">Soccer</string>
@@ -444,4 +446,5 @@
     <string name="games_answer_10_3">2000</string>
     <string name="games_answer_10_4">2001</string>
     <string name="games_correct_answer_10">3</string>
+
 </resources>

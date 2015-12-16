@@ -48,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
     private String sql;
     private Context context =null;
-    
+
     /**
      * If there is a DBHelper it returns it,
      * if it does not exist yet, it creates DBHelper and returns it
