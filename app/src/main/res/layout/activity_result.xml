@@ -9,6 +9,12 @@
     android:background="@drawable/white_radiant"
     tools:context="com.example.iths.asobi.ResultActivity"
     style="?android:attr/buttonBarStyle">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:id="@+id/rank"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -28,12 +34,7 @@
         android:textSize="30sp"
         android:textColor="@color/black"
         android:id="@+id/time"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:id="@+id/rank"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

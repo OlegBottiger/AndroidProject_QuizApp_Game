@@ -38,7 +38,7 @@
     <string name="question_hint">Questions shows up here</string>
     <string name="timer_text">--</string>
     <string name="category_hint">—</string>
-    <string name="about_title">About the Asobi team</string>
+    <string name="about_title">About the Asobi Team</string>
     <string name="about_paragraf1">The Asobi team is a group of 5 people who had the dreams and passion to create an outstanding game!</string>
     <string name="about_paragraf2">With a tight budget and not much time we accomplished the impossible.</string>
     <string name="about_paragraf3">The name of the programmers can be found below:</string>
@@ -58,10 +58,10 @@
     <string name="you_are_rank">You are %1$sth</string>
     <string name="correct_answers">Correct answers: %1$s</string>
     <string name="minutes_seconds"><![CDATA[Time: %1$s min & %2$d sec]]></string>
-    <string name="you_placed_xst_place_on_high_score">You placed %1$sst place on High Score</string>
-    <string name="you_placed_xnd_place_on_high_score">You placed %1$snd place on High Score</string>
-    <string name="you_placed_xrd_place_on_high_score">You placed %1$srd place on High Score</string>
-    <string name="you_placed_xth_place_on_high_score">You placed %1$sth place on High Score</string>
+    <string name="you_placed_xst_place_on_high_score">You Placed %1$sst on High Score</string>
+    <string name="you_placed_xnd_place_on_high_score">You Placed %1$snd on High Score</string>
+    <string name="you_placed_xrd_place_on_high_score">You Placed %1$srd on High Score</string>
+    <string name="you_placed_xth_place_on_high_score">You Placed %1$sth on High Score</string>
     <string name="category_already_exists">%1$s already exists.</string>
     <string name="category_added">Category added!</string>
     <string name="question_added">Question added!</string>
