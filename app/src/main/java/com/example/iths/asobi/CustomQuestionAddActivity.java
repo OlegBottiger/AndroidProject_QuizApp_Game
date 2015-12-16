@@ -127,5 +127,12 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         alternativeFour.getText().clear();
         rightAnswer.getText().clear();
     }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, CustomCategoryActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }
 
