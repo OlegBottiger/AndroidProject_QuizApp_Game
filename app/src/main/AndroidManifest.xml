@@ -61,7 +61,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.iths.asobi.MainActivity" />
         </activity>
-        //This activity is the launcher and is set to show 5 seconds (2500ms),
+        //This activity is the launcher and is set to show 2.5 seconds (2500ms),
         //then It set´s to MainActivity.java
         //To change use StartActivity.java
         <activity android:name=".StartActivity" >
