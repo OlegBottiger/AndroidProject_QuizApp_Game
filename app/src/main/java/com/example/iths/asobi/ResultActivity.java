@@ -72,15 +72,15 @@ public class ResultActivity extends AppCompatActivity {
         if(finalScore > 0){
             tvRank = (TextView) findViewById(R.id.rank);
             if(lastDigit == 1) {
-                tvRank.setText(String.format(getString(R.string.you_placed_xst_place_on_high_score), rank));
+                tvRank.setText(String.format(getString(R.string.you_placed_xst_place_on_high_score), rank,category));
             }
             else if (lastDigit == 2 && rank != 12) {
-                tvRank.setText(String.format(getString(R.string.you_placed_xnd_place_on_high_score), rank));
+                tvRank.setText(String.format(getString(R.string.you_placed_xnd_place_on_high_score), rank,category));
             }
             else if (lastDigit == 3 && rank != 13) {
-                tvRank.setText(String.format(getString(R.string.you_placed_xrd_place_on_high_score), rank));
+                tvRank.setText(String.format(getString(R.string.you_placed_xrd_place_on_high_score), rank,category));
             } else {
-                tvRank.setText(String.format(getString(R.string.you_placed_xth_place_on_high_score), rank));
+                tvRank.setText(String.format(getString(R.string.you_placed_xth_place_on_high_score), rank,category));
             }
         db.addHighScore(name, finalScore, db.getIdByCategoryName(category));
 
