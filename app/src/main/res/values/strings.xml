@@ -291,9 +291,9 @@
     <string name="geography_answer_4_4">8848m</string>
     <string name="geography_correct_answer_4">4</string>
     <string name="question_geography_5">Which country is to the west of Sweden?</string>
-    <string name="geography_answer_5_1">Finland</string>
-    <string name="geography_answer_5_2">Norway</string>
-    <string name="geography_answer_5_3">Denmark</string>
+    <string name="geography_answer_5_1">Island</string>
+    <string name="geography_answer_5_2">Finland</string>
+    <string name="geography_answer_5_3">Belarus</string>
     <string name="geography_answer_5_4">Russia</string>
     <string name="geography_correct_answer_5">1</string>
     <string name="question_geography_6">What is earth\'s second largest continent by population</string>
