@@ -131,26 +131,17 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("debug", "onPause körs");
         Intent intent = new Intent(this, GameActivity.class);
         savedTime = Integer.parseInt(timeLeft);
         intent.putExtra(TIME_LEFT, savedTime);
         this.countDown.cancel();
-        Log.d("debug", String.valueOf(savedTime));
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        //this.countDown.cancel();
-        Log.d("debug", "onResume körs");
-        Log.d("debug", "där har vi " + (mTextField == null));
         Intent intent = getIntent();
         int newTime = intent.getIntExtra(TIME_LEFT, 15100);
-        Log.d("debug", String.valueOf(savedTime));
-
         questionTimer(newTime);
     }
 
@@ -312,17 +303,14 @@ public class GameActivity extends AppCompatActivity {
      * @param time from wich we start our timer.
      */
     public void questionTimer(int time) {
-        /*Intent intent = getIntent();
-        long time = intent.getLongExtra(TIME_LEFT, 0);*/
+
         if (countDown != null) {
             countDown.cancel();
-            Log.d("debug", "if körs");
             countDown = new CountDownTimer(time, 1000) {
                 public void onTick(long millisUntilFinished) {
                     mTextField = (TextView) findViewById(R.id.timer);
                     timeLeft = "" + millisUntilFinished / 1000;
                     mTextField.setText(timeLeft);
-                    Log.d("debug", "timer " + timeLeft);
 
                     if (millisUntilFinished < 10000) {
                         pointsToRecieve = 2;
@@ -334,7 +322,6 @@ public class GameActivity extends AppCompatActivity {
                 }
 
                 public void onFinish() {
-                    Log.d("debug", "first onFinish ");
                     mTextField.setText("0");
                     round++;
                     showRound++;
@@ -344,13 +331,12 @@ public class GameActivity extends AppCompatActivity {
 
             }.start();
         } else {
-            Log.d("debug", "esle körs");
+
             countDown = new CountDownTimer(15100, 1000) {
                 public void onTick(long millisUntilFinished) {
                     mTextField = (TextView) findViewById(R.id.timer);
                     timeLeft = "" + millisUntilFinished / 1000;
                     mTextField.setText(timeLeft);
-                    Log.d("debug", "timer " + timeLeft);
 
                     if (millisUntilFinished < 10000) {
                         pointsToRecieve = 2;
@@ -362,7 +348,6 @@ public class GameActivity extends AppCompatActivity {
                 }
 
                 public void onFinish() {
-                    Log.d("debug", "first onFinish ");
                     mTextField.setText("0");
                     round++;
                     showRound++;
