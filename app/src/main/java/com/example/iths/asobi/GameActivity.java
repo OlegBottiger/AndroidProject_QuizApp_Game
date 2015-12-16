@@ -51,6 +51,10 @@ public class GameActivity extends AppCompatActivity {
     private String timeLeft;
     private int defaultTime = 15100;
     private int savedTime;
+    private MediaPlayer mpb;
+    private MediaPlayer mpbw;
+    private MediaPlayer mpbr;
+    private Player player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,9 @@ public class GameActivity extends AppCompatActivity {
 
         mp = MediaPlayer.create(this, R.raw.vitas2);
         mp.start();
+
+        player = Player.getPlayerInstance("Guest");
+        currentPlayer = player.getName();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
@@ -240,6 +247,7 @@ public class GameActivity extends AppCompatActivity {
 
         if (correctAnswer.equals(playersGuess)) {
 
+            playClickSoundGlass();
             view.setBackgroundColor(Color.parseColor("#00cc00"));
 
             numberOfCorrectAnswer++;
@@ -251,6 +259,7 @@ public class GameActivity extends AppCompatActivity {
             scoreView.setText("" + playerScore);
 
         } else {
+            playClickSoundDuck();
             view.setBackgroundColor(Color.parseColor("#ff3300"));
         }
 
@@ -329,21 +338,25 @@ public class GameActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_play:
+                playClickSound();
                 Intent i = new Intent(GameActivity.this, GameModeActivity.class);
                 mp.stop();
                 startActivity(i);
                 return true;
             case R.id.info:
+                playClickSound();
                 Intent j = new Intent(GameActivity.this, AboutActivity.class);
                 mp.stop();
                 startActivity(j);
                 return true;
             case R.id.profile:
+                playClickSound();
                 Intent k = new Intent(GameActivity.this, ProfilesActivity.class);
                 mp.stop();
                 startActivity(k);
                 return true;
             case R.id.send_sms:
+                playClickSound();
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
                 sendIntent.setData(Uri.parse("sms:"));
                 String quest = tvQuestion.getText().toString();
@@ -436,5 +449,28 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent(GameActivity.this, MainActivity.class);
         startActivity(intent);
 
+    }
+
+    /**
+     * A method used for making the actionbar buttons do a sound when clicked.
+     */
+    public void playClickSound() {
+        mpb = MediaPlayer.create(this, R.raw.test);
+        mpb.start();
+    }
+
+    /**
+     * A method used for making the wrong answer buttons do a sound when clicked.
+     */
+    public void playClickSoundDuck() {
+        mpbw = MediaPlayer.create(this, R.raw.duck_quacking);
+        mpbw.start();
+    }
+    /**
+     * A method used for making the right answer button do a sound when clicked.
+     */
+    public void playClickSoundGlass() {
+        mpbr = MediaPlayer.create(this, R.raw.glass_breaking);
+        mpbr.start();
     }
 }

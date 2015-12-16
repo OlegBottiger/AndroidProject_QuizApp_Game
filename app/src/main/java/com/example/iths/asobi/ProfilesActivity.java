@@ -3,6 +3,7 @@ package com.example.iths.asobi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -29,6 +30,9 @@ public class ProfilesActivity extends AppCompatActivity {
     private String z;
     private String name;
     private Player player;
+    public static String currentPlayer = "Guest";
+    private MediaPlayer mpb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class ProfilesActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_profiles);
+
+        player = Player.getPlayerInstance("Guest");
+        currentPlayer = player.getName();
 
         //Create profile
         listView = (ListView) findViewById(R.id.profile_list);
@@ -149,16 +156,19 @@ public class ProfilesActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_play:
+                playClickSound();
                 // Play action
                 Intent i = new Intent(ProfilesActivity.this, GameModeActivity.class);
                 startActivity(i);
                 return true;
             case R.id.info:
+                playClickSound();
                 // Asobi presentation activity
                 Intent j = new Intent(ProfilesActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
            case R.id.profile:
+               playClickSound();
                 // Create profile activity
                 Intent k = new Intent(ProfilesActivity.this, ProfilesActivity.class);
                 startActivity(k);
@@ -200,5 +210,13 @@ public class ProfilesActivity extends AppCompatActivity {
             nameInput.getText().clear();
             Toast.makeText(this, R.string.profile_created, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * A method used for making the actionbar buttons do a sound when clicked.
+     */
+    public void playClickSound() {
+        mpb = MediaPlayer.create(this, R.raw.test);
+        mpb.start();
     }
 }

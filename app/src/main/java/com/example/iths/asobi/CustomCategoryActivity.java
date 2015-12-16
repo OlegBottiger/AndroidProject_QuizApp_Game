@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -27,6 +28,9 @@ public class CustomCategoryActivity extends AppCompatActivity {
     private SimpleCursorAdapter adapter;
     private String z;
     private String categoryName;
+    public static String currentPlayer = "Guest";
+    private MediaPlayer mpb;
+    private Player player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,9 @@ public class CustomCategoryActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_category);
+
+        player = Player.getPlayerInstance("Guest");
+        currentPlayer = player.getName();
 
         listview = (ListView) findViewById(R.id.list_of_categories);
         db=DBHelper.getDbHelperInstance(this);
@@ -72,16 +79,19 @@ public class CustomCategoryActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_play:
+                playClickSound();
                 // Play action
                 Intent i = new Intent(CustomCategoryActivity.this, GameModeActivity.class);
                 startActivity(i);
                 return true;
             case R.id.info:
+                playClickSound();
                 // Asobi presentation activity
                 Intent j = new Intent(CustomCategoryActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
             case R.id.profile:
+                playClickSound();
                 // Create profile activity
                 Intent k = new Intent(CustomCategoryActivity.this, ProfilesActivity.class);
                 startActivity(k);
@@ -187,5 +197,12 @@ public class CustomCategoryActivity extends AppCompatActivity {
             categoryInput.getText().clear();
             Toast.makeText(this, String.format(getString(R.string.category_added), categoryName), Toast.LENGTH_SHORT).show();
         }
+    }
+    /**
+     * A method used for making the actionbar buttons do a sound when clicked.
+     */
+    public void playClickSound() {
+        mpb = MediaPlayer.create(this, R.raw.test);
+        mpb.start();
     }
 }

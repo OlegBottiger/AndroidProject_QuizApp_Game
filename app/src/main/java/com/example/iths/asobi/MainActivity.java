@@ -53,16 +53,19 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_play:
+                playClickSound();
                 // Play action
                 Intent i = new Intent(MainActivity.this, GameModeActivity.class);
                 startActivity(i);
                 return true;
             case R.id.info:
+                playClickSound();
                 // Asobi presentation activity
                 Intent j = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
             case R.id.profile:
+                playClickSound();
                 // Create profile activity
                 Intent k = new Intent(MainActivity.this, ProfilesActivity.class);
                 startActivity(k);
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view the button that calls the method.
      */
     public void startGame(View view) {
+        playClickSound();
         Intent intent = new Intent(MainActivity.this, GameModeActivity.class);
         startActivity(intent);
     }
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view the button that calls the method.
      */
     public void getHighScore(View view) {
+        playClickSound();
         Intent i = new Intent(MainActivity.this, HighscoreActivity.class);
         startActivity(i);
     }
@@ -96,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view the button that calls the method.
      */
     public void custom(View view) {
+        playClickSound();
         Intent i = new Intent(MainActivity.this, CustomCategoryActivity.class);
         startActivity(i);
     }
@@ -105,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view the button that calls the method.
      */
     public void getInfo(View view) {
+        playClickSound();
         Intent i = new Intent(MainActivity.this, AboutActivity.class);
         startActivity(i);
     }

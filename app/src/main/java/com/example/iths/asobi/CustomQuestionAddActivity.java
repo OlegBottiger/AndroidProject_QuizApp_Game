@@ -2,6 +2,7 @@ package com.example.iths.asobi;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,9 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
     private EditText rightAnswer;
     private DBHelper db;
     private String selectedCategory;
+    public static String currentPlayer = "Guest";
+    private MediaPlayer mpb;
+    private Player player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,9 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_custom_question_add);
+
+        player = Player.getPlayerInstance("Guest");
+        currentPlayer = player.getName();
 
         //Add question field
         customQuestion = (EditText) findViewById(R.id.custom_question);
@@ -74,16 +81,19 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_play:
+                playClickSound();
                 // Play action
                 Intent i = new Intent(CustomQuestionAddActivity.this, GameModeActivity.class);
                 startActivity(i);
                 return true;
             case R.id.info:
+                playClickSound();
                 // Asobi presentation activity
                 Intent j = new Intent(CustomQuestionAddActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
             case R.id.profile:
+                playClickSound();
                 // Create profile activity
                 Intent k = new Intent(CustomQuestionAddActivity.this, ProfilesActivity.class);
                 startActivity(k);
@@ -133,6 +143,14 @@ public class CustomQuestionAddActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CustomCategoryActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    /**
+     * A method used for making the actionbar buttons do a sound when clicked.
+     */
+    public void playClickSound() {
+        mpb = MediaPlayer.create(this, R.raw.test);
+        mpb.start();
     }
 }
 

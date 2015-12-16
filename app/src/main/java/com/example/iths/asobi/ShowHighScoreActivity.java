@@ -2,6 +2,7 @@ package com.example.iths.asobi;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,9 @@ public class ShowHighScoreActivity extends AppCompatActivity {
     public static final String CATEGORY= "category";
     private String category;
     private  Cursor cursor;
+    public static String currentPlayer = "Guest";
+    private MediaPlayer mpb;
+    private Player player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,9 @@ public class ShowHighScoreActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+        player = Player.getPlayerInstance("Guest");
+        currentPlayer = player.getName();
 
         listview = (ListView) findViewById(R.id.show_high_score);
         db=DBHelper.getDbHelperInstance(this);
@@ -86,16 +93,19 @@ public class ShowHighScoreActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_play:
+                playClickSound();
                 // Play action
                 Intent i = new Intent(ShowHighScoreActivity.this, GameModeActivity.class);
                 startActivity(i);
                 return true;
             case R.id.info:
+                playClickSound();
                 // Asobi presentation activity
                 Intent j = new Intent(ShowHighScoreActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
             case R.id.profile:
+                playClickSound();
                 // Create profile activity
                 Intent k = new Intent(ShowHighScoreActivity.this, ProfilesActivity.class);
                 startActivity(k);
@@ -106,5 +116,12 @@ public class ShowHighScoreActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * A method used for making the actionbar buttons do a sound when clicked.
+     */
+    public void playClickSound() {
+        mpb = MediaPlayer.create(this, R.raw.test);
+        mpb.start();
+    }
 
 }

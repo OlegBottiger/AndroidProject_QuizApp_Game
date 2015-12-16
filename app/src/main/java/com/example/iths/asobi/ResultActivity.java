@@ -22,6 +22,9 @@ public class ResultActivity extends AppCompatActivity {
     public static final String CATEGORY = "category" ;
     private String name="";
     private Player player;
+    public static String currentPlayer = "Guest";
+    private MediaPlayer mpb;
+
 
     /**
      * Displays the game results and saves the score in the high score table.
@@ -44,6 +47,9 @@ public class ResultActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_result);
+
+        player = Player.getPlayerInstance("Guest");
+        currentPlayer = player.getName();
 
         db=DBHelper.getDbHelperInstance(this);
         player = Player.getPlayerInstance("Guest");
@@ -111,16 +117,19 @@ public class ResultActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_play:
+                playClickSound();
                 // Play action
                 Intent i = new Intent(ResultActivity.this, GameModeActivity.class);
                 startActivity(i);
                 return true;
             case R.id.info:
+                playClickSound();
                 // Asobi presentation activity
                 Intent j = new Intent(ResultActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
             case R.id.profile:
+                playClickSound();
                 // Create profile activity
                 Intent k = new Intent(ResultActivity.this, ProfilesActivity.class);
                 startActivity(k);
@@ -167,5 +176,12 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameModeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+    /**
+     * A method used for making the actionbar buttons do a sound when clicked.
+     */
+    public void playClickSound() {
+        mpb = MediaPlayer.create(this, R.raw.test);
+        mpb.start();
     }
 }

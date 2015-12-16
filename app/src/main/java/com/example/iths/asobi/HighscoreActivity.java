@@ -2,6 +2,7 @@ package com.example.iths.asobi;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +16,9 @@ public class HighscoreActivity extends AppCompatActivity {
 
     private ListView listview;
     private DBHelper db;
+    public static String currentPlayer = "Guest";
+    private MediaPlayer mpb;
+    private Player player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,8 @@ public class HighscoreActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_highscore);
 
+        player = Player.getPlayerInstance("Guest");
+        currentPlayer = player.getName();
 
         db=DBHelper.getDbHelperInstance(this);
         listview = (ListView) findViewById(R.id.high_score_list_view);
@@ -77,16 +83,19 @@ public class HighscoreActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_play:
+                playClickSound();
                 // Play action
                 Intent i = new Intent(HighscoreActivity.this, GameModeActivity.class);
                 startActivity(i);
                 return true;
             case R.id.info:
+                playClickSound();
                 // Asobi presentation activity
                 Intent j = new Intent(HighscoreActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
             case R.id.profile:
+                playClickSound();
                 // Create profile activity
                 Intent k = new Intent(HighscoreActivity.this, ProfilesActivity.class);
                 startActivity(k);
@@ -105,5 +114,13 @@ public class HighscoreActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ShowHighScoreActivity.class);
         intent.putExtra(ShowHighScoreActivity.CATEGORY, "ALL");
         startActivity(intent);
+    }
+
+    /**
+     * A method used for making the actionbar buttons do a sound when clicked.
+     */
+    public void playClickSound() {
+        mpb = MediaPlayer.create(this, R.raw.test);
+        mpb.start();
     }
 }

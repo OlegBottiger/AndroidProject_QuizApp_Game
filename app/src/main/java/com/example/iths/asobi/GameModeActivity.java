@@ -2,6 +2,7 @@ package com.example.iths.asobi;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +17,9 @@ public class GameModeActivity extends AppCompatActivity {
 
     private ListView listview;
     private DBHelper db;
+    private MediaPlayer mp;
+    public static String currentPlayer="Guest";
+    private Player player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,9 @@ public class GameModeActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_game_mode);
+
+        player = Player.getPlayerInstance("Guest");
+        currentPlayer = player.getName();
 
         db=DBHelper.getDbHelperInstance(this);
 
@@ -85,16 +92,19 @@ public class GameModeActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_play:
+                playClickSound();
                 // Play action
                 Intent i = new Intent(GameModeActivity.this, GameModeActivity.class);
                 startActivity(i);
                 return true;
             case R.id.info:
+                playClickSound();
                 // Asobi presentation activity
                 Intent j = new Intent(GameModeActivity.this, AboutActivity.class);
                 startActivity(j);
                 return true;
             case R.id.profile:
+                playClickSound();
                 // Create profile activity
                 Intent k = new Intent(GameModeActivity.this, ProfilesActivity.class);
                 startActivity(k);
@@ -113,5 +123,13 @@ public class GameModeActivity extends AppCompatActivity {
         Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
         intent.putExtra(GameActivity.CATEGORY,"ALL");
         startActivity(intent);
+    }
+
+    /**
+     * A method used for making the buttons do a sound when clicked.
+     */
+    public void playClickSound() {
+        mp = MediaPlayer.create(this, R.raw.test);
+        mp.start();
     }
 }
