@@ -12,6 +12,10 @@ import android.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
 
+/**
+ * This activity shows high scores.
+ * It shows rank, name and scores.
+ */
 public class ShowHighScoreActivity extends AppCompatActivity {
     private ListView listview;
     private DBHelper db;

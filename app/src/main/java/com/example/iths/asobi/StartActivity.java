@@ -5,6 +5,10 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+
+/**
+ * This is a class which shows the main logo.
+ */
 public class StartActivity extends AppCompatActivity {
 
     @Override

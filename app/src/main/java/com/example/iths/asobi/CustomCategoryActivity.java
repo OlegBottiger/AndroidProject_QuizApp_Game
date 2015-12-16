@@ -20,6 +20,11 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Player can choose which category she wants to customize from this activity.
+ * Player can create and delete her own category.
+ *
+ */
 public class CustomCategoryActivity extends AppCompatActivity {
 
     private DBHelper db;

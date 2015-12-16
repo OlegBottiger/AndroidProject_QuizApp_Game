@@ -12,6 +12,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * With this activity the player can create her own questions.
+ * Player can write one question, 4 alternatives and one correct number.
+ */
 public class CustomQuestionAddActivity extends AppCompatActivity {
 
     private static final String TAG = "DEBUG";

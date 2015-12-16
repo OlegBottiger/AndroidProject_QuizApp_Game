@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * This activity has information about the Asobi team who created this application.
+ */
 public class AboutActivity extends AppCompatActivity {
 
     public static String currentPlayer = "Guest";

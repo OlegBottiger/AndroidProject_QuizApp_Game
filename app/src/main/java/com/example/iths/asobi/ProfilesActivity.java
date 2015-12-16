@@ -21,6 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+/**
+ * Player can create your own player from this activity.
+ * Player can log in as own name you create.
+ * Player can also delete your profile.
+ */
 public class ProfilesActivity extends AppCompatActivity {
 
     private ListView listView;

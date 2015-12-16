@@ -12,6 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+/**
+ * Player can choose which category's high score she wants to see with this activity.
+ */
 public class HighscoreActivity extends AppCompatActivity {
 
     private ListView listview;

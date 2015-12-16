@@ -12,7 +12,9 @@ import java.util.ArrayList;
 
 
 /**
- * Created by iths on 2015-11-25.
+ * This class is a help class for the data base.
+ * With this class we can access the data base.
+ *
  */
 public class DBHelper extends SQLiteOpenHelper {
 

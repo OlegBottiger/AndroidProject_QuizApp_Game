@@ -1,7 +1,10 @@
 package com.example.iths.asobi;
 
 /**
- * Created by iths on 2015-11-25.
+ * This class has information about which category the question belongs,
+ * question's content, 4 alternatives and one correct answer.
+ * This class is used to instantiate 5 questions when the player start the game.
+ *
  */
 public class Question {
 

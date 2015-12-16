@@ -13,6 +13,9 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+/**
+ * From this activity player can choose with which categories she wants to play
+ */
 public class GameModeActivity extends AppCompatActivity {
 
     private ListView listview;
