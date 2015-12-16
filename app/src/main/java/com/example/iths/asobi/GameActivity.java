@@ -77,7 +77,6 @@ public class GameActivity extends AppCompatActivity {
         mp.start();
 
         player = Player.getPlayerInstance("Guest");
-        currentPlayer = player.getName();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
