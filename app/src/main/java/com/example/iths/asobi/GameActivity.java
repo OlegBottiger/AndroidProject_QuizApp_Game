@@ -123,35 +123,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void countDownTimer(int time) {
         questionTimer(time);
-
- /*       Log.d("debug", "countDownTimer körs");
-        countDown = new CountDownTimer(15100, 1000) {
-            public void onTick(long millisUntilFinished) {
-                mTextField = (TextView) findViewById(R.id.timer);
-                timeLeft = "" + millisUntilFinished / 1000;
-                mTextField.setText(timeLeft);
-                Log.d("debug", "timer " + timeLeft);
-
-                if (millisUntilFinished < 10000) {
-                    pointsToRecieve = 2;
-                }
-                else if (millisUntilFinished < 5000) {
-                    pointsToRecieve = 1;
-                }
-                else if (millisUntilFinished <= 0) {
-                    pointsToRecieve = 0;
-                }
-            }
-
-            public void onFinish() {
-                Log.d("debug", "first onFinish ");
-                mTextField.setText("0");
-                round++;
-                showRound++;
-                nextQuestion();
-            }
-
-        }.start();*/
+        
     }
 
     @Override
@@ -178,34 +150,6 @@ public class GameActivity extends AppCompatActivity {
         Log.d("debug", String.valueOf(savedTime));
 
         questionTimer(newTime);
-        // countDownTimer();
-        /*countDownAgain = new CountDownTimer(timeLeftBack, 1000) {
-            public void onTick(long millisUntilFinished) {
-                Log.d("debug", "second onTick " + (mTextField == null));
-                mTextField = (TextView) findViewById(R.id.timer);
-                mTextField.setText("" + millisUntilFinished / 1000);
-
-                Log.d("debug", "second 2 onTick " + (mTextField == null));
-
-                if (millisUntilFinished < 10000) {
-                    pointsToRecieve = 2;
-                }
-                else if (millisUntilFinished < 5000) {
-                    pointsToRecieve = 1;
-                }
-                else if (millisUntilFinished <= 0) {
-                    pointsToRecieve = 0;
-                }
-            }
-
-            public void onFinish() {
-                mTextField.setText("0");
-                Log.d("debug", "second onFinish " + (mTextField == null));
-                round++;
-                showRound++;
-                nextQuestion();
-            }
-        }.start();*/
     }
 
     /**
