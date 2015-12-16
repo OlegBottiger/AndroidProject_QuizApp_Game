@@ -11,6 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * This is a main activity which navigates the player to different activities including
+ * play, categories, high scores and information.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextField;

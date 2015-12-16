@@ -16,12 +16,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * This is the activity which has the game's logic.
+ */
 public class GameActivity extends AppCompatActivity {
 
     public static final String CATEGORY = "category";
     private static final String TAG = "GameActivity debug";
     private static final String TIME_LEFT = "savedTimeLeft";
-    public static String currentPlayer = "Guest";
     private DBHelper dbHelper;
     private TextView tvCategory;
     private TextView tvQuestion;
@@ -123,7 +125,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void countDownTimer(int time) {
         questionTimer(time);
-        
+
     }
 
     @Override

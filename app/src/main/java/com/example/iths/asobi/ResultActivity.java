@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * This activity shows the result of the game.
+ * Player can go to see the high score, replay again and go to the info.
+ */
 public class ResultActivity extends AppCompatActivity {
 
     private DBHelper db;

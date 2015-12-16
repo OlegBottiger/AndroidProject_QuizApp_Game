@@ -3,7 +3,6 @@ package com.example.iths.asobi;
 /**
  * This Player class has information about a player's name.
  * It is used to check who is playing the game currently.
- * Created by iths on 2015-11-25.
  */
 public class Player {
     private String name;

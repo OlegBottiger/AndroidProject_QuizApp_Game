@@ -16,6 +16,11 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+/**
+ * This activity shows all questions in a category which the player chose in previous activity.
+ * Player can delete a question.
+ * Player can click a button to go to customize questions.
+ */
 public class CustomQuestionActivity extends AppCompatActivity {
 
     private DBHelper db;
