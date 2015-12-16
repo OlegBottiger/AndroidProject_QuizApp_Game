@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+
 /**
  * Created by iths on 2015-11-25.
  */
@@ -45,6 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static DBHelper dbHelper = null;
     private SQLiteDatabase db;
     private String sql;
+    private Context context=null;
 
     /**
      * If there is a DBHelper it returns it,
@@ -61,6 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private DBHelper(Context context){
         super(context, GAME_DB, null, VERSION);
+        this.context = context;
     }
 
     /**
@@ -195,7 +198,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         sql = " CREATE TABLE " + RANK_TABLE + " ( ";
-        sql += ID_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, ";
+        sql += ID_KEY + " INTEGER PRIMARY KEY, ";
         sql += RANK_KEY + " INTEGER";
         sql += " );";
         db.execSQL(sql);
